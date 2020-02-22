@@ -2,7 +2,7 @@
     <ul class="navbar-nav">
     	<!-- Se Limpio el menu lateral derecho, como funciona para mostrar el menu de configuracion NO SE, creo que tiene que ver mucho esa clase js-right-sidebar -->
         <li>
-            <a href="{{route('profile.my-profile')}}" title="Mi Perfil"><i class="zmdi zmdi-account"></i>
+            <a href="{{route('perfil.mi-perfil')}}" title="Mi Perfil"><i class="zmdi zmdi-account"></i>
             <div class="notify"><span class="heartbit"></span><span class="point"></span></div> 
             </a>
         </li>

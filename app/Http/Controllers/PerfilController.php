@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
 
-class ProfileController extends BaseController
+class PerfilController extends BaseController
 {
-    function myProfile(){
+    function miPerfil(){
     	return view('profile.my-profile');
     }
 }
