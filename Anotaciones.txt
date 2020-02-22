@@ -1,3 +1,8 @@
 Anotaciones de Cambios:
 
 	- En style.min.css se agrego un estilo para la clase .progress-bagde para disminuir el font-size a 10px
+
+Consulta DB:
+	- REVISAR -
+	- No esta el campo de id_jornada_trabajo en la tabla de cuenta_cobrar, ¿Por que?
+		- Escenario: Imaginar un cliente que llega una semana para hacerse solo el examen visual, no se convecio de hacer la orden de lente, asi que solo pago el examen visual. A la semana siguiente regresa para hacer al final la orden de lente, Practicamente en ese escenario se debe crear otra jornada-trabajo porque ya la cuenta_cobrar de la orden_lente si bien ocupa de base unas medidas visuales existentes, pero no se hizo el mismo dia que la consulta.
