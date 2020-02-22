@@ -1,0 +1,3 @@
+Anotaciones de Cambios:
+
+	- En style.min.css se agrego un estilo para la clase .progress-bagde para disminuir el font-size a 10px

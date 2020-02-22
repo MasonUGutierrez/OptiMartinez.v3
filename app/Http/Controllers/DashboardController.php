@@ -7,6 +7,6 @@ use Illuminate\Routing\Controller as BaseController;
 class DashboardController extends BaseController
 {
     function index(){
-    	return view('dashboard.index');
+    	return view('pages.blank');
     }
 }

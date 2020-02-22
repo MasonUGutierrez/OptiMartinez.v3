@@ -5,8 +5,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <link rel="icon" href="{{asset('favicon.ico')}}" type="image/x-icon"> <!-- Favicon-->
-        <title>{{ config('app.name') }} - @yield('title')</title>
+
+        <!-- Se modifico el icono aca -->
+        <link rel="icon" href="{{asset('optica-icon.ico')}}" type="image/x-icon"> <!-- Favicon-->
+
+        <!-- Este config('app.name') se trae el nombre de la aplicacion que esta en el archivo .env -->
+        <title>{{ config('app.name') }} - @yield('title')</title>        
         <meta name="description" content="@yield('meta_description', config('app.name'))">
         <meta name="author" content="@yield('meta_author', config('app.name'))">
         @yield('meta')
@@ -20,14 +24,16 @@
         <link rel="stylesheet" href="{{asset('assets/css/style.min.css')}}">
         @stack('after-styles')
     </head>
+
+    <!-- Se modifico el color aca -->
     <?php 
         $setting = !empty($_GET['theme']) ? $_GET['theme'] : '';
-        $theme = "theme-blush";
+        $theme = "theme-blue";
         $menu = "";
         if ($setting == 'p') {
             $theme = "theme-purple";
         } else if ($setting == 'b') {
-            $theme = "theme-blue";
+            $theme = "theme-blush";
         } else if ($setting == 'g') {
             $theme = "theme-green";
         } else if ($setting == 'o') {
@@ -35,7 +41,7 @@
         } else if ($setting == 'bl') {
             $theme = "theme-cyan";
         } else {
-            $theme = "theme-blush";
+            $theme = "theme-blue";
         }
 
         if (Request::segment(2) === 'rtl' ){
@@ -43,13 +49,16 @@
         }
     ?>
     <body class="<?= $theme ?>">
+        <!-- Se modifico el icono de carga aca -->
         <!-- Page Loader -->
         <div class="page-loader-wrapper">
             <div class="loader">
-                <div class="m-t-30"><img class="zmdi-hc-spin" src="../assets/images/logo.svg" width="48" height="48" alt="Aero"></div>
-                <p>Please wait...</p>        
+                <div class="m-t-30"><img class="heartbit" src="../assets/images/LogoSistemaOptica/logo.svg" width="120"  alt="Aero"></div>
+                <p>Por favor, espere un momento...</p>        
             </div>
         </div>
+
+        <!-- Se agregan los sidebars aca -->
         <!-- Overlay For Sidebars -->
         <div class="overlay"></div>
         @include('layout.navbarright')
@@ -61,7 +70,7 @@
                     <div class="col-lg-7 col-md-6 col-sm-12">
                         <h2>@yield('title')</h2>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}"><i class="zmdi zmdi-home"></i> Aero</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('dashboard.index')}}"><i class="zmdi zmdi-home"></i> Inicio</a></li>
                             @if (trim($__env->yieldContent('parentPageTitle')))
                                 <li class="breadcrumb-item">@yield('parentPageTitle')</li>
                             @endif
@@ -69,8 +78,12 @@
                                 <li class="breadcrumb-item active">@yield('title')</li>
                             @endif
                         </ul>
+
+                        <!-- OJO: Boton que expande el menu lateral izq. en moviles -->
                         <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
-                    </div>            
+                    </div>
+
+                    <!-- Boton para ocultar el menu lateral derecho -->
                     <div class="col-lg-5 col-md-6 col-sm-12">
                         <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i class="zmdi zmdi-arrow-right"></i></button>
                     </div>

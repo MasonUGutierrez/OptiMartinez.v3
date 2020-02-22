@@ -1,8 +1,10 @@
 <!-- Left Sidebar -->
 <aside id="leftsidebar" class="sidebar">
+    <!-- Icono en la parte superior del menu lateral izquierdo, su tamaño chinga el menu NO TOCAR -->
     <div class="navbar-brand">
         <button class="btn-menu ls-toggle-btn" type="button"><i class="zmdi zmdi-menu"></i></button>
-        <a href="{{route('dashboard.index')}}"><img src="../assets/images/logo.svg" width="25" alt="Aero"><span class="m-l-10">Aero</span></a>
+        <!-- NO TOCAR EL VALOR DEL ATRIBUTO WIDTH -->
+        <a href="{{route('dashboard.index')}}"><img src="../assets/images/LogoSistemaOptica/logo.svg" width="100" alt="Logo Sistema"></a>
     </div>
     <div class="menu">
         <ul class="list">
@@ -10,87 +12,72 @@
                 <div class="user-info">
                     <div class="image"><a href="#"><img src="../assets/images/profile_av.jpg" alt="User"></a></div>
                     <div class="detail">
-                        <h4>Michael</h4>
-                        <small>Super Admin</small>
+                        <h4>Nombre</h4>
                     </div>
                 </div>
-            </li>            
-            <li class="{{ Request::segment(1) === 'dashboard' ? 'active open' : null }}"><a href="{{route('dashboard.index')}}"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
-            <li class="{{ Request::segment(1) === 'my-profile' ? 'active open' : null }}"><a href="{{route('profile.my-profile')}}"><i class="zmdi zmdi-account"></i><span>My Profile</span></a></li>
+            </li>
+
+            <li>
+                <div class="user-info">
+                    <div class="detail">
+                        <span>General</span>
+                    </div>
+                </div>
+            </li> 
+
+            <li class="{{ Request::segment(1) === 'dashboard' ? 'active open' : null }}"><a href="{{route('dashboard.index')}}"><i class="zmdi zmdi-home"></i><span>Inicio</span></a></li>
+            <li class="{{ Request::segment(1) === 'my-profile' ? 'active open' : null }}"><a href="{{route('profile.my-profile')}}"><i class="zmdi zmdi-account"></i><span>Mi Perfil</span></a></li>
+
+            <li>
+                <div class="user-info">
+                    <div class="detail">
+                        <span>Administrador</span>
+                    </div>
+                </div>
+            </li>
+            
+            <!-- Modificar despues este request-->
             <li class="{{ Request::segment(1) === 'app' ? 'active open' : null }}">
-                <a href="#App" class="menu-toggle"><i class="zmdi zmdi-apps"></i> <span>App</span></a>
+                <a href="#" class="menu-toggle"><i class="zmdi zmdi-accounts-list"></i> <span>Admin. Usuarios</span></a>
                 <ul class="ml-menu">
-                    <li class="{{ Request::segment(2) === 'inbox' ? 'active' : null }}"><a href="{{route('app.inbox')}}">Inbox</a></li>
-                    <li class="{{ Request::segment(2) === 'chat' ? 'active' : null }}"><a href="{{route('app.chat')}}">Chat</a></li>
-                    <li class="{{ Request::segment(2) === 'calendar' ? 'active' : null }}"><a href="{{route('app.calendar')}}">Calendar</a></li>                                    
-                    <li class="{{ Request::segment(2) === 'contact-list' ? 'active' : null }}"><a href="{{route('app.contact-list')}}">Contact list</a></li>
+                    <!--Poner las rutas asi en el href de cada etiqueta a {{route('app.inbox')}} -->
+                    <li class="{{ Request::segment(2) === 'inbox' ? 'active' : null }}"><a href="#">Roles</a></li>
+                    <li class="{{ Request::segment(2) === 'chat' ? 'active' : null }}"><a href="#">Usuarios</a></li>
+                    <!-- Dejo el enlace a calendar para fijarnos -->
+                    <!-- <li class="{{ Request::segment(2) === 'calendar' ? 'active' : null }}"><a href="{{route('app.calendar')}}">Calendar</a></li>  -->
                 </ul>
             </li>
-            <li class="{{ Request::segment(1) === 'project' ? 'active open' : null }}">
-                <a href="#Project" class="menu-toggle"><i class="zmdi zmdi-assignment"></i> <span>Project</span></a>
+            <li class="{{ Request::segment(1) === 'project' ? 'active' : null}}">
+                <a href="#">
+                    <i class="zmdi zmdi-assignment"></i><span>Servicios</span>
+                </a>
+            </li>
+            <li class="{{Request::segment(1) === '' ? 'active' : null}}">
+                <a href="#">
+                    <i class="zmdi zmdi"></i><span>Planes de Pago</span>
+                </a>
+            </li>
+            <li class="{{ Request::segment(1) === '' ? 'active open' : null }}">
+                <a href="#Project" class="menu-toggle"><i class="zmdi zmdi-assignment"></i> <span>Admin. Lentes</span></a>
                 <ul class="ml-menu">
-                    <li class="{{ Request::segment(2) === 'project-list' ? 'active' : null }}"><a href="{{route('project.project-list')}}">Project List</a></li>
-                    <li class="{{ Request::segment(2) === 'taskboard' ? 'active' : null }}"><a href="{{route('project.taskboard')}}">Taskboard</a></li>
-                    <li class="{{ Request::segment(2) === 'ticket-list' ? 'active' : null }}"><a href="{{route('project.ticket-list')}}">Ticket List</a></li>                                    
-                    <li class="{{ Request::segment(2) === 'ticket-detail' ? 'active' : null }}"><a href="{{route('project.ticket-detail')}}">Ticket Detail</a></li>
+                    <li class="{{ Request::segment(2) === '' ? 'active' : null }}"><a href="#">Marcas</a></li>
+                    <li class="{{ Request::segment(2) === '' ? 'active' : null }}"><a href="#">Marcos</a></li>
+                    <li class="{{ Request::segment(2) === '' ? 'active' : null }}"><a href="#">Tipos de Lentes</a></li>
                 </ul>
             </li>
-            <li class="{{ Request::segment(1) === 'file-manager' ? 'active open' : null }}">
-                <a href="#FileManager" class="menu-toggle"><i class="zmdi zmdi-folder"></i> <span>File Manager</span></a>
-                <ul class="ml-menu">
-                    <li class="{{ Request::segment(2) === 'all' ? 'active' : null }}"><a href="{{route('file-manager.all')}}">All</a></li>
-                    <li class="{{ Request::segment(2) === 'documents' ? 'active' : null }}"><a href="{{route('file-manager.documents')}}">Documents</a></li>
-                    <li class="{{ Request::segment(2) === 'media' ? 'active' : null }}"><a href="{{route('file-manager.media')}}">Media</a></li>
-                    <li class="{{ Request::segment(2) === 'image' ? 'active' : null }}"><a href="{{route('file-manager.image')}}">Images</a></li>
-                </ul>
+            <li class="{{ Request::segment(1) === '' ? 'active' : null }}">
+                <a href="#">
+                    <i class="zmdi zmdi"></i><span>Estadisticas</span>
+                </a>
             </li>
-            <li class="{{ Request::segment(1) === 'blog' ? 'active open' : null }}">
-                <a href="#Blog" class="menu-toggle"><i class="zmdi zmdi-blogger"></i> <span>Blog</span></a>
-                <ul class="ml-menu">
-                    <li class="{{ Request::segment(2) === 'dashboard' ? 'active' : null }}"><a href="{{route('blog.dashboard')}}">Dashboard</a></li>
-                    <li class="{{ Request::segment(2) === 'new-post' ? 'active' : null }}"><a href="{{route('blog.new-post')}}">Blog Post</a></li>
-                    <li class="{{ Request::segment(2) === 'list' ? 'active' : null }}"><a href="{{route('blog.list')}}">List View</a></li>
-                    <li class="{{ Request::segment(2) === 'grid' ? 'active' : null }}"><a href="{{route('blog.grid')}}">Grid View</a></li>
-                    <li class="{{ Request::segment(2) === 'detail' ? 'active' : null }}"><a href="{{route('blog.detail')}}">Blog Details</a></li>
-                </ul>
+            <li class="{{ Request::segment(1) === '' ? 'active' : null}}">
+                <a href="#">
+                    <i class="zmdi zmdi"></i><span>Reportes</span>
+                </a>
             </li>
-            <li class="{{ Request::segment(1) === 'ecommerce' ? 'active open' : null }}">
-                <a href="#Ecommerce" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i> <span>Ecommerce</span></a>
-                <ul class="ml-menu">
-                    <li class="{{ Request::segment(2) === 'dashboard' ? 'active' : null }}"><a href="{{route('ecommerce.dashboard')}}">Dashboard</a></li>
-                    <li class="{{ Request::segment(2) === 'product' ? 'active' : null }}"><a href="{{route('ecommerce.product')}}">Product</a></li>
-                    <li class="{{ Request::segment(2) === 'product-list' ? 'active' : null }}"><a href="{{route('ecommerce.product-list')}}">Product List</a></li>
-                    <li class="{{ Request::segment(2) === 'product-detail' ? 'active' : null }}"><a href="{{route('ecommerce.product-detail')}}">Product Details</a></li>
-                </ul>
-            </li>
-            <li class="{{ Request::segment(1) === 'components' ? 'active open' : null }}">
-                <a href="#Components" class="menu-toggle"><i class="zmdi zmdi-swap-alt"></i> <span>Components</span></a>
-                <ul class="ml-menu">
-                    <li class="{{ Request::segment(2) === 'ui' ? 'active' : null }}"><a href="{{route('components.ui')}}">Aero UI KIT</a></li>
-                    <li class="{{ Request::segment(2) === 'alerts' ? 'active' : null }}"><a href="{{route('components.alerts')}}">Alerts</a></li>
-                    <li class="{{ Request::segment(2) === 'collapse' ? 'active' : null }}"><a href="{{route('components.collapse')}}">Collapse</a></li>
-                    <li class="{{ Request::segment(2) === 'colors' ? 'active' : null }}"><a href="{{route('components.colors')}}">Colors</a></li>
-                    <li class="{{ Request::segment(2) === 'dialogs' ? 'active' : null }}"><a href="{{route('components.dialogs')}}">Dialogs</a></li>
-                    <li class="{{ Request::segment(2) === 'list' ? 'active' : null }}"><a href="{{route('components.list')}}">List Group</a></li>
-                    <li class="{{ Request::segment(2) === 'media' ? 'active' : null }}"><a href="{{route('components.media')}}">Media Object</a></li>
-                    <li class="{{ Request::segment(2) === 'modals' ? 'active' : null }}"><a href="{{route('components.modals')}}">Modals</a></li>
-                    <li class="{{ Request::segment(2) === 'notifications' ? 'active' : null }}"><a href="{{route('components.notifications')}}">Notifications</a></li>
-                    <li class="{{ Request::segment(2) === 'progressbars' ? 'active' : null }}"><a href="{{route('components.progressbars')}}">Progress Bars</a></li>
-                    <li class="{{ Request::segment(2) === 'range' ? 'active' : null }}"><a href="{{route('components.range')}}">Range Sliders</a></li>
-                    <li class="{{ Request::segment(2) === 'sortable' ? 'active' : null }}"><a href="{{route('components.sortable')}}">Sortable & Nestable</a></li>
-                    <li class="{{ Request::segment(2) === 'tabs' ? 'active' : null }}"><a href="{{route('components.tabs')}}">Tabs</a></li>
-                    <li class="{{ Request::segment(2) === 'waves' ? 'active' : null }}"><a href="{{route('components.waves')}}">Waves</a></li>
-                </ul>
-            </li>
-            <li class="{{ Request::segment(1) === 'icons' ? 'active open' : null }}">
-                <a href="#Icons" class="menu-toggle"><i class="zmdi zmdi-flower"></i> <span>Font Icons</span></a>
-                <ul class="ml-menu">
-                    <li class="{{ Request::segment(2) === 'material' ? 'active' : null }}"><a href="{{route('icons.material')}}">Material</a></li>
-                    <li class="{{ Request::segment(2) === 'themify' ? 'active' : null }}"><a href="{{route('icons.themify')}}">Themify</a></li>
-                    <li class="{{ Request::segment(2) === 'weather' ? 'active' : null }}"><a href="{{route('icons.weather')}}">Weather</a></li>
-                </ul>
-            </li>
-            <li class="{{ Request::segment(1) === 'form' ? 'active open' : null }}">
+            
+            <!-- Enlaces importantes para ejemplos -->
+            <!-- <li class="{{ Request::segment(1) === 'form' ? 'active open' : null }}">
                 <a href="#Form" class="menu-toggle"><i class="zmdi zmdi-assignment"></i><span>Forms</span></a>
                 <ul class="ml-menu">
                     <li class="{{ Request::segment(2) === 'basic' ? 'active' : null }}"><a href="{{route('form.basic')}}">Basic Form</a></li>
@@ -103,6 +90,7 @@
                     <li class="{{ Request::segment(2) === 'summernote' ? 'active' : null }}"><a href="{{route('form.summernote')}}">Summernote</a></li>
                 </ul>
             </li>
+
             <li class="{{ Request::segment(1) === 'tables' ? 'active open' : null }}">
                 <a href="#Tables" class="menu-toggle"><i class="zmdi zmdi-grid"></i><span>Tables</span></a>
                 <ul class="ml-menu">
@@ -113,25 +101,7 @@
                     <li class="{{ Request::segment(2) === 'color' ? 'active' : null }}"><a href="{{route('tables.color')}}">Tables Color</a></li>
                 </ul>
             </li>
-            <li class="{{ Request::segment(1) === 'chart' ? 'active open' : null }}">
-                <a href="#Chart" class="menu-toggle"><i class="zmdi zmdi-chart"></i><span>Charts</span></a>
-                <ul class="ml-menu">
-                    <li class="{{ Request::segment(2) === 'echarts' ? 'active' : null }}"><a href="{{route('chart.echarts')}}">E Chart</a></li>
-                    <li class="{{ Request::segment(2) === 'c3' ? 'active' : null }}"><a href="{{route('chart.c3')}}">C3 Chart</a></li>
-                    <li class="{{ Request::segment(2) === 'morris' ? 'active' : null }}"><a href="{{route('chart.morris')}}">Morris</a></li>
-                    <li class="{{ Request::segment(2) === 'flot' ? 'active' : null }}"><a href="{{route('chart.flot')}}">Flot</a></li>
-                    <li class="{{ Request::segment(2) === 'chartjs' ? 'active' : null }}"><a href="{{route('chart.chartjs')}}">ChartJS</a></li>
-                    <li class="{{ Request::segment(2) === 'sparkline' ? 'active' : null }}"><a href="{{route('chart.sparkline')}}">Sparkline</a></li>
-                    <li class="{{ Request::segment(2) === 'knob' ? 'active' : null }}"><a href="{{route('chart.knob')}}">Jquery Knob</a></li>
-                </ul>
-            </li>
-            <li class="{{ Request::segment(1) === 'widgets' ? 'active open' : null }}">
-                <a href="#Widgets" class="menu-toggle"><i class="zmdi zmdi-delicious"></i><span>Widgets</span></a>
-                <ul class="ml-menu">
-                    <li class="{{ Request::segment(2) === 'app' ? 'active' : null }}"><a href="{{route('widgets.app')}}">Apps Widgets</a></li>
-                    <li class="{{ Request::segment(2) === 'data' ? 'active' : null }}"><a href="{{route('widgets.data')}}">Data Widgets</a></li>
-                </ul>
-            </li>
+
             <li class="{{ Request::segment(1) === 'authentication' ? 'active open' : null }}">
                 <a href="#Authentication" class="menu-toggle"><i class="zmdi zmdi-lock"></i><span>Authentication</span></a>
                 <ul class="ml-menu">
@@ -144,25 +114,25 @@
                     <li class="{{ Request::segment(2) === 'offline' ? 'active' : null }}"><a href="{{route('authentication.offline')}}">Page Offline</a></li>
                 </ul>
             </li>
+
             <li class="{{ Request::segment(1) === 'pages' ? 'active open open_top' : null }}">
                 <a href="#Pages" class="menu-toggle"><i class="zmdi zmdi-copy"></i><span>Sample Pages</span></a>
                 <ul class="ml-menu">
                     <li class="{{ Request::segment(2) === 'blank' ? 'active' : null }}"><a href="{{route('pages.blank')}}">Blank Page</a></li>
-                    <li class="{{ Request::segment(2) === 'gallery' ? 'active' : null }}"><a href="{{route('pages.gallery')}}">Image Gallery</a></li>
                     <li class="{{ Request::segment(2) === 'invoices1' ? 'active' : null }}"><a href="{{route('pages.invoices1')}}">Invoices</a></li>
                     <li class="{{ Request::segment(2) === 'invoices2' ? 'active' : null }}"><a href="{{route('pages.invoices2')}}">Invoices List</a></li>
                     <li class="{{ Request::segment(2) === 'pricing' ? 'active' : null }}"><a href="{{route('pages.pricing')}}">Pricing</a></li>
                     <li class="{{ Request::segment(2) === 'profile' ? 'active' : null }}"><a href="{{route('pages.profile')}}">Profile</a></li>
-                    <li class="{{ Request::segment(2) === 'search' ? 'active' : null }}"><a href="{{route('pages.search')}}">Search Results</a></li>
-                    <li class="{{ Request::segment(2) === 'timeline' ? 'active' : null }}"><a href="{{route('pages.timeline')}}">Timeline</a></li>
                 </ul>
-            </li>
-            <li class="{{ Request::segment(1) === 'map' ? 'active open open_top' : null }}">
-                <a href="#Map" class="menu-toggle"><i class="zmdi zmdi-map"></i><span>Maps</span></a>
-                <ul class="ml-menu">
-                    <li class="{{ Request::segment(2) === 'yandex' ? 'active' : null }}"><a href="{{route('map.yandex')}}">YandexMap</a></li>
-                    <li class="{{ Request::segment(2) === 'jvector' ? 'active' : null }}"><a href="{{route('map.jvector')}}">jVectorMap</a></li>
-                </ul>
+            </li> -->
+            <li>
+                <div class="progress-container progress-primary m-t-10" style="">
+                    <span class="progress-badge">Copyright © 2019 - All right reserves</span>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                        </div>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>

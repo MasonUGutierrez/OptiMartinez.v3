@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'Dashboard')
+@section('title', 'Inicio')
 @section('page-style')
 <link rel="stylesheet" href="{{asset('assets/plugins/jvectormap/jquery-jvectormap-2.0.3.min.css')}}"/>
 <link rel="stylesheet" href="{{asset('assets/plugins/charts-c3/plugin.css')}}" />
