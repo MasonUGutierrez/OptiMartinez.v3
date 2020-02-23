@@ -78,3 +78,12 @@ Route::get('pages/profile', 'PagesController@profile')->name('pages.profile');
 Route::get('pages/search', 'PagesController@search')->name('pages.search');
 Route::get('pages/timeline', 'PagesController@timeline')->name('pages.timeline');
 */
+
+Route::get('/', function () {
+    return view('usuarios/index');
+});
+
+//Rutas propias
+
+Route::resource('usuarios','OpticaControllers\UsuarioController');
+

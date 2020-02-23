@@ -53,7 +53,7 @@
         <!-- Page Loader -->
         <div class="page-loader-wrapper">
             <div class="loader">
-                <div class="m-t-30"><img class="heartbit" src="../assets/images/LogoSistemaOptica/logo.svg" width="120"  alt="Aero"></div>
+                <div class="m-t-30"><img class="heartbit" src="{{asset('../assets/images/LogoSistemaOptica/logo.svg')}}" width="120"  alt="Aero"></div>
                 <p>Por favor, espere un momento...</p>        
             </div>
         </div>
@@ -91,6 +91,7 @@
             </div>
             <div class="container-fluid">                
                 @yield('content')
+
             </div>
         </section>
         @yield('modal')
