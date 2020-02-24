@@ -40,7 +40,10 @@ class UsuarioController extends Controller
         $usuario->dir_foto=$request->get('dir_foto');
         $usuario->contraseña=$request->get('contraseña');
         $usuario->descripcion=$request->get('descripcion');
-        $usuario->estado='1';
+        /*****************************************************************************************************/
+        // Comentado porque no es necesario esta por default que cuando se guarde un registro que le ponga 1
+        //$usuario->estado='1';
+        /*****************************************************************************************************/
         $usuario->save();
         return Redirect::to('usuarios');
     }

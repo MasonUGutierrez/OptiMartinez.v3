@@ -22,6 +22,8 @@ class Usuario extends Model
         'correo',
         'dir_foto',
         'contraseña',
-        'descripcion'
+        'descripcion',
+        'estado'
     ];
+    // Agregue el atributo estado
 }

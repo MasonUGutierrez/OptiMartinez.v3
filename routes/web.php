@@ -13,7 +13,18 @@
 
 // Route::get('/', function () {return view('welcome');});
 
-Route::get('/', function () { return redirect('dashboard/index'); });
+/* Ruta inicial compuesta */
+Route::get('/', function () {
+    return redirect('usuarios/');
+});
+
+//Rutas propias
+
+Route::resource('usuarios','OpticaControllers\UsuarioController');
+
+/*************************************************************************************************/
+
+// Route::get('/', function () { return redirect('dashboard/index'); });
 
 /* Dashboard */
 Route::get('dashboard', function () { return redirect('dashboard/index'); });
@@ -78,12 +89,4 @@ Route::get('pages/profile', 'PagesController@profile')->name('pages.profile');
 Route::get('pages/search', 'PagesController@search')->name('pages.search');
 Route::get('pages/timeline', 'PagesController@timeline')->name('pages.timeline');
 */
-
-Route::get('/', function () {
-    return view('usuarios/index');
-});
-
-//Rutas propias
-
-Route::resource('usuarios','OpticaControllers\UsuarioController');
 
