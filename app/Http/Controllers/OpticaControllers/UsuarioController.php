@@ -23,9 +23,15 @@ class UsuarioController extends Controller
         //     ->paginate(7);
         //     return view('inicio.usuarios.index',["usuario"=>$usuario,"searchText"=>$query]);
         // }
-        $usuario=DB::table('usuario')->get();
+        $usuario=DB::table('usuario')->get()->where('estado','=','1');
+
         return view('usuarios.index',["usuario"=>$usuario]);
     }
+
+    public function detalle(){
+        return view("usuarios.detalle");
+    }
+
     public function create(){
         return view("usuarios.create");
     }
@@ -68,12 +74,12 @@ class UsuarioController extends Controller
         return Redirect::to('usuarios');
     }
     public function destroy($id){
-        /*
-        $usuario= Usuario::findOrFail($id);
-        $usuario->condicion='0';
-        $usuario->update();
-        return Redirect::to('inicio/usuarios');
 
-        */
+        $usuario= Usuario::findOrFail($id);
+        $usuario->estado='0';
+        $usuario->update();
+        return Redirect::to('usuarios');
+
+
     }
 }

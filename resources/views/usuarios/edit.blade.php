@@ -58,11 +58,11 @@
                         </div>
                         <div class="form-group">
                             <label for="">Descripción</label>
-                            <textarea  class="form-control" name="descripcion" rows="5" value="{{$usuario->descripcion}}" placeholder="Ingrese una descripción"></textarea>
+                            <textarea  class="form-control" name="descripcion" rows="5"  placeholder="Ingrese una descripción">{{$usuario->descripcion}}</textarea>
                         </div>
                         <div class="form-group" style="text-align: center">
                             <button class="btn btn-primary" type="submit">Guardar</button>
-                            <button class="btn btn-danger" type="reset">Cancelar</button>
+                            <a href="/index"> <button class="btn btn-danger" type="">Cancelar</button></a>
                         </div>
                     </div>
                 </div>

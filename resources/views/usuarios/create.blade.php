@@ -64,7 +64,7 @@
                         </div>
                         <div class="form-group" style="text-align: center">
                             <button class="btn btn-primary" type="submit">Guardar</button>
-                            <button class="btn btn-danger" type="reset">Cancelar</button>
+                            <a href=""><button class="btn btn-danger" type="reset">Cancelar</button></a>
                         </div>
                     </div>
                 </div>
