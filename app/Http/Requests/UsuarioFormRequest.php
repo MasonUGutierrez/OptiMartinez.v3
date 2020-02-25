@@ -24,11 +24,11 @@ class UsuarioFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'cod_minsa'=>'required|max:100',
-            'nombre'=>'required|max:35',
-            'apellido'=>'required|max:35',
-            'cedula'=>'required|max:50',
-            'telefono'=>'max:25',
+            'cod_minsa'=>'required|max:100|min:3',
+            'nombre'=>'required|max:35|min:3|regex:/^[a-zA-Z ]+$/',
+            'apellido'=>'required|max:35|min:3|string',
+            'cedula'=>'required|max:50|regex:[\d{3}\d{6}\d{4}[a-zA-Z]{1}]',
+            'telefono'=>'numeric|digits:8|nullable',
             'correo'=>'required|max:50',
             'dir_foto'=>'max:255',
             'contraseña'=>'required|max:255',

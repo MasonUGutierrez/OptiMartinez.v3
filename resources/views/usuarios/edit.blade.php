@@ -46,7 +46,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Correo Electronico</label>
-                            <input type="text" name="correo" class="form-control" value="{{$usuario->correo}}" placeholder="Correo..." />
+                            <input type="email" name="correo" class="form-control" value="{{$usuario->correo}}" placeholder="Correo..." />
                         </div>
                         {{--<div class="form-group">
                             <label for="">Foto de perfil</label>
