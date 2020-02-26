@@ -25,5 +25,5 @@ class Usuario extends Model
         'descripcion',
         'estado'
     ];
-    // Agregue el atributo estado
+    // Agregue el atributo estado    
 }

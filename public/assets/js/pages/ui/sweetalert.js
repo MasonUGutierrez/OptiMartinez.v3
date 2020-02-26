@@ -1,6 +1,8 @@
 $(function () {
-    $('.js-sweetalert button').on('click', function () {
+    $('.js-sweetalert a').on('click', function () {
         var type = $(this).data('type');
+        var title = $(this).data('title');
+        var text = $(this).data('text');
         if (type === 'basic') {
             showBasicMessage();
         }
@@ -11,7 +13,7 @@ $(function () {
             showSuccessMessage();
         }
         else if (type === 'confirm') {
-            showConfirmMessage();
+            showConfirmMessage(title, text);
         }
         else if (type === 'html-message') {
             showHtmlMessage();
@@ -42,13 +44,21 @@ function showWithTitleMessage() {
 function showSuccessMessage() {
     swal("Good job!", "You clicked the button!", "success");    
 }
-function showConfirmMessage() {
+function showConfirmMessage(title, text) {
     swal({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this imaginary file!",
-        icon: "warning",
-        buttons: true,
+        title: title,
+        text: text,
+        icon:'warning',
+        buttons:{
+            cancel:'Cancelar',
+            confirm:{
+                text:"Dar de Baja",
+                // value:true,
+                className:"btn-warning",
+                },
+        },
         dangerMode: true,
+        content:true,
       })
       .then((willDelete) => {
         if (willDelete) {
