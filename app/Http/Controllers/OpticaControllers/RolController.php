@@ -5,9 +5,9 @@ namespace App\Http\Controllers\OpticaControllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RolFormRequest;
 use Illuminate\Http\Request;
-use App\Usuario;
+use App\Rol;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests\UsuarioFormRequest;
+use Illuminate\Support\Facades\Input;
 use DB;
 
 class RolController extends Controller
@@ -19,7 +19,7 @@ class RolController extends Controller
 
     public function index(){
         $rol=DB::table('rol')->get()->where('estado','=','1');
-        return view('roles.index',['rol'=>rol]);
+        return view('roles.index',['rol'=>$rol]);
     }
 
     public function create(){
@@ -38,7 +38,11 @@ class RolController extends Controller
     }
 
     public function edit($id){
-        return view("rol.edit",["rol"=>Rol::findOrFail($id)]);
+        return view("roles.asignar",["rol"=>Rol::findOrFail($id)]);
+    }
+
+    public function asignar($id){
+        return view("roles.asignar",["rol"=>Rol::findOrFail($id)]);
     }
 
     public function update(RolFormRequest $request,$id){

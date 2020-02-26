@@ -41,8 +41,8 @@
                 <a href="#" class="menu-toggle"><i class="zmdi zmdi-accounts-list"></i> <span>Admin. Usuarios</span></a>
                 <ul class="ml-menu">
                     <!--Poner las rutas asi en el href de cada etiqueta a {{--route('app.inbox')--}} -->
-                    <li class="{{ Request::segment(2) === '' ? 'active' : null }}"><a href="#">Roles</a></li>
-                    <li class="{{ Request::segment(2) === '' ? 'active' : null }}"><a href="#">Usuarios</a></li>
+                    <li class="{{ Request::segment(2) === '' ? 'active' : null }}"><a href="roles">Roles</a></li>
+                    <li class="{{ Request::segment(2) === '' ? 'active' : null }}"><a href="usuarios">Usuarios</a></li>
                     <!-- Dejo el enlace a calendar para fijarnos -->
                     <!-- <li class="{{ Request::segment(2) === 'calendar' ? 'active' : null }}"><a href="{{route('app.calendar')}}">Calendar</a></li>  -->
                 </ul>

@@ -21,6 +21,7 @@ Route::get('/', function () {
 //Rutas propias
 
 Route::resource('usuarios','OpticaControllers\UsuarioController');
+Route::resource('roles','OpticaControllers\RolController');
 
 /*************************************************************************************************/
 
