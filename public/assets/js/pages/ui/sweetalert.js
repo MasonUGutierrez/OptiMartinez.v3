@@ -1,8 +1,15 @@
 $(function () {
-    $('.js-sweetalert a').on('click', function () {
+    $('.js-sweetalert a').on('click', function (e) {
+        e.preventDefault(); // Impidiendo que se redireccione directamente por el href de la etiqueta <a>
+
         var type = $(this).data('type');
-        var title = $(this).data('title');
-        var text = $(this).data('text');
+        /* My variables */
+        var title = $(this).data('title'),
+            text = $(this).data('text'),
+            objDelete = $(this).data('obj'),
+            linkURL = $(this).attr('href'),
+            csrf_token = $('meta[name="csrf-token"]').attr('content');
+
         if (type === 'basic') {
             showBasicMessage();
         }
@@ -13,7 +20,7 @@ $(function () {
             showSuccessMessage();
         }
         else if (type === 'confirm') {
-            showConfirmMessage(title, text);
+            showConfirmMessage(title, text, objDelete, linkURL, csrf_token);
         }
         else if (type === 'html-message') {
             showHtmlMessage();
@@ -44,7 +51,16 @@ function showWithTitleMessage() {
 function showSuccessMessage() {
     swal("Good job!", "You clicked the button!", "success");    
 }
-function showConfirmMessage(title, text) {
+
+function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
+}
+
+function showConfirmMessage(title, text, objDelete, linkURL, csrf_token) {
     swal({
         title: title,
         text: text,
@@ -58,18 +74,37 @@ function showConfirmMessage(title, text) {
                 },
         },
         dangerMode: true,
-        content:true,
+        // content:true,
       })
       .then((willDelete) => {
         if (willDelete) {
-          swal("Poof! Your imaginary file has been deleted!", {
-            icon: "success",
-          });
+            var form = $('<form>',{
+                'method':'POST',
+                'action':linkURL
+            });
+            var hiddenInput = $('<input>',{
+                'type':'hidden',
+                'name':'_method',
+                'value':'DELETE'
+            });
+            var hiddenToken = $('<input>',{
+                'type':'hidden',
+                'name':'_token',
+                'value':csrf_token
+            });
+
+            swal(objDelete +" Dado de baja", {
+                icon: "info",
+                buttons:false,
+            });
+            form.append(hiddenInput).append(hiddenToken).appendTo('body').submit();
+
         } else {
-          swal("Your imaginary file is safe!");
+            swal("Acción cancelada!");
         }
     });
 }
+
 function showHtmlMessage() {
     swal({
         title: "HTML <small>Title</small>!",

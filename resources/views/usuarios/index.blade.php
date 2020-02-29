@@ -41,10 +41,13 @@
                                     <a href=""><button class="btn btn-secondary">Detalles</button></a>
                                     <a href="{{URL::action('OpticaControllers\UsuarioController@edit',$cat->id_usuario)}}"><button class="btn btn-info">Editar</button></a>
                                     <a href="" data-target="#modal-delete-{{$cat->id_usuario}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
-                                    <a href="#" class="btn btn-raised btn-danger waves-effect"
+
+                                    <!-- Usando SweetAlert -->
+                                    <a href="{{URL::action('OpticaControllers\UsuarioController@destroy',$cat->id_usuario)}}" class="btn btn-raised btn-danger waves-effect"
                                         data-type="confirm"
                                         data-title="Dar de Baja"
-                                        data-text="¿Estas seguro en eliminar a {{$cat->nombre}} ?">Eliminar</a>
+                                        data-text="¿Estas seguro en eliminar a {{$cat->nombre}} ?"
+                                        data-obj="{{$cat->nombre .' '. $cat->apellido}}">Eliminar</a>
                                 </td>
                             </tr>
                             </tbody>
