@@ -79,7 +79,5 @@ class UsuarioController extends Controller
         $usuario->estado='0';
         $usuario->update();
         return Redirect::to('usuarios');
-
-
     }
 }
