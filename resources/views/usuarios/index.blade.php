@@ -33,7 +33,7 @@
                                 <td>{{$cat->cedula}}</td>
                                 <td>{{$cat->telefono}}</td>
                                 <td>
-                                    <a href=""><button class="btn btn-secondary">Detalles</button></a>
+                                    <a href="{{URL::action('OpticaControllers\UsuarioController@show',$cat->id_usuario)}}"><button class="btn btn-secondary">Detalles</button></a>
                                     <a href="{{URL::action('OpticaControllers\UsuarioController@edit',$cat->id_usuario)}}"><button class="btn btn-info">Editar</button></a>
                                     <a href="" data-target="#modal-delete-{{$cat->id_usuario}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
                                 </td>

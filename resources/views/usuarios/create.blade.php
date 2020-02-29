@@ -48,7 +48,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Correo Electronico</label>
-                            <input type="text" name="correo" class="form-control" placeholder="Correo..." />
+                            <input type="email" name="correo" class="form-control" placeholder="Correo..." />
                         </div>
                         {{--<div class="form-group">
                             <label for="">Foto de perfil</label>
