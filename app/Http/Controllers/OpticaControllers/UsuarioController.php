@@ -5,6 +5,7 @@ namespace App\Http\Controllers\OpticaControllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Usuario;
+/*use Illuminate\Support\Facades\Request;*/
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\UsuarioFormRequest;
 use DB;
@@ -43,7 +44,29 @@ class UsuarioController extends Controller
         $usuario->cedula=$request->get('cedula');
         $usuario->telefono=$request->get('telefono');
         $usuario->correo=$request->get('correo');
-        $usuario->dir_foto=$request->get('dir_foto');
+
+      /*  $request->file('dir_foto')->store('/imagenes/usuarios/');
+        dd("subido y guardado");*/
+
+        /*if ($request::hasFile('dir_foto'))
+        {
+            $file=$request::file('dir_foto');
+            $file->move(public_path().'/imagenes/usuarios/',$file->getClientOriginalName());
+            $usuario->dir_foto=$file->getClientOriginalName();
+        }*/
+        /*
+                if($usuario = $request->file('dir_foto')){
+                    $d
+                }*/
+
+         $entrada=$request->all();
+          if ($archivo=$request->file('dir_foto')){
+              $nombre=$archivo->getClientOriginalName();
+              $archivo->move('/imagenes/usuarios',$nombre);
+              $entrada['dir_foto']=$nombre;
+          }
+
+        /*$usuario->dir_foto=$request->get('dir_foto');*/
         $usuario->contraseña=$request->get('contraseña');
         $usuario->descripcion=$request->get('descripcion');
         /*****************************************************************************************************/

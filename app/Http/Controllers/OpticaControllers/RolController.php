@@ -55,7 +55,7 @@ class RolController extends Controller
     }
 
     public function asignar($id){
-        $usuario=DB::table('usuario')->get()->where('estado','=','1');
+        /*$usuario=DB::table('usuario')->get()->where('estado','=','1');*/
         $usuario=DB::select('call usuarios_roles(?)',array($id));
 
         return view("roles.asignar",["rol"=>Rol::findOrFail($id)],["usuario"=>$usuario]);

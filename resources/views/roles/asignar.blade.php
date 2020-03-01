@@ -12,16 +12,13 @@
                 {{Form::token()}}
                 <div class="body">
                     <div class="col-sm-10">
+                        <input id="" name="id_rol" type="hidden" value="{{$rol->id_rol}}">
                         <p><b>Lista de Usuarios</b></p>
                         <select name="id_usuario" class="form-control show-tick ms search-select"  data-placeholder="Select">
                             <option class="" disabled selected value> -- Selecciona un Usuario -- </option>
-                            <?php
-                                print_r($usuario);
-                            ?>
-                           {{-- @foreach($usuario as $cate)
+                            @foreach($usuario as $cate)
                                 <option value="{{$cate->id_usuario}}">{{$cate->nombre." ".$cate->apellido}} </option>
-
-                            @endforeach--}}
+                            @endforeach
                         </select>
                         <div class="" style="text-align: center">
                             <button class="btn btn-primary" type="submit">Guardar</button>

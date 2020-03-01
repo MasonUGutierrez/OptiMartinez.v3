@@ -50,10 +50,10 @@
                             <label for="">Correo Electronico</label>
                             <input type="email" name="correo" class="form-control" placeholder="Correo..." />
                         </div>
-                        {{--<div class="form-group">
-                            <label for="">Foto de perfil</label>
-                            <input type="text" class="form-control" placeholder="" />
-                        </div>--}}
+                        <div class="form-group">
+                            <label for="dir_foto">Foto de perfil</label>
+                            <input type="file" name="dir_foto" class="form-control" />
+                        </div>
                         <div class="form-group">
                             <label for="">Contraseña</label>
                             <input type="password" name="contraseña" class="form-control" placeholder="Nueva Contraseña..." />

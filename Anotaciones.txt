@@ -33,12 +33,5 @@ Consulta DB:
        });
     </script>
 
-agregar la barra de busqueda en el select de roles
-
-
-SELECT usuario.nombre from rol
-
-LEFT JOIN usuario_rol on usuario_rol.id_rol = rol.id_rol
-LEFT JOIN usuario on usuario.id_usuario = usuario_rol.id_usuario
-
-WHERE usuario.estado = '0'
+----> agregar la barra de busqueda en el select de roles
+----> configurar el boton cancelar para regresar a la pagina anterior

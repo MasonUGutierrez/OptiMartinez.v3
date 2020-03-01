@@ -40,10 +40,10 @@
                                         <a href="">
                                             <button class="btn btn-secondary">Detalles</button>
                                         </a>
-                                        <a href="" data-target="#modal-asignar-{{$cat->id_rol}}" data-toggle="modal">
+                                        {{--<a href="" data-target="#modal-asignar-{{$cat->id_rol}}" data-toggle="modal">
                                             <button class="btn btn-info">Asignar a Usuario</button>
-                                        </a>
-                                        <a href="{{URL::action('OpticaControllers\RolController@asignar',$cat->id_rol)}}" ><button class="btn btn-danger">Eliminar</button></a>
+                                        </a>--}}
+                                        <a href="{{URL::action('OpticaControllers\RolController@asignar',$cat->id_rol)}}" ><button class="btn btn-info">Asignar a Usuario</button></a>
                                     </td>
                                 </tr>
                                 </tbody>

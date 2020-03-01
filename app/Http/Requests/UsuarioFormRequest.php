@@ -30,7 +30,7 @@ class UsuarioFormRequest extends FormRequest
             'cedula'=>'required|max:50|regex:[\d{3}\d{6}\d{4}[a-zA-Z]{1}]',
             'telefono'=>'numeric|digits:8|nullable',
             'correo'=>'required|max:50',
-            'dir_foto'=>'max:255',
+            'dir_foto'=>/*'mimes:jpg,bmp,png'*/'max:255',
             'contraseña'=>'required|max:255',
             'descripcion'=>'max:500',
         ];
