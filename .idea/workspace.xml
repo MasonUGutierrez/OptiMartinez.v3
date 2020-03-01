@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ca7e96b-9923-4a8b-93b0-1398a34867b5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anotaciones.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Anotaciones.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OpticaControllers/RolController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OpticaControllers/RolController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OpticaControllers/UsuarioController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OpticaControllers/UsuarioController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Requests/UsuarioFormRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UsuarioFormRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/roles/asignar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/roles/asignar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/roles/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/roles/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/usuarios/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/usuarios/create.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -64,19 +58,19 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Requests/UsuarioFormRequest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="32" column="55" selection-start-line="32" selection-start-column="55" selection-end-line="32" selection-end-column="55" />
+            <state relative-caret-position="238">
+              <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/OpticaControllers/UsuarioController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
+            <state relative-caret-position="318">
               <caret line="66" column="11" lean-forward="true" selection-start-line="66" selection-start-column="11" selection-end-line="66" selection-end-column="11" />
               <folding>
                 <element signature="e#58#94#0#PHP" expanded="true" />
@@ -88,8 +82,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/usuarios/create.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="54" column="86" selection-start-line="54" selection-start-column="86" selection-end-line="54" selection-end-column="86" />
+            <state relative-caret-position="85">
+              <caret line="20" column="80" selection-start-line="20" selection-start-column="80" selection-end-line="20" selection-end-column="80" />
             </state>
           </provider>
         </entry>
@@ -132,11 +126,11 @@
         <option value="$PROJECT_DIR$/resources/views/roles/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/roles/asignar.blade.php" />
         <option value="$PROJECT_DIR$/Anotaciones.txt" />
-        <option value="$PROJECT_DIR$/resources/views/usuarios/create.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/UsuarioFormRequest.php" />
         <option value="$PROJECT_DIR$/../qwe.html" />
         <option value="D:/Descargas/nicatour/ridel.html" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/OpticaControllers/UsuarioController.php" />
+        <option value="$PROJECT_DIR$/resources/views/usuarios/create.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/UsuarioFormRequest.php" />
       </list>
     </option>
   </component>
@@ -366,15 +360,16 @@
       <workItem from="1582837767680" duration="13935000" />
       <workItem from="1582872316319" duration="5724000" />
       <workItem from="1582948615063" duration="60000" />
-      <workItem from="1583002661551" duration="13025000" />
+      <workItem from="1583002661551" duration="13430000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78864000" />
+    <option name="totallyTimeSpent" value="79269000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21558245" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -389,7 +384,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3289689" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49924356" weight="0.3584288" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49924356" visible="true" weight="0.3584288" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50075644" side_tool="true" weight="0.2913257" />
       <window_info anchor="bottom" id="Database Console" order="12" weight="0.3289689" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -696,13 +691,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/UsuarioFormRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="55" selection-start-line="32" selection-start-column="55" selection-end-line="32" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/roles/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="529">
@@ -741,13 +729,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/usuarios/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="54" column="86" selection-start-line="54" selection-start-column="86" selection-end-line="54" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Descargas/nicatour/ridel.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1581">
@@ -757,11 +738,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/OpticaControllers/UsuarioController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
+        <state relative-caret-position="318">
           <caret line="66" column="11" lean-forward="true" selection-start-line="66" selection-start-column="11" selection-end-line="66" selection-end-column="11" />
           <folding>
             <element signature="e#58#94#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/usuarios/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="20" column="80" selection-start-line="20" selection-start-column="80" selection-end-line="20" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/UsuarioFormRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
         </state>
       </provider>
     </entry>

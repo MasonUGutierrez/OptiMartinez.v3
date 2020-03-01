@@ -18,7 +18,7 @@
                 </div>
             @endif
 
-            {!!Form::open(array('url'=>'usuarios','method'=>'POST','autocomplete'=>'off')) !!}
+            {!!Form::open(array('url'=>'usuarios','method'=>'POST','files'=>true,'autocomplete'=>'off')) !!}
             {{Form::token()}}
 
             <div class="body">
