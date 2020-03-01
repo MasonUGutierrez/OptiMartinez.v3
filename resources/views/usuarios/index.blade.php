@@ -24,7 +24,9 @@
                             <th>Apellido</th>
                             <th>Cédula</th>
                             <th>Telefono</th>
+                            <th>Imagen</th>
                             <th>Opciones</th>
+                            
                         </tr>
                         </thead>
 
@@ -37,10 +39,11 @@
                                 <td>{{$cat->apellido}}</td>
                                 <td>{{$cat->cedula}}</td>
                                 <td>{{$cat->telefono}}</td>
+                                <td><img src="imagenes/usuarios/{{$cat->dir_foto}}" width="50" alt="img"></td>
                                 <td>
                                     <a href="{{URL::action('OpticaControllers\UsuarioController@show',$cat->id_usuario)}}"><button class="btn btn-secondary">Detalles</button></a>
                                     <a href="{{URL::action('OpticaControllers\UsuarioController@edit',$cat->id_usuario)}}"><button class="btn btn-info">Editar</button></a>
-                                    <a href="" data-target="#modal-delete-{{$cat->id_usuario}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
+                                    <!-- <a href="" data-target="#modal-delete-{{$cat->id_usuario}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a> -->
 
                                     <!-- Usando SweetAlert -->
                                     <a href="{{URL::action('OpticaControllers\UsuarioController@destroy',$cat->id_usuario)}}" class="btn btn-raised btn-danger waves-effect"
