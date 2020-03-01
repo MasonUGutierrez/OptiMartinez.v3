@@ -4,13 +4,13 @@
     <div class="navbar-brand">
         <button class="btn-menu ls-toggle-btn" type="button"><i class="zmdi zmdi-menu"></i></button>
         <!-- NO TOCAR EL VALOR DEL ATRIBUTO WIDTH -->
-        <a href="{{route('dashboard.index')}}"><img src="../assets/images/LogoSistemaOptica/logo.svg" width="100" alt="Logo Sistema"></a>
+        <a href="{{route('dashboard.index')}}"><img src="{{asset('assets/images/LogoSistemaOptica/logo.svg')}}" width="100" alt="Logo Sistema"></a>
     </div>
     <div class="menu">
         <ul class="list">
             <li>
                 <div class="user-info">
-                    <div class="image"><a href="#"><img src="../assets/images/profile_av.jpg" alt="User"></a></div>
+                    <div class="image"><a href="#"><img src="{{asset('assets/images/profile_av.jpg')}}" alt="User"></a></div>
                     <div class="detail">
                         <h4>Nombre</h4>
                     </div>
