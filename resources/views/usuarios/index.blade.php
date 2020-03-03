@@ -44,7 +44,6 @@
                                     <a href="{{URL::action('OpticaControllers\UsuarioController@show',$cat->id_usuario)}}" class="btn btn-secondary">Detalles</a>
                                     <a href="{{URL::action('OpticaControllers\UsuarioController@edit',$cat->id_usuario)}}" class="btn btn-info">Editar</a>
                                     <!-- <a href="" data-target="#modal-delete-{{$cat->id_usuario}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a> -->
-
                                     <!-- Usando SweetAlert -->
                                     <span class="js-sweetalert">
                                         <a href="{{URL::action('OpticaControllers\UsuarioController@destroy',$cat->id_usuario)}}" class="btn btn-raised btn-danger waves-effect"
@@ -56,7 +55,6 @@
                                 </td>
                             </tr>
                             </tbody>
-                       
                         @endforeach
                     </table>
                 </div>
