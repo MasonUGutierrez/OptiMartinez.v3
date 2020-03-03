@@ -14,7 +14,7 @@
                 <h3><strong>Listado de Usuarios</strong> <a href="usuarios/create"><button class="btn btn-success">Nuevo</button></a></h3>
             </div>
             <div class="body">
-                <div class="table-responsive js-sweetalert">
+                <div class="table-responsive">
                     <table class="table table-hover product_item_list c_table theme-color mb-0">
                         <thead>
                         <tr>
@@ -44,17 +44,17 @@
                                     <a href="{{URL::action('OpticaControllers\UsuarioController@show',$cat->id_usuario)}}"><button class="btn btn-secondary">Detalles</button></a>
                                     <a href="{{URL::action('OpticaControllers\UsuarioController@edit',$cat->id_usuario)}}"><button class="btn btn-info">Editar</button></a>
                                     <!-- <a href="" data-target="#modal-delete-{{$cat->id_usuario}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a> -->
-
-                                    <!-- Usando SweetAlert -->
-                                    <a href="{{URL::action('OpticaControllers\UsuarioController@destroy',$cat->id_usuario)}}" class="btn btn-raised btn-danger waves-effect"
-                                        data-type="confirm"
-                                        data-title="Dar de Baja"
-                                        data-text="¿Estas seguro en eliminar a {{$cat->nombre}} ?"
-                                        data-obj="{{$cat->nombre .' '. $cat->apellido}}">Eliminar</a>
+                                    <span class="js-sweetalert">
+                                        <!-- Usando SweetAlert -->
+                                        <a href="{{URL::action('OpticaControllers\UsuarioController@destroy',$cat->id_usuario)}}" class="btn btn-raised btn-danger waves-effect"
+                                            data-type="confirm"
+                                            data-title="Dar de Baja"
+                                            data-text="¿Estas seguro en eliminar a {{$cat->nombre}} ?"
+                                            data-obj="{{$cat->nombre .' '. $cat->apellido}}">Eliminar</a>
+                                    </span>
                                 </td>
                             </tr>
                             </tbody>
-                        @include('usuarios.modal')
                         @endforeach
                     </table>
                 </div>
