@@ -27,7 +27,7 @@ class RolController extends Controller
       /*  $usuario=DB::select('call usuarios_roles(?)',array($p1));*/ //Investigar como hacer esto
 
 
-        $usuariorol=DB::table('usuario_rol')->get()->where('estado','=',1);
+        $usuariorol=DB::table('usuario-rol')->get()->where('estado','=',1);
         return view('roles.index',['rol'=>$rol],['usuario'=>$usuario]);
     }
 
