@@ -39,10 +39,26 @@ class RolController extends Controller
 
     public function store(Usuario_RolFormRequest $request){
 
-        $usuariorol = new Usuario_Rol;
-        $usuariorol->id_usuario=$request->get('id_usuario');
-        $usuariorol->id_rol=$request->get('id_rol');
-        $usuariorol->save();
+        try{
+            DB::beginTransaction();
+
+            $ids=$request->get('id_usuario');
+            $cont=0;
+
+            while ($cont <count($ids)){
+                $usuariorol = new Usuario_Rol;
+                $usuariorol->id_usuario=$ids[$cont];
+                $usuariorol->id_rol=$request->get('id_rol');
+                $usuariorol->save();
+                $cont=$cont+1;
+            }
+
+
+            DB::commit();
+        }catch (\Exception $e){
+            DB::rollback();
+        }
+
         return Redirect::to('roles');
     }
 

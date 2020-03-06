@@ -4,6 +4,14 @@
 
 @section('page-style')
 <link rel="stylesheet" href="{{asset('assets/plugins/sweetalert/sweetalert.css')}}"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/morrisjs/morris.css')}}"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css')}}"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/multi-select/css/multi-select.css')}}"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/jquery-spinner/css/bootstrap-spinner.css')}}"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css')}}"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/nouislider/nouislider.min.css')}}"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>
 @stop
 
 @section('content')
@@ -79,4 +87,5 @@
 @section('page-script')
 <script src="{{asset('assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
 <script src="{{asset('assets/js/pages/ui/sweetalert.js')}}"></script>
+
 @stop

@@ -1,6 +1,17 @@
 @extends('layout.master')
 @section('title', 'Page Blank')
 @section('parentPageTitle', 'Pages')
+@section('page-style')
+    <link rel="stylesheet" href="{{asset('assets/plugins/multi-select/css/multi-select.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/plugins/jquery-spinner/css/bootstrap-spinner.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>
+    <style>
+        .input-group-text {
+            padding: 0 .75rem;
+        }
+    </style>
+@stop
 @section('content')
 <div class="row clearfix">
     <div class="col-lg-12">
@@ -18,7 +29,7 @@
                 </div>
             @endif
 
-            {!!Form::model($usuario,['method'=>'PATCH','route'=>['usuarios.update',$usuario->id_usuario]])!!}
+            {!!Form::model($usuario,['method'=>'PATCH','files'=>true,'route'=>['usuarios.update',$usuario->id_usuario]])!!}
             {{Form::token()}}
             <div class="body">
                 <div class="row clearfix">
@@ -48,10 +59,15 @@
                             <label for="">Correo Electronico</label>
                             <input type="email" name="correo" class="form-control" value="{{$usuario->correo}}" placeholder="Correo..." />
                         </div>
-                        {{--<div class="form-group">
-                            <label for="">Foto de perfil</label>
-                            <input type="text" class="form-control" placeholder="" />
-                        </div>--}}
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="dir_foto">Foto de perfil</label>
+                                <input type="file" value="{{$usuario->dir_foto}}" name="dir_foto"  class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <img src="/imagenes/usuarios/{{$usuario->dir_foto}}" width="300" alt="img">
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="">Contraseña</label>
                             <input type="password" name="contraseña" class="form-control" value="{{$usuario->contraseña}}" placeholder="Nueva Contraseña..." />
@@ -59,6 +75,14 @@
                         <div class="form-group">
                             <label for="">Descripción</label>
                             <textarea  class="form-control" name="descripcion" rows="5"  placeholder="Ingrese una descripción">{{$usuario->descripcion}}</textarea>
+                        </div>
+                        <div class="form-group col-8">
+                            <p> <b>Asignación de Roles</b> </p>
+                            <select class="form-control show-tick ms select2" required name="id_roles[]"  multiple data-placeholder="{{--{{$rol->rol}}--}}">
+                                @foreach($rol as $cat)
+                                    <option value="{{$cat->id_rol}}" {{(in_array($cat, old('id_roles', []))) ? 'selected' : ''}}>{{$cat->rol}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group" style="text-align: center">
                             <button class="btn btn-primary" type="submit">Guardar</button>
@@ -71,3 +95,9 @@
     </div>
 </div>
 @endsection
+@section('page-script')
+    <script src="{{asset('assets/plugins/multi-select/js/jquery.multi-select.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-spinner/js/jquery.spinner.js')}}"></script>
+    <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
+    <script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
+@stop
