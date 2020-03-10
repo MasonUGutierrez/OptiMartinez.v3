@@ -61,10 +61,10 @@
                             <label for="">Correo Electronico</label>
                             <input type="email" name="correo" required value="{{old("correo")}}" class="form-control" placeholder="Correo..." />
                         </div>
-                        <div class="form-group">
+                        {{--<div class="form-group">
                             <label for="dir_foto">Foto de perfil</label>
                             <input type="file" name="dir_foto" value="{{old("dir_foto")}}" class="form-control" />
-                        </div>
+                        </div>--}}
                         <div class="form-group">
                             <label for="">Contraseña</label>
                             <input type="password" name="contraseña" value="{{old("contraseña")}}" required class="form-control" placeholder="Nueva Contraseña..." />

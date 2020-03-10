@@ -23,7 +23,9 @@ class UsuarioController extends Controller
     /*public function index (Request $request){*/
     public function index()
     {
-        $usuario = DB::table('usuario')->get()->where('estado', '=', '1');
+        $usuario = DB::table('usuario')/*->get()*/->where('estado', '=', '1')
+        ->orderBy('id_usuario','desc')
+        ->paginate(10);
 
         return view('usuarios.index', ["usuario" => $usuario]);
     }
@@ -90,7 +92,15 @@ class UsuarioController extends Controller
     {
         $rol = new Rol();
         $rol = DB::table('rol')->get()->where('estado', '=', '1');
-        return view("usuarios.edit", ["usuario" => Usuario::findOrFail($id)], ["rol" => $rol]);
+        $usuario_roles = DB::table('usuario_rol')->select('id_rol')->where('id_usuario','=',$id)->where('estado', '=', '1')->get();
+        $valores = [];
+        /*print_r($usuario_roles);*/
+        foreach ($usuario_roles as $uroles){
+            $valores[]=$uroles->id_rol;
+        }
+        //El array_push es una funcion
+        //Para enviar varios objetos a la vistas encerrarlos todos como un arreglo asociativo
+        return view("usuarios.edit", ["usuario" => Usuario::findOrFail($id),"rol" => $rol,"valores"=>$valores]);
     }
 
     public function update(UsuarioFormRequest $request, $id)
@@ -109,22 +119,22 @@ class UsuarioController extends Controller
                     $nombre = $archivo->getClientOriginalName();
                     $archivo->move('imagenes/usuarios', $nombre);
                     $entrada['dir_foto'] = $nombre;
+                    $usuario->dir_foto = $entrada['dir_foto'];
                 }
-                $usuario->dir_foto = $entrada['dir_foto'];
                 $usuario->contraseña = $request->get('contraseña');
                 $usuario->descripcion = $request->get('descripcion');
                 $usuario->update();
 
+                DB::select('call borrar_asignacion(?)',array($id));
                 $idroles = $request->get('id_roles');
-
                 $cont = 0;
-                while ($cont < count($idroles)) {
-                    $rolerinos = new Usuario_Rol();
-                    $rolerinos->id_usuario = $usuario->id_usuario;
-                    $rolerinos->id_rol = $idroles[$cont];
-                    $rolerinos->update();
-                    $cont = $cont + 1;
-                }
+                 while ($cont < count($idroles)) {
+                        $rolerinos = new Usuario_Rol();
+                        $rolerinos->id_usuario = $usuario->id_usuario;
+                        $rolerinos->id_rol = $idroles[$cont];
+                        $rolerinos->save();
+                        $cont = $cont + 1;
+                 }
                 DB::commit();
             }catch(\Exception $e){
                 DB::rollback();

@@ -62,10 +62,10 @@
                         <div class="form-group">
                             <div class="form-group">
                                 <label for="dir_foto">Foto de perfil</label>
-                                <input type="file" value="{{$usuario->dir_foto}}" name="dir_foto"  class="form-control" />
+                                {{--<input type="file" value="" name="dir_foto"  class="form-control" />--}}
                             </div>
                             <div class="form-group">
-                                <img src="/imagenes/usuarios/{{$usuario->dir_foto}}" width="300" alt="img">
+                                <img src="/imagenes/usuarios/{{$usuario->dir_foto}}" width="300" class="img-thumbnail" alt="img">
                             </div>
                         </div>
                         <div class="form-group">
@@ -80,7 +80,7 @@
                             <p> <b>Asignación de Roles</b> </p>
                             <select class="form-control show-tick ms select2" required name="id_roles[]"  multiple data-placeholder="{{--{{$rol->rol}}--}}">
                                 @foreach($rol as $cat)
-                                    <option value="{{$cat->id_rol}}" {{(in_array($cat, old('id_roles', []))) ? 'selected' : ''}}>{{$cat->rol}}</option>
+                                    <option value="{{$cat->id_rol}}" {{(in_array($cat->id_rol,$valores)) ? 'selected' : ''}}>{{$cat->rol}}</option>
                                 @endforeach
                             </select>
                         </div>

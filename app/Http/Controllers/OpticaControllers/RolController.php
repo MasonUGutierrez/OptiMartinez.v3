@@ -63,7 +63,8 @@ class RolController extends Controller
     }
 
     public function show($id){
-        return view("rol.show",["rol"=>Rol::findOrFail($id)]);
+        $usuario=DB::select('call roles_usuarios(?)',array($id));
+        return view("roles.show",["rol"=>Rol::findOrFail($id),"usuario"=>$usuario]);
     }
 
     public function edit($id){

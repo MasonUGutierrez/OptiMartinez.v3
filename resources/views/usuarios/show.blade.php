@@ -17,10 +17,8 @@
                         </ul>
                     </div>
                 @endif
-
                 <div class="body">
                     <div class="row clearfix">
-
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="">Codigo de Minsa</label>
@@ -49,7 +47,7 @@
                             <div class="form-group">
                                 <label ><b>Foto de perfil</b></label>
                                 <div class="form-group">
-                                    <img src="/imagenes/usuarios/{{$usuario->dir_foto}}" width="300" alt="img">
+                                    <img src="/imagenes/usuarios/{{$usuario->dir_foto}}" class="img-thumbnail" width="300" alt="img">
                                 </div>
                             </div>
                             <div class="form-group">

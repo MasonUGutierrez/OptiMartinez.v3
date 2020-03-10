@@ -13,7 +13,6 @@
 <link rel="stylesheet" href="{{asset('assets/plugins/nouislider/nouislider.min.css')}}"/>
 <link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>
 @stop
-
 @section('content')
 <div class="row clearfix">
     <div class="col-lg-12">
@@ -25,15 +24,14 @@
                 <div class="table-responsive">
                     <table class="table table-hover product_item_list c_table theme-color mb-0">
                         <thead>
-                        <tr>
-                            <th>ID</th>
+                        <tr style="text-align: center">
+                            {{--<th>ID</th>--}}
                             <th>Codigo Minsa</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
+                            <th >Nombre</th>
                             <th>Cédula</th>
                             <th>Telefono</th>
                             <th>Imagen</th>
-                            <th>Opciones</th>
+                            <th >Opciones</th>
                             
                         </tr>
                         </thead>
@@ -41,15 +39,14 @@
                         @foreach($usuario as $cat)
                             <tbody>
                             <tr>
-                                <td>{{$cat->id_usuario}}</td>
-                                <td>{{$cat->cod_minsa}}</td>
-                                <td>{{$cat->nombre}}</td>
-                                <td>{{$cat->apellido}}</td>
+                                {{--<td>{{$cat->id_usuario}}</td>--}}
+                                <td style="text-align: center">{{$cat->cod_minsa}}</td>
+                                <td>{{$cat->nombre}} {{$cat->apellido}}</td>
                                 <td>{{$cat->cedula}}</td>
                                 <td>{{$cat->telefono}}</td>
-                                <td><img src="imagenes/usuarios/{{$cat->dir_foto}}" width="50" alt="img"></td>
-                                <td>
-                                    <a href="{{URL::action('OpticaControllers\UsuarioController@show',$cat->id_usuario)}}"><button class="btn btn-secondary">Detalles</button></a>
+                                <td><img src="imagenes/usuarios/{{$cat->dir_foto}}" width="50" class="img-thumbnail" alt="img"></td>
+                                <td >
+                                    <a href="{{URL::action('OpticaControllers\UsuarioController@show',$cat->id_usuario)}}"><button class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Detalles</button></a>
                                     <a href="{{URL::action('OpticaControllers\UsuarioController@edit',$cat->id_usuario)}}"><button class="btn btn-info">Editar</button></a>
                                     <!-- <a href="" data-target="#modal-delete-{{$cat->id_usuario}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a> -->
                                     <span class="js-sweetalert">
@@ -66,10 +63,10 @@
                         @endforeach
                     </table>
                 </div>
-
             </div>
+            {{$usuario->render()}}
         </div>
-        <div class="card">
+        {{--<div class="card">
             <div class="body">
                 <ul class="pagination pagination-primary m-b-0">
                     <li class="page-item"><a class="page-link" href="javascript:void(0);"><i class="zmdi zmdi-arrow-left"></i></a></li>
@@ -80,12 +77,16 @@
                     <li class="page-item"><a class="page-link" href="javascript:void(0);"><i class="zmdi zmdi-arrow-right"></i></a></li>
                 </ul>
             </div>
-        </div>
+        </div>--}}
     </div>
 </div>
 @endsection
 @section('page-script')
 <script src="{{asset('assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
 <script src="{{asset('assets/js/pages/ui/sweetalert.js')}}"></script>
-
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
 @stop
