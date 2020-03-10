@@ -101,6 +101,13 @@
         <script src="{{ asset('assets/bundles/vendorscripts.bundle.js') }}"></script>
 
         <script src="{{ asset('assets/bundles/mainscripts.bundle.js') }}"></script>
+        
+        <!-- Script para habilitar los tooltips -->
+        <script type="text/javascript">
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+        </script>
         @stack('after-scripts')
         @if (trim($__env->yieldContent('page-script')))
             @yield('page-script')

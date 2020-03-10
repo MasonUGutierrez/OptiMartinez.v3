@@ -2,33 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ca7e96b-9923-4a8b-93b0-1398a34867b5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/1c3939f4-cb92-4df7-a3c0-5c26613ad76b/storage_v2/_src_/schema/optica_martinez.W01KOw.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/1c3939f4-cb92-4df7-a3c0-5c26613ad76b/storage_v2/_src_/schema/optica_martinez.W01KOw.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/imagenes/usuarios/12.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/imagenes/usuarios/1434054586858.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/imagenes/usuarios/1435112044696.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/imagenes/usuarios/1435358008207.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/imagenes/usuarios/1436771037697.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/imagenes/usuarios/1436771786243.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/imagenes/usuarios/1436773208541.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/imagenes/usuarios/1436918159445.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/imagenes/usuarios/1436931487943.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/imagenes/usuarios/1441534052695.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/imagenes/usuarios/1441537467337.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/imagenes/usuarios/7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/imagenes/usuarios/wallhaven-163983.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/imagenes/usuarios/wallhaven-385395.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/roles/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1c3939f4-cb92-4df7-a3c0-5c26613ad76b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1c3939f4-cb92-4df7-a3c0-5c26613ad76b.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/opcionesSidebar/opcionesAdministrador.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/opcionesSidebar/opcionesExtras.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/opcionesSidebar/opcionesOptometrista.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/opcionesSidebar/opcionesRecepcionista.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/opcionesSidebar/opcionesTesorero.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OpticaControllers/RolController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OpticaControllers/RolController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OpticaControllers/UsuarioController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OpticaControllers/UsuarioController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/roles/asignar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/roles/asignar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/roles/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/roles/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/usuarios/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/usuarios/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/usuarios/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/usuarios/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layout/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layout/navbarright.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/navbarright.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layout/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/sidebar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/usuarios/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/usuarios/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/usuarios/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/usuarios/show.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -129,7 +112,7 @@
         <entry file="file://$PROJECT_DIR$/resources/views/usuarios/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="121">
-              <caret line="46" selection-start-line="46" selection-end-line="46" />
+              <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -465,12 +448,12 @@
       <workItem from="1583722207792" duration="3435000" />
       <workItem from="1583783873826" duration="4667000" />
       <workItem from="1583797148096" duration="9827000" />
-      <workItem from="1583874300590" duration="517000" />
+      <workItem from="1583874300590" duration="741000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134118000" />
+    <option name="totallyTimeSpent" value="134342000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -894,7 +877,7 @@
     <entry file="file://$PROJECT_DIR$/resources/views/usuarios/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="121">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
+          <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
         </state>
       </provider>
     </entry>

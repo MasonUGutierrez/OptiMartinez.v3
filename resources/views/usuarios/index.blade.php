@@ -47,17 +47,25 @@
 
                                 <td><img src="imagenes/usuarios/{{$cat->dir_foto}}" width="50" alt="img"></td>
                                 <td>
-                                    <a href="{{URL::action('OpticaControllers\UsuarioController@show',$cat->id_usuario)}}" class="btn btn-secondary">Detalles</a>
-                                    <a href="{{URL::action('OpticaControllers\UsuarioController@edit',$cat->id_usuario)}}" class="btn btn-info">Editar</a>
-
+                                    <!-- Mejor forma de poner los tooltips -->
+                                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Ver Detalles">
+                                        <a href="{{URL::action('OpticaControllers\UsuarioController@show',$cat->id_usuario)}}" class="btn btn-raised btn-secondary waves-effect"><i class="ti-search"></i></a>
+                                    </span>
+                                    
+                                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Editar">
+                                        <a href="{{URL::action('OpticaControllers\UsuarioController@edit',$cat->id_usuario)}}" class="btn btn-raised btn-info waves-effect"><i class="ti-pencil-alt"></i></a>
+                                    </span>
                                     <!-- <a href="" data-target="#modal-delete-{{$cat->id_usuario}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a> -->
                                     <!-- Usando SweetAlert -->
-                                    <span class="js-sweetalert">
+                                    <span class="js-sweetalert d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Dar de Baja">
                                         <a href="{{URL::action('OpticaControllers\UsuarioController@destroy',$cat->id_usuario)}}" class="btn btn-raised btn-danger waves-effect"
-                                        data-type="confirm"
-                                        data-title="Dar de Baja"
-                                        data-text="¿Estas seguro en eliminar a {{$cat->nombre}} ?"
-                                        data-obj="{{$cat->nombre .' '. $cat->apellido}}">Eliminar</a>
+                                            data-type="confirm"
+                                            data-title="Dar de Baja"
+                                            data-text="¿Estas seguro en eliminar a {{$cat->nombre}} ?"
+                                            data-obj="{{$cat->nombre .' '. $cat->apellido}}"
+                                        >
+                                            <i class="ti-trash"></i>
+                                        </a>
                                     </span>                                   
                                 </td>
                             </tr>
