@@ -100,7 +100,7 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/usuarios/edit.blade.php">
+        <entry file="dbSrc:///dd3de293/a67c87ff-2c75-464b-be90-771e23370892/schema/optica_martinez/routine/roles_usuarios@(int(10)).sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1071">
               <caret line="63" column="53" selection-start-line="63" selection-start-column="53" selection-end-line="63" selection-end-column="53" />
@@ -290,19 +290,8 @@
         <subPane>
           <expand>
             <path>
-              <item name="opti_martinez_v2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="opti_martinez_v2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="opti_martinez_v2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="opti_martinez_v2" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="opti_martinez_v2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="opti_martinez_v2" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="OptiMartinez.v2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OptiMartinez.v2" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="opti_martinez_v2" type="b2602c69:ProjectViewProjectNode" />
@@ -349,23 +338,22 @@
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="opti_martinez_v2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="opti_martinez_v2" type="462c0819:PsiDirectoryNode" />
+              <item name="OptiMartinez.v2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OptiMartinez.v2" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="roles" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="opti_martinez_v2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="opti_martinez_v2" type="462c0819:PsiDirectoryNode" />
+              <item name="OptiMartinez.v2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OptiMartinez.v2" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="usuarios" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="opti_martinez_v2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="opti_martinez_v2" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
+              <item name="OptiMartinez.v2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
             </path>
           </expand>
           <select />
@@ -466,7 +454,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49918166" weight="0.22541603" />
       <window_info id="Structure" order="1" sideWeight="0.5008183" side_tool="true" weight="0.21331316" />
