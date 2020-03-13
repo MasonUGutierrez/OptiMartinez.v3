@@ -25,5 +25,11 @@ class Usuario extends Model
         'descripcion',
         'estado'
     ];
-    // Agregue el atributo estado    
+    // Agregue el atributo estado   
+
+    // Relacion Mucho a Mucho con Rol
+    public function roles()
+    {
+        return $this->belongsToMany('App\Rol', 'usuario-rol', 'id_usuario', 'id_rol');
+    } 
 }

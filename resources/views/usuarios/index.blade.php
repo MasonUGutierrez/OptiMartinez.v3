@@ -28,24 +28,26 @@
                             {{--<th>ID</th>--}}
                             <th>Codigo Minsa</th>
                             <th >Nombre</th>
-                            <th>Cédula</th>
-                            <th>Telefono</th>
-                            <th>Imagen</th>
-                            <th >Opciones</th>
-
+                            <th>Roles</th>
+                            <th style="padding-right: 80px">Opciones</th>
                         </tr>
                         </thead>
 
-                        @foreach($usuario as $cat)
+                        @foreach($usuarios as $cat)
                             <tbody>
                             <tr>
                                 {{--<td>{{$cat->id_usuario}}</td>--}}
                                 <td style="text-align: center">{{$cat->cod_minsa}}</td>
                                 <td>{{$cat->nombre}} {{$cat->apellido}}</td>
-                                <td>{{$cat->cedula}}</td>
-                                <td>{{$cat->telefono}}</td>
-
-                                <td><img src="imagenes/usuarios/{{$cat->dir_foto}}" width="50" alt="img"></td>
+                                <td>
+                                    @foreach($cat->roles as $roles)
+                                    <!-- Operador ternario anidados necesitan parentesis para las demas condiciones -->
+                                        <span class="badge badge-{{($roles->rol == 'Administrador') ? 'primary' :
+                                                                   (($roles->rol == 'Tesorero') ? 'success' :
+                                                                   (($roles->rol == 'Optometrista') ? 'warning' :
+                                                                   (($roles->rol == 'Recepcionista') ? 'default' : 'danger')))}}">{{$roles->rol}}</span>
+                                    @endforeach
+                                </td>
                                 <td>
                                     <!-- Mejor forma de poner los tooltips -->
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Ver Detalles">
@@ -74,7 +76,7 @@
                     </table>
                 </div>
             </div>
-            {{$usuario->render()}}
+            {{-- {{$usuarios->render()}} --}}
         </div>
         {{--<div class="card">
             <div class="body">

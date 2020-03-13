@@ -17,4 +17,9 @@ class Rol extends Model
         'rol',
         'estado'
     ];
+
+    // Relacion mucho a mucho con usuario
+    public function usuarios(){
+        return $this->belongsToMany('App\Usuario');
+    }
 }
