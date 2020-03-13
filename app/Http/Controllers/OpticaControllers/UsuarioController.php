@@ -23,11 +23,14 @@ class UsuarioController extends Controller
     /*public function index (Request $request){*/
     public function index()
     {
-        $usuario = DB::table('usuario')/*->get()*/->where('estado', '=', '1')
-        ->orderBy('id_usuario','desc')
-        ->paginate(10);
+        // Buscar solucion para la paginacion
+        // $usuario = DB::table('usuario')/*->get()*/->where('estado', '=', '1')
+        // ->orderBy('id_usuario','desc')
+        // ->paginate(10);
 
-        return view('usuarios.index', ["usuario" => $usuario]);
+        $usuarios = Usuario::where('estado','1')->orderBy('id_usuario','desc')->get();
+
+        return view('usuarios.index', ['usuarios'=>$usuarios]);
     }
 
     public function detalle()
@@ -92,15 +95,22 @@ class UsuarioController extends Controller
     {
         $rol = new Rol();
         $rol = DB::table('rol')->get()->where('estado', '=', '1');
-        $usuario_roles = DB::table('usuario_rol')->select('id_rol')->where('id_usuario','=',$id)->where('estado', '=', '1')->get();
-        $valores = [];
-        /*print_r($usuario_roles);*/
-        foreach ($usuario_roles as $uroles){
-            $valores[]=$uroles->id_rol;
+
+        // Se obtiene los roles del usuario con id = $id
+        // $usuario_roles = DB::table('usuario-rol')->select('id_rol')->where('id_usuario','=',$id)->where('estado', '=', '1')->get();
+        $usuario = Usuario::findOrFail($id);
+
+        // Arreglo para solo los id de los roles, se van ocupar para la funcion in_array en la view
+        $valores = [];        
+        
+        // print_r($usuario->roles[0]->rol);
+        
+        foreach ($usuario->roles as $uroles){
+            $valores[] = $uroles->id_rol;
         }
-        //El array_push es una funcion
+        
         //Para enviar varios objetos a la vistas encerrarlos todos como un arreglo asociativo
-        return view("usuarios.edit", ["usuario" => Usuario::findOrFail($id),"rol" => $rol,"valores"=>$valores]);
+        return view("usuarios.edit", ["usuario" => $usuario,"rol" => $rol,"valores"=>$valores]);
     }
 
     public function update(UsuarioFormRequest $request, $id)
@@ -126,6 +136,7 @@ class UsuarioController extends Controller
                 $usuario->update();
 
                 DB::select('call borrar_asignacion(?)',array($id));
+
                 $idroles = $request->get('id_roles');
                 $cont = 0;
                  while ($cont < count($idroles)) {
@@ -133,15 +144,12 @@ class UsuarioController extends Controller
                         $rolerinos->id_usuario = $usuario->id_usuario;
                         $rolerinos->id_rol = $idroles[$cont];
                         $rolerinos->save();
-                        $cont = $cont + 1;
+                        $cont++;
                  }
                 DB::commit();
             }catch(\Exception $e){
                 DB::rollback();
             }
-
-
-
         return Redirect::to('usuarios');
     }
 
