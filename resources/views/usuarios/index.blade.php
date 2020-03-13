@@ -32,7 +32,7 @@
                             <th>Telefono</th>
                             <th>Imagen</th>
                             <th >Opciones</th>
-                            
+
                         </tr>
                         </thead>
 
@@ -51,7 +51,7 @@
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Ver Detalles">
                                         <a href="{{URL::action('OpticaControllers\UsuarioController@show',$cat->id_usuario)}}" class="btn btn-raised btn-secondary waves-effect"><i class="ti-search"></i></a>
                                     </span>
-                                    
+
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Editar">
                                         <a href="{{URL::action('OpticaControllers\UsuarioController@edit',$cat->id_usuario)}}" class="btn btn-raised btn-info waves-effect"><i class="ti-pencil-alt"></i></a>
                                     </span>
@@ -66,7 +66,7 @@
                                         >
                                             <i class="ti-trash"></i>
                                         </a>
-                                    </span>                                   
+                                    </span>
                                 </td>
                             </tr>
                             </tbody>
