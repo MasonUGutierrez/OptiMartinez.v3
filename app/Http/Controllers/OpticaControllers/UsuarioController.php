@@ -93,18 +93,21 @@ class UsuarioController extends Controller
 
     public function edit($id)
     {
-        $rol = new Rol();
-        $rol = DB::table('rol')->get()->where('estado', '=', '1');
+        // Estas sentencias son ambiguas, creas un objeto en base al modelo y despues el objeto recibe lo que retorna la query
+        // $rol = new Rol();        
+        // $rol = DB::table('rol')->get()->where('estado', '=', '1');
+
+        // Ocupando Eloquent para resumir lo de arriba
+        $rol = Rol::where('estado','1')->get();
 
         // Se obtiene los roles del usuario con id = $id
         // $usuario_roles = DB::table('usuario-rol')->select('id_rol')->where('id_usuario','=',$id)->where('estado', '=', '1')->get();
         $usuario = Usuario::findOrFail($id);
-
-        // Arreglo para solo los id de los roles, se van ocupar para la funcion in_array en la view
-        $valores = [];        
         
         // print_r($usuario->roles[0]->rol);
         
+        // Arreglo para solo los id de los roles, se van ocupar para la funcion in_array en la view
+        $valores = [];        
         foreach ($usuario->roles as $uroles){
             $valores[] = $uroles->id_rol;
         }
