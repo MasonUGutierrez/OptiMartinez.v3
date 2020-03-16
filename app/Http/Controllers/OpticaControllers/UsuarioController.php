@@ -51,6 +51,9 @@ class UsuarioController extends Controller
         try {
             DB::beginTransaction();
             $usuario = new Usuario;
+            /*$this->validate($request, [
+                'ccontraseña'=>'required|same:contraseña',],
+                ['ccontraseña.required'=>'La contraseña no coincide']);*/
             $usuario->cod_minsa = $request->get('cod_minsa');
             $usuario->nombre = $request->get('nombre');
             $usuario->apellido = $request->get('apellido');
@@ -65,6 +68,7 @@ class UsuarioController extends Controller
                 $usuario->dir_foto = $entrada['dir_foto'];
             }
             $usuario->contraseña = $request->get('contraseña');
+            $usuario->ccontraseña = $request->get('ccontraseña');
             $usuario->descripcion = $request->get('descripcion');
             $usuario->save();
 
@@ -88,7 +92,15 @@ class UsuarioController extends Controller
 
     public function show($id)
     {
-        return view("usuarios.show", ["usuario" => Usuario::findOrFail($id)]);
+        $rol = new Rol();
+
+        $rol = DB::table('rol')->get()->where('estado', '=', '1');
+        $usuario_roles = DB::table('usuario-rol')->select('id_rol')->where('id_usuario', '=', $id)->where('estado', '=', '1')->get();
+        $valores = [];
+        foreach ($usuario_roles as $uroles) {
+            $valores[] = $uroles->id_rol;
+        }
+        return view("usuarios.show", ["usuario" => Usuario::findOrFail($id), "rol" => $rol, "valores" => $valores]);
     }
 
     public function edit($id)
@@ -101,14 +113,14 @@ class UsuarioController extends Controller
         $usuario = Usuario::findOrFail($id);
 
         // Arreglo para solo los id de los roles, se van ocupar para la funcion in_array en la view
-        $valores = [];        
-        
+        $valores = [];
+
         // print_r($usuario->roles[0]->rol);
-        
+
         foreach ($usuario->roles as $uroles){
             $valores[] = $uroles->id_rol;
         }
-        
+
         //Para enviar varios objetos a la vistas encerrarlos todos como un arreglo asociativo
         return view("usuarios.edit", ["usuario" => $usuario,"rol" => $rol,"valores"=>$valores]);
     }
@@ -132,6 +144,7 @@ class UsuarioController extends Controller
                     $usuario->dir_foto = $entrada['dir_foto'];
                 }
                 $usuario->contraseña = $request->get('contraseña');
+                $usuario->ccontraseña = $request->get('ccontraseña');
                 $usuario->descripcion = $request->get('descripcion');
                 $usuario->update();
 
