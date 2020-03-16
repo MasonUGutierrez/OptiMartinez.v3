@@ -65,6 +65,7 @@ class UsuarioController extends Controller
                 $usuario->dir_foto = $entrada['dir_foto'];
             }
             $usuario->contraseña = $request->get('contraseña');
+            $usuario->ccontraseña = $request->get('ccontraseña');
             $usuario->descripcion = $request->get('descripcion');
             $usuario->save();
 
@@ -88,13 +89,21 @@ class UsuarioController extends Controller
 
     public function show($id)
     {
-        return view("usuarios.show", ["usuario" => Usuario::findOrFail($id)]);
+        $rol = new Rol();
+
+        $rol = DB::table('rol')->get()->where('estado', '=', '1');
+        $usuario_roles = DB::table('usuario-rol')->select('id_rol')->where('id_usuario', '=', $id)->where('estado', '=', '1')->get();
+        $valores = [];
+        foreach ($usuario_roles as $uroles) {
+            $valores[] = $uroles->id_rol;
+        }
+        return view("usuarios.show", ["usuario" => Usuario::findOrFail($id), "rol" => $rol, "valores" => $valores]);
     }
 
     public function edit($id)
     {
         // Estas sentencias son ambiguas, creas un objeto en base al modelo y despues el objeto recibe lo que retorna la query
-        // $rol = new Rol();        
+        // $rol = new Rol();
         // $rol = DB::table('rol')->get()->where('estado', '=', '1');
 
         // Ocupando Eloquent para resumir lo de arriba
@@ -103,15 +112,16 @@ class UsuarioController extends Controller
         // Se obtiene los roles del usuario con id = $id
         // $usuario_roles = DB::table('usuario-rol')->select('id_rol')->where('id_usuario','=',$id)->where('estado', '=', '1')->get();
         $usuario = Usuario::findOrFail($id);
-        
+
         // print_r($usuario->roles[0]->rol);
-        
+
         // Arreglo para solo los id de los roles, se van ocupar para la funcion in_array en la view
-        $valores = [];        
+        $valores = [];
+
         foreach ($usuario->roles as $uroles){
             $valores[] = $uroles->id_rol;
         }
-        
+
         //Para enviar varios objetos a la vistas encerrarlos todos como un arreglo asociativo
         return view("usuarios.edit", ["usuario" => $usuario,"rol" => $rol,"valores"=>$valores]);
     }
@@ -135,6 +145,7 @@ class UsuarioController extends Controller
                     $usuario->dir_foto = $entrada['dir_foto'];
                 }
                 $usuario->contraseña = $request->get('contraseña');
+                $usuario->ccontraseña = $request->get('ccontraseña');
                 $usuario->descripcion = $request->get('descripcion');
                 $usuario->update();
 
