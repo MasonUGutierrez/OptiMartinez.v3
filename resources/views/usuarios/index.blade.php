@@ -12,13 +12,18 @@
 <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
 <link rel="stylesheet" href="{{asset('assets/plugins/nouislider/nouislider.min.css')}}"/>
 <link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>
+<style>
+
+</style>
 @stop
 @section('content')
 <div class="row clearfix">
     <div class="col-lg-12">
         <div class="card">
             <div class="header">
-                <h3><strong>Listado de Usuarios</strong> <a href="usuarios/create"><button class="btn btn-success">Nuevo</button></a></h3>
+                <h3><strong>Listado de Usuarios</strong><span class="d-inline-block pl-3" tabindex="0" data-toggle="tooltip" data-placement="top" title="Nuevo Usuario">
+                                        <a href="usuarios/create" class="btn btn-raised btn-success waves-effect"><b class="zmdi zmdi-account-add"></b></a>
+                                    </span></h3>
             </div>
             <div class="body">
                 <div class="table-responsive">

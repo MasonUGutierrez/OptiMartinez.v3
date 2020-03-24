@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>
     <style>
-        .input-group-text {
-            padding: 0 .75rem;
-        }
+        .input-group-text {padding: 0 .75rem;}
+        label{font-size: 18px;}
     </style>
 @stop
 @section('content')
@@ -18,17 +17,8 @@
         <div class="card">
             <div class="header">
                 <h3><strong>Editar Usuario: {{$usuario->nombre}}</strong></h3>
-            </div>
-            @if(count($errors)>0)
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach($errors->all() as $message)
-                            <li>{{$message}}</li>
-                        @endforeach
-                    </ul>
                 </div>
-            @endif
-
+            </div>
             {!!Form::model($usuario,['method'=>'PATCH','files'=>true,'route'=>['usuarios.update',$usuario->id_usuario]])!!}
             {{Form::token()}}
             <div class="body">
@@ -37,27 +27,33 @@
                     <div class="row">
                         <div class="form-group col-12">
                             <label for="">Codigo de Minsa</label>
-                            <input type="text" class="form-control" name="cod_minsa" value="{{$usuario->cod_minsa}}" placeholder="Codigo de Minsa..." />
+                            <input type="text" class="form-control {{ $errors->has('cod_minsa') ? 'is-invalid' : '' }}" name="cod_minsa" value="{{$usuario->cod_minsa}}" placeholder="Codigo de Minsa..." />
+                            {!! $errors->first('cod_minsa', '<small class="invalid-feedback">:message</small>') !!}
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label for="">Nombre</label>
-                            <input type="text" name="nombre" class="form-control" value="{{$usuario->nombre}}" placeholder="Nombre..." />
+                            <input type="text" name="nombre" class="form-control {{ $errors->has('nombre') ? 'is-invalid' : '' }}" value="{{$usuario->nombre}}" placeholder="Nombre..." />
+                            {!! $errors->first('nombre', '<small class="invalid-feedback">:message</small>') !!}
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label for="">Apellido</label>
-                            <input type="text"  name="apellido" class="form-control" value="{{$usuario->apellido}}" placeholder="Apellido..." />
+                            <input type="text"  name="apellido" class="form-control {{ $errors->has('apellido') ? 'is-invalid' : '' }}" value="{{$usuario->apellido}}" placeholder="Apellido..." />
+                            {!! $errors->first('apellido', '<small class="invalid-feedback">:message</small>') !!}
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label for="">Cedula de indentidad</label>
-                            <input type="text" name="cedula" class="form-control" value="{{$usuario->cedula}}" placeholder="Cedula..." />
+                            <input type="text" name="cedula" class="form-control {{ $errors->has('cedula') ? 'is-invalid' : '' }}" value="{{$usuario->cedula}}" placeholder="Cedula..." />
+                            {!! $errors->first('cedula', '<small class="invalid-feedback">:message</small>') !!}
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label for="">Telefono</label>
-                            <input type="text" name="telefono" class="form-control" value="{{$usuario->telefono}}" placeholder="Telefono..." />
+                            <input type="text" name="telefono" class="form-control {{ $errors->has('telefono') ? 'is-invalid' : '' }}" value="{{$usuario->telefono}}" placeholder="Telefono..." />
+                            {!! $errors->first('telefono', '<small class="invalid-feedback">:message</small>') !!}
                         </div>
                         <div class="form-group col-12">
                             <label for="">Correo Electronico</label>
-                            <input type="email" name="correo" class="form-control" value="{{$usuario->correo}}" placeholder="Correo..." />
+                            <input type="email" name="correo" class="form-control {{ $errors->has('correo') ? 'is-invalid' : '' }}" value="{{$usuario->correo}}" placeholder="Correo..." />
+                            {!! $errors->first('correo', '<small class="invalid-feedback">:message</small>') !!}
                         </div>
                         <div class="form-group col-10">
                                 <label for="dir_foto">Foto de perfil</label>
@@ -67,15 +63,18 @@
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label for="">Contraseña</label>
-                            <input type="password" name="contraseña" class="form-control" value="{{$usuario->contraseña}}" placeholder="Nueva Contraseña..." />
+                            <input type="password" name="contraseña" class="form-control" {{ $errors->has('contraseña') ? 'is-invalid' : '' }} value="{{$usuario->contraseña}}" placeholder="Nueva Contraseña..." />
+                            {!! $errors->first('contraseña', '<small class="invalid-feedback">:message</small>') !!}
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label for="">Verificar Contraseña</label>
-                            <input type="password" name="ccontraseña" class="form-control" value="{{$usuario->contraseña}}" placeholder="Confirma Contraseña..." />
+                            <input type="password" name="ccontraseña" class="form-control {{ $errors->has('ccontraseña') ? 'is-invalid' : '' }}" value="{{$usuario->contraseña}}" placeholder="Confirma Contraseña..." />
+                            {!! $errors->first('ccontraseña', '<small class="invalid-feedback">:message</small>') !!}
                         </div>
                         <div class="form-group col-12">
                             <label for="">Descripción</label>
-                            <textarea  class="form-control" name="descripcion" rows="5"  placeholder="Ingrese una descripción">{{$usuario->descripcion}}</textarea>
+                            <textarea  class="form-control {{ $errors->has('descripcion') ? 'is-invalid' : '' }}" name="descripcion" rows="5"  placeholder="Ingrese una descripción">{{$usuario->descripcion}}</textarea>
+                            {!! $errors->first('descripcion', '<small class="invalid-feedback">:message</small>') !!}
                         </div>
                         <div class="form-group col-12">
                             <p> <b>Asignación de Roles</b> </p>

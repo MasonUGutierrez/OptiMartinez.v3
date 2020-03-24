@@ -18,10 +18,10 @@
     </ul>
 </li>
 <li class="{{ Request::segment(1) === '' ? 'active' : null}}">
-    <a href="#"><i class="zmdi zmdi-assignment"></i><span>Servicios</span></a>
+    <a href="/servicios"><i class="zmdi zmdi-assignment"></i><span>Servicios</span></a>
 </li>
 <li class="{{Request::segment(1) === '' ? 'active' : null}}">
-    <a href="#"><i class="zmdi zmdi"></i><span>Planes de Pago</span></a>
+    <a href="/planpago"><i class="zmdi zmdi"></i><span>Planes de Pago</span></a>
 </li>
 <li class="{{ Request::segment(1) === '' ? 'active open' : null }}">
     <a href="#" class="menu-toggle"><i class="zmdi zmdi-assignment"></i> <span>Admin. Lentes</span></a>

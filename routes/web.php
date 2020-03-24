@@ -23,6 +23,8 @@ Route::get('/', function () {
 Route::resource('usuarios','OpticaControllers\UsuarioController');
 Route::resource('roles','OpticaControllers\RolController');
 Route::get('roles/{id}/asignar','OpticaControllers\RolController@asignar')->name('roles.asignar');
+Route::resource('servicios','OpticaControllers\ServicioController');
+Route::resource('planpago','OpticaControllers\PlanPagoController');
 
 
 /*************************************************************************************************/
@@ -43,11 +45,11 @@ Route::get('app/calendar', 'AppController@calendar')->name('app.calendar');
 
 
 /* Rutas Extras*/
-/* File Manager 
+/* File Manager
 Route::get('file-manager', function () { return redirect('file-manager/all'); });
 Route::get('file-manager/all', 'FileManagerController@all')->name('file-manager.all');
 
-/* Blog 
+/* Blog
 Route::get('blog', function () { return redirect('blog/dashboard'); });
 Route::get('blog/dashboard', 'BlogController@dashboard')->name('blog.dashboard');
 Route::get('blog/new-post', 'BlogController@newPost')->name('blog.new-post');
@@ -55,14 +57,14 @@ Route::get('blog/list', 'BlogController@list')->name('blog.list');
 Route::get('blog/grid', 'BlogController@grid')->name('blog.grid');
 Route::get('blog/detail', 'BlogController@detail')->name('blog.detail');
 
-/* Ecommerce 
+/* Ecommerce
 Route::get('ecommerce', function () { return redirect('ecommerce/dashboard'); });
 Route::get('ecommerce/dashboard', 'EcommerceController@dashboard')->name('ecommerce.dashboard');
 Route::get('ecommerce/product', 'EcommerceController@product')->name('ecommerce.product');
 Route::get('ecommerce/product-list', 'EcommerceController@productList')->name('ecommerce.product-list');
 Route::get('ecommerce/product-detail', 'EcommerceController@productDetail')->name('ecommerce.product-detail');
 
-/* Tables 
+/* Tables
 Route::get('tables', function () { return redirect('tables/normal'); });
 Route::get('tables/normal', 'TablesController@normal')->name('tables.normal');
 Route::get('tables/datatable', 'TablesController@datatable')->name('tables.datatable');
@@ -81,7 +83,7 @@ Route::get('authentication/page404', 'AuthenticationController@page404')->name('
 Route::get('authentication/page500', 'AuthenticationController@page500')->name('authentication.page500');
 Route::get('authentication/offline', 'AuthenticationController@offline')->name('authentication.offline');
 
-/* Pages 
+/* Pages
 Route::get('pages', function () { return redirect('pages/blank-page'); });
 Route::get('pages/blank', 'PagesController@blank')->name('pages.blank');
 Route::get('pages/gallery', 'PagesController@gallery')->name('pages.gallery');
