@@ -24,6 +24,18 @@ Route::resource('usuarios','OpticaControllers\UsuarioController');
 Route::resource('roles','OpticaControllers\RolController');
 Route::get('roles/{id}/asignar','OpticaControllers\RolController@asignar')->name('roles.asignar');
 
+// Rutas Resources
+Route::resource('admin-lentes/marcos', 'OpticaController\MarcoController');
+Route::resource('admin-lentes/marcos/tipos-marcos', 'OpticaController\TipoMarcoController');
+Route::resource('admin-lentes/marcas', 'OpticaController\MarcaController');
+Route::resource('admin-lentes/materiales', 'OpticaController\MaterialController');
+
+// Ruta para hacer pruebas de los modelos
+Route::get('/test', function(){
+    $tipo_marco = App\OpticaModels\TipoMarco::where('estado','1')->first();
+    return $tipo_marco->tipo_marco;
+});
+
 
 /*************************************************************************************************/
 
@@ -92,4 +104,3 @@ Route::get('pages/profile', 'PagesController@profile')->name('pages.profile');
 Route::get('pages/search', 'PagesController@search')->name('pages.search');
 Route::get('pages/timeline', 'PagesController@timeline')->name('pages.timeline');
 */
-

@@ -28,6 +28,7 @@
     <ul class="ml-menu">
         <li class="{{ Request::segment(2) === '' ? 'active' : null }}"><a href="#">Marcas</a></li>
         <li class="{{ Request::segment(2) === '' ? 'active' : null }}"><a href="#">Marcos</a></li>
+        <li class="{{ Request::segment(2) === '' ? 'active' : null }}"><a href="#">Materiales</a></li>
         <li class="{{ Request::segment(2) === '' ? 'active' : null }}"><a href="#">Tipos de Lentes</a></li>
     </ul>
 </li>
