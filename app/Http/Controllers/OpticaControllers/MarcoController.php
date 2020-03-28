@@ -5,6 +5,9 @@ namespace App\Http\Controllers\OpticaControllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Redirect;
+use App\OpticaModels\Marco;
+
 class MarcoController extends Controller
 {
     /**
@@ -14,6 +17,7 @@ class MarcoController extends Controller
      */
     public function index()
     {
+
         return view('');
     }
 

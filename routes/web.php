@@ -29,6 +29,7 @@ Route::resource('admin-lentes/marcos', 'OpticaController\MarcoController');
 Route::resource('admin-lentes/marcos/tipos-marcos', 'OpticaController\TipoMarcoController');
 Route::resource('admin-lentes/marcas', 'OpticaController\MarcaController');
 Route::resource('admin-lentes/materiales', 'OpticaController\MaterialController');
+Route::resource('admin-lentes/tipos-lentes', 'OpticaController\TipoLenteController');
 
 // Ruta para hacer pruebas de los modelos
 Route::get('/test', function(){
