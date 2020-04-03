@@ -125,14 +125,20 @@ class MarcaController extends Controller
         $marca->precio = $request->input('precio');
 
         $archivo = $request->file('img');
-        if($request->hasFile('img') && $archivo->isValid() && $archivo->getClientOriginalName() !== $marca->img)
+        // Guardara la foto si se subio un archivo, si es un archivo valido, y si el nombre del archivo es dirente al que ya esta guardado
+        if($archivo != null)
         {
-            $nombreImg = $archivo->getClientOriginalName();
-        
-            Storage::disk('public')->delete('imagenes/marcas'.$marca->img); // Elimina del disco la imagen ubicada en el path enviado por parametro
-
-            $path = $archivo->storeAs('imagenes/marcas', $nombreImg, 'public');
-            $marca->img = $nombreImg;
+            if($request->hasFile('img') && $archivo->isValid() && $archivo->getClientOriginalName() !== $marca->img)
+            {
+                $nombreImg = $archivo->getClientOriginalName();
+                
+                // Elimina del disco la imagen ubicada en el path enviado por parametro
+                // De esta manera se optimiza el almacenaje de imagenes
+                Storage::disk('public')->delete('imagenes/marcas/'.$marca->img);
+    
+                $path = $archivo->storeAs('imagenes/marcas', $nombreImg, 'public');
+                $marca->img = $nombreImg;
+            }
         }
 
         $marca->save();

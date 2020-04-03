@@ -28,7 +28,7 @@
                         <div class="body">
                             <div class="form-group">
                                 <label for="marca">Marca </label>
-                                <input class="form-control @error('marca') is-invalid @enderror" id="marca" name="marca" value="{{old('marca')}}" placeholder="Ej.: Ray-Ban, Converse, Guess, etc.">
+                                <input type="text" class="form-control @error('marca') is-invalid @enderror" id="marca" name="marca" value="{{old('marca')}}" placeholder="Ej.: Ray-Ban, Converse, Guess, etc.">
                                 @error('marca')
                                     <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -45,7 +45,7 @@
                                             <i class="ti ti-wallet"></i>
                                         </span>
                                     </div>
-                                    <input class="form-control @error('precio') is-invalid @enderror" id="precio" name="precio" value="{{old('precio')}}" placeholder="Ej.: C$ 100, C$ 150, C$ 200, etc.">
+                                    <input type="text" class="form-control @error('precio') is-invalid @enderror" id="precio" name="precio" value="{{old('precio')}}" placeholder="Ej.: C$ 100, C$ 150, C$ 200, etc.">
                                     @error('precio')
                                         <span class="invalid-feedback">{{ $message }}<span>
                                     @enderror
@@ -66,7 +66,7 @@
                 </div>
                 <div class="body"> 
                     <input type="file" class="form-control dropify-es" name="img">
-                    {{-- Input hidden para que al menosse pueda mostrar el mensaje del error en el campo img en el <span> --}}
+                    {{-- Input hidden para que al menos se pueda mostrar el mensaje del error en el campo img en el <span> --}}
                     <input type="hidden" class="form-control @error('img') is-invalid @enderror ">
                     @error('img')
                         <span class="invalid-feedback">{{ $message }}</span>

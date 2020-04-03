@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class MarcaFormRequest extends FormRequest
 {
@@ -15,7 +16,6 @@ class MarcaFormRequest extends FormRequest
     {
         return true;
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -23,11 +23,23 @@ class MarcaFormRequest extends FormRequest
      */
     public function rules()
     {
+        if($this->isMethod('PUT'))
+        {
+            $reglaMarca = 'unique:App\OpticaModels\Marca,marca,'.$this->id_marca.',id_marca';
+            $reglaUniqueImg = 'unique:App\OpticaModels\Marca,img'.$this->id_marca.',id_marca';
+        }
+        else
+        {
+            $reglaMarca = 'unique:App\OpticaModels\Marca,marca';
+            $reglaUniqueImg = 'unique:App\OpticaModels\Marca,img';
+        }   
         // La regla unique tiene que cumplir la sintaxis= unique:table,column,except,idColumn
+        // ($this->isMethod('post')) ? 'unique:App\OpticaModels\Marca' : ''
         return [
-            'marca' => ['bail', 'required', 'string', ($this->isMethod('post')) ? 'unique:App\OpticaModels\Marca' : ''],
-            'img.*' => ['bail', ($this->isMethod('post')) ? 'required' : '' , 'mimes:jpg,jpeg,png'],
+            'marca' => ['bail', 'required', 'string', $reglaMarca],
+            'img.*' => ['bail', ($this->isMethod('post')) ? 'required' : '' , $reglaUniqueImg, 'mimes:jpg,jpeg,png'],
             'precio' => ['bail', 'required', 'numeric']
         ];
     }
+
 }
