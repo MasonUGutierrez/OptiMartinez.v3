@@ -19,4 +19,12 @@ $(function() {
             error: 'Désolé, le fichier trop volumineux'
         }
     });
+    $('.dropify-es').dropify({
+        messages: {
+            default: 'Arrastre y suelte un archivo o haz click',
+            replace: 'Arrastre y suelte un archivo o haz click para reemplazar',
+            remove: 'Remover',
+            error: 'Lo sentimos, el archivo es demasiado grande'
+        }
+    });
 });

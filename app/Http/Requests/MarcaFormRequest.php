@@ -23,9 +23,10 @@ class MarcaFormRequest extends FormRequest
      */
     public function rules()
     {
+        // La regla unique tiene que cumplir la sintaxis= unique:table,column,except,idColumn
         return [
-            'marca' => ['bail', 'required', 'string', 'unique'],
-            'img' => ['bail', 'image', 'mimes:jpg,jpeg,png'],
+            'marca' => ['bail', 'required', 'string', ($this->isMethod('post')) ? 'unique:App\OpticaModels\Marca' : ''],
+            'img.*' => ['bail', ($this->isMethod('post')) ? 'required' : '' , 'mimes:jpg,jpeg,png'],
             'precio' => ['bail', 'required', 'numeric']
         ];
     }

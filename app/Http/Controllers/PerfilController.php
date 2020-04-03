@@ -7,6 +7,6 @@ use Illuminate\Routing\Controller as BaseController;
 class PerfilController extends BaseController
 {
     function miPerfil(){
-    	return view('profile.my-profile');
+    	return view('examples.pages.profile');
     }
 }

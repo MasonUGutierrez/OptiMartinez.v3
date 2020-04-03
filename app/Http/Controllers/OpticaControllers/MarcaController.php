@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\OpticaModels\Marca;
 use App\Http\Requests\MarcaFormRequest;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Redirect;
 use DB;
 
 class MarcaController extends Controller
@@ -41,9 +40,9 @@ class MarcaController extends Controller
         }
         */
 
-        $marcas = Marca::where('estado', '1')->paginate(8);
+        $marcas = Marca::where('estado', '1')->orderBy('id_marca','asc')->paginate(8);
 
-        return view('adminlentes.marcas.index', ['marcas' => $marcas]);
+        return view('adminlentes.marcas.index', ['marcas' => $marcas]); 
     }
 
     /**
@@ -63,51 +62,26 @@ class MarcaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(MarcaFormRequest $request)
-    {
-        // $marca = new Marca;
-
-        // $marca->marca = $request->get('marca');
-        // $marca->precio = $request->get('precio');
-
-        // $marca->save();
-        
+    {        
         // Guardando un registro en una sola linea usando el metodo Create del modelo
-        // Usar el metodo create evita tener que especificar de uno en uno cada atributo y usar el metodo save()
         $marca = Marca::create([
             'marca' => $request->input('marca'),
             'precio' => $request->input('precio')
         ]);
+        // $marca = new Marca;
+        
         
         if($request->hasFile('img')) // Comprobando que se haya subido un archivo
         {
-            // Obteniendo el nombre y extension del archivo subido
-            /**
-             * img[0] -> Contendra el nombre del archivo
-             * img[1] -> Contendra la extension del archivo
-            */
-            $img[0] = $request->file('img')->getClientOriginalName();
-            $img[1] = $request->file('img')->extension(); 
+            $nombreImg = $request->file('img')->getClientOriginalName();
+
+            // Guardando el archivo en el disco local 'public'            
+            $path = $request->file('img')->storeAs('imagenes/marcas', $nombreImg, 'public');
             
-            // Guardando el archivo en el disco local
-            $path = $request->file('img')->storeAs('imagenes/marcas', implode('.', $img), 'public');
-            
-            // Guardando el nombre del archivo en registro recien guardado
-            $marca->fill([
-                'img' => $img[0]
-            ]);
+            // Guardando el nombre del archivo en el registro recien guardado            
+            $marca->fill(['img' => $nombreImg]);
+            $marca->save();
         }
-
-        /* if($request->hasFile('img') && $request->file('img')->isValid() )
-        {
-            $archivo = $request->file('img');
-            $nombreImg = $archivo->getClientOriginalName();
-            $archivo->move('imagenes/marcas', $nombreImg);
-
-            $marca->fill([
-                'img' => $nombreImg
-            ]);
-        } */
-
 
         return redirect('admin-lentes/marcas');
     }
@@ -150,29 +124,15 @@ class MarcaController extends Controller
         $marca->marca = $request->input('marca');
         $marca->precio = $request->input('precio');
 
-        /* $nombreImgSinExtension = explode('.', $marca->img);
         $archivo = $request->file('img');
-
-        // Comprueba si el nombre del archivo subido es diferente al que ya esta guardando entonces actualiza
-        if($archivo->getClientOriginalName() != $nombreImgSinExtension[0])
+        if($request->hasFile('img') && $archivo->isValid() && $archivo->getClientOriginalName() !== $marca->img)
         {
-            // Obteniendo el nombre y extension del archivo subido
-            $img[0] = $archivo->getClientOriginalName();
-            $img[1] = $archivo->extension();
+            $nombreImg = $archivo->getClientOriginalName();
+        
+            Storage::disk('public')->delete('imagenes/marcas'.$marca->img); // Elimina del disco la imagen ubicada en el path enviado por parametro
 
-            Storage::disk('public')->delete('imagenes/marcas'.$marca->img);
-            
-            $path = $archivo->storeAs('imagenes/marcas', implode('.', $img), 'public');
-            $marca->img = $img[0];
-        } */
-
-        if($request->hasFile('img') && $request->file('img')->isValid())
-        {
-            $img[0] = $request->file('img')->getClientOriginalName();
-            $img[1] = $request->file('img')->extension();
-
-            $path = $request->file('img')->storeAs('imagenes/marcas', implode('.', $img), 'public');
-            $marca->img = $img[0];
+            $path = $archivo->storeAs('imagenes/marcas', $nombreImg, 'public');
+            $marca->img = $nombreImg;
         }
 
         $marca->save();
@@ -188,10 +148,8 @@ class MarcaController extends Controller
      */
     public function destroy($id)
     {
-        $marca = Marca::findOrFail($id);
-        
+        $marca = Marca::findOrFail($id);        
         $marca->estado = 0;
-
         $marca->save();
 
         return redirect('admin-lentes/marcas');

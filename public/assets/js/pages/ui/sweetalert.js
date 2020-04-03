@@ -1,5 +1,7 @@
 $(function () {
-    $('.js-sweetalert a').on('click', function (e) {
+    // Cambiando selector en lugar de buscar solo las etiquetas <a> buscara el elemento que tenga el atributo data-type
+    // Ahora se puede usar el sweetalert con cualquier elemento sea <button> o <a>
+    $('.js-sweetalert [data-type]').on('click', function (e) {
         e.preventDefault(); // Impidiendo que se redireccione directamente por el href de la etiqueta <a>
 
         var type = $(this).data('type');
@@ -7,9 +9,14 @@ $(function () {
         var title = $(this).data('title'),
             text = $(this).data('text'),
             objDelete = $(this).data('obj'),
-            linkURL = $(this).attr('href'),
+            /**
+             * Se indica que la URL a enviar en el formulario se va llenar con el 
+             * valor en el atributo data-dir si es una etiqueta <button> o con href si es una etiqueta <a>
+             */
+            linkURL = getUrl($(this)),
             csrf_token = $('meta[name="csrf-token"]').attr('content');
-
+        
+        // alert($(this).get(0).tagName + $(this).data('dir'));
         if (type === 'basic') {
             showBasicMessage();
         }
@@ -39,6 +46,15 @@ $(function () {
         }
     });
 });
+
+/**
+ * Metodo que retorna la URL donde enviar los datos en el formulario para eliminar
+ * @param object element 
+ */
+function getUrl(element) {
+    // Si el elemento que llama al sweetalert es un boton entonces se pasa el valor en el atributo data-dir, sino el valor en el atributo href
+    return element.get(0).tagName == 'BUTTON' ? element.data('dir') : element.attr('href');
+}
 
 //These codes takes from http://t4t5.github.io/sweetalert/
 

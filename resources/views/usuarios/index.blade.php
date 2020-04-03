@@ -18,9 +18,8 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="header">
-                <h3><strong>Listado de Usuarios</strong> <a href="usuarios/create"><button class="btn btn-success">Nuevo</button></a></h3>
+                <h2>Listado de <strong>Usuarios</strong> <a href="usuarios/create"><button class="btn btn-success">Nuevo</button></a></h2>
             </div>
-            <div class="body">
                 <div class="table-responsive">
                     <table class="table table-hover product_item_list c_table theme-color mb-0">
                         <thead>
@@ -75,7 +74,6 @@
                         @endforeach
                     </table>
                 </div>
-            </div>
             {{-- {{$usuarios->render()}} --}}
         </div>
         {{--<div class="card">
