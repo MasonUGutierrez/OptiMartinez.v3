@@ -56,6 +56,36 @@ class MarcaController extends Controller
     }
 
     /**
+     * Metodo para realizar manualmente la regla unique con las imagenes
+     * 
+     * @param file $img
+     * @param App\Http\Requests\MarcaFormRequest $request
+     * @return App\Model
+     */
+    public function existImage($img, MarcaFormRequest $request, $id = null)
+    {
+        // Practicando switch
+        switch($request->method())
+        {
+            // Caso en que se este registrando
+            case 'POST':
+                return Marca::where([
+                    ['img', 'like', "%$img"],
+                    ['estado', '1'],
+                    ])->first();
+            break;
+            // Caso en que se este actualizando, se omite el registro del elemento que se esta actualizando
+            case 'PUT':
+                return Marca::where([
+                    ['img','like',"%$img"],
+                    ['estado', 1],
+                    ['id_marca','<>', $id],
+                ])->first();
+            break;
+        }       
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  App\Http\Requests\MarcaFormRequest  $request
@@ -63,15 +93,21 @@ class MarcaController extends Controller
      */
     public function store(MarcaFormRequest $request)
     {        
+        // Observacion: En php para llamar una funcion definida dentro una clase hay que llamarla como si fuera un metodo de la clase con $this->metodo()   
+        if($this->existImage($request->file('img')->getClientOriginalName(), $request))
+        {
+            return back()
+                    ->withErrors(['img' => 'La imagen ya ha sido tomada'])
+                    ->withInput();
+        }
+
         // Guardando un registro en una sola linea usando el metodo Create del modelo
         $marca = Marca::create([
             'marca' => $request->input('marca'),
             'precio' => $request->input('precio')
         ]);
-        // $marca = new Marca;
-        
-        
-        if($request->hasFile('img')) // Comprobando que se haya subido un archivo
+
+        if($request->hasFile('img') && $request->file('img')->isValid()) // Comprobando que se haya subido un archivo
         {
             $nombreImg = $request->file('img')->getClientOriginalName();
 
@@ -82,7 +118,6 @@ class MarcaController extends Controller
             $marca->fill(['img' => $nombreImg]);
             $marca->save();
         }
-
         return redirect('admin-lentes/marcas');
     }
 
@@ -123,11 +158,19 @@ class MarcaController extends Controller
 
         $marca->marca = $request->input('marca');
         $marca->precio = $request->input('precio');
-
-        $archivo = $request->file('img');
-        // Guardara la foto si se subio un archivo, si es un archivo valido, y si el nombre del archivo es dirente al que ya esta guardado
+        
+        $archivo = $request->file('img'); 
+        
+        // Guardara la foto si se subio un archivo, si es un archivo valido, y si el nombre del archivo es diferente al que ya esta guardado
         if($archivo != null)
         {
+            // Se valida si existe un registro con la imagen que se quiere actualizar
+            if($this->existImage($archivo->getClientOriginalName(), $request, $marca->id_marca))
+            {
+                return back()
+                    ->withErrors(['img' => 'La imagen ya ha sido tomada'])
+                    ->withInput();
+            }
             if($request->hasFile('img') && $archivo->isValid() && $archivo->getClientOriginalName() !== $marca->img)
             {
                 $nombreImg = $archivo->getClientOriginalName();

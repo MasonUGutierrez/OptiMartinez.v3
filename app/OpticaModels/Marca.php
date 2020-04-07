@@ -35,4 +35,14 @@ class Marca extends Model
     protected $guarded = [];
 
     // Relaciones con otros modelos
+
+    /**
+     * Metodo que define la relacion de uno a muchos con los marcos, ya que una marca contiene muchos marcos
+     * 
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function marcos()
+    {
+        return $this->hasMany('App\OpticaModels\Marco', 'id_marca', 'id_marca');
+    }
 }

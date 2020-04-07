@@ -25,19 +25,17 @@ class MarcaFormRequest extends FormRequest
     {
         if($this->isMethod('PUT'))
         {
-            $reglaMarca = 'unique:App\OpticaModels\Marca,marca,'.$this->id_marca.',id_marca';
-            $reglaUniqueImg = 'unique:App\OpticaModels\Marca,img'.$this->id_marca.',id_marca';
+            // route('param') retorna el parametro que se esta enviando por la URL, en este caso marca, porque asi establece la ruta
+            $reglaMarca = "unique:App\OpticaModels\Marca,marca,{$this->route('marca')},id_marca";
         }
         else
-        {
             $reglaMarca = 'unique:App\OpticaModels\Marca,marca';
-            $reglaUniqueImg = 'unique:App\OpticaModels\Marca,img';
-        }   
-        // La regla unique tiene que cumplir la sintaxis= unique:table,column,except,idColumn
+
+            // La regla unique tiene que cumplir la sintaxis= unique:table,column,except,idColumn
         // ($this->isMethod('post')) ? 'unique:App\OpticaModels\Marca' : ''
         return [
             'marca' => ['bail', 'required', 'string', $reglaMarca],
-            'img.*' => ['bail', ($this->isMethod('post')) ? 'required' : '' , $reglaUniqueImg, 'mimes:jpg,jpeg,png'],
+            'img.*' => ['bail', ($this->isMethod('post')) ? 'required' : '', 'mimes:jpeg,png'],
             'precio' => ['bail', 'required', 'numeric']
         ];
     }

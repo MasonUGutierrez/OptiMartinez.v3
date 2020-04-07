@@ -35,4 +35,13 @@ class Marco extends Model
     protected $guarded = [];
 
     // Relaciones con otros modelos
+    /**
+     * Metodo que indica la relacion inversa de uno a muchos, ya que un marco solo le pertenece a una marca
+     * 
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function marca()
+    {
+        return $this->belongsTo('App\OpticaModels\Marca', 'id_marca', 'id_marca');
+    }
 }
