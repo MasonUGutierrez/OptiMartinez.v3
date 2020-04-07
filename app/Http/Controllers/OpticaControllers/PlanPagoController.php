@@ -13,23 +13,23 @@ class PlanPagoController extends Controller
 {
     //
     public function index(){
-
-        $planpago= new PlanPago();
-
-        $planpago = PlanPago::where('estado',1)->orderBy('id_plan_pago','desc')->get();
-
-
-        return view('planpagos.index',['planpago'=>$planpago]);
+       /* $planpago = PlanPago::where('estado',1)->orderBy('id_plan_pago','desc')->get();*/
+        return view('planpagos.index'/*,['planpago'=>$planpago]*/);
     }
-
+    public function getAll(){
+        $planpago = PlanPago::where('estado',1)->orderBy('id_plan_pago','desc')->get();
+        return response()->json($planpago);
+    }
     public function show($id){
         /*$planpago= DB::table('plan_pago')->where('id_plan_pago','=',$id)->get();*/
         return view("planpagos.show",["planpago" => PlanPago::findOrFail($id)]);
     }
 
     public function edit($id){
+        $planpago = PlanPago::where('id_plan_pago','=',$id)->get();
         /*$planpago = DB::table('plan_pago')->where('id_plan_pago','=',$id)->get();*/
-        return view("planpagos.edit",["planpago" => PlanPago::findOrFail($id)]);
+/*        return view("planpagos.edit",["planpago" => PlanPago::findOrFail($id)]);*/
+        return response()->json($planpago);
     }
 
     public function create(){
@@ -47,7 +47,7 @@ class PlanPagoController extends Controller
         }catch(\Exception $e){
             DB::rollBack();
         }
-        return Redirect::to('planpago');
+        return response()->json($plan_pago);
     }
 
     public function update(PlanPagoFormRequest $request,$id){
@@ -68,6 +68,7 @@ class PlanPagoController extends Controller
         $planpago = PlanPago::findOrFail($id);
         $planpago->estado = '0';
         $planpago->update();
-        return Redirect::to('planpago');
+        /*return Redirect::to('planpago');*/
+        response()->json($planpago);
     }
 }

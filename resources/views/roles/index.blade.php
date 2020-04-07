@@ -31,22 +31,21 @@
                             </tr>
                             </thead>
 
-                            @foreach($rol as $cat)
-                                <tbody>
-                                <tr>
+                            <tbody>
+                               {{-- @foreach($rol as $cat)
+                                    <tr>
                                     <td>{{$cat->id_rol}}</td>
                                     <td style="">{{$cat->rol}}</td>
                                     <td style="text-align: center">
                                         <a href="{{URL::action('OpticaControllers\RolController@show',$cat->id_rol)}}"><button class="btn btn-secondary">Detalles</button></a>
-                                        {{--<a href="" data-target="#modal-asignar-{{$cat->id_rol}}" data-toggle="modal">
+                                        --}}{{--<a href="" data-target="#modal-asignar-{{$cat->id_rol}}" data-toggle="modal">
                                             <button class="btn btn-info">Asignar a Usuario</button>
-                                        </a>--}}
+                                        </a>--}}{{--
                                         <a href="{{URL::action('OpticaControllers\RolController@asignar',$cat->id_rol)}}" ><button class="btn btn-info">Asignar a Usuario</button></a>
                                     </td>
                                 </tr>
-                                </tbody>
-                                @include('roles.modal')
-                            @endforeach
+                                @endforeach--}}
+                            </tbody>
                         </table>
                     </div>
 
@@ -54,8 +53,11 @@
             </div>
         </div>
     </div>
+    @include('roles.modal-add')
+    @include('roles.modal-edit')
 @endsection
 @section('page-script')
     <script src="{{asset('assets/plugins/multi-select/js/jquery.multi-select.js')}}"></script>
     <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
+    <script src="{{asset('assets/js/js_propios/js_roles/script.js')}}"></script>
 @stop

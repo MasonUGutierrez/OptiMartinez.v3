@@ -1,0 +1,11 @@
+<span class="js-sweetalert d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Dar de Baja">
+  <a href=""
+                 class="btn btn-raised btn-danger waves-effect"
+                  data-type="confirm"
+                  data-title="Dar de Baja"
+                  data-text="¿Desea eliminar el Plan de Pago: ${value.plan_pago} ?"
+                  data-obj="${value.plan_pago}"
+                  onclick="deleteData(${value.id_plan_pago})">
+                  <i class="ti-trash"></i>
+</a>
+</span>
