@@ -45,7 +45,7 @@
                                     </td>
                                 </tr>
                                 </tbody>
-                                @include('roles.modal')
+                               {{-- @include('roles.modal')--}}
                             @endforeach
                         </table>
                     </div>
