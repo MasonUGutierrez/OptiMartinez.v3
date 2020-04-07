@@ -19,6 +19,7 @@
                     <h3><strong>Listado de
                             Roles</strong> {{--<a href="roles/create"><button class="btn btn-success">Nuevo</button></a>--}}
                     </h3>
+                    <button class="btn btn-success" onclick="showData()">Prueba</button>
                 </div>
                 <div class="body">
                     <div class="table-responsive">
@@ -31,7 +32,7 @@
                             </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody id="tabla">
                                {{-- @foreach($rol as $cat)
                                     <tr>
                                     <td>{{$cat->id_rol}}</td>

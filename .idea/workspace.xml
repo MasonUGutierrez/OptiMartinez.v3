@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1ca7e96b-9923-4a8b-93b0-1398a34867b5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OpticaControllers/PlanPagoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OpticaControllers/PlanPagoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/planpagos/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/planpagos/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/planpagos/modal-add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/planpagos/modal-add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OpticaControllers/RolController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OpticaControllers/RolController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/js/js_propios/js_roles/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/js_propios/js_roles/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/roles/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/roles/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -63,6 +62,11 @@
     <select />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="servicios_planes" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
   </component>
@@ -391,6 +395,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="380" y="96" width="736" height="606" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1586201693672" />
+    <state x="464" y="76" key="git4idea.branch.GitSmartOperationDialog" timestamp="1586280034443">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="464" y="76" key="git4idea.branch.GitSmartOperationDialog/0.0.1366.728@0.0.1366.728" timestamp="1586280034443" />
     <state x="339" y="162" width="672" height="677" key="run.anything.popup" timestamp="1585886875484">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

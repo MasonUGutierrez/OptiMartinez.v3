@@ -19,10 +19,15 @@ class RolController extends Controller
     {
     }
     public function index(){
+       /* $rol=DB::table('rol')->get()->where('estado','=','1');*/
+       /* $usuario=DB::table('usuario')->get()->where('estado','=','1');
+        $usuariorol=DB::table('usuario-rol')->get()->where('estado','=',1);*/
+        return view('roles.index'/*,['rol'=>$rol]*/);
+    }
+
+    public function getAll(){
         $rol=DB::table('rol')->get()->where('estado','=','1');
-        $usuario=DB::table('usuario')->get()->where('estado','=','1');
-        $usuariorol=DB::table('usuario-rol')->get()->where('estado','=',1);
-        return view('roles.index',['rol'=>$rol],['usuario'=>$usuario]);
+        return response()->json($rol);
     }
     //Mostrar los nombres de usuarios mientras, el id rol de usuariorol sea diferente del rol
     public function create(){

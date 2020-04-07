@@ -21,6 +21,7 @@ Route::get('/', function () {
 //Rutas propias
 
 Route::resource('usuarios','OpticaControllers\UsuarioController');
+Route::get('roles','OpticaControllers\RolController@getAll');
 Route::resource('roles','OpticaControllers\RolController');
 Route::get('roles/{id}/asignar','OpticaControllers\RolController@asignar')->name('roles.asignar');
 Route::resource('servicios','OpticaControllers\ServicioController');
