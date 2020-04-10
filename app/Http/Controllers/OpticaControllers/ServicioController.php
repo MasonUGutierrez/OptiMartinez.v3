@@ -13,13 +13,14 @@ class ServicioController extends Controller
 {
     //
     public function index(){
+        /*$servicio = new Servicio();
+        $servicio = Servicio::where('estado',1)->orderBy('id_servicio','desc')->get();*/
+        return view('servicios.index'/*,['servicio'=>$servicio]*/);
+    }
 
-        $servicio = new Servicio();
-
+    public function getAll(){
         $servicio = Servicio::where('estado',1)->orderBy('id_servicio','desc')->get();
-
-
-        return view('servicios.index',['servicio'=>$servicio]);
+        return response()->json($servicio);
     }
 
     public function show($id){
@@ -28,8 +29,9 @@ class ServicioController extends Controller
     }
 
     public function edit($id){
-        /*$servicio = DB::table('servicio')->where('id_servicio','=',$id)->get();*/
-        return view("servicios.edit",["servicio" => Servicio::findOrFail($id)]);
+        $servicio = Servicio::where('id_servicio',$id)->get();
+        /*return view("servicios.edit",["servicio" => Servicio::findOrFail($id)]);*/
+        return response()->json($servicio);
     }
 
     public function create(){

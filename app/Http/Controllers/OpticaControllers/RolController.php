@@ -20,13 +20,12 @@ class RolController extends Controller
     }
     public function index(){
        /* $rol=DB::table('rol')->get()->where('estado','=','1');*/
-       /* $usuario=DB::table('usuario')->get()->where('estado','=','1');
-        $usuariorol=DB::table('usuario-rol')->get()->where('estado','=',1);*/
         return view('roles.index'/*,['rol'=>$rol]*/);
     }
 
     public function getAll(){
-        $rol=DB::table('rol')->get()->where('estado','=','1');
+        /*$rol=DB::table('rol')->get()->where('estado','=','1');*/
+        $rol= Rol::where('estado','1')->get();
         return response()->json($rol);
     }
     //Mostrar los nombres de usuarios mientras, el id rol de usuariorol sea diferente del rol
@@ -53,7 +52,8 @@ class RolController extends Controller
     }
     public function show($id){
         $usuario=DB::select('call roles_usuarios(?)',array($id));
-        return view("roles.show",["rol"=>Rol::findOrFail($id),"usuario"=>$usuario]);
+        /*return view("roles.show",["rol"=>Rol::findOrFail($id),"usuario"=>$usuario]);*/
+        return response()->json($usuario);
     }
     public function edit($id){
         return view("roles.asignar",["rol"=>Rol::findOrFail($id)]);
@@ -61,6 +61,7 @@ class RolController extends Controller
     public function asignar($id){
         $usuario=DB::select('call usuarios_roles(?)',array($id));
         return view("roles.asignar",["rol"=>Rol::findOrFail($id)],["usuario"=>$usuario]);
+        /*return response()->json($usuario);*/
     }
     public function update(RolFormRequest $request,$id){
         $rol = Rol::findOrFail($id);

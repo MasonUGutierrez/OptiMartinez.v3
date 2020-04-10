@@ -3,6 +3,7 @@
 @section('parentPageTitle', 'Pages')
 @section('page-style')
     <link rel="stylesheet" href="{{asset('assets/plugins/multi-select/css/multi-select.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/plugins/jquery-spinner/css/bootstrap-spinner.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>
     <style>
@@ -16,10 +17,8 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="header">
-                    <h3><strong>Listado de
-                            Roles</strong> {{--<a href="roles/create"><button class="btn btn-success">Nuevo</button></a>--}}
+                    <h3><strong>Listado de Roles</strong>
                     </h3>
-                    <button class="btn btn-success" onclick="showData()">Prueba</button>
                 </div>
                 <div class="body">
                     <div class="table-responsive">
@@ -45,14 +44,10 @@
                                         <a href="{{URL::action('OpticaControllers\RolController@asignar',$cat->id_rol)}}" ><button class="btn btn-info">Asignar a Usuario</button></a>
                                     </td>
                                 </tr>
-<<<<<<< HEAD
-                                </tbody>
-                               {{-- @include('roles.modal')--}}
-                            @endforeach
-=======
+
                                 @endforeach--}}
                             </tbody>
->>>>>>> probando_ajax
+
                         </table>
                     </div>
 
@@ -60,11 +55,12 @@
             </div>
         </div>
     </div>
-    @include('roles.modal-add')
-    @include('roles.modal-edit')
+    @include('roles.modal-detail')
+    @include('roles.modal-assign')
 @endsection
 @section('page-script')
     <script src="{{asset('assets/plugins/multi-select/js/jquery.multi-select.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-spinner/js/jquery.spinner.js')}}"></script>
     <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
     <script src="{{asset('assets/js/js_propios/js_roles/script.js')}}"></script>
 @stop
