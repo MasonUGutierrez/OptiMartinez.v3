@@ -35,4 +35,13 @@ class TipoMarco extends Model
     protected $guarded = [];
 
     // Relaciones con otros modelos
+    /**
+     * Metodo para indicar la relacion muchos a muchos con el modelo marco, ya que un tipo de marco pueden tener varios marcos que sean ese tipo
+     * 
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function marcos()
+    {
+        return $this->belongsToMany('App\OpticaModels\Marco');
+    }
 }

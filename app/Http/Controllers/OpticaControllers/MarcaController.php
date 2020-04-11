@@ -58,9 +58,10 @@ class MarcaController extends Controller
     /**
      * Metodo para realizar manualmente la regla unique con las imagenes
      * 
-     * @param file $img
-     * @param App\Http\Requests\MarcaFormRequest $request
-     * @return App\Model
+     * @param file $img indica el nombre de la imagen a buscar
+     * @param App\Http\Requests\MarcaFormRequest $request servira para obtener el metodo con el que se esta haciendo el request
+     * @param int $id parametro opcional tendra el valor del id del modelo que esta actualizando para que cuando busque en la bd si algun registro tiene la imagen omita este registro
+     * @return App\Model retorna el modelo en caso de encontrar uno que tenga registrada la imagen
      */
     public function existImage($img, MarcaFormRequest $request, $id = null)
     {

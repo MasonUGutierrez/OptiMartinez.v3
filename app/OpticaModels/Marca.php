@@ -43,6 +43,15 @@ class Marca extends Model
      */
     public function marcos()
     {
+        /**
+         * Metodo hasMany retorna los registros del modelo que cumplen la relacion uno a muchos con el modelo actual
+         * 
+         * @param Illuminate\Database\Eloquent\Model $relatedModel "indica el modelo con el que se relaciona el modelo actual dueño del metodo"
+         * @param int $foreignKey "indica el nombre de la llave foranea en el otro modelo"
+         * @param int $parentPrimaryKey "indica el nombre de la llave primaria del modelo padre"
+         * 
+         * @return Illuminate\Database\Eloquent\Collection
+         */
         return $this->hasMany('App\OpticaModels\Marco', 'id_marca', 'id_marca');
     }
 }

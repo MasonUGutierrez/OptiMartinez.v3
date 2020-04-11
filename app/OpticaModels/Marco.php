@@ -44,4 +44,14 @@ class Marco extends Model
     {
         return $this->belongsTo('App\OpticaModels\Marca', 'id_marca', 'id_marca');
     }
+
+    /**
+     * Metodo que indica la relacion muchos a muchos, ya que un marco puede ser de varios tipos de marcos
+     * 
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function tiposmarcos()
+    {
+        return $this->belongsToMany('App\OpticaModels\TipoMarco', 'marco-tipo_marco', 'id_marco', 'id_tipo_marco');
+    }
 }

@@ -40,7 +40,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="body">
                             <div class="form-group">
-                                <label for="precio">Precio</label>
+                                <label for="precio">Precio Base</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
