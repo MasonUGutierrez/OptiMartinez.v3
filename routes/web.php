@@ -27,7 +27,7 @@ Route::get('roles/{id}/asignar','OpticaControllers\RolController@asignar')->name
 // Rutas Resources
 Route::resource('admin-lentes/marcas', 'OpticaControllers\MarcaController');
 Route::resource('admin-lentes/marcos', 'OpticaControllers\MarcoController');
-// Route::resource('admin-lentes/marcos/tipos-marcos', 'OpticaControllers\TipoMarcoController');
+Route::resource('admin-lentes/tipos-marcos', 'OpticaControllers\TipoMarcoController')->except(['show', 'edit']);
 // Route::resource('admin-lentes/marcas', 'OpticaControllers\MarcaController');
 // Route::resource('admin-lentes/materiales', 'OpticaControllers\MaterialController');
 // Route::resource('admin-lentes/tipos-lentes', 'OpticaControllers\TipoLenteController');

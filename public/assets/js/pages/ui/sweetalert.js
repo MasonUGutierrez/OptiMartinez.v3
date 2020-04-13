@@ -110,13 +110,14 @@ function showConfirmMessage(title, text, objDelete, linkURL, csrf_token) {
             });
 
             swal(objDelete +" Dado de baja", {
-                icon: "info",
-                buttons:false,
+                icon: "error",
+                button:true,
+            }).then(()=>{
+                form.append(hiddenInput).append(hiddenToken).appendTo('body').submit();
             });
-            form.append(hiddenInput).append(hiddenToken).appendTo('body').submit();
 
         } else {
-            swal("Acción cancelada!");
+            swal("","Acción cancelada!","error");
         }
     });
 }

@@ -30,6 +30,7 @@
         <li class="{{ Request::segment(2) === 'marcos' ? 'active' : null }}"><a href="{{url('admin-lentes/marcos')}}">Marcos</a></li>
         <li class="{{ Request::segment(2) === 'materiales' ? 'active' : null }}"><a href="{{url('admin-lentes/materiales')}}">Materiales</a></li>
         <li class="{{ Request::segment(2) === 'tipos-lentes' ? 'active' : null }}"><a href="{{url('admin-lentes/tipos-lentes')}}">Tipos de Lentes</a></li>
+        <li class="{{ Request::segment(2) === 'tipos-marcos' ? 'active' : null }}"><a href="{{url('admin-lentes/tipos-marcos')}}">Tipos de Marcos</a></li>
     </ul>
 </li>
 <li class="{{ Request::segment(1) === '' ? 'active' : null }}">

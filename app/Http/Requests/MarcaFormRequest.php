@@ -35,7 +35,7 @@ class MarcaFormRequest extends FormRequest
         // ($this->isMethod('post')) ? 'unique:App\OpticaModels\Marca' : ''
         return [
             'marca' => ['bail', 'required', 'string', $reglaMarca],
-            'img.*' => ['bail', ($this->isMethod('post')) ? 'required' : '', 'mimes:jpeg,png'],
+            'img' => ['bail', ($this->isMethod('post')) ? 'required' : '', 'mimes:jpeg,png'],
             'precio' => ['bail', 'required', 'numeric']
         ];
     }

@@ -82,8 +82,8 @@
                 <div class="row clearfix">
                     <div class="mx-auto">
                         <div class="form-group">
-                            <input type="submit" class="btn btn-raised btn-primary waves-effect waves-light" value="Aceptar">
-                            <input type="button" class="btn btn-raised btn-danger waves-effect waves-light" value="Cancelar">
+                            <input type="submit" class="btn btn-raised btn-primary waves-float waves-effect waves-light" value="Aceptar">
+                            <input type="button" class="btn btn-raised btn-danger waves-float waves-effect waves-light" value="Cancelar">
                             <a href="javascript:window.history.back();" class="btn btn-raised btn-danger waves-effect waves-light">Cancelar</a>
                         </div>
                     </div>                    

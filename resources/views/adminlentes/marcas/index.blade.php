@@ -19,7 +19,7 @@
                 <div class="header">
                     <h2><strong>Marcas</strong> Asociadas
                         <span class="d-inline-block" data-toggle="tooltip" title="Agregar Marca" tabindex="0">
-                            <a href="{{URL::action('OpticaControllers\MarcaController@create')}}" class="btn btn-success btn-icon btn-icon-mini" style="color:#fff"><i class="zmdi zmdi-plus"></i></a>
+                            <a href="{{URL::action('OpticaControllers\MarcaController@create')}}" class="btn btn-success btn-icon btn-icon-mini waves-effect waves-light" style="color:#fff"><i class="zmdi zmdi-plus"></i></a>
                         </span>
                     </h2>
                 </div>
