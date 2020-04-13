@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>
     <style>
-        .input-group-text {
-            padding: 0 .75rem;
-        }
+        .input-group-text {padding: 0 .75rem;}
+        label{font-size: 18px;}
+        small{font-size: 10px;float: right;}
     </style>
 @stop
 @section('content')
@@ -19,47 +19,46 @@
             <div class="header">
                 <h3><strong>Nuevo Usuario</strong> </h3>
             </div>
-            @if(count($errors)>0)
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach($errors->all() as $message)
-                            <li>{{$message}}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
             {!!Form::open(array('url'=>'usuarios','method'=>'POST','files'=>true,'autocomplete'=>'off')) !!}
             {{Form::token()}}
 
             <div class="body">
-                {{--<h2 class="card-inside-title">Basic Examples</h2>--}}
                 <div class="row clearfix">
-
                     <div class="row">
-                        <div class="form-group col-12">
+                        <div class="form-group col-12" >
                             <label for="">Codigo de Minsa</label>
-                            <input type="text" class="form-control" required name="cod_minsa" value="{{old("cod_minsa")}}" placeholder="Codigo de Minsa..." />
+                            <small class="text-muted">*Campo necesario</small>
+                            <input type="text" class="form-control {{ $errors->has('cod_minsa') ? 'is-invalid' : '' }}" required name="cod_minsa" value="{{old("cod_minsa")}}" placeholder="Codigo de Minsa..." />
+                            {!! $errors->first('cod_minsa', '<small class="invalid-feedback">:message</small>') !!}
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label for="">Nombre</label>
-                            <input type="text" name="nombre" required class="form-control" value="{{old("nombre")}}" placeholder="Nombre..." />
+                            <small class="text-muted">*Campo necesario</small>
+                            <input type="text" name="nombre" required class="form-control {{ $errors->has('nombre') ? 'is-invalid' : '' }}" value="{{old("nombre")}}" placeholder="Nombre..." />
+                        {!! $errors->first('nombre', '<small class="invalid-feedback">:message</small>') !!}
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label for="">Apellido</label>
-                            <input type="text"  name="apellido" required class="form-control" value="{{old("apellido")}}" placeholder="Apellido..." />
+                            <small class="text-muted">*Campo necesario</small>
+                            <input type="text"  name="apellido" required class="form-control {{ $errors->has('apellido') ? 'is-invalid' : '' }}" value="{{old("apellido")}}" placeholder="Apellido..." />
+                            {!! $errors->first('apellido', '<small class="invalid-feedback">:message</small>') !!}
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label for="">Cedula de indentidad</label>
-                            <input type="text" name="cedula" required  class="form-control" value="{{old("cedula")}}" placeholder="Cedula..." />
+                            <small class="text-muted">*Campo necesario</small>
+                            <input type="text" name="cedula" required  class="form-control {{ $errors->has('cedula') ? 'is-invalid' : '' }}" value="{{old("cedula")}}" placeholder="Cedula..." />
+                            {!! $errors->first('cedula', '<small class="invalid-feedback">:message</small>') !!}
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label for="">Telefono</label>
-                            <input type="text" name="telefono" class="form-control" value="{{old("telefono")}}" placeholder="Telefono..." />
+                            <input type="text" name="telefono" class="form-control {{ $errors->has('telefono') ? 'is-invalid' : '' }}" value="{{old("telefono")}}" placeholder="Telefono..." />
+                            {!! $errors->first('telefono', '<small class="invalid-feedback">:message</small>') !!}
                         </div>
                         <div class="form-group col-12">
                             <label for="">Correo Electronico</label>
-                            <input type="email" name="correo" required value="{{old("correo")}}" class="form-control" placeholder="Correo..." />
+                            <small class="text-muted">*Campo necesario</small>
+                            <input type="email" name="correo" required value="{{old("correo")}}" class="form-control {{ $errors->has('correo') ? 'is-invalid' : '' }}" placeholder="Correo..." />
+                            {!! $errors->first('correo', '<small class="invalid-feedback">:message</small>') !!}
                         </div>
                         {{--<div class="form-group">
                             <label for="dir_foto">Foto de perfil</label>
@@ -67,18 +66,24 @@
                         </div>--}}
                         <div class="form-group col-md-6 col-sm-12">
                             <label for="">Contraseña</label>
-                            <input type="password" name="contraseña" value="" required class="form-control" placeholder="Nueva Contraseña..." />
+                            <small class="text-muted">*Campo necesario</small>
+                            <input type="password" name="contraseña" value=""  class="form-control {{ $errors->has('contraseña') ? 'is-invalid' : '' }}" placeholder="Nueva Contraseña..." />
+                            {!! $errors->first('contraseña', '<small class="invalid-feedback">:message</small>') !!}
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label for="">Verificar Contraseña</label>
-                            <input type="password" name="ccontraseña" value="" required class="form-control" placeholder="Confirma Contraseña..." />
+                            <small class="text-muted">*Campo necesario</small>
+                            <input type="password" name="ccontraseña" value=""  class="form-control {{ $errors->has('ccontraseña') ? 'is-invalid' : '' }}" placeholder="Confirma Contraseña..." />
+                            {!! $errors->first('ccontraseña', '<small class="invalid-feedback">:message</small>') !!}
                         </div>
                         <div class="form-group col-12">
                             <label for="">Descripción</label>
-                            <textarea  class="form-control" name="descripcion"  rows="5" placeholder="Ingrese una descripción">{{old("descripcion")}}</textarea>
+                            <textarea  class="form-control {{ $errors->has('descripcion') ? 'is-invalid' : '' }}" name="descripcion"  rows="5" placeholder="Ingrese una descripción">{{old("descripcion")}}</textarea>
+                            {!! $errors->first('descripcion', '<small class="invalid-feedback">:message</small>') !!}
                         </div>
-                        <div class="form-group col-8">
-                            <p> <b>Asignación de Roles</b> </p>
+                        <div class="form-group col-12">
+                            <label for="">Asignación de Roles</label>
+                            <small class="text-muted">*Campo necesario</small>
                             <select class="form-control show-tick ms select2" required name="id_roles[]"  multiple data-placeholder="Select">
                             @foreach($rol as $cat)
                                 <option value="{{$cat->id_rol}}">{{$cat->rol}}</option>

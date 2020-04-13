@@ -40,7 +40,6 @@ class UsuarioController extends Controller
 
     public function create()
     {
-        $rol = new Rol();
         $rol = DB::table('rol')->get()->where('estado', '=', '1');
         return view("usuarios.create", ["rol" => $rol]);
     }

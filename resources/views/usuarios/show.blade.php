@@ -59,7 +59,7 @@
                             <div class="form-group col-10">
                                     <label ><b>Foto de perfil</b></label>
                                     <div class="form-group">
-                                        <img src="/imagenes/usuarios/{{$usuario->dir_foto}}" class="img-thumbnail"  width="300" alt="No cuenta con una foto de perfil">
+                                        <img src="/imagenes/usuarios/{{$usuario->dir_foto}}" class="img-thumbnail"  width="200" alt="No cuenta con una foto de perfil">
                                     </div>
                             </div>
                             {{--<div class="form-group">

@@ -3,6 +3,7 @@
 /public/storage
 /storage/*.key
 .phpunit.result.cache
+.idea/workspace.xml
 Homestead.json
 Homestead.yaml
 npm-debug.log
