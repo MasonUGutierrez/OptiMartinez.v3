@@ -35,3 +35,31 @@ Consulta DB:
 
 ----> agregar la barra de busqueda en el select de roles
 ----> configurar el boton cancelar para regresar a la pagina anterior
+
+Anotaciones de Aprendizaje:
+
+  /**
+   * Metodo create() de Eloquent evita tener que especificar de uno en uno cada atributo y usar el metodo save() 
+   * El metodo recibe de parametro un arreglo con los atributos que se quieren llenar
+   * retorna una instancia del modelo recien registrado
+   */
+
+  /**
+   * Metodo fill() de un modelo Eloquent permite rellenar los campos de una instacia de un modelo
+   * pero no guarda en la misma linea, como lo hace el metodo create()
+   */
+
+  /**
+   * Metodos store($path, $disk) y storeAs($path, $filename, $disk) de un archivo subido y captado por el metodo file() 
+   * del $request guardan el archivo en el disco especificado como parametro, este disco se configura en el archivo 
+   * config\filesystems.php
+   * 
+   * Por defecto, se guarda en el disco "local" que contiene el driver "local" se guarda el archivo en el directorio "storage/app" del proyecto
+   *     Nota: el directorio "storage/app" no es accesible para los usuarios como medida de seguridad de laravel para proteger los archivos
+   * Para que se pueda acceder a los archivos guardados en el disco local, hay que especificar el disco "public" como parametro en el metodo
+   * el disco 'public' usa el driver "local" y guarda los archivos en el directorio "storage/app/public". 
+   * Para acceder a estos archivos hay que hacer un enlace simbolico desde public/storage a storage/app/public
+   *     Para crear automaticamente el enlace simbolico ejecutar: "php artisan storage:link"
+   *
+   * https://quickadminpanel.com/blog/file-upload-in-laravel-the-ultimate-guide/
+   */

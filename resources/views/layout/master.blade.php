@@ -48,7 +48,8 @@
             $theme .= " rtl";
         }
     ?>
-    <body class="<?= $theme ?>">
+    <!-- <body class="<?= $theme ?>"> -->
+    <body class="theme-blue">
         <!-- Se modifico el icono de carga aca -->
         <!-- Page Loader -->
         <div class="page-loader-wrapper">
@@ -78,7 +79,6 @@
                                 <li class="breadcrumb-item active">@yield('title')</li>
                             @endif
                         </ul>
-
                         <!-- OJO: Boton que expande el menu lateral izq. en moviles -->
                         <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
                     </div>
@@ -86,6 +86,8 @@
                     <!-- Boton para ocultar el menu lateral derecho -->
                     <div class="col-lg-5 col-md-6 col-sm-12">
                         <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i class="zmdi zmdi-arrow-right"></i></button>
+                        <!-- Yield para indicar el boton para agregar un registro, Nota: Me fije en la plantilla que aca ponian esos botones -->
+                        @yield('addButton')
                     </div>
                 </div>
             </div>
@@ -102,15 +104,15 @@
 
         <script src="{{ asset('assets/bundles/mainscripts.bundle.js') }}"></script>
         
-        <!-- Script para habilitar los tooltips -->
-        <script type="text/javascript">
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-            })
-        </script>
         @stack('after-scripts')
         @if (trim($__env->yieldContent('page-script')))
             @yield('page-script')
-		@endif
+        @endif
+        <!-- Script para habilitar los tooltips -->
+        <script type="text/javascript">
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip();           
+            })
+        </script>
     </body>
 </html>

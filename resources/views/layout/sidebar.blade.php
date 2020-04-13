@@ -25,11 +25,16 @@
                 </div>
             </li> 
 
-            <li class="{{ Request::segment(1) === 'dashboard' ? 'active open' : null }}"><a href="{{route('dashboard.index')}}"><i class="zmdi zmdi-home"></i><span>Inicio</span></a></li>
-            <li class="{{ Request::segment(1) === 'perfil' ? 'active open' : null }}"><a href="{{route('perfil.mi-perfil')}}"><i class="zmdi zmdi-account"></i><span>Mi Perfil</span></a></li>
+            <li class="{{ Request::segment(1) === 'dashboard' ? 'active' : null }}"><a href="{{route('dashboard.index')}}"><i class="zmdi zmdi-home"></i><span>Inicio</span></a></li>
+            <li class="{{ Request::segment(1) === 'perfil' ? 'active' : null }}"><a href="{{route('perfil.mi-perfil')}}"><i class="zmdi zmdi-account"></i><span>Mi Perfil</span></a></li>
 
             <!-- Validar aca para que se muestren las opciones dependiendo de los roles del usuarios logeado -->
             @include('opcionesSidebar.opcionesAdministrador')
+            @include('opcionesSidebar.opcionesOptometrista')
+            @include('opcionesSidebar.opcionesTesorero')
+            @include('opcionesSidebar.opcionesRecepcionista')
+            <!-- Opciones extras -->
+            @include('opcionesSidebar.opcionesExtras')
             
             <!-- Enlaces importantes para ejemplos -->
             <!-- 
