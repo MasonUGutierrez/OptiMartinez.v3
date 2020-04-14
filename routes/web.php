@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 //Rutas propias
-
+Route::get('miperfil','OpticaControllers\UsuarioController@showPerfil');
 Route::resource('usuarios','OpticaControllers\UsuarioController');
 Route::get('roless','OpticaControllers\RolController@getAll');
 Route::resource('roles','OpticaControllers\RolController');
@@ -53,8 +53,8 @@ Route::get('dashboard', function () { return redirect('dashboard/index'); });
 Route::get('dashboard/index', 'DashboardController@index')->name('dashboard.index');
 
 /* Profile */
-Route::get('perfil', function () { return redirect('perfil/mi-perfil'); });
-Route::get('perfil/mi-perfil', 'PerfilController@miPerfil')->name('perfil.mi-perfil');
+/*Route::get('perfil', function () { return redirect('perfil/mi-perfil'); });
+Route::get('perfil/mi-perfil', 'PerfilController@miPerfil')->name('perfil.mi-perfil');*/
 
 /* App */
 Route::get('app', function () { return redirect('app/calendar'); });

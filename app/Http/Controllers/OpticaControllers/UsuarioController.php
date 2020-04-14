@@ -33,6 +33,10 @@ class UsuarioController extends Controller
         return view('usuarios.index', ['usuarios'=>$usuarios]);
     }
 
+    public function showPerfil(){
+        return view('usuarios.profile');
+    }
+
     public function detalle()
     {
         return view("usuarios.detalle");
