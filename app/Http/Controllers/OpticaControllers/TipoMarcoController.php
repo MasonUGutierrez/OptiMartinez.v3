@@ -25,9 +25,8 @@ class TipoMarcoController extends Controller
      */
     public function index()
     {
-        $tiposMarcos = TipoMarco::orderBy('id_tipo_marco', 'desc')->paginate(5);
-        $tiposLentes = TipoLente::orderBy('id_tipo_lente', 'desc')->paginate(5);
-        return view('adminlentes.tipomarcos.index', ['tiposMarcos' => $tiposMarcos, 'tiposLentes' => $tiposLentes]);
+        $tiposMarcos = TipoMarco::orderBy('id_tipo_marco', 'desc')->get();
+        return view('adminlentes.tipomarcos.index', ['tiposMarcos' => $tiposMarcos]);
     }
 
     /**
