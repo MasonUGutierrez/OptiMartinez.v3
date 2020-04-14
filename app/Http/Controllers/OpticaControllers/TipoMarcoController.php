@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\OpticaModels\TipoMarco;
+use App\OpticaModels\TipoLente;
 use App\Http\Requests\TipoMarcoFormRequest;
 
 
@@ -24,8 +25,9 @@ class TipoMarcoController extends Controller
      */
     public function index()
     {
-        $tiposMarcos = TipoMarco::orderBy('id_tipo_marco', 'desc')->paginate(10);
-        return view('adminlentes.tipomarcos.index', ['tiposMarcos' => $tiposMarcos]);
+        $tiposMarcos = TipoMarco::orderBy('id_tipo_marco', 'desc')->paginate(5);
+        $tiposLentes = TipoLente::orderBy('id_tipo_lente', 'desc')->paginate(5);
+        return view('adminlentes.tipomarcos.index', ['tiposMarcos' => $tiposMarcos, 'tiposLentes' => $tiposLentes]);
     }
 
     /**

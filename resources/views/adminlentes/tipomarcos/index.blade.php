@@ -11,7 +11,7 @@
 
 @section('content')
 <div class="row clearfix">
-    <div class="col-lg-12">
+    <div class="col-lg-7 col-md-12">
         <div class="card">
             <div class="header">
                 <h2><strong>Tipos</strong> de Marcos
@@ -22,9 +22,9 @@
                 </span>
                 </h2>
             </div>
-            <div class="body">
+            {{-- <div class="body"> --}}
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover dt-responsive dataTable">
+                    <table class="table table-bordered table-hover c_table theme-color dt-responsive {{--dataTable--}}">
                         <thead>
                             <tr>
                                 <th>Tipo de Marco</th>
@@ -66,10 +66,52 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+                {{$tiposMarcos->links()}}
+            {{-- </div> --}}
         </div>
     </div>
-</div>
+    <div class="col-lg-5 col-md-12">
+        <div class="card">
+            <div class="header">
+                <h2><strong>Tipos</strong> de Lentes
+                    <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Agregar Tipo de Lente">
+                        <a href="#" class="btn btn-success btn-raised btn-icon btn-icon-mini waves-effect waves-light"><i class="zmdi zmdi-plus"></i></a>
+                    </span>
+                </h2>
+            </div>
+            {{-- <div class="body"> --}}
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover c_table theme-color {{--dataTable--}}">
+                        <thead>
+                            <tr>
+                                <th>Tipo Lente</th>
+                                <th>Precio</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($tiposLentes as $tipoLente)
+                                <tr>
+                                    <td>{{$tipoLente->tipo_lente}}</td>
+                                    <td>{{$tipoLente->precio}}</td>
+                                    <td>
+                                        <a href="#" class="btn btn-neutral btn-raised btn-sm btn-icon waves-effect waves-float waves-blue">
+                                            <i class="zmdi zmdi-edit"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-neutral btn-raised btn-sm btn-icon waves-effect waves-float waves-red">
+                                            <i class="zmdi zmdi-delete"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                {{$tiposLentes->links()}} 
+            {{-- </div> --}}
+        </div>
+    </div>
+</div>  
 @endsection
 
 @section('page-script')
