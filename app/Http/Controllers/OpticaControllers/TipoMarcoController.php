@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\OpticaModels\TipoMarco;
-use App\OpticaModels\TipoLente;
 use App\Http\Requests\TipoMarcoFormRequest;
 
 

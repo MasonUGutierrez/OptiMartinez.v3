@@ -68,14 +68,6 @@ function showSuccessMessage() {
     swal("Good job!", "You clicked the button!", "success");    
 }
 
-function sleep(milliseconds) {
-  const date = Date.now();
-  let currentDate = null;
-  do {
-    currentDate = Date.now();
-  } while (currentDate - date < milliseconds);
-}
-
 function showConfirmMessage(title, text, objDelete, linkURL, csrf_token) {
     swal({
         title: title,

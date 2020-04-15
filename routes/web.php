@@ -28,9 +28,18 @@ Route::get('roles/{id}/asignar','OpticaControllers\RolController@asignar')->name
 Route::resource('admin-lentes/marcas', 'OpticaControllers\MarcaController');
 Route::resource('admin-lentes/marcos', 'OpticaControllers\MarcoController');
 Route::resource('admin-lentes/tipos-marcos', 'OpticaControllers\TipoMarcoController')->except(['show', 'edit']);
+
+// Closure para no tener que hacer un metodo en el Controller
+Route::put('admin-lentes/tipos-lentes/{tipo_lente}', function($id){
+    $tipoLente = App\OpticaModels\TipoLente::findOrFail($id);
+    $tipoLente->estado = 1;
+    $tipoLente->save();
+
+    return redirect()->route('tipos-lentes.index');
+})->name('tipos-lentes.reactivar');
+Route::resource('admin-lentes/tipos-lentes', 'OpticaControllers\TipoLenteController')->except(['show']);;
 // Route::resource('admin-lentes/marcas', 'OpticaControllers\MarcaController');
 // Route::resource('admin-lentes/materiales', 'OpticaControllers\MaterialController');
-// Route::resource('admin-lentes/tipos-lentes', 'OpticaControllers\TipoLenteController');
 
 // Ruta para hacer pruebas de los modelos
 Route::get('/test', function(){

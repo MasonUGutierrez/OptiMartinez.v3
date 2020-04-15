@@ -14,7 +14,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="header">
-                <h2><strong>Tipos</strong> de Marcos
+                <h2><strong>Listado</strong> Tipos de Marcos
                 <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Agregar Tipo de Marco">
                     <a href="{{URL::action('OpticaControllers\TipoMarcoController@create')}}"class="btn btn-success btn-raised btn-sm waves-effect waves-light">
                         <i class="zmdi zmdi-plus"></i>
@@ -50,7 +50,7 @@
                                                    href="{{URL::action('OpticaControllers\TipoMarcoController@destroy', $tMarco->id_tipo_marco)}}"
                                                    data-type="confirm"
                                                    data-title="Dar de Baja"
-                                                   data-text="¿Deseas eliminar el tipo de marco?"
+                                                   data-text="¿Deseas dar de baja el tipo de marco?"
                                                    data-obj="{{$tMarco->tipo_marco}}">
                                                 <i class="zmdi zmdi-delete"></i>
                                                 </a>
