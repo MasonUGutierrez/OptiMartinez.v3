@@ -28,7 +28,7 @@
                         <thead>
                             <tr>
                                 <th>Tipo de Lente</th>
-                                <th>Precio Base</th>
+                                <th>Precio Base (C$)</th>
                                 <th>Estado</th>
                                 <th>Opciones</th>
                             </tr>
@@ -53,17 +53,16 @@
                                             <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Dar de Baja">
                                                 <a href="{{action('OpticaControllers\TipoLenteController@destroy', $tipoLente->id_tipo_lente)}}" class="btn btn-neutral btn-raised btn-sm waves-effect waves-float waves-red"
                                                     data-type="confirm"
-                                                    data-title="Dar de Baja"
-                                                    data-text="¿Deseas dar de baja el tipo de lente?"
-                                                    data-obj="{{'Tipo de lente "'.$tipoLente->tipo_lente.'"'}}">
+                                                    data-text="Se dará de baja el tipo de lente {{$tipoLente->tipo_lente}}"
+                                                    data-obj="Tipo de lente {{$tipoLente->tipo_lente}}">
                                                     <i class="zmdi zmdi-delete"></i>
                                                 </a>
                                             </span>
                                         @else
                                             <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Reactivar">
                                                 <a href="{{route('tipos-lentes.reactivar', $tipoLente->id_tipo_lente {{--['tipo_lente' => $tipoLente->id_tipo_lente]--}})}}" class="btn btn-neutral btn-raised btn-sm waves-effect waves-float waves-green" 
-                                                    id="reactivar"
-                                                    data-value="{{'Tipo de Lente "'.$tipoLente->tipo_lente.'"'}}">
+                                                    data-type="reactivar"
+                                                    data-obj="{{'Tipo de Lente "'.$tipoLente->tipo_lente.'"'}}">
                                                     <i class="zmdi zmdi-check"></i>
                                                 </a>
                                             </span>
@@ -106,51 +105,7 @@
             var URL = $(this).attr('href'),
                 csrf_token = $('meta[name="csrf-token"]').attr('content');
 
-            swal({
-                'title':"¿Estas seguro?",
-                'text':'Se reactivara el '+$(this).data('value'),
-                'icon':"warning",
-                'buttons':{
-                    'cancel':'Cancelar',
-                    'confirm':{
-                        'text':'Aceptar',
-                        'className':'btn-warning'
-                    }              
-                },
-                'dangerMode':false
-            }).then((reactivar) => {
-                if(reactivar)
-                {
-                    var form = $('<form>', {
-                        'method':'POST',
-                        'action':URL
-                    });
-                    var hiddenToken = $('<input>', {
-                        'type':'hidden',
-                        'name':'_token',
-                        'value':csrf_token
-                    });
-                    var hiddenInput = $('<input>', {
-                        'type':'hidden',
-                        'name':'_method',
-                        'value':'PUT'
-                    });
-                    swal({
-                        'text':$(this).data('value')+' Actualizado',
-                        'icon':'success',
-                        'timer':2000,
-                        'button':false
-                    }).then(()=>{
-                        form.append(hiddenInput).append(hiddenToken).appendTo('body').submit(); 
-                    });
-                }
-                else{
-                    swal({
-                        'text':'¡Acción Cancelada!', 
-                        'icon':'error'
-                    });
-                }
-            });
+            
         });
     });
 </script>

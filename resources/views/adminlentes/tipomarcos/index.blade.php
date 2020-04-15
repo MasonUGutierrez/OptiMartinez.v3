@@ -49,15 +49,18 @@
                                                 <a class="btn btn-neutral btn-raised btn-sm waves-effect waves-float waves-red" 
                                                    href="{{URL::action('OpticaControllers\TipoMarcoController@destroy', $tMarco->id_tipo_marco)}}"
                                                    data-type="confirm"
-                                                   data-title="Dar de Baja"
-                                                   data-text="¿Deseas dar de baja el tipo de marco?"
-                                                   data-obj="{{$tMarco->tipo_marco}}">
+                                                   data-text="Se dará de baja el tipo de marco {{$tMarco->tipo_marco}}"
+                                                   data-obj="Tipo de Marco {{$tMarco->tipo_marco}}">
                                                 <i class="zmdi zmdi-delete"></i>
                                                 </a>
                                             </span>
                                         @else
                                             <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Reactivar">
-                                                <a class="btn btn-neutral btn-raised btn-sm waves-effect waves-float waves-green" href="{{URL::action('OpticaControllers\TipoMarcoController@update', $tMarco->id_tipo_marco)}}" id="activar"><i class="zmdi zmdi-check"></i></a>
+                                                <a class="btn btn-neutral btn-raised btn-sm waves-effect waves-float waves-green" href="{{URL::action('OpticaControllers\TipoMarcoController@update', $tMarco->id_tipo_marco)}}" 
+                                                    data-type="reactivar"
+                                                    data-obj="Tipo de Marco {{$tMarco->tipo_marco}}">
+                                                    <i class="zmdi zmdi-check"></i>
+                                                </a>
                                             </span>
                                         @endif 
                                     </td>
