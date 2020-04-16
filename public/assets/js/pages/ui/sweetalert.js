@@ -69,8 +69,8 @@ function showConfirmMessage(text, obj, linkURL, csrf_token) {
       .then((willDelete) => {
         if (willDelete) {
             swal(obj +" Dado de baja", {
-                icon: "error",
-                button:true,
+                icon: "success",
+                button:'Aceptar',
             }).then(()=>{
                 makeForm(linkURL, csrf_token, 'DELETE').submit();
             });
@@ -110,6 +110,7 @@ function showReactivateMessage(obj, linkURL, csrf_token) {
             }).then(()=>{
                 makeForm(linkURL, csrf_token, 'PUT').submit();
             });
+            // Nota: La funcion flecha () => {} es igual que enviar una funcion anonima function(){} o la definicion de una funcion
         }
         else{
             showCancelMessage();
@@ -123,7 +124,8 @@ function showReactivateMessage(obj, linkURL, csrf_token) {
 function showCancelMessage(){
     swal({
         'text':'¡Acción Cancelada!', 
-        'icon':'error'
+        'icon':'error',
+        'button':'Aceptar'
     });
 }
 

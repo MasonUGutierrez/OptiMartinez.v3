@@ -36,6 +36,8 @@ Consulta DB:
 ----> agregar la barra de busqueda en el select de roles
 ----> configurar el boton cancelar para regresar a la pagina anterior
 
+----> quitar /public/storage de .gitignore para que se puedan subir las imagenes
+
 Anotaciones de Aprendizaje:
 
   /**

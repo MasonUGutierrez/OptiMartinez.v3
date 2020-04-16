@@ -24,7 +24,7 @@
             </div>
             <div class="body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover dt-responsive dataTable">
+                    <table class="table table-bordered table-hover dt-responsive theme-color dataTable">
                         <thead>
                             <tr>
                                 <th>Tipo de Marco</th>
@@ -34,7 +34,7 @@
                         </thead>
                         <tbody>
                             @foreach($tiposMarcos as $tMarco)
-                                <tr>
+                                <tr class="{{$tMarco->estado == '0' ? 'table-active' : ''}}">
                                     <td>{{$tMarco->tipo_marco}}</td>
                                     <td>
                                         @if($tMarco->estado == 1)
@@ -49,16 +49,17 @@
                                                 <a class="btn btn-neutral btn-raised btn-sm waves-effect waves-float waves-red" 
                                                    href="{{URL::action('OpticaControllers\TipoMarcoController@destroy', $tMarco->id_tipo_marco)}}"
                                                    data-type="confirm"
-                                                   data-text="Se dará de baja el tipo de marco {{$tMarco->tipo_marco}}"
-                                                   data-obj="Tipo de Marco {{$tMarco->tipo_marco}}">
+                                                   data-text="Se dará de baja el tipo de marco {{'"'.$tMarco->tipo_marco.'"'}}"
+                                                   data-obj="Tipo de Marco {{'"'.$tMarco->tipo_marco.'"'}}">
                                                 <i class="zmdi zmdi-delete"></i>
                                                 </a>
                                             </span>
                                         @else
                                             <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Reactivar">
-                                                <a class="btn btn-neutral btn-raised btn-sm waves-effect waves-float waves-green" href="{{URL::action('OpticaControllers\TipoMarcoController@update', $tMarco->id_tipo_marco)}}" 
+                                                <a class="btn btn-neutral btn-raised btn-sm waves-effect waves-float waves-green" 
+                                                    href="{{URL::action('OpticaControllers\TipoMarcoController@update', $tMarco->id_tipo_marco)}}" 
                                                     data-type="reactivar"
-                                                    data-obj="Tipo de Marco {{$tMarco->tipo_marco}}">
+                                                    data-obj="Tipo de Marco {{'"'.$tMarco->tipo_marco.'"'}}">
                                                     <i class="zmdi zmdi-check"></i>
                                                 </a>
                                             </span>
@@ -92,63 +93,4 @@
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.print.min.js')}}"></script>
 
 <script src="{{asset('assets/js/pages/tables/jquery-datatable.js')}}"></script>
-
-<script>
-    // Funcion para ejecutar codigo Javascript despues de que se haya cargado la pagina
-    $(function(){
-        // Funcion para el evento click en el boton para reactivar un tipo de marco descontinuado
-        $('.js-sweetalert #activar').on('click', function(e){
-            e.preventDefault();
-            var URL = $(this).attr('href'),
-                csrf_token = $('meta[name="csrf-token"]').attr('content');
-            swal({
-                'title': '¿Estas seguro?',
-                'text' : 'Se reactivara el tipo de marco seleccionado ',
-                'icon': 'warning',
-                'buttons': true,
-                'dangerMode': false,
-            }).then((willUpdate)=>{
-                if(willUpdate){
-                    var form = $('<form>', {
-                        'method':'POST',
-                        'action':URL
-                    });
-                    var hiddenInput = $('<input>',{
-                        'type':'hidden',
-                        'name':'_method',
-                        'value':'PUT'
-                    });
-                    var hiddenToken = $('<input>',{
-                        'type':'hidden',
-                        'name':'_token',
-                        'value':csrf_token
-                    });
-
-                    swal({
-                        'text': 'Tipo de Marco Actualizado',
-                        'icon': 'success',
-                        'timer': 2000,
-                        'button': false,
-                        /* 'button': {
-                            text: "OK",
-                            value: true,
-                            visible: true,
-                            className: "",
-                            closeModal: true
-                        } */
-                    }).then((value) => {
-                        form.append(hiddenInput).append(hiddenToken).appendTo('body').submit();                    
-                    });
-                    // Nota: La funcion flecha () => {} es igual que enviar una funcion anonima function(){} o la definicion de una funcion
-                }
-                else{
-                    swal({
-                        'text': 'Accion Cancelada',
-                        'icon': 'error'
-                    });
-                }
-            });
-        });
-    });
-</script>
 @endsection

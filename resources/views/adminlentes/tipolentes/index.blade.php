@@ -16,7 +16,7 @@
             <div class="header">
                 <h2><strong>Listado</strong> Tipos de Lentes
                     <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Agregar Tipo de Lente">
-                        <a href="{{action('OpticaControllers\TipoLenteController@create')}}" class="btn btn-success btn-sm btn-raised waves-effect waves-light">
+                        <a href="{{action('OpticaControllers\TipoLenteController@create')}}" class="btn btn-success btn-sm btn-raised waves-effect waves-float waves-light">
                             <i class="zmdi zmdi-plus"></i>
                         </a>
                     </span>
@@ -24,7 +24,7 @@
             </div>
             <div class="body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover tb-responsive dataTable">
+                    <table class="table table-bordered table-hover tb-responsive theme-color dataTable">
                         <thead>
                             <tr>
                                 <th>Tipo de Lente</th>
@@ -35,7 +35,7 @@
                         </thead>
                         <tbody>
                             @foreach($tiposLentes as $tipoLente)
-                                <tr>
+                                <tr class="{{$tipoLente->estado == '0' ? 'table-active' : ''}}">
                                     <td>{{$tipoLente->tipo_lente}}</td>
                                     <td>{{$tipoLente->precio}}</td>
                                     @if($tipoLente->estado == 1)
@@ -45,7 +45,9 @@
                                     @endif
                                     <td>
                                         <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Editar">
-                                            <a href="{{action('OpticaControllers\TipoLenteController@edit',$tipoLente->id_tipo_lente)}}" class="btn btn-neutral btn-raised btn-sm waves-effect waves-float waves-blue">
+                                            <a href="{{action('OpticaControllers\TipoLenteController@edit',$tipoLente->id_tipo_lente)}}" 
+                                                {{$tipoLente->estado == '0' ? 'disabled style=pointer-events:none;cursor:default;' : ''}} 
+                                                class="btn btn-neutral btn-raised btn-sm waves-effect waves-float waves-blue">
                                                 <i class="zmdi zmdi-edit"></i>
                                             </a>
                                         </span>
@@ -53,8 +55,8 @@
                                             <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Dar de Baja">
                                                 <a href="{{action('OpticaControllers\TipoLenteController@destroy', $tipoLente->id_tipo_lente)}}" class="btn btn-neutral btn-raised btn-sm waves-effect waves-float waves-red"
                                                     data-type="confirm"
-                                                    data-text="Se dará de baja el tipo de lente {{$tipoLente->tipo_lente}}"
-                                                    data-obj="Tipo de lente {{$tipoLente->tipo_lente}}">
+                                                    data-text="Se dará de baja el tipo de lente {{'"'.$tipoLente->tipo_lente.'"'}}"
+                                                    data-obj="Tipo de lente {{'"'.$tipoLente->tipo_lente.'"'}}">
                                                     <i class="zmdi zmdi-delete"></i>
                                                 </a>
                                             </span>
@@ -62,7 +64,7 @@
                                             <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Reactivar">
                                                 <a href="{{route('tipos-lentes.reactivar', $tipoLente->id_tipo_lente {{--['tipo_lente' => $tipoLente->id_tipo_lente]--}})}}" class="btn btn-neutral btn-raised btn-sm waves-effect waves-float waves-green" 
                                                     data-type="reactivar"
-                                                    data-obj="{{'Tipo de Lente "'.$tipoLente->tipo_lente.'"'}}">
+                                                    data-obj="Tipo de Lente {{'"'.$tipoLente->tipo_lente.'"'}}">
                                                     <i class="zmdi zmdi-check"></i>
                                                 </a>
                                             </span>
@@ -96,17 +98,4 @@
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.flash.min.js')}}"></script>
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.html5.min.js')}}"></script>
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.print.min.js')}}"></script>
-
-<script>
-    $(function(){
-        $('.js-sweetalert #reactivar').on('click', function(e){
-            e.preventDefault();
-
-            var URL = $(this).attr('href'),
-                csrf_token = $('meta[name="csrf-token"]').attr('content');
-
-            
-        });
-    });
-</script>
 @endsection

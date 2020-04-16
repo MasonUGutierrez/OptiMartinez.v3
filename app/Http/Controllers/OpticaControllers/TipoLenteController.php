@@ -37,9 +37,14 @@ class TipoLenteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TipoLenteFormRequest $request)
     {
+        $tipoLente = TipoLente::create([
+            'tipo_lente' => $request->input('tipo_lente'),
+            'precio' => $request->input('precio')
+        ]);
         
+        return redirect()->route('tipos-lentes.index');
     }
 
     /**
@@ -71,9 +76,14 @@ class TipoLenteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TipoLenteFormRequest $request, $id)
     {
-        //
+        $tipoLente = TipoLente::findOrFail($id);
+        $tipoLente->tipo_lente = $request->input('tipo_lente');
+        $tipoLente->precio = $request->input('precio');
+        $tipoLente->save();
+
+        return redirect()->route('tipos-lentes.index');
     }
 
     /**

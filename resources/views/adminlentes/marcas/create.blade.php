@@ -24,7 +24,7 @@
                     <h2><strong>Agregar</strong> Nueva Marca</h2>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="col-lg-7 col-md-7 col-sm-12">
                         <div class="body">
                             <div class="form-group">
                                 <label for="marca">Marca </label>
@@ -35,10 +35,10 @@
                             </div>
                         </div>                        
                     </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
                         <div class="body">
                             <div class="form-group">
-                                <label for="precio">Precio Base </label>
+                                <label for="precio">Precio Base (C$) </label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">

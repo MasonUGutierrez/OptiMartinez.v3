@@ -27,14 +27,18 @@ Route::get('roles/{id}/asignar','OpticaControllers\RolController@asignar')->name
 // Rutas Resources
 Route::resource('admin-lentes/marcas', 'OpticaControllers\MarcaController');
 Route::resource('admin-lentes/marcos', 'OpticaControllers\MarcoController');
+
+// Nota: Hacer una ruta para reactivar un tipo de marco, se tiene que usar la ruta update si quiere cambiar el nombre del tipo de marco
 Route::resource('admin-lentes/tipos-marcos', 'OpticaControllers\TipoMarcoController')->except(['show', 'edit']);
 
 // Closure para no tener que hacer un metodo en el Controller
-Route::put('admin-lentes/tipos-lentes/{tipo_lente}', function($id){
+/* Nota: Hubo problemas con la ruta extra put, se soluciono cambiando el nombre de la URL, 
+        el nombre de la URL al ser igual que la URL del metodo post del controlador no sabia donde ingresar*/
+Route::put('admin-lentes/tipos-lentes/reactivar/{tipo_lente}', function($id){
     $tipoLente = App\OpticaModels\TipoLente::findOrFail($id);
     $tipoLente->estado = 1;
     $tipoLente->save();
-
+    
     return redirect()->route('tipos-lentes.index');
 })->name('tipos-lentes.reactivar');
 Route::resource('admin-lentes/tipos-lentes', 'OpticaControllers\TipoLenteController')->except(['show']);;
