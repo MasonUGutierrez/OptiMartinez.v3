@@ -17,7 +17,7 @@ class TipoMaterialController extends Controller
      */
     public function index()
     {
-        return view('adminlentes.tipomateriales.index');
+        return view('adminlentes.tipomateriales.index', ['tiposMateriales'=>TipoMaterial::all()]);
     }
 
     /**

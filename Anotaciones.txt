@@ -38,6 +38,7 @@ Consulta DB:
 
 ----> quitar /public/storage de .gitignore para que se puedan subir las imagenes
 
+----> Mirar que paso con el simbolik link a /storage/app/public/
 Anotaciones de Aprendizaje:
 
   /**
