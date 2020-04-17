@@ -41,9 +41,8 @@ Route::put('admin-lentes/tipos-lentes/reactivar/{tipo_lente}', function($id){
     
     return redirect()->route('tipos-lentes.index');
 })->name('tipos-lentes.reactivar');
-Route::resource('admin-lentes/tipos-lentes', 'OpticaControllers\TipoLenteController')->except(['show']);;
-// Route::resource('admin-lentes/marcas', 'OpticaControllers\MarcaController');
-// Route::resource('admin-lentes/materiales', 'OpticaControllers\MaterialController');
+Route::resource('admin-lentes/tipos-lentes', 'OpticaControllers\TipoLenteController')->except(['show']);
+Route::resource('admin-lentes/materiales', 'OpticaControllers\TipoMaterialController');
 
 // Ruta para hacer pruebas de los modelos
 Route::get('/test', function(){
