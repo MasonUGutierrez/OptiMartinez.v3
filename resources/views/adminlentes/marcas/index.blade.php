@@ -32,7 +32,7 @@
                                         <!-- Botones -->
                                         <div class="hover">
                                             <!-- button para editar el registro -->
-                                            <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Editar Marca">
+                                            <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Editar">
                                                 <button type="button"
                                                         id="btn-edit"
                                                         class="btn btn-icon btn-icon-mini btn-round btn-primary"
@@ -43,7 +43,7 @@
                                                 </button>
                                             </span>
                                             <!-- button para eliminar el registro -->
-                                            <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Eliminar Marca">
+                                            <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Dar de Baja">
                                                 <button type="button" 
                                                         data-type="confirm"
                                                         data-dir="{{URL::action('OpticaControllers\MarcaController@destroy', $marca->id_marca)}}"
