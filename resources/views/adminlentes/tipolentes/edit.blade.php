@@ -22,11 +22,11 @@
                                         placeholder="Ej.: Monofocal, Bifocal, Invisile etc." 
                                         value="{{$tipoLente->tipo_lente}}">
                                 {!! $errors->first('tipo_lente', '<span class="invalid-feedback">:message</span>') !!}
-                                <div class="custom-control custom-switch mt-2">
-                                    <input type="checkbox" class="custom-control-input" id="check">
-                                    <label for="check" class="custom-control-label"><small class="text-muted">Quiero cambiar el nombre</small></label>
-                                </div>
                             </div>
+                        </div>
+                        <div class="custom-control custom-switch mt-2">
+                            <input type="checkbox" class="custom-control-input" id="check">
+                            <label for="check" class="custom-control-label"><small class="text-muted">Quiero cambiar el nombre</small></label>
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-5 col-sm-12">
