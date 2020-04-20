@@ -26,15 +26,16 @@ class TipoMaterialFormRequest extends FormRequest
         // Definiendo regla Unique
         if($this->isMethod('PUT'))
         {
-
+            $uniqueRule="unique:App\OpticaModels\TipoMaterial,tipo_material,{$this->route('materiale')},id_tipo_material";
         }
         else
         {
-
+            $uniqueRule="unique:App\OpticaModels\TipoMaterial,tipo_material";
         }
 
         return [
-            //
+            'tipo_material' => ['bail', 'required', 'string', $uniqueRule],
+            'precio' => ['bail', 'required', 'numeric']
         ];
     }
 }

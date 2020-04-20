@@ -38,6 +38,11 @@ class TipoMaterialController extends Controller
      */
     public function store(TipoMaterialFormRequest $request)
     {
+        $tipoMaterial = TipoMaterial::create([
+            'tipo_material' => $request->input('tipo_material'),
+            'precio' => $request->input('precio')
+        ]);
+
         return redirect()->route('materiales.index');
     }
 
@@ -72,6 +77,11 @@ class TipoMaterialController extends Controller
      */
     public function update(TipoMaterialFormRequest $request, $id)
     {
+        $tipoMaterial = TipoMaterial::findOrFail($id);
+        $tipoMaterial->update([
+            'tipo_material' => $request->input('tipo_material'),
+            'precio' => $request->input('precio')
+        ]);
         return redirect()->route('materiales.index');
     }
 
@@ -83,6 +93,10 @@ class TipoMaterialController extends Controller
      */
     public function destroy($id)
     {
+        $tipoMaterial = TipoMaterial::findOrFail($id);
+        $tipoMaterial->update([
+            'estado' => 0
+        ]);
         return redirect('admin-lentes/materiales');
     }
 }
