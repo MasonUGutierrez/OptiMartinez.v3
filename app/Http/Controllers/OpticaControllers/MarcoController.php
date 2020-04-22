@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Redirect;
 use App\OpticaModels\Marco;
+use App\OpticaModels\TipoMarco;
+use App\OpticaModels\Marca;
 
 class MarcoController extends Controller
 {
@@ -17,8 +19,9 @@ class MarcoController extends Controller
      */
     public function index()
     {
-
-        // return view('');
+        $marcos_activos = Marco::where('estado',1)->get();
+        $marcos_inactivos = Marco::where('estado',0)->get();
+        return response()->view('adminlentes.marcos.index', ['marcos_activos'=>$marcos_activos, 'marcos_inactivos'=>$marcos_inactivos]);
     }
 
     /**
@@ -28,7 +31,9 @@ class MarcoController extends Controller
      */
     public function create()
     {
-        //
+        $tiposMarcos = TipoMarco::where('estado','1')->get();
+        $marcas = Marca::where('estado','1')->get();
+        return response()->view('adminlentes.marcos.create', ['tiposMarcos'=>$tiposMarcos, 'marcas'=>$marcas]);
     }
 
     /**
@@ -61,7 +66,7 @@ class MarcoController extends Controller
      */
     public function edit($id)
     {
-        //
+        return response()->view('adminlentes.marcos.edit', ['marco'=>Marco::findOrFail($id)]);
     }
 
     /**

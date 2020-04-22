@@ -22,6 +22,8 @@
         @endif
         <!-- Custom Css -->
         <link rel="stylesheet" href="{{asset('assets/css/style.min.css')}}">
+        {{-- Custom Theme Css --}}
+        <link rel="stylesheet" href="{{asset('assets/css/themes.css')}}">
         @stack('after-styles')
     </head>
 
