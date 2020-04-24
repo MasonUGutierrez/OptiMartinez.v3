@@ -103,12 +103,13 @@
         <script src="{{ asset('assets/bundles/libscripts.bundle.js') }}"></script>    
         <script src="{{ asset('assets/bundles/vendorscripts.bundle.js') }}"></script>
 
-        <script src="{{ asset('assets/bundles/mainscripts.bundle.js') }}"></script>
-        
-        @stack('after-scripts')
         @if (trim($__env->yieldContent('page-script')))
             @yield('page-script')
         @endif
+        
+        <script src="{{ asset('assets/bundles/mainscripts.bundle.js') }}"></script>
+        
+        @stack('after-scripts')
         <!-- Script para habilitar los tooltips -->
         <script type="text/javascript">
             $(function () {
