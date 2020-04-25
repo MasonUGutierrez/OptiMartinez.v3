@@ -43,14 +43,13 @@
                     </div>
                 </div>   
                 <div class="row clearfix">
-                    <div class="col-lg-7 col-md-7">
+                    <div class="col-5">
                         <div class="form-group">
                             <label for="tipoMarcos">Tipo de Marco</label>
-                            <select class="form-control show-tick ms select2"
-                                data-placeholder="Selecciona el tipo de marco"
+                            <select class="form-control show-tick ms"
+                                data-placeholder="Selecciona al menos un tipo de cada categoria"
                                 name="id_tipo_marco[]" id="id_tipo_marco"
                                 multiple>
-                                <option></option>
                                 <optgroup label="Estilo">
                                     @foreach($tiposMarcos as $tMarco)
                                         @if($tMarco->tipo_marco != "Marca" && $tMarco->tipo_marco != "Economico")
@@ -86,16 +85,6 @@
                                 value="{{old('precio')}}">
                         </div>
                     </div>
-                </div> 
-                <div class="row clearfix">
-                    <div class="col-lg-3 col-md-6">
-                        <p> <b>Multiple Select</b> </p>
-                        <select class="form-control show-tick ms select2" multiple data-placeholder="Select">
-                            <option>Mustard</option>
-                            <option>Ketchup</option>
-                            <option>Relish</option>
-                        </select>
-                    </div>
                 </div>      
             </div>
         </div>
@@ -124,6 +113,17 @@
 <script src="{{asset('assets/js/pages/forms/dropify.js')}}"></script>
 
 <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
+
+<script>
+    $(function(){
+        $('#id_tipo_marco').select2({
+            maximumSelectionSize: 2,
+            formatSelectionTooBig: (maxSize) => {
+                return 'Por favor, seleccione al menos un elemento de cada categoria';
+            }
+        });
+    });
+</script>
 @endsection
 
 @push('after-scripts')
