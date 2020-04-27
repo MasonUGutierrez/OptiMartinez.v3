@@ -1,6 +1,10 @@
 Anotaciones de Cambios:
 
 	- En style.min.css se agrego un estilo para la clase .progress-bagde para disminuir el font-size a 10px
+  - Solucion de problema con Select2
+    - Se agregaron propiedades CSS al style.min.css que aparentemente faltaban en .form-control y .input-group-text 
+    - Siguiendo el patron de incrustacion de estilos y scripts en el layout Master, los scripts de inicializacion de librerias
+      y otros se agregaran en el @stack('after-scripts') que va despues de los scripts principales para la plantilla
 
 Consulta DB:
 	- REVISAR -

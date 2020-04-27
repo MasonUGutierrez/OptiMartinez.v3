@@ -30,7 +30,11 @@ class MarcoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
+        // Prueba para validar el registro de un marco, si se desea guardar desde el atajo de marca o desde la vista principal de los marcos
+        /* $previous = url()->previous();
+        dd($previous); */
+
         $tiposMarcos = TipoMarco::where('estado','1')->get();
         $marcas = Marca::where('estado','1')->get();
         return response()->view('adminlentes.marcos.create', ['tiposMarcos'=>$tiposMarcos, 'marcas'=>$marcas]);

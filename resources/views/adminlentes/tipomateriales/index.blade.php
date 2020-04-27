@@ -92,11 +92,9 @@
 @section('page-script')  
 {{-- Scripts para el Sweetalert --}}
 <script src="{{asset('assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
-<script src="{{asset('assets/js/pages/ui/sweetalert.js')}}"></script>
 
 {{-- Scripts para la jqueryDataTable --}}
 <script src="{{asset('assets/bundles/datatablescripts.bundle.js')}}"></script>
-<script src="{{asset('assets/js/pages/tables/jquery-datatable.js')}}"></script>
 
 {{-- Scripts para los botones de jqueryDataTable --}}
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/dataTables.buttons.min.js')}}"></script>
@@ -106,3 +104,8 @@
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.html5.min.js')}}"></script>
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.print.min.js')}}"></script>
 @endsection
+
+@push('after-scripts')
+<script src="{{asset('assets/js/pages/ui/sweetalert.js')}}"></script>
+<script src="{{asset('assets/js/pages/tables/jquery-datatable.js')}}"></script>
+@endpush

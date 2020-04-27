@@ -47,8 +47,8 @@
                                             <th>Imagen</th>
                                             <th>Marca</th>
                                             <th>Cod. Marco</th>
-                                            <th>Existencia</th>
                                             <th>Precio (C$)</th>
+                                            <th>Existencia</th>
                                             <th>Tipo de Marco</th>
                                             <th>Opciones</th>
                                         </tr>
@@ -61,8 +61,8 @@
                                                 </td>
                                                 <td>{{$mActivo->marca->marca}}</td>
                                                 <td>{{$mActivo->cod_marco}}</td>
-                                                <td>{{$mActivo->c_existencia}}</td>
                                                 <td>{{$mActivo->precio}}</td>
+                                                <td>{{$mActivo->c_existencia}}</td>
                                                 <td>
                                                     @foreach($mActivo->tiposmarcos as $tipoMarco)
                                                         <span class="badge badge-primary">{{$tipoMarco->tipo_marco}}</span>
@@ -100,8 +100,8 @@
                                             <th>Imagen</th>
                                             <th>Marca</th>
                                             <th>Cod. Marco</th>
-                                            <th>Existencia</th>
                                             <th>Precio (C$)</th>
+                                            <th>Existencia</th>
                                             <th>Tipos de Marco</th>
                                             <th>Opciones</th>
                                         </tr>
@@ -114,8 +114,8 @@
                                                 </td>
                                                 <td>{{$mInactivo->marca->marca}}</td>
                                                 <td>{{$mInactivo->cod_marco}}</td>
-                                                <td>{{$mInactivo->c_existencia}}</td>
                                                 <td>{{$mInactivo->precio}}</td>
+                                                <td>{{$mInactivo->c_existencia}}</td>
                                                 <td>
                                                     @foreach($mActivo->tiposmarcos as $tipoMarco)
                                                         <span class="badge badge-danger">{{$tipoMarco->tipo_marco}}</span>
@@ -165,7 +165,6 @@
 
 {{-- Script para la jqueryDataTable --}}
 <script src="{{asset('assets/bundles/datatablescripts.bundle.js')}}"></script>
-<script src="{{asset('assets/js/pages/tables/jquery-datatable.js')}}"></script>
 
 {{-- Script para los botones de la jqueryDataTable --}}
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/dataTables.buttons.min.js')}}"></script>
@@ -175,3 +174,7 @@
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.html5.min.js')}}"></script>
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.print.min.js')}}"></script>
 @endsection
+
+@push('after-scripts')
+<script src="{{asset('assets/js/pages/tables/jquery-datatable.js')}}"></script>
+@endpush
