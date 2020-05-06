@@ -25,7 +25,7 @@ class ServicioFormRequest extends FormRequest
     {
         return [
             //
-            'servicio'=>'bail|max:30|min:3|regex:/^[a-zA-Z ]+$/',
+            'servicio'=>'bail|max:30|min:3|unique|regex:/^[a-zA-Z ]+$/',
             'precio'=> 'bail|numeric',
         ];
     }

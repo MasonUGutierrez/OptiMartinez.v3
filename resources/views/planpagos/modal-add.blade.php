@@ -1,11 +1,12 @@
 <div class="modal " id="largeModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="title" id="titleNew">Nuevo Plan de Pago</h4>
-                <h3 id="mensaje" hidden><strong>Guardado</strong></h3>
-            </div>
             <div class="modal-body center">
+                <div class="card">
+                    <div class="header">
+                        <h2 class="title" id="titleNew"><strong>Nuevo</strong> Plan de Pago</h2>
+                    </div>
+                </div>
                 <label for="">Nombre Plan de Pago</label>
                 <input type="text" class="form-control  {{ $errors->has('plan_pago') ? 'is-invalid' : '' }}"
                        id="plan_pago" required name="plan_pago"

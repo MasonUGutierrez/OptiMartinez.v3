@@ -17,8 +17,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="header">
-                    <h3><strong>Listado de Roles</strong>
-                    </h3>
+                    <h2><strong>Listado</strong> de Roles</h2>
                 </div>
                 <div class="body">
                     <div class="table-responsive">
@@ -63,4 +62,5 @@
     <script src="{{asset('assets/plugins/jquery-spinner/js/jquery.spinner.js')}}"></script>
     <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
     <script src="{{asset('assets/js/js_propios/js_roles/script.js')}}"></script>
+    <script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
 @stop

@@ -18,4 +18,8 @@ class Servicio extends Model
         'precio',
         'estado'
     ];
+
+    public function ConsultaServicio(){
+        $this -> hasMany('App\ConsultaServicio','id_servicio','id_servicio');
+    }
 }

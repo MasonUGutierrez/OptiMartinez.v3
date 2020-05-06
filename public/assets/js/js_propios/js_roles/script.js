@@ -2,6 +2,8 @@ $(function () {
     showData();
 });
 
+var rolesId="";
+
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -23,8 +25,8 @@ function showData() {
                                     <td style="">${value.rol}</td>
                                     <td style="text-align: center">
                                         <a href="roles/${value.id_rol}" data-toggle="modal" data-target="#largeModal" onclick="showUserRol(${value.id_rol})"><button class="btn btn-secondary">Detalles</button></a>
-                                        <a href="roles/${value.id_rol}/asignar"><button class="btn btn-info">Asignar a Usuario</button></a>
-                                     <!--   <a href="roles/${value.id_rol}/asignar" data-toggle="modal" data-target=".assign-modal" onclick="assignRol(${value.id_rol})"><button class="btn btn-info">Asignar a Usuario</button></a> -->
+                                        <!--<a href="roles/${value.id_rol}/asignar"><button class="btn btn-info">Asignar a Usuario</button></a>-->
+                                        <a href="roles/${value.id_rol}/asignar" data-toggle="modal" data-target=".assign-modal" onclick="assignRol(${value.id_rol})"><button class="btn btn-info">Asignar a Usuario</button></a>
                                     </td>
                                 </tr>
                             `;
@@ -54,29 +56,52 @@ function showUserRol(id) {
             });
             $('#tablamodal').html(rows);
         },
-        error:function (responses) {
-            console.log(responses);
+        error:function (response) {
+            console.log(response);
         }
     })
 }
 
-/*function assignRol(id) {
+function assignRol(id) {
+    $idrol = id;
+    rolesId = id;
     $.ajax({
         type: "GET",
         dataType: "json",
-        /!*Poner el URL de la funcion que tiene el getAll que devuelve los datos*!/
-        url: "roles/"+id+'/asignar',
+        /*Poner el URL de la funcion que tiene el getAll que devuelve los datos*/
+        url: "roles/"+$idrol+'/asignar',
         success: function (response) {
             var rows = "";
             $.each(response, function (key, value) {
+
                 rows += `
                                <option value="${value.id_usuario}">${value.nombre} ${value.apellido} </option>
                             `;
             });
             $('#select').html(rows);
         },
-        error:function (responses) {
-            console.log(responses);
+        error:function (response) {
+            console.log("error");
         }
     })
-}*/
+}
+
+function saveAssign(){
+    var seleccion = $('#select').val();
+    var data = {id_usuario:seleccion,id_rol:rolesId};
+    $.ajax({
+        type:'post',
+        dataType: 'json',
+        data:data,
+        url:'roles',
+        success: function (result) {
+            clearData();
+        },error:function (result) {
+            clearData();
+        }
+    })
+}
+
+function clearData(){
+    $('#select').val(null).trigger('change');
+}

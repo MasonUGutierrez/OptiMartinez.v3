@@ -10,9 +10,9 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="header">
-                    <h3><strong>Listado de Servicios</strong> <a href="#">
+                    <h2><strong>Listado </strong>de Servicios <a href="#">
                             <button class="btn btn-success" data-toggle="modal" data-target=".servicioadd">Nuevo</button>
-                        </a></h3>
+                        </a></h2>
                 </div>
                 <div class="body">
                     <div class="table-responsive">

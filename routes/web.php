@@ -28,6 +28,11 @@ Route::get('servicio','OpticaControllers\ServicioController@getAll');
 Route::resource('servicios','OpticaControllers\ServicioController');
 Route::get('planpagos','OpticaControllers\PlanPagoController@getAll');
 Route::resource('planpago','OpticaControllers\PlanPagoController');
+Route::resource('consulta','OpticaControllers\ConsultaController');
+Route::get('depas','OpticaControllers\JornadaController@departamento');
+route::get('vertipos','OpticaControllers\JornadaController@vertipojornada');
+route::get('verjornadas','OpticaControllers\JornadaController@mostrar');
+Route::resource('jornadas','OpticaControllers\JornadaController');
 
 // Rutas Resources
 Route::resource('admin-lentes/marcas', 'OpticaControllers\MarcaController');

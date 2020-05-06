@@ -18,7 +18,10 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="header">
-                    <h3><strong>Detalle de Usuario: {{$usuario->nombre}}  </strong><a href="{{URL::action('OpticaControllers\UsuarioController@edit',$usuario ->id_usuario)}}"><button  class="btn btn-success">Editar Registro</button></a></h3>
+                    <h2><strong>Detalle </strong>de Usuario: {{$usuario->nombre}} <a
+                            href="{{URL::action('OpticaControllers\UsuarioController@edit',$usuario ->id_usuario)}}">
+                            <button class="btn btn-success">Editar Registro</button>
+                        </a></h2>
                 </div>
                 @if(count($errors)>0)
                     <div class="alert alert-danger">
@@ -34,33 +37,40 @@
                         <div class="row">
                             <div class="form-group col-12">
                                 <label for="">Codigo de Minsa</label>
-                                <input type="text" class="form-control" disabled name="cod_minsa" value="{{$usuario->cod_minsa}}" placeholder="Codigo de Minsa..." />
+                                <input type="text" class="form-control" disabled name="cod_minsa"
+                                       value="{{$usuario->cod_minsa}}" placeholder="Codigo de Minsa..."/>
                             </div>
                             <div class="form-group col-md-6 col-sm-12">
                                 <label for="">Nombre</label>
-                                <input type="text" name="nombre" class="form-control" disabled value="{{$usuario->nombre}}" placeholder="Nombre..." />
+                                <input type="text" name="nombre" class="form-control" disabled
+                                       value="{{$usuario->nombre}}" placeholder="Nombre..."/>
                             </div>
                             <div class="form-group col-md-6 col-sm-12">
                                 <label for="">Apellido</label>
-                                <input type="text"  name="apellido" class="form-control" disabled value="{{$usuario->apellido}}" placeholder="Apellido..." />
+                                <input type="text" name="apellido" class="form-control" disabled
+                                       value="{{$usuario->apellido}}" placeholder="Apellido..."/>
                             </div>
                             <div class="form-group col-md-6 col-sm-12">
                                 <label for="">Cedula de indentidad</label>
-                                <input type="text" name="cedula" class="form-control" disabled value="{{$usuario->cedula}}" placeholder="Cedula..." />
+                                <input type="text" name="cedula" class="form-control" disabled
+                                       value="{{$usuario->cedula}}" placeholder="Cedula..."/>
                             </div>
                             <div class="form-group col-md-6 col-sm-12">
                                 <label for="">Telefono</label>
-                                <input type="text" name="telefono" class="form-control" disabled value="{{$usuario->telefono}}" placeholder="Telefono..." />
+                                <input type="text" name="telefono" class="form-control" disabled
+                                       value="{{$usuario->telefono}}" placeholder="Telefono..."/>
                             </div>
                             <div class="form-group col-12">
                                 <label for="">Correo Electronico</label>
-                                <input type="email" name="correo" class="form-control" disabled value="{{$usuario->correo}}" placeholder="Correo..." />
+                                <input type="email" name="correo" class="form-control" disabled
+                                       value="{{$usuario->correo}}" placeholder="Correo..."/>
                             </div>
                             <div class="form-group col-10">
-                                    <label ><b>Foto de perfil</b></label>
-                                    <div class="form-group">
-                                        <img src="/imagenes/usuarios/{{$usuario->dir_foto}}" class="img-thumbnail"  width="200" alt="No cuenta con una foto de perfil">
-                                    </div>
+                                <label><b>Foto de perfil</b></label>
+                                <div class="form-group">
+                                    <img src="/imagenes/usuarios/{{$usuario->dir_foto}}" class="img-thumbnail"
+                                         width="200" alt="No cuenta con una foto de perfil">
+                                </div>
                             </div>
                             {{--<div class="form-group">
                                 <label for="">Contraseña</label>
@@ -68,7 +78,8 @@
                             </div>--}}
                             <div class="form-group col-12">
                                 <label for="">Descripción</label>
-                                <textarea  class="form-control" name="descripcion" rows="5" disabled placeholder="Ingrese una descripción">{{$usuario->descripcion}}</textarea>
+                                <textarea class="form-control" name="descripcion" rows="5" disabled
+                                          placeholder="Ingrese una descripción">{{$usuario->descripcion}}</textarea>
                             </div>
                             <div class="form-group col-12">
                                 <p><b>Roles Asignados</b></p>

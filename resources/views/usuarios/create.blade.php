@@ -17,7 +17,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="header">
-                <h3><strong>Nuevo Usuario</strong> </h3>
+                <h2><strong>Nuevo </strong>Usuario</h2>
             </div>
             {!!Form::open(array('url'=>'usuarios','method'=>'POST','files'=>true,'autocomplete'=>'off')) !!}
             {{Form::token()}}
