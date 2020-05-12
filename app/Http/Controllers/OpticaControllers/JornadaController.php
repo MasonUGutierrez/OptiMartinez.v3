@@ -26,15 +26,15 @@ class JornadaController extends Controller
     public function store(JornadaTrabajoFormRequest $request){
         try{
             DB::beginTransaction();
-            $jornada = new JornadaTrabajo();
+            $jornadaT = new JornadaTrabajo();
             /*$jornada->id_jornada = $request->get('id_jornada');
             $jornada->id_departamento = $request->get('id_departamento');*/
-            $jornada->id_jornada = $request->get('id_jornada');
-            $jornada->id_departamento=$request->get('id_departamento');
-            $jornada->nombre_jornada=$request->get('nombre_jornada');
-            $jornada->lugar=$request->get('lugar');
-            $jornada->fecha_jornada=$request->get('fecha_jornada');
-            $jornada->save();
+            $jornadaT->id_jornada = $request->get('id_jornada');
+            $jornadaT->id_departamento=$request->get('id_departamento');
+            $jornadaT->nombre_jornada=$request->get('nombre_jornada');
+            $jornadaT->lugar=$request->get('lugar');
+            $jornadaT->fecha_jornada=$request->get('fecha_jornada');
+            $jornadaT->save();
             DB::commit();
         }catch(\Exception $e){
             DB::rollBack();
