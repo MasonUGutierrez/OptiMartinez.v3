@@ -34,7 +34,7 @@ class MarcoFormRequest extends FormRequest
         return [
             'id_marca' => ['bail', 'required', 'numeric'],
             'cod_marco' => ['bail', 'required', 'string', $uniqueRule],
-            'dir_foto' => ['bail', ($this->isMethod('POST'))?'required,mimes:jpeg,png':''],
+            'dir_foto' => ['bail', ($this->isMethod('POST'))?'required':'', 'mimes:jpeg,png'],
             'precio' => ['bail', 'required', 'numeric'],
             'c_existencia' => ['bail', 'required', 'numeric']
         ];
