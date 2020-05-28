@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Redirect;
 use App\OpticaModels\Marco;
 use App\OpticaModels\TipoMarco;
 use App\OpticaModels\Marca;
+use App\Http\Requests\MarcoFormRequest;
+use Illuminate\Support\Facades\Storage;
 
 class MarcoController extends Controller
 {
@@ -46,9 +48,73 @@ class MarcoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MarcoFormRequest $request)
+    {        
+        /* Version simple - Llamada del create desde el index de marcos */
+        // Se obtiene la marca para asociarla con el marco que se esta registrando
+        $marca = Marca::findOrFail($request->get('id_marca'));
+
+        // Guardando modelo con el metodo save()
+        $marco = new Marco;
+        $marco->marca()->associate($marca); // Asociando la marca seleccionada con el marco que se esta ingresando
+        
+        $marco->fill([
+            'cod_marco' => $request->input('cod_marco'),
+            'precio' => $request->input('precio'),
+            'c_existencia' => $request->input('c_existencia')
+        ]);
+        
+        $archivo = $request->file('dir_foto');
+        if($request->hasFile('dir_foto') && $archivo->isValid())
+        {
+            if($this->existImage($archivo->getClientOriginalName(), $request))
+            {
+                return back()
+                        ->withErrors(['dir_foto'=>'La imagen ya ha sido tomada'])
+                        ->withInput();
+            }
+            $nombreImg = $archivo->getClientOriginalName();
+            $path = $archivo->storeAs('imagenes/marcos', $nombreImg, 'public');
+            $marco->dir_foto = $nombreImg;
+        }
+        
+        $marco->save();
+        
+        // dd($request->get('id_tipos_marcos'));
+        $marco->tiposmarcos()->sync($request->get('id_tipos_marcos'));
+
+        return redirect()->route("marcos.index");
+
+        /* $marco->precio = ;
+        $marco->c_existencia = ; */
+    }
+
+    /**
+     * Metodo para simular la regla unique en la imagen
+     * 
+     * @param string $img orinalName de la imagen que se quiere guardar
+     * @param App\Http\Requests\MarcoFormRequest $request
+     * @param int $id
+     * 
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function existImage($img, MarcoFormRequest $request, $id = null)
     {
-        //
+        switch($request->method()){
+            case 'PUT':
+                return Marco::where([
+                    ['dir_foto', 'like', "%$img"],
+                    ['estado', '1'],
+                    ['id_marco','<>', $id],
+                    ])->first();
+            break;
+            case 'POST':
+                return Marco::where([
+                    ['dir_foto', 'like', "%$img"],
+                    ['estado', '1']
+                ])->first();
+            break;
+        }
     }
 
     /**
@@ -70,7 +136,16 @@ class MarcoController extends Controller
      */
     public function edit($id)
     {
-        return response()->view('adminlentes.marcos.edit', ['marco'=>Marco::findOrFail($id)]);
+        $marcas = Marca::where('estado', '1')->get();
+        $tiposMarcos = TipoMarco::where('estado', '1')->get();
+
+        $marco = Marco::findOrFail($id);
+        foreach($marco->tiposmarcos as $tipoMarco)
+        {
+            $marcoTipoM[] = $tipoMarco->id_tipo_marco;
+        }
+        // dd($marcoTipoM);
+        return response()->view('adminlentes.marcos.edit', ['marco'=>$marco, 'marcoTipoM' => $marcoTipoM, 'marcas'=>$marcas, 'tiposMarcos'=>$tiposMarcos]);
     }
 
     /**
@@ -80,9 +155,42 @@ class MarcoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(MarcoFormRequest $request, $id)
+    {   
+        $marco = Marco::findOrFail($id);
+        $marca = Marca::findOrFail($request->get('id_marca'));
+
+        if($request->get('id_marca') !== $marco->id_marca)
+            $marco->marca()->associate($marca);
+
+        $marco->fill([
+            'cod_marco' => $request->input('cod_marco'),
+            'precio' => $request->input('precio'),
+            'c_existencia' => $request->input('c_existencia')
+        ]);
+
+        $archivo = $request->file('dir_foto');
+        if($request->hasFile('dir_foto') && $archivo->isValid() && $archivo->getClientOriginalName() !== $marco->dir_foto)
+        {
+            if($this->existImage($archivo->getClientOriginalName(), $request, $id))
+            {
+                return back()
+                ->withErrors(['dir_foto' => 'La imagen ya ha sido tomada'])
+                ->withInput();
+            }
+            $nombreImg = $archivo->getClientOriginalName();
+            
+            Storage::disk('public')->delete('imagenes/marcos/'.$marco->dir_foto);
+            
+            $path = $archivo->storeAs('imagenes/marcos', $nombreImg, 'public');
+            $marco->dir_foto = $nombreImg;
+        }
+
+        $marco->tiposmarcos()->sync($request->get('id_tipos_marcos'));
+        $marco->save();
+
+        return redirect()->route('marcos.index');
+
     }
 
     /**
@@ -93,6 +201,10 @@ class MarcoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $marco = Marco::findOrFail($id);
+        $marco->estado = 0;
+        $marco->save();
+
+        return redirect('admin-lentes/marcos');
     }
 }

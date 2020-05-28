@@ -37,7 +37,7 @@
                                         <span class="ti ti-wallet"></span>
                                     </div>
                                 </div>
-                                <input type="number" min="0" class="form-control @error('precio') is-invalid @enderror" name="precio" id="precio" placeholder="Ej: C$ 100, C$ 200, C$ 300, etc." value={{old('precio')}}>
+                                <input type="number" min="0" class="form-control @error('precio') is-invalid @enderror" name="precio" id="precio" placeholder="Ej: C$ 100, C$ 150, C$ 200, etc." value={{old('precio')}}>
                                 @error('precio')
                                     <span class="invalid-feedback">{{$message}}</span>
                                 @enderror

@@ -17,7 +17,7 @@
                 <div class="body">
                     <div class="form-group">
                         <label for="tipo_marco">Tipo de Marco</label>
-                        <input type="text" name="tipo_marco" id="tipo_marco" class="form-control {{$errors->has('tipo_marco') ? 'is-invalid' : ''}}" placeholder="Ej.: Cuadrado, Ovalado, Economico, etc." value="{{old('tipo_marco')}}">
+                        <input type="text" name="tipo_marco" id="tipo_marco" class="form-control {{$errors->has('tipo_marco') ? 'is-invalid' : ''}}" placeholder="Ej: Cuadrado, Ovalado, Economico, etc." value="{{old('tipo_marco')}}">
                         {!!$errors->first('tipo_marco', '<span class="invalid-feedback">:message</span>')!!}
                     </div>
                 </div>            

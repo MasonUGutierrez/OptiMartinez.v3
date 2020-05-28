@@ -51,6 +51,14 @@ Route::put('admin-lentes/materiales/reactivar/{materiale}', function($id){
 })->name('materiales.reactivar');
 Route::resource('admin-lentes/materiales', 'OpticaControllers\TipoMaterialController');
 
+Route::put('admin-lentes/marcos/reactivar/{marco}', function($id){
+    $marco = App\OpticaModels\Marco::findOrFail($id);
+    $marco->estado = 1;
+    $marco->save();
+    
+    return redirect()->action('OpticaControllers\MarcoController@index');
+})->name('marcos.reactivar');
+
 Route::resource('admin-lentes/marcos', 'OpticaControllers\MarcoController');
 
 // Ruta para hacer pruebas de los modelos

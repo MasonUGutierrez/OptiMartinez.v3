@@ -70,13 +70,13 @@
                                                 </td>
                                                 <td>
                                                     <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Editar">
-                                                        <a href=""
+                                                        <a href="{{action('OpticaControllers\MarcoController@edit', $mActivo->id_marco)}}"
                                                             class="btn btn-neutral btn-sm btn-raised waves-effect waves-float waves-blue">
                                                             <i class="zmdi zmdi-edit"></i>
                                                         </a>
                                                     </span>
                                                     <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Dar de Baja">
-                                                        <a href=""
+                                                        <a href="{{action('OpticaControllers\MarcoController@destroy', $mActivo->id_marco)}}"
                                                             class="btn btn-neutral btn-sm btn-raised waves-effect waves-float waves-red"
                                                             data-type="confirm"
                                                             data-text="Se dará de baja el marco {{'"'.$mActivo->cod_marco.'"'}}"
@@ -123,7 +123,7 @@
                                                 </td>
                                                 <td>
                                                     <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Reactivar">
-                                                        <a href=""
+                                                        <a href="{{route('marcos.reactivar', $mInactivo->id_marco)}}"
                                                             class="btn btn-neutral btn-sm btn-raised waves-effect waves-float waves-green"
                                                             data-type="reactivar"
                                                             data-obj="Marco {{'"'.$mInactivo->cod_marco.'"'}}">
@@ -146,22 +146,8 @@
 @endsection
 
 @section('page-script')
-<script>
-    $(function(){
-        if($('#activos').hasClass('active'))
-            $('#estado').text('Activos');
-
-        $('#btn-activos').on('click', function(){
-            $('#estado').text('Activos');
-        });
-        $('#btn-inactivos').on('click', function(){
-            $('#estado').html('Inactivos');
-        });
-    });
-</script>
 {{-- Script para el Sweetalert --}}
 <script src="{{asset('assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
-<script src="{{asset('assets/js/pages/ui/sweetalert.js')}}"></script>
 
 {{-- Script para la jqueryDataTable --}}
 <script src="{{asset('assets/bundles/datatablescripts.bundle.js')}}"></script>
@@ -176,5 +162,20 @@
 @endsection
 
 @push('after-scripts')
+<script src="{{asset('assets/js/pages/ui/sweetalert.js')}}"></script>
 <script src="{{asset('assets/js/pages/tables/jquery-datatable.js')}}"></script>
+
+<script>
+    $(function(){
+        if($('#activos').hasClass('active'))
+            $('#estado').text('Activos');
+
+        $('#btn-activos').on('click', function(){
+            $('#estado').text('Activos');
+        });
+        $('#btn-inactivos').on('click', function(){
+            $('#estado').html('Inactivos');
+        });
+    });
+</script>
 @endpush

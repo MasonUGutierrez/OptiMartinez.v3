@@ -29,7 +29,7 @@
                         <div class="body">
                             <div class="form-group">
                                 <label for="marca">Marca</label>
-                                <input type="text" class="form-control @error('marca') is-invalid @enderror" id="marca" name="marca" value="{{$marca->marca}}" placeholder="Ej.: Ray-Ban, Converse, Guess, etc."/>
+                                <input type="text" class="form-control @error('marca') is-invalid @enderror" id="marca" name="marca" value="{{$marca->marca}}" placeholder="Ej: Ray-Ban, Converse, Guess, etc."/>
                                 @error('marca')
                                     <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -47,7 +47,7 @@
                                             <i class="ti ti-wallet"></i>
                                         </span>
                                     </div>
-                                    <input type="text" class="form-control {{$errors->has('precio') ? 'is-invalid' : ''}}" id="precio" name="precio" value="{{ $marca->precio }}" placeholder="Ej.: C$100, C$150, C$200, etc.">
+                                    <input type="text" class="form-control {{$errors->has('precio') ? 'is-invalid' : ''}}" id="precio" name="precio" value="{{ $marca->precio }}" placeholder="Ej: C$ 100, C$ 150, C$ 200, etc.">
                                     {!! $errors->first('precio', '<span class="invalid-feedback">:message</span>') !!}
                                 </div>
                             </div>

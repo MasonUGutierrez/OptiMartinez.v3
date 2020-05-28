@@ -19,7 +19,7 @@
                                 <label for="tipo_lente">Tipo de Lente</label>
                                 <input type="text" readonly class="form-control {{$errors->has('tipo_lente')?'is-invalid':''}}" 
                                         name="tipo_lente" id="tipo_lente" 
-                                        placeholder="Ej.: Monofocal, Bifocal, Invisile etc." 
+                                        placeholder="Ej: Monofocal, Bifocal, Invisile etc." 
                                         value="{{$tipoLente->tipo_lente}}">
                                 {!! $errors->first('tipo_lente', '<span class="invalid-feedback">:message</span>') !!}
                             </div>
@@ -41,7 +41,7 @@
                                     </div>
                                     <input type="number" min="0" max="99999" class="form-control @error('precio') is-invalid @enderror" 
                                             name="precio" id="precio" 
-                                            placeholder="Ej.: C$ 100, C$ 150, C$ 200, etc."
+                                            placeholder="Ej: C$ 100, C$ 150, C$ 200, etc."
                                             value="{{$tipoLente->precio}}">
                                     @error('precio')
                                         <span class="invalid-feedback">{{$message}}</span>
