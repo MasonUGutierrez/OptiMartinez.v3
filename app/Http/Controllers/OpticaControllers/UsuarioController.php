@@ -33,6 +33,10 @@ class UsuarioController extends Controller
         return view('usuarios.index', ['usuarios'=>$usuarios]);
     }
 
+    public function showPerfil(){
+        return view('usuarios.profile');
+    }
+
     public function detalle()
     {
         return view("usuarios.detalle");
@@ -64,7 +68,7 @@ class UsuarioController extends Controller
                 $usuario->dir_foto = $entrada['dir_foto'];
             }
             $usuario->contraseña = $request->get('contraseña');
-            $usuario->ccontraseña = $request->get('ccontraseña');
+            $request->get('ccontraseña');
             $usuario->descripcion = $request->get('descripcion');
             $usuario->save();
 
@@ -144,7 +148,7 @@ class UsuarioController extends Controller
                     $usuario->dir_foto = $entrada['dir_foto'];
                 }
                 $usuario->contraseña = $request->get('contraseña');
-                $usuario->ccontraseña = $request->get('ccontraseña');
+                $request->get('ccontraseña');
                 $usuario->descripcion = $request->get('descripcion');
                 $usuario->update();
 

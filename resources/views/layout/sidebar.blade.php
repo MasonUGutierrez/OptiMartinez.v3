@@ -23,10 +23,10 @@
                         <span>General</span>
                     </div>
                 </div>
-            </li> 
+            </li>
 
             <li class="{{ Request::segment(1) === 'dashboard' ? 'active' : null }}"><a href="{{route('dashboard.index')}}"><i class="zmdi zmdi-home"></i><span>Inicio</span></a></li>
-            <li class="{{ Request::segment(1) === 'perfil' ? 'active' : null }}"><a href="{{route('perfil.mi-perfil')}}"><i class="zmdi zmdi-account"></i><span>Mi Perfil</span></a></li>
+            <li class="{{ Request::segment(1) === 'perfil' ? 'active' : null }}"><a href="/miperfil"><i class="zmdi zmdi-account"></i><span>Mi Perfil</span></a></li>
 
             <!-- Validar aca para que se muestren las opciones dependiendo de los roles del usuarios logeado -->
             @include('opcionesSidebar.opcionesAdministrador')
@@ -35,9 +35,9 @@
             @include('opcionesSidebar.opcionesRecepcionista')
             <!-- Opciones extras -->
             @include('opcionesSidebar.opcionesExtras')
-            
+
             <!-- Enlaces importantes para ejemplos -->
-            <!-- 
+            <!--
             <li class="{{ Request::segment(1) === 'authentication' ? 'active open' : null }}">
                 <a href="#Authentication" class="menu-toggle"><i class="zmdi zmdi-lock"></i><span>Authentication</span></a>
                 <ul class="ml-menu">
