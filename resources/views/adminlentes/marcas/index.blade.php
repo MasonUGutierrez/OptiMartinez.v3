@@ -19,7 +19,7 @@
                 <div class="header">
                     <h2><strong>Marcas</strong> Asociadas
                         <span class="d-inline-block" data-toggle="tooltip" title="Agregar Marca" tabindex="0">
-                            <a href="{{URL::action('OpticaControllers\MarcaController@create')}}" class="btn btn-success btn-icon btn-icon-mini waves-effect waves-light" style="color:#fff"><i class="zmdi zmdi-plus"></i></a>
+                            <a href="{{URL::action('OpticaControllers\MarcaController@create')}}" class="btn btn-success btn-sm btn-raised waves-float waves-effect waves-light" style="color:#fff"><i class="zmdi zmdi-plus"></i></a>
                         </span>
                     </h2>
                 </div>
@@ -32,7 +32,7 @@
                                         <!-- Botones -->
                                         <div class="hover">
                                             <!-- button para editar el registro -->
-                                            <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Editar Marca">
+                                            <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Editar">
                                                 <button type="button"
                                                         id="btn-edit"
                                                         class="btn btn-icon btn-icon-mini btn-round btn-primary"
@@ -43,13 +43,12 @@
                                                 </button>
                                             </span>
                                             <!-- button para eliminar el registro -->
-                                            <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Eliminar Marca">
+                                            <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Dar de Baja">
                                                 <button type="button" 
                                                         data-type="confirm"
                                                         data-dir="{{URL::action('OpticaControllers\MarcaController@destroy', $marca->id_marca)}}"
-                                                        data-title="Dar de Baja"
-                                                        data-text="¿Deseas eliminar la marca {{$marca->marca}} ?"
-                                                        data-obj="{{$marca->marca}}"
+                                                        data-text="Se dará de baja la marca {{'"'.$marca->marca.'"'}}"
+                                                        data-obj="Marca {{'"'.$marca->marca.'"'}}"
                                                         class="btn btn-icon btn-icon-mini btn-round btn-danger">
                                                     <i class="zmdi zmdi-delete"></i>
                                                 </button>

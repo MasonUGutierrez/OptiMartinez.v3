@@ -18,8 +18,8 @@
             <div class="header">
                 <h2><strong>Datos</strong> Marca
                     <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Editar Marca">
-                        <a class="btn btn-raised btn-primary btn-icon btn-icon-mini waves-effect waves-light" href="{{URL::action('OpticaControllers\MarcaController@edit', $marca->id_marca)}}">
-                            <i class="ti-pencil"></i>
+                        <a class="btn btn-primary btn-sm btn-raised waves-float waves-effect waves-light" href="{{URL::action('OpticaControllers\MarcaController@edit', $marca->id_marca)}}">
+                            <i class="zmdi zmdi-edit"></i>
                         </a>
                     </span>
                 </h2>
@@ -48,7 +48,7 @@
             <div class="header">
                 <h2><strong>Marcos</strong> Registrados
                     <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Agregar Marco">
-                        <a class="btn btn-success btn-icon btn-icon-mini btn-raised waves-effect waves-light" href="{{URL::action('OpticaControllers\MarcoController@create')}}">
+                        <a class="btn btn-success btn-sm btn-raised waves-float waves-effect waves-light" href="{{URL::action('OpticaControllers\MarcoController@create')}}">
                             <i class="zmdi zmdi-plus"></i>
                         </a>
                     </span>
@@ -56,12 +56,12 @@
             </div>
             <div class="body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover dt-responsive dataTable">
+                    <table class="table table-bordered table-hover dt-responsive theme-color dataTable">
                         <thead>
                             <tr>
                                 <th>Imagen</th>
                                 <th>Cod. Marco</th>
-                                <th>Precio</th>
+                                <th>Precio (C$)</th>
                                 <th>Existencia</th>
                                 <th>Opciones</th>
                             </tr>
@@ -122,7 +122,6 @@
 @section('page-script')
 {{-- Librerias para el sweetalert --}}
 <script src="{{asset('assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
-<script src="{{asset('assets/js/pages/ui/sweetalert.js')}}"></script>
 
 {{-- Librerias para el jquery dataTable --}}
 <script src="{{asset('assets/bundles/datatablescripts.bundle.js')}}"></script>
@@ -133,6 +132,9 @@
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.flash.min.js')}}"></script>
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.html5.min.js')}}"></script>
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.print.min.js')}}"></script>
-
-<script src="{{asset('assets/js/pages/tables/jquery-datatable.js')}}"></script>
 @endsection
+
+@push('after-scripts')
+<script src="{{asset('assets/js/pages/ui/sweetalert.js')}}"></script>
+<script src="{{asset('assets/js/pages/tables/jquery-datatable.js')}}"></script>
+@endpush

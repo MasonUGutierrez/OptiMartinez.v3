@@ -1,6 +1,13 @@
 Anotaciones de Cambios:
 
 	- En style.min.css se agrego un estilo para la clase .progress-bagde para disminuir el font-size a 10px
+  - Solucion de problema con Select2
+    - Se agregaron propiedades CSS al style.min.css que aparentemente faltaban en .form-control y .input-group-text 
+    - Siguiendo el patron de incrustacion de estilos y scripts en el layout Master, los scripts de inicializacion de librerias
+      y otros se agregaran en el @stack('after-scripts') que va despues de los scripts principales para la plantilla
+  - Se completo la seccion de marcos, queda pendiente trabajar el ingreso de un marco desde el apartado de una marca en
+    especifico (se pretende trabajar con AJAX)
+  - Se modificaron los placeholder de las plantillas create y edit de las secciones de Admin-Lentes
 
 Consulta DB:
 	- REVISAR -
@@ -36,6 +43,9 @@ Consulta DB:
 ----> agregar la barra de busqueda en el select de roles
 ----> configurar el boton cancelar para regresar a la pagina anterior
 
+----> quitar /public/storage de .gitignore para que se puedan subir las imagenes
+
+----> Mirar que paso con el simbolik link a /storage/app/public/
 Anotaciones de Aprendizaje:
 
   /**

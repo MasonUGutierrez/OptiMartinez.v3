@@ -2,6 +2,7 @@ $(function () {
     $('.js-basic-example').DataTable();
 
     $('.dataTable').DataTable({
+        "lengthMenu": [[5, 10, 25, -1], [5, 10, 25, "Todo"]],
         "language":{
             "sProcessing":     "Procesando...",
             "sLengthMenu":     "Mostrar _MENU_ registros",

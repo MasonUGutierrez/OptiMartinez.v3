@@ -1,0 +1,58 @@
+.theme-red #search {
+    background-color: rgba(238, 37, 88, 0.9)
+}
+.theme-red .checkbox input[type="checkbox"]:checked+label::after {
+    background: #ee2558;
+    color: #fff
+}
+.theme-red .radio input[type="radio"]:checked+label::before {
+    background: #ee2558;
+    color: #fff;
+    border-color: #ee2558
+}
+.theme-red .radio input[type="radio"]:checked+label::after {
+    background-color: #fff;
+    border-color: #fff
+}
+.theme-red .right-sidebar .nav-tabs {
+    background: #ee2558
+}
+.theme-red .right-sidebar .nav-tabs li a.nav-link {
+    color: #fff
+}
+.theme-red .right-sidebar .nav-tabs li a.nav-link.active,
+.theme-red .right-sidebar .nav-tabs li a.nav-link:hover {
+    background: #fff;
+    color: #ee2558
+}
+.theme-red .sidebar .menu .list li.active {
+    background-color: rgba(0, 0, 0, 0)
+}
+.theme-red .sidebar .menu .list li.active>:first-child i,
+.theme-red .sidebar .menu .list li.active>:first-child span {
+    color: #ee2558
+}
+.theme-red .sidebar .menu .list a:hover {
+    color: #ee2558
+}
+.theme-red .table.theme-color thead td,
+.theme-red .table.theme-color thead th {
+    background: #ee2558
+}
+.theme-red .navbar-right .navbar-nav>li>a:hover {
+    background: #ee2558
+}
+.theme-red .nav-tabs .nav-link.active {
+    border: 1px solid #ee2558;
+    color: #ee2558
+}
+.theme-red .card .header h2:before {
+    background: #ee2558
+}
+.theme-red .card .header h2 strong {
+    color: #ee2558
+}
+.theme-red .inbox-widget .inbox-inner:hover .inbox-img img {
+    border: 2px solid #ee2558;
+    transition: all 150ms linear
+}
