@@ -11,5 +11,5 @@
     <a href="#"><i class="zmdi zmdi-calendar-alt"></i><span>Ver Jornadas</span></a>
 </li>
 <li class="{{Request::segment(1) == 'historias-clinicas' ? 'active' : null}}">
-    <a href="#"><i class="zmdi zmdi-collection-text"></i><span>Historias Clinicas</span></a>
+    <a href="{{url('historias-clinicas')}}"><i class="zmdi zmdi-collection-text"></i><span>Historias Clinicas</span></a>
 </li>
