@@ -35,7 +35,9 @@
                     </div>                            
                 </div>
             </div>
-        </div>
+        </div>                           
+    </div>
+    <div class="col-lg-8 col-md-12">
         <div class="card">
             <div class="body">
                 <small class="text-muted">Email address: </small>
@@ -72,32 +74,7 @@
                 </ul>
                 <span>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</span>
             </div>
-        </div>                    
-    </div>
-    <div class="col-lg-8 col-md-12">
-        <div class="card">
-            <div class="body">
-                <div id="calendar"></div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="header">
-                <h2><strong>Media</strong> Gallery</h2>
-            </div>
-            <div class="body">
-                <p>All pictures taken from <a href="https://pexels.com/" target="_blank">pexels.com</a></p>
-                <div id="aniimated-thumbnials" class="list-unstyled row clearfix">
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30"> <a href="{{asset('assets/images/image-gallery/1.jpg')}}"> <img class="img-fluid img-thumbnail" src="{{asset('assets/images/image-gallery/1.jpg')}}" alt=""> </a> </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30"> <a href="{{asset('assets/images/image-gallery/2.jpg')}}" > <img class="img-fluid img-thumbnail" src="{{asset('assets/images/image-gallery/2.jpg')}}" alt=""> </a> </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30"> <a href="{{asset('assets/images/image-gallery/3.jpg')}}" > <img class="img-fluid img-thumbnail" src="{{asset('assets/images/image-gallery/3.jpg')}}" alt=""> </a> </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30"> <a href="{{asset('assets/images/image-gallery/4.jpg')}}" > <img class="img-fluid img-thumbnail" src="{{asset('assets/images/image-gallery/4.jpg')}}" alt=""> </a> </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30"> <a href="{{asset('assets/images/image-gallery/5.jpg')}}" > <img class="img-fluid img-thumbnail" src="{{asset('assets/images/image-gallery/5.jpg')}}" alt=""> </a> </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30"> <a href="{{asset('assets/images/image-gallery/6.jpg')}}" > <img class="img-fluid img-thumbnail" src="{{asset('assets/images/image-gallery/6.jpg')}}" alt=""> </a> </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30"> <a href="{{asset('assets/images/image-gallery/7.jpg')}}" > <img class="img-fluid img-thumbnail" src="{{asset('assets/images/image-gallery/7.jpg')}}" alt=""> </a> </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30"> <a href="{{asset('assets/images/image-gallery/8.jpg')}}" > <img class="img-fluid img-thumbnail" src="{{asset('assets/images/image-gallery/8.jpg')}}" alt=""> </a> </div>                                
-                </div>
-            </div>
-        </div>
+        </div> 
     </div>
 </div>
 @stop

@@ -6,9 +6,14 @@ $(function () {
 
         var type = $(this).data('type');
         /* My variables */
-        var title = $(this).data('title'),
-            text = $(this).data('text'),
-            objDelete = $(this).data('obj'),
+        /* var text 
+                contiene el texto que se desplegara en el sweetalert, debera contar con una descripcion de lo que se hara. Ejm. Se eliminara..., se actualizara, etc
+            var obj
+                Contiene el elemento que se va hacer referencia, ademas de un texto descriptivo. Ejm. Tipo de lente "Objeto", Usuario "Objeto", Marca "Objeto"
+        */
+
+        var text = $(this).data('text'),
+            obj = $(this).data('obj'),
             /**
              * Se indica que la URL a enviar en el formulario se va llenar con el 
              * valor en el atributo data-dir si es una etiqueta <button> o con href si es una etiqueta <a>
@@ -17,74 +22,43 @@ $(function () {
             csrf_token = $('meta[name="csrf-token"]').attr('content');
         
         // alert($(this).get(0).tagName + $(this).data('dir'));
-        if (type === 'basic') {
-            showBasicMessage();
+        if (type === 'confirm') {
+            showConfirmMessage(text, obj, linkURL, csrf_token);
         }
-        else if (type === 'with-title') {
-            showWithTitleMessage();
-        }
-        else if (type === 'success') {
-            showSuccessMessage();
-        }
-        else if (type === 'confirm') {
-            showConfirmMessage(title, text, objDelete, linkURL, csrf_token);
-        }
-        else if (type === 'html-message') {
-            showHtmlMessage();
-        }
-        else if (type === 'autoclose-timer') {
-            showAutoCloseTimerMessage();
-        }
-        else if (type === 'we-set-buttons') {
-            showWeSet3Buttons();
-        }
-        else if (type === 'AJAX-requests') {
-            showAJAXrequests();
-        }
-        else if (type === 'DOM-content') {
-            showDOMContent();
+        else if (type === 'reactivar') {
+            showReactivateMessage(obj, linkURL, csrf_token);
         }
     });
 });
 
 /**
- * Metodo que retorna la URL donde enviar los datos en el formulario para eliminar
+ * Metodo que retorna la URL donde enviar los datos en el formulario
  * @param object element 
  */
 function getUrl(element) {
+    // Element.get(0).tagName -> retorna el tipo de etiqueta del elemento, en mayusculas
     // Si el elemento que llama al sweetalert es un boton entonces se pasa el valor en el atributo data-dir, sino el valor en el atributo href
     return element.get(0).tagName == 'BUTTON' ? element.data('dir') : element.attr('href');
 }
 
 //These codes takes from http://t4t5.github.io/sweetalert/
+/**
+ * Metodo para llamar sweetalert de confirmacion para eliminar
+ * @param string text 
+ * @param string obj 
+ * @param string linkURL 
+ * @param string csrf_token 
+ */
 
-function showBasicMessage() {
-    swal("Hello world!");
-}
-function showWithTitleMessage() {
-    swal("Here's a message!", "It's pretty, isn't it?");
-}
-function showSuccessMessage() {
-    swal("Good job!", "You clicked the button!", "success");    
-}
-
-function sleep(milliseconds) {
-  const date = Date.now();
-  let currentDate = null;
-  do {
-    currentDate = Date.now();
-  } while (currentDate - date < milliseconds);
-}
-
-function showConfirmMessage(title, text, objDelete, linkURL, csrf_token) {
+function showConfirmMessage(text, obj, linkURL, csrf_token) {
     swal({
-        title: title,
+        title: '¿Estas seguro?',
         text: text,
         icon:'warning',
         buttons:{
             cancel:'Cancelar',
             confirm:{
-                text:"Dar de Baja",
+                text:"Aceptar",
                 // value:true,
                 className:"btn-warning",
                 },
@@ -94,123 +68,88 @@ function showConfirmMessage(title, text, objDelete, linkURL, csrf_token) {
       })
       .then((willDelete) => {
         if (willDelete) {
-            var form = $('<form>',{
-                'method':'POST',
-                'action':linkURL
-            });
-            var hiddenInput = $('<input>',{
-                'type':'hidden',
-                'name':'_method',
-                'value':'DELETE'
-            });
-            var hiddenToken = $('<input>',{
-                'type':'hidden',
-                'name':'_token',
-                'value':csrf_token
-            });
-
-            swal(objDelete +" Dado de baja", {
-                icon: "error",
-                button:true,
+            swal(obj +" Dado de baja", {
+                icon: "success",
+                button:'Aceptar',
             }).then(()=>{
-                form.append(hiddenInput).append(hiddenToken).appendTo('body').submit();
+                makeForm(linkURL, csrf_token, 'DELETE').submit();
             });
-
         } else {
-            swal("","Acción cancelada!","error");
+            showCancelMessage();
         }
     });
 }
 
-function showHtmlMessage() {
+/**
+ * Metodo para mostrar mensaje para reactivar un elemento con sweetalert
+ * @param {*} obj 
+ * @param {*} linkURL 
+ * @param {*} csrf_token 
+ */
+function showReactivateMessage(obj, linkURL, csrf_token) {
     swal({
-        title: "HTML <small>Title</small>!",
-        text: "A custom <span style=\"color: #CC0000\">html<span> message.",
-        html: true
-    });
-}
-function showAutoCloseTimerMessage() {
-    swal({
-        title: "Auto close alert!",
-        text: "I will close in 2 seconds.",
-        timer: 2000,
-        showConfirmButton: false
-    });
-}
-function showWeSet3Buttons() {
-    swal("A wild Pikachu appeared! What do you want to do?", {
-        buttons: {
-        cancel: "Run away!",
-        catch: {
-            text: "Throw Pokéball!",
-            value: "catch",
+        'title':"¿Estas seguro?",
+        'text':'Se reactivara el ' + obj,
+        'icon':"warning",
+        'buttons':{
+            'cancel':'Cancelar',
+            'confirm':{
+                'text':'Aceptar',
+                'className':'btn-warning'
+            }              
         },
-        defeat: true,
-        },
-    })
-    .then((value) => {
-        switch (value) {
-    
-        case "defeat":
-            swal("Pikachu fainted! You gained 500 XP!");
-            break;
-    
-        case "catch":
-            swal("Gotcha!", "Pikachu was caught!", "success");
-            break;
-    
-        default:
-            swal("Got away safely!");
+        'dangerMode':false
+    }).then((reactivar) => {
+        if(reactivar)
+        {
+            swal({
+                'text':obj +' Actualizado',
+                'icon':'success',
+                'timer':2000,
+                'button':false
+            }).then(()=>{
+                makeForm(linkURL, csrf_token, 'PUT').submit();
+            });
+            // Nota: La funcion flecha () => {} es igual que enviar una funcion anonima function(){} o la definicion de una funcion
+        }
+        else{
+            showCancelMessage();
         }
     });
 }
-function showAJAXrequests() {
+
+/**
+ * Metodo para mostrar mensaje de cancelacion con sweetalert
+ */
+function showCancelMessage(){
     swal({
-        text: 'Search for a movie. e.g. "La La Land".',
-        content: "input",
-        button: {
-        text: "Search!",
-        closeModal: false,
-        },
-    })
-    .then(name => {
-        if (!name) throw null;
-    
-        return fetch(`https://itunes.apple.com/search?term=${name}&entity=movie`);
-    })
-    .then(results => {
-        return results.json();
-    })
-    .then(json => {
-        const movie = json.results[0];
-    
-        if (!movie) {
-        return swal("No movie was found!");
-        }
-    
-        const name = movie.trackName;
-        const imageURL = movie.artworkUrl100;
-    
-        swal({
-        title: "Top result:",
-        text: name,
-        icon: imageURL,
-        });
-    })
-    .catch(err => {
-        if (err) {
-        swal("Oh noes!", "The AJAX request failed!", "error");
-        } else {
-        swal.stopLoading();
-        swal.close();
-        }
+        'text':'¡Acción Cancelada!', 
+        'icon':'error',
+        'button':'Aceptar'
     });
 }
-function showDOMContent() {
-    swal("Write something here:", {
-        content: "input",
-    })
-    .then((value) => {
-        swal(`You typed: ${value}`);
+
+/**
+ * Metodo para crear y agregar un formulario reutilizable
+ * @param {*} URL 
+ * @param {*} csrf_token 
+ * @param {*} methodType 
+ */
+function makeForm(URL, csrf_token, methodType){
+    var form = $('<form>', {
+        'method':'POST',
+        'action':URL
     });
+    var hiddenToken = $('<input>', {
+        'type':'hidden',
+        'name':'_token',
+        'value':csrf_token
+    });
+    var hiddenInput = $('<input>', {
+        'type':'hidden',
+        'name':'_method',
+        'value':methodType
+    });
+
+    return form.append(hiddenToken).append(hiddenInput).appendTo('body');
 }

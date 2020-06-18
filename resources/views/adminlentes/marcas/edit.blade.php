@@ -25,11 +25,11 @@
                 </div>
                 <div class="row">
                     {{-- Input para la marca --}}
-                    <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="col-lg-7 col-md-7 col-sm-12">
                         <div class="body">
                             <div class="form-group">
                                 <label for="marca">Marca</label>
-                                <input type="text" class="form-control @error('marca') is-invalid @enderror" id="marca" name="marca" value="{{$marca->marca}}" placeholder="Ej.: Ray-Ban, Converse, Guess, etc."/>
+                                <input type="text" class="form-control @error('marca') is-invalid @enderror" id="marca" name="marca" value="{{$marca->marca}}" placeholder="Ej: Ray-Ban, Converse, Guess, etc."/>
                                 @error('marca')
                                     <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
@@ -37,17 +37,17 @@
                         </div>
                     </div>
                     {{-- Input para el precio --}}
-                    <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
                         <div class="body">
                             <div class="form-group">
-                                <label for="precio">Precio Base</label>
+                                <label for="precio">Precio Base (C$)</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
                                             <i class="ti ti-wallet"></i>
                                         </span>
                                     </div>
-                                    <input type="text" class="form-control {{$errors->has('precio') ? 'is-invalid' : ''}}" id="precio" name="precio" value="{{ $marca->precio }}" placeholder="Ej.: C$100, C$150, C$200, etc.">
+                                    <input type="text" class="form-control {{$errors->has('precio') ? 'is-invalid' : ''}}" id="precio" name="precio" value="{{ $marca->precio }}" placeholder="Ej: C$ 100, C$ 150, C$ 200, etc.">
                                     {!! $errors->first('precio', '<span class="invalid-feedback">:message</span>') !!}
                                 </div>
                             </div>
