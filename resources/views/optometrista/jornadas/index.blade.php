@@ -47,10 +47,11 @@
 @endsection
 @section('page-script')
     <script src="{{asset('assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
-    <script src="{{asset('assets/js/pages/ui/sweetalert.js')}}"></script>
-    <script src="{{asset('assets/js/js_propios/js_optometrista/js_jornada/script.js')}}"></script>
     <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
+@stop
+@push('after-scripts')
+    <script src="{{asset('assets/js/pages/ui/sweetalert.js')}}"></script>
     <script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
     <script src="{{asset('assets/plugins/multi-select/js/jquery.multi-select.js')}}"></script>
-    <script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
-@stop
+    <script src="{{asset('assets/js/js_propios/js_optometrista/js_jornada/script.js')}}"></script>
+@endpush

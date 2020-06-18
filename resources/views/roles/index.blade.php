@@ -58,9 +58,11 @@
     @include('roles.modal-assign')
 @endsection
 @section('page-script')
-    <script src="{{asset('assets/plugins/multi-select/js/jquery.multi-select.js')}}"></script>
-    <script src="{{asset('assets/plugins/jquery-spinner/js/jquery.spinner.js')}}"></script>
     <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
-    <script src="{{asset('assets/js/js_propios/js_roles/script.js')}}"></script>
-    <script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
 @stop
+@push('after-scripts')
+    <script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-spinner/js/jquery.spinner.js')}}"></script>
+    <script src="{{asset('assets/plugins/multi-select/js/jquery.multi-select.js')}}"></script>
+    <script src="{{asset('assets/js/js_propios/js_roles/script.js')}}"></script>
+@endpush

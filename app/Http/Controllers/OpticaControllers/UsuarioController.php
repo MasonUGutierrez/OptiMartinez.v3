@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\UsuarioFormRequest;
 use DB;
 
-class UsuarioController extends Controller
+class   UsuarioController extends Controller
 {
     //
     public function __construct()

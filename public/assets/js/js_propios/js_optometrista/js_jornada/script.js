@@ -224,7 +224,6 @@ function verDepa2(){
             var rows="";
             console.log(response);
             $.each(response,function (key,value) {
-                console.log(value.departamento);
                 rows += `<option value="${value.id_departamento}">${value.departamento}</option>`
             });
             $('#depas2').html(rows);
@@ -238,7 +237,6 @@ function verTipoJornada2(){
         dataType:'json',
         url:"vertipos",
         success:function (response) {
-            console.log(response);
             var rows="";
             $.each(response,function (key,value) {
                 rows+= `<option value="${value.id_jornada}">${value.tipo_jornada}</option>`

@@ -3,6 +3,8 @@
 @section('parentPageTitle', 'Pages')
 @section('page-style')
     <link rel="stylesheet" href="{{asset('assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/plugins/sweetalert/sweetalert.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>
 @stop
 @section('content')
 <div class="row clearfix">
@@ -34,9 +36,16 @@
     </div>
 </div>
 @include('optometrista.consulta.add-consulta')
+@include('optometrista.consulta.show-consulta')
 @endsection
 @section('page-script')
-    <script src="{{asset('assets/js/js_propios/js_optometrista/js_consulta/script.js')}}"></script>
-    <script src="{{asset('assets/plugins/editable-table/mindmup-editabletable.js')}}"></script>
-    <script src="{{asset('assets/js/pages/tables/editable-table.js')}}"></script>
+    <script src="{{asset('assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
 @endsection
+@push('after-scripts')
+    <script src="{{asset('assets/js/pages/tables/editable-table.js')}}"></script>
+    <script src="{{asset('assets/js/pages/ui/sweetalert.js')}}"></script>
+    <script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
+    <script src="{{asset('assets/plugins/editable-table/mindmup-editabletable.js')}}"></script>
+    <script src="{{asset('assets/js/js_propios/js_optometrista/js_consulta/script.js')}}"></script>
+@endpush

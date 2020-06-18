@@ -57,6 +57,7 @@ function saveData() {
     var servicio = $('#servicio2').val();
     var precio = $('#precio2').val();
     var data = {servicio: servicio, precio: precio};
+
     $.ajax({
         type: 'post',
         dataType: 'json',

@@ -64,6 +64,8 @@
 @endsection
 @section('page-script')
     <script src="{{asset('assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
+@stop
+@push('after-scripts')
     <script src="{{asset('assets/js/pages/ui/sweetalert.js')}}"></script>
     <script>
         $(function () {
@@ -71,4 +73,4 @@
         })
     </script>
     <script src="{{asset('assets/js/js_propios/js_servicios/script.js')}}"></script>
-@stop
+@endpush

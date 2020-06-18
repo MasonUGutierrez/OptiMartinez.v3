@@ -39,16 +39,16 @@ class ServicioController extends Controller
     }
 
     public function store(ServicioFormRequest $request){
-        try{
-            DB::beginTransaction();
+       /* try{
+            DB::beginTransaction();*/
             $servicio = new Servicio;
             $servicio->servicio = $request->get('servicio');
             $servicio->precio = $request->get('precio');
             $servicio->save();
-            DB::commit();
+       /*     DB::commit();
         }catch(\Exception $e){
             DB::rollBack();
-        }
+        }*/
         return Redirect::to('servicios');
     }
 

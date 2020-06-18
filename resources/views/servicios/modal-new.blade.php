@@ -8,7 +8,7 @@
                     </div>
                     <label for="">Nombre de Servicio</label>
                     <input type="hidden" id="idServicio">
-                    <input type="hidden" name="_method" value="PUT">
+                    {{--<input type="hidden" name="_method" value="PUT">--}}
                     <input type="text" class="form-control  {{ $errors->has('servicio') ? 'is-invalid' : '' }}"
                            id="servicio2" required name="plan_pago"
                            value="{{old("servicio")}}" placeholder="Plan..."/>

@@ -29,6 +29,7 @@ Route::resource('servicios','OpticaControllers\ServicioController');
 Route::get('planpagos','OpticaControllers\PlanPagoController@getAll');
 Route::resource('planpago','OpticaControllers\PlanPagoController');
 Route::get('verjor','OpticaControllers\ConsultaController@verjornada');
+Route::get('idservicios','OpticaControllers\ConsultaController@servicio');
 Route::get('verfecha','OpticaControllers\ConsultaController@date');
 Route::get('getconsulta','OpticaControllers\ConsultaController@gettable');
 Route::resource('consulta','OpticaControllers\ConsultaController');
