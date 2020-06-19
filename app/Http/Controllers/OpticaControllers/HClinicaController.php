@@ -7,10 +7,12 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\HClinicaFormRequest;
 use App\OpticaModels\HClinica;
+use DataTables;
 
 // Clases opcionales
 use App\OpticaModels\Paciente;
 use App\OpticaModels\HCuenta;
+use Yajra\DataTables\DataTables as DataTablesDataTables;
 
 class HClinicaController extends Controller
 {
@@ -29,7 +31,35 @@ class HClinicaController extends Controller
     {
         if($request->ajax()){
             $hclinicas = HClinica::where('estado', '1')->get();
-            return response()->json($hclinicas);
+            // return response()->json($hclinicas);
+            
+            return DataTables::of($hclinicas)
+                ->addIndexColumn()
+                ->addColumn('opciones', function($row){
+                    $btns = '
+                    <div style="text-align:center">
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Ver detalles" data-original-title="Editar">
+                            <a href="'.route('historias-clinicas.show',$row->id_historia_clinica).'" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float">
+                                <i class="zmdi zmdi-search"></i>
+                            </a>
+                        </span>
+                        <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Dar de Baja" data-original-title="Dar de Baja">
+                            <a href="'.action("OpticaControllers\HClinicaController@destroy", $row->id_historia_clinica).'" class="btn btn-sm btn-neutral btn-raised waves-effect darBaja waves-red waves-float"
+                                data-type="confirm"
+                                data-text="Se dara de baja la historia clinica '.$row->id_historia_clinica.'"
+                                data-obj="Historia Clinica '.$row->id_historia_clinica.'">
+                                <i class="zmdi zmdi-delete"></i>    
+                            </a>
+                        </span>
+                        </div>';
+
+                    return $btns;
+                })
+                ->addColumn('paciente', function($row){
+                    return $row->paciente->nombre . ' ' . $row->paciente->apellido;
+                })
+                ->rawColumns(['opciones', 'paciente'])
+                ->make(true);
         }
     }
 
@@ -102,7 +132,8 @@ class HClinicaController extends Controller
      */
     public function show($id)
     {
-        //
+        $hclinica = HClinica::findOrFail($id);
+        return view('hclinicas.show', ['hclinica'=>$hclinica]);
     }
 
     /**
@@ -136,6 +167,10 @@ class HClinicaController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $hclinica = HClinica::findOrFail($id);
+       $hclinica->estado = 0;
+       $hclinica->save();
+
+       return "Registro dado de baja";
     }
 }

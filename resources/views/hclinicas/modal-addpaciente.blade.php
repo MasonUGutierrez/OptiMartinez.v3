@@ -60,7 +60,7 @@
             </div>
             <div class="modal-footer">
                 <div class="form-group">
-                    <input type="submit" class="btn btn-primary btn-raised waves-effect waves-light" id="Guardar" data-dismiss="modal" value="Aceptar">
+                    <input type="submit" class="btn btn-primary btn-raised btn-round waves-effect waves-light" id="Guardar" data-dismiss="modal" value="Aceptar">
                     <input type="button" class="btn btn-danger btn-raised waves-effect waves-light" data-dismiss="modal" value="Cancelar">
                 </div>
             </div>
