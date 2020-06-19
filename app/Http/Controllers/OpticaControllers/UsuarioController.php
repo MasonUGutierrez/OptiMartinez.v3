@@ -28,7 +28,7 @@ class   UsuarioController extends Controller
         // ->orderBy('id_usuario','desc')
         // ->paginate(10);
 
-        $usuarios = Usuario::where('estado','1')->orderBy('id_usuario','desc')->get();
+        $usuarios = Usuario::where('estado','1')->get();
 
         return view('usuarios.index', ['usuarios'=>$usuarios]);
     }

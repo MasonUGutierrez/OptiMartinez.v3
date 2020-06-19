@@ -21,7 +21,7 @@
                 </div>
                 <div class="body">
                     <div class="table-responsive">
-                        <table class="table table-hover product_item_list c_table theme-color mb-0">
+                        <table class="table table-hover dataTable theme-color mb-0">
                             <thead>
                             <tr>
                                 <th>ID</th>
@@ -31,20 +31,7 @@
                             </thead>
 
                             <tbody id="tabla">
-                               {{-- @foreach($rol as $cat)
-                                    <tr>
-                                    <td>{{$cat->id_rol}}</td>
-                                    <td style="">{{$cat->rol}}</td>
-                                    <td style="text-align: center">
-                                        <a href="{{URL::action('OpticaControllers\RolController@show',$cat->id_rol)}}"><button class="btn btn-secondary">Detalles</button></a>
-                                        --}}{{--<a href="" data-target="#modal-asignar-{{$cat->id_rol}}" data-toggle="modal">
-                                            <button class="btn btn-info">Asignar a Usuario</button>
-                                        </a>--}}{{--
-                                        <a href="{{URL::action('OpticaControllers\RolController@asignar',$cat->id_rol)}}" ><button class="btn btn-info">Asignar a Usuario</button></a>
-                                    </td>
-                                </tr>
 
-                                @endforeach--}}
                             </tbody>
 
                         </table>
