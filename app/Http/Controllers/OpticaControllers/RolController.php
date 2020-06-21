@@ -5,6 +5,8 @@ namespace App\Http\Controllers\OpticaControllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RolFormRequest;
 use App\Http\Requests\Usuario_RolFormRequest;
+
+use DataTables;
 use Illuminate\Http\Request;
 use App\Rol;
 use App\Usuario_Rol;
@@ -23,9 +25,29 @@ class RolController extends Controller
         return view('roles.index'/*,['rol'=>$rol]*/);
     }
 
-    public function getAll(){
-        /*$rol=DB::table('rol')->get()->where('estado','=','1');*/
+    public function getAll(Request $request){
         $rol= Rol::where('estado','1')->get();
+        if($request->ajax()){
+            return DataTables::of($rol)
+                ->addIndexColumn()
+                ->addColumn('opciones', function($row){
+                    $btns = '
+                    <div style="text-align:center">
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Ver detalles" data-original-title="Editar">
+                            <a href="'.route('roles.show',$row->id_rol).'" data-toggle="modal" data-target="#largeModal" onclick="showUserRol('.$row->id_rol.')" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float">Detalles
+                            </a>
+                        </span>
+                        <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Asignar Usuario" data-original-title="Asignar Usuario">
+                            <a href="'.action("OpticaControllers\RolController@asignar", $row->id_rol).'" data-toggle="modal" data-target=".assign-modal" onclick="assignRol('.$row->id_rol.')" class="btn btn-sm btn-neutral btn-raised waves-effect darBaja waves-red waves-float">Asignar Usuario
+                            </a>
+                        </span>
+                        </div>';
+
+                    return $btns;
+                })
+                ->rawColumns(['opciones'])
+                ->make(true);
+        }
         return response()->json($rol);
     }
     //Mostrar los nombres de usuarios mientras, el id rol de usuariorol sea diferente del rol
