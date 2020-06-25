@@ -18,7 +18,7 @@
                 </h2>
             </div>
             <div class="body">
-                <table class="table table-hover product_item_list c_table theme-color mb-0">
+                <table class="table table-hover dataTable-consulta theme-color mb-0">
                     <thead>
                     <tr style="text-align: center">
                         <th>#</th>
@@ -41,6 +41,14 @@
 @section('page-script')
     <script src="{{asset('assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
     <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
+    <script src="{{asset('assets/bundles/datatablescripts.bundle.js')}}"></script>
+    {{-- Scripts para los botones de jqueryDataTable --}}
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.colVis.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.flash.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.print.min.js')}}"></script>
 @endsection
 @push('after-scripts')
     <script src="{{asset('assets/js/pages/tables/editable-table.js')}}"></script>

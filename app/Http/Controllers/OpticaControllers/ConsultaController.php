@@ -14,6 +14,7 @@ use App\ConsultaServicio;
 use App\ExamenVisual;
 use App\Retinoscopia;
 use App\MedidasOjo;
+use DataTables;
 
 class ConsultaController extends Controller
 {
@@ -54,8 +55,6 @@ class ConsultaController extends Controller
             ->where('consulta.id_consulta',$id)
             ->get()->toArray();
 
-
-
         return response()->json(["consulta"=>$consulta,"examen"=>$examen,"retinoscopia"=>$retinoscopia]);
     }
 
@@ -73,7 +72,7 @@ class ConsultaController extends Controller
     //
     //
     //
-    public function gettable(){
+    public function gettable(Request $request){
         $consulta = DB::table('consulta')
             ->where('consulta.estado', '1')
             ->where('consulta.id_historia_clinica','2')
@@ -82,6 +81,48 @@ class ConsultaController extends Controller
             ->join('paciente','historia_clinica.id_paciente','=','paciente.id_paciente')
             ->select('consulta.*','paciente.nombre','paciente.apellido','jornada_trabajo.nombre_jornada','jornada_trabajo.fecha_jornada')
             ->get();
+
+        if($request->ajax()){
+            return DataTables::of($consulta)
+                ->addIndexColumn()
+                ->addColumn('opciones', function($row){
+                    $btns = '
+                    <div style="text-align:center">
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Ver detalles" data-original-title="Editar">
+                            <a href="consulta/'.$row->id_consulta.'"  data-target=".showConsulta" data-toggle="modal" onclick="verDetalles('.$row->id_consulta.')" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float">Detalles
+                            </a>
+                        </span>
+                        <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Dar de Baja" data-original-title="Dar de Baja">
+                            <a href="#"
+                                                       class="btn btn-raised btn-danger waves-effect"
+                                                       data-type="confirm"
+                                                       data-title="Dar de Baja"
+                                                       data-text="¿Desea eliminar el registro de esta Consuta?"
+                                                       data-obj="'.$row->id_consulta.'"
+                                                       onclick="delData('.$row->id_consulta.')">
+                                                         <i class="ti-trash"></i>
+                                                </a>
+                        </span>
+                        </div>';
+
+                    return $btns;
+                })
+                ->rawColumns(['opciones'])
+                ->make(true);
+        }
+        return response()->json($consulta);
+    }
+
+    public function getfecha(){
+        $consulta = DB::table('consulta')
+            ->where('consulta.estado', '1')
+            ->where('consulta.id_historia_clinica','2')
+            ->join('jornada_trabajo','consulta.id_jornada_trabajo','=','jornada_trabajo.id_jornada_trabajo')
+            ->join('historia_clinica','consulta.id_historia_clinica', '=','historia_clinica.id_historia_clinica')
+            ->join('paciente','historia_clinica.id_paciente','=','paciente.id_paciente')
+            ->select('paciente.nombre','paciente.apellido','jornada_trabajo.fecha_jornada')
+            ->get();
+
         return response()->json($consulta);
     }
 

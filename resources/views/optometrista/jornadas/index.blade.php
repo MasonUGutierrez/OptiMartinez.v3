@@ -4,9 +4,9 @@
 @section('page-style')
     <link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/plugins/sweetalert/sweetalert.css')}}"/>
-    <link rel="stylesheet" href="{{asset('assets/plugins/morrisjs/morris.css')}}"/>
-    <link rel="stylesheet" href="{{asset('assets/plugins/multi-select/css/multi-select.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
+    {{-- Estilos para Datatable --}}
+    <link rel="stylesheet" href="{{asset('assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css')}}">
 @stop
 @section('content')
 <div class="row clearfix">
@@ -21,7 +21,7 @@
             </div>
             <div class="body">
                 <div class="table-responsive">
-                    <table class="table table-hover product_item_list c_table theme-color mb-0">
+                    <table class="table table-hover dataTable-jornada theme-color mb-0">
                         <thead>
                         <tr style="text-align: center">
                             <th>Nombre</th>
@@ -48,10 +48,20 @@
 @section('page-script')
     <script src="{{asset('assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
     <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
+    {{-- Scripts para DataTable --}}
+    <script src="{{asset('assets/bundles/datatablescripts.bundle.js')}}"></script>
+    {{-- Scripts para los botones de jqueryDataTable --}}
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.colVis.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.flash.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.print.min.js')}}"></script>
 @stop
 @push('after-scripts')
     <script src="{{asset('assets/js/pages/ui/sweetalert.js')}}"></script>
+{{--
     <script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
-    <script src="{{asset('assets/plugins/multi-select/js/jquery.multi-select.js')}}"></script>
+--}}
     <script src="{{asset('assets/js/js_propios/js_optometrista/js_jornada/script.js')}}"></script>
 @endpush

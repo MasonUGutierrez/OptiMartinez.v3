@@ -80,9 +80,24 @@ class RolController extends Controller
     public function edit($id){
         return view("roles.asignar",["rol"=>Rol::findOrFail($id)]);
     }
-    public function asignar($id){
+    public function asignar(Request $request,$id){
         $usuario=DB::select('call usuarios_roles(?)',array($id));
-        /*return view("roles.asignar",["rol"=>Rol::findOrFail($id)],["usuario"=>$usuario]);*/
+        if($request->ajax()){
+            return DataTables::of($usuario)
+                ->addIndexColumn()
+                ->addColumn('opciones', function($row){
+                    $btns = '
+                    <div style="text-align:center">
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Editar" data-original-title="Editar">
+                            <a href="'.route('usuarios/'.$row->id_usuario.'/edit').'"  class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float">Editar
+                            </a>
+                        </span>
+                        </div>';
+                    return $btns;
+                })
+                ->rawColumns(['opciones'])
+                ->make(true);
+        }
         return response()->json($usuario);
     }
     public function update(RolFormRequest $request,$id){

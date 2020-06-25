@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\OpticaControllers;
 
 use App\Http\Requests\JornadaTrabajoFormRequest;
+use App\Jornada;
 use App\JornadaTrabajo;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use DataTables;
 class JornadaController extends Controller
 {
     //
@@ -45,14 +48,48 @@ class JornadaController extends Controller
     }
 
     //Funcion para mostrar los campos de jornada trabajo en el index
-    public function mostrar(){
+    public function mostrar(Request $request){
         //Para hacer joins es necesario usa DB en lugar de las relaciones de los modelos que no funka en jquery
-        $jornada = DB::table('jornada_trabajo')
+      /*  $jornada = DB::table('jornada_trabajo')
             ->where('jornada_trabajo.estado','1')
             ->join('jornada', 'jornada_trabajo.id_jornada', '=', 'jornada.id_jornada')
             ->join('departamento', 'jornada_trabajo.id_departamento', '=', 'departamento.id_departamento')
             ->select('jornada_trabajo.*', 'jornada.tipo_jornada', 'departamento.departamento')
-            ->get();
+            ->get()->toJson();*/
+        $jornada = JornadaTrabajo::where('estado','1')->get();
+        /*dd($jornada[0]->jornada);*/
+        if($request->ajax()){
+            return DataTables::of($jornada)
+                ->addIndexColumn()
+                ->addColumn('opciones', function($row){
+                    $btns = '
+                    <div style="text-align:center">
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Editar">
+                            <a href="#" data-target=".editJornada" data-toggle="modal" onclick="updateData('.$row->id_jornada_trabajo.')" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float">Editar
+                            </a>
+                        </span>
+                        <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Dar de Baja" data-original-title="Dar de Baja">
+                            <a href="#" class="btn btn-sm btn-neutral btn-raised waves-effect darBaja waves-red waves-float"
+                                data-type="confirm"
+                                data-text="Se dara de baja la historia clinica '.$row->id_jornada_trabajo.'"
+                                data-obj="Historia Clinica '.$row->id_jornada_trabajo.'">
+                                <i class="zmdi zmdi-delete"></i>
+                            </a>
+                        </span>
+                        </div>
+                        ';
+
+                    return $btns;
+                })
+                ->addColumn('tipo_jornada',function($row){
+                    return $row->jornada->tipo_jornada;
+                })
+                ->addColumn('departamento',function($row){
+                    return $row->departamento->departamento;
+                })
+                ->rawColumns(['opciones','tipo_jornada','departamento'])
+                ->make(true);
+        }
         return response()->json($jornada);
     }
 

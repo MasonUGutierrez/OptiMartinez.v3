@@ -2,12 +2,9 @@
 @section('title', 'Page Blank')
 @section('parentPageTitle', 'Pages')
 @section('page-style')
-    <link rel="stylesheet" href="{{asset('assets/plugins/multi-select/css/multi-select.css')}}"/>
-    <link rel="stylesheet" href="{{asset('assets/plugins/jquery-spinner/css/bootstrap-spinner.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>
-    {{-- Script para SweetAlert --}}
-    <script src="{{asset('assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
+
     {{-- Estilos para Datatable --}}
     <link rel="stylesheet" href="{{asset('assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css')}}">
     {{-- Estilos para SweetAlert --}}
@@ -54,6 +51,8 @@
     <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
     {{-- Scripts para DataTable --}}
     <script src="{{asset('assets/bundles/datatablescripts.bundle.js')}}"></script>
+    {{-- Script para SweetAlert --}}
+    <script src="{{asset('assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
     {{-- Scripts para los botones de jqueryDataTable --}}
     <script src="{{asset('assets/plugins/jquery-datatable/buttons/dataTables.buttons.min.js')}}"></script>
     <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.bootstrap4.min.js')}}"></script>
@@ -64,8 +63,5 @@
 @stop
 @push('after-scripts')
     <script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
-  {{--  <script src="{{asset('assets/plugins/multi-select/js/jquery.multi-select.js')}}"></script>--}}
     <script src="{{asset('assets/js/js_propios/js_roles/script.js')}}"></script>
-    {{-- Scripts para inicializar DataTable --}}
-   {{-- <script src="{{asset('assets/js/pages/tables/jquery-datatable.js')}}"></script>--}}
 @endpush

@@ -9,7 +9,7 @@
                         <h2 class="pt-4"><strong>Lista</strong> de Usuarios con Rol</h2>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-hover product_item_list c_table theme-color mb-0">
+                        <table class="table table-hover dataTable-usuarios theme-color mb-0">
                             <thead>
                             <tr>
                                 <th style="text-align: center">Nombres y Apellidos</th>
