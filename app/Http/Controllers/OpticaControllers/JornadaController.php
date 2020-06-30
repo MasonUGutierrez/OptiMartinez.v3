@@ -50,14 +50,7 @@ class JornadaController extends Controller
     //Funcion para mostrar los campos de jornada trabajo en el index
     public function mostrar(Request $request){
         //Para hacer joins es necesario usa DB en lugar de las relaciones de los modelos que no funka en jquery
-      /*  $jornada = DB::table('jornada_trabajo')
-            ->where('jornada_trabajo.estado','1')
-            ->join('jornada', 'jornada_trabajo.id_jornada', '=', 'jornada.id_jornada')
-            ->join('departamento', 'jornada_trabajo.id_departamento', '=', 'departamento.id_departamento')
-            ->select('jornada_trabajo.*', 'jornada.tipo_jornada', 'departamento.departamento')
-            ->get()->toJson();*/
         $jornada = JornadaTrabajo::where('estado','1')->get();
-        /*dd($jornada[0]->jornada);*/
         if($request->ajax()){
             return DataTables::of($jornada)
                 ->addIndexColumn()
