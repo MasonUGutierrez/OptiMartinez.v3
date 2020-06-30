@@ -39,7 +39,7 @@ class HClinicaFormRequest extends FormRequest
             'nombre' => ['bail', 'required', 'string'],
             'apellido' => ['bail', 'required', 'string'],
             'edad' => ['bail', 'numeric'],
-            'cedula' => ['bail', 'required', 'string'], //$uniqueRule],
+            'cedula' => ['bail', 'string'], //$uniqueRule],
             'telefono' => ['bail', 'required', 'string'],
             'direccion' => ['bail', 'string'],
             'antecedentes' => ['bail', 'required', 'string']

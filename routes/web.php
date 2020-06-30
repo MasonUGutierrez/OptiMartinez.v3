@@ -74,7 +74,7 @@ Route::get('/test', function(){
 
 // Ruta para historias Clinicas
 Route::get('historias-clinicas/all', 'OpticaControllers\HClinicaController@getAll');
-Route::get('historias-clinicas/getpaciente/{historia_clinica}', 'OpticaControllers\HClinicaController@getPaciente');
+Route::get('historias-clinicas/gethistoria/{historia_clinica}', 'OpticaControllers\HClinicaController@getHClinica');
 Route::resource('historias-clinicas', 'OpticaControllers\HClinicaController');
 Route::resource('historias-cuentas', 'OpticaControllers\HCuentaController');
 Route::resource('pacientes', 'OpticaControllers\PacienteController');

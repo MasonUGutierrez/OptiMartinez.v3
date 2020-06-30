@@ -11,7 +11,7 @@
 
 @section('content')
 <div class="row clearfix">
-    <div class="col-lg-12">
+    <div class="col-lg-7">
         <div class="card">
             <div class="header">
                 <h2>
@@ -24,8 +24,38 @@
                 </h2>
             </div>
             <div class="body">
-
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{$hclinica->paciente->nombre}}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" class="form-control" id="apellido" name="apellido" value="{{$hclinica->paciente->apellido}}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12">
+                        <label for="cedula">Identificación: </label>
+                        <input type="text" class="form-control" id="cedula" name="cedula" value="{{$hclinica->paciente->cedula}}">
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    <strong>Últimas</strong> medidas
+                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Imprimir">
+                        <a href="#" class="btn btn-sm btn-raised btn-danger waves-effect waves-light">
+                            <i class="zmdi zmdi-print"></i>
+                        </a>
+                    </span>
+                </h2>
+            </div>
+            <div class="body"></div>
         </div>
     </div>
     <div class="col-lg-12">
@@ -82,4 +112,10 @@
 <script src="{{asset('assets/js/pages/ui/sweetalert.js')}}"></script>
 {{-- Script para inicializar el jQuery DataTable --}}
 <script src="{{asset('assets/js/pages/tables/jquery-datatable.js')}}"></script>
+
+<script async="async">
+    var obj_hclinica = @json($hclinica);
+    // var hclinica = {{json_encode($hclinica)}};
+    console.log(obj_hclinica);
+</script>
 @endpush

@@ -40,4 +40,8 @@ class HClinica extends Model
     {
         return $this->belongsTo('App\OpticaModels\Paciente', 'id_paciente', 'id_paciente');
     }
+    public function consultas()
+    {
+        return $this->hasMany('App\OpticaModesls\Consulta','id_historia_clinica', 'id_historia_clinica');
+    }
 }

@@ -116,20 +116,6 @@
                             button:"Aceptar"
                         }).then(()=>{
                             fnDelete($(this));
-                            // $.ajax({
-                            //     type:"DELETE",
-                            //     url:$(this).attr('href'),
-                            //     success:function(datas, status, jqXhr){
-                            //         console.log('Message: ' + datas);
-                            //         data();
-                            //     },
-                            //     error:function(jqXhr, textStatus, errorThrown){
-                            //         console.log('status: ' + textStatus);
-                            //         console.log('error: ' + errorThrown);
-                            //         console.log('jquery XMLHTTPRequest object: \n');
-                            //         window.console.log(jqXhr);
-                            //     }
-                            // });
                         });
                     }
                     else{
@@ -174,7 +160,7 @@
             // Agregando directamente el responseJSON devuelto del controlador al DataTable
             $('.dataTable-hc').DataTable({
                 destroy:true,
-                processing:true,
+                // processing:true,
                 serverSide:true,
                 ajax: {
                     url:'historias-clinicas/all',
@@ -217,7 +203,6 @@
                     }
                 }
             });
-            // $('[data-toggle="tooltip"]').tooltip("update");
             // $.ajax({
             //     type: 'GET',
             //     dataType: 'json',
@@ -232,7 +217,7 @@
             //             $.ajax({
             //                 type:'GET',
             //                 dataType: 'json',
-            //                 url:`{{url('historias-clinicas/getpaciente/${hclinica.id_historia_clinica}')}}`,
+            //                 url:`{{url('historias-clinicas/gethistoria/${hclinica.id_historia_clinica}')}}`,
             //                 success: function(response1){
             //                     // console.log(response1.nombre);
             //                     data_tr += `
@@ -282,12 +267,7 @@
                     console.log('Error::'+errorThrown);
                     console.log('Error::'+statusText);
 
-                    // var errorLaravel = JSON.stringify(jqXHR);
                     console.log(jqXHR);
-
-                    // var convertResponseText = JSON.parse(jqXHR.responseText);
-
-                    // console.log(convertResponseText);
 
                 }
                 // error:function(result){

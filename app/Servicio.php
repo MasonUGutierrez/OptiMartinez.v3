@@ -18,4 +18,10 @@ class Servicio extends Model
         'precio',
         'estado'
     ];
+
+    // Relaciones con otros modelos
+    public function consultas()
+    {
+        return $this->belongsToMany('App\OpticaModels\Consulta');
+    }
 }

@@ -12,7 +12,6 @@ use DataTables;
 // Clases opcionales
 use App\OpticaModels\Paciente;
 use App\OpticaModels\HCuenta;
-use Yajra\DataTables\DataTables as DataTablesDataTables;
 
 class HClinicaController extends Controller
 {
@@ -63,12 +62,12 @@ class HClinicaController extends Controller
         }
     }
 
-    public function getPaciente($id)
+    public function getHClinica($id)
     {
         $hclinica = HClinica::findOrFail($id);
-        $paciente = $hclinica->paciente;
+        // $paciente = $hclinica->paciente;
 
-        return response()->json($paciente);
+        return response()->json($hclinica);
     }
 
     /**
