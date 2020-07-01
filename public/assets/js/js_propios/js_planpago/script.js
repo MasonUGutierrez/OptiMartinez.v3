@@ -16,7 +16,6 @@ function viewData() {
         url: "planpagos",
         success: function (response) {
             var rows = "";
-            console.log(response);
             $.each(response, function (key, value) {
                 rows += `
                                 <div class="col-sm-4">
@@ -26,12 +25,6 @@ function viewData() {
                                             <p class="card-text">${value.descripcion}</p>
                                          </div>
                                         <div class="card-footer " style="text-align: center">
-                                            <!--<span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Ver Detalles">
-                                                <a href="planpago/${value.id_plan_pago}" class="btn btn-raised btn-secondary waves-effect">
-                                                <i class="ti-search"></i>
-                                                </a>
-                                            </span>
-                                            -->
                                              <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Editar">
                                                 <a href="planpago/${value.id_plan_pago}/edit"  data-target=".modal2" data-toggle="modal" onclick='editData(${value.id_plan_pago})' class="btn btn-raised btn-info waves-effect">
                                                  <i class="ti-pencil-alt"></i>

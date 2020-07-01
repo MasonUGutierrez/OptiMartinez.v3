@@ -2,21 +2,23 @@
 <div class="modal" id="largeModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="title">Detalle de Rol</h4>
-            </div>
             <div class="modal-body center">
-                <p><b>Lista de Usuarios con Rol </b><b id="nameRol"></b></p>
-                <div class="table-responsive">
-                    <table class="table table-hover product_item_list c_table theme-color mb-0">
-                        <thead>
-                        <tr>
-                            <th style="text-align: center">Nombres y Apellidos</th>
-                            <th>Opciones</th>
-                        </tr>
-                        </thead>
-                        <tbody id="tablamodal"></tbody>
-                    </table>
+                <div class="card">
+                    <div class="header">
+                        <h2 ><strong>Detalle</strong> de Rol</h2>
+                        <h2 class="pt-4"><strong>Lista</strong> de Usuarios con Rol</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover dataTable-usuarios theme-color mb-0">
+                            <thead>
+                            <tr>
+                                <th style="text-align: center">Nombres y Apellidos</th>
+                                <th>Opciones</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tablamodal"></tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

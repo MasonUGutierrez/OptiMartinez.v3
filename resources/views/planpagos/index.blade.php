@@ -11,11 +11,11 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="header">
-                    <h3><strong>Planes de Pago</strong>
+                    <h2><strong>Planes </strong>de Pago
                             <button type="button" id="botonN" class="btn btn-success waves-effect m-r-20" data-toggle="modal"
                                     data-target="#largeModal">Nuevo
                             </button>
-                    </h3>
+                    </h2>
                 </div>
                 <div class="body align-center">
                     <div class="row" id="aqui">
@@ -67,12 +67,14 @@
 @endsection
 @section('page-script')
     <script src="{{asset('assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
-    <script src="{{asset('assets/js/pages/ui/sweetalert.js')}}"></script>
     <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+@stop
+@push('after-scripts')
+    <script src="{{asset('assets/js/pages/ui/sweetalert.js')}}"></script>
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
     <script src="{{asset('assets/js/js_propios/js_planpago/script.js')}}"></script>
-@stop
+@endpush

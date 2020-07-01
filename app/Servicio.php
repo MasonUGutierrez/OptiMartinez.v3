@@ -24,4 +24,8 @@ class Servicio extends Model
     {
         return $this->belongsToMany('App\OpticaModels\Consulta');
     }
+    /*public function ConsultaServicio(){
+        $this -> hasMany('App\ConsultaServicio','id_servicio','id_servicio');
+
+    }*/
 }
