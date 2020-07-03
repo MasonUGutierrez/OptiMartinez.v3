@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\JornadaTrabajo;
 use App\Servicio;
+use App\OpticaModels\HClinica;
 use App\ConsultaServicio;
 use App\ExamenVisual;
 use App\Retinoscopia;
@@ -29,6 +30,18 @@ class ConsultaController extends Controller
             ->where('estado','1');
 
         return response()->json($jornada);
+    }
+
+    public function getfecha($id){
+        $fecha = DB::table('jornada_trabajo')->get()
+            ->where('id_jornada_trabajo',$id);
+
+        return response()->json($fecha);
+    }
+
+    public function create($id)
+    {
+        return view('hclinicas.add-consulta',["hclinica"=>HClinica::findOrFail($id)]);
     }
 
     public function show($id){
@@ -72,10 +85,10 @@ class ConsultaController extends Controller
     //
     //
     //
-    public function gettable(Request $request){
+    public function gettable(Request $request, $id){
         $consulta = DB::table('consulta')
             ->where('consulta.estado', '1')
-            ->where('consulta.id_historia_clinica','2')
+            ->where('consulta.id_historia_clinica',$id)
             ->join('jornada_trabajo','consulta.id_jornada_trabajo','=','jornada_trabajo.id_jornada_trabajo')
             ->join('historia_clinica','consulta.id_historia_clinica', '=','historia_clinica.id_historia_clinica')
             ->join('paciente','historia_clinica.id_paciente','=','paciente.id_paciente')
@@ -113,14 +126,12 @@ class ConsultaController extends Controller
         return response()->json($consulta);
     }
 
-    public function getfecha(){
-        $consulta = DB::table('consulta')
-            ->where('consulta.estado', '1')
-            ->where('consulta.id_historia_clinica','2')
-            ->join('jornada_trabajo','consulta.id_jornada_trabajo','=','jornada_trabajo.id_jornada_trabajo')
-            ->join('historia_clinica','consulta.id_historia_clinica', '=','historia_clinica.id_historia_clinica')
-            ->join('paciente','historia_clinica.id_paciente','=','paciente.id_paciente')
-            ->select('paciente.nombre','paciente.apellido','jornada_trabajo.fecha_jornada')
+    public function getpaciente($id){
+        $consulta = DB::table('historia_clinica')
+            ->where('historia_clinica.estado', '1')
+            ->where('historia_clinica.id_historia_clinica',$id)
+            ->join('paciente','historia_clinica.id_paciente',"=","paciente.id_paciente")
+            ->select('paciente.nombre','paciente.apellido')
             ->get();
 
         return response()->json($consulta);
@@ -179,7 +190,7 @@ class ConsultaController extends Controller
             }
             $contaServicio = $contaServicio + 1;
         }
-        return Redirect::to('consulta');
+        return Redirect::to('historias-clinicas/consulta/create');
     }
     public function update(ConsultaFormRequest $request,$id){
 

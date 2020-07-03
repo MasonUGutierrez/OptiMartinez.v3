@@ -31,7 +31,7 @@ class HClinicaController extends Controller
         if($request->ajax()){
             $hclinicas = HClinica::where('estado', '1')->get();
             // return response()->json($hclinicas);
-            
+
             return DataTables::of($hclinicas)
                 ->addIndexColumn()
                 ->addColumn('opciones', function($row){
@@ -47,7 +47,7 @@ class HClinicaController extends Controller
                                 data-type="confirm"
                                 data-text="Se dara de baja la historia clinica '.$row->id_historia_clinica.'"
                                 data-obj="Historia Clinica '.$row->id_historia_clinica.'">
-                                <i class="zmdi zmdi-delete"></i>    
+                                <i class="zmdi zmdi-delete"></i>
                             </a>
                         </span>
                         </div>';
@@ -104,12 +104,12 @@ class HClinicaController extends Controller
                 'direccion'=> $request->get('direccion')
             ]);
             // return response()->json($paciente);
-            
+
             $paciente->hclinica()->create([
                 'antecedentes' => $request->get('antecedentes'),
                 'fecha_registro' => $fecha_actual
             ]);
-            
+
             $hcuenta = new HCuenta([
                 'estado_historia' => 'solvente',
                 'fecha_registro' => $fecha_actual
@@ -119,7 +119,7 @@ class HClinicaController extends Controller
 
             return response()->json($paciente);
         }
-// 
+//
         return redirect()->action('OpticaControllers\HClinicaController@index');
     }
 

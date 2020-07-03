@@ -52,8 +52,8 @@
 @endsection
 @push('after-scripts')
     <script src="{{asset('assets/js/pages/tables/editable-table.js')}}"></script>
+    <script src="{{asset('assets/plugins/editable-table/mindmup-editabletable.js')}}"></script>
     <script src="{{asset('assets/js/pages/ui/sweetalert.js')}}"></script>
     <script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
-    <script src="{{asset('assets/plugins/editable-table/mindmup-editabletable.js')}}"></script>
     <script src="{{asset('assets/js/js_propios/js_optometrista/js_consulta/script.js')}}"></script>
 @endpush

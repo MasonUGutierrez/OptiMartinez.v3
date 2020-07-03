@@ -1,6 +1,8 @@
 
 //Variable global para controlar el id de la historia clinica
-var id_historia = "2";
+
+
+var id_historia = $('#historiasid').val();
 var eVisual= "";
 var eVisualp="";
 var retino="";
@@ -17,7 +19,7 @@ $(function () {
 
     $("#hall").toggle();
     $("#checkbox14").click(function(){
- e();
+    e();
     });
 
 
@@ -37,7 +39,7 @@ function verJornada(){
     $.ajax({
         type:"GET",
         dataType:'json',
-        url:"verjor",
+        url:"consulta/create/verjor",
         success:function (response) {
             var rows="";
             $.each(response,function (key,value) {
@@ -62,11 +64,11 @@ if(document.getElementById('button').clicked == true)
 */
 
 //Funcion para mostrar el nombre del paciente y la fecha dentro del modal nueva consulta
-function verNF(){
+/*function verNF(){
     $.ajax({
         type:"GET",
         dataType:'json',
-        url:"verfe",
+        url:"consulta/create/verfe/"+ id_historia,
         success:function (response) {
             $nombres = response[0].nombre + " " + response[0].apellido;
             $('#nombreCliente').val($nombres);
@@ -74,14 +76,14 @@ function verNF(){
         }
 
     })
-}
+}*/
 
 //FUncion para guardar los precios de los servicios dentro de variables globales
-function probar() {
+/*function probar() {
     $.ajax({
         type: "GET",
         dataType: "json",
-        url: "idservicios",
+        url: "consulta/create/idservicios",
         success: function (response) {
             //Obteniendo el id y los precios de los servicios de retinoscopia y examen visual
             eVisual = response[0].id_servicio;
@@ -93,64 +95,23 @@ function probar() {
         error:function (response) {
         }
     })
-}
+}*/
 
 //Funcion para mostrar en el index todas las consultas de un historia clinica
 function verConsulta(){
-   /* $.ajax({
-        type: "GET",
-        dataType: "json",
-        /!*Poner el URL de la funcion que tiene el getAll que devuelve los datos*!/
-        url: "getconsulta",
-        success: function (response) {
-            var rows = "";
-
-            $.each(response, function (key, value) {
-                rows += `
-                                <tr style="text-align: center">
-                                        <td>${value.id_consulta}</td>
-                                        <td>${value.nombre_jornada}</td>
-                                        <td>${value.fecha}</td>
-                                        <td>
-                                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Detalles">
-                                                <a href="consulta/${value.id_consulta}"  data-target=".showConsulta" data-toggle="modal" onclick='verDetalles(${value.id_consulta})' class="btn btn-raised btn-info waves-effect">
-                                                 <i class="ti-pencil-alt"></i>
-                                                </a>
-                                             </span>
-                                             <span class="d-inline-block" tabindex="0" data-toggle="tooltip"  data-placement="top" title="Eliminar">
-                                                 <a href="#"
-                                                       class="btn btn-raised btn-danger waves-effect"
-                                                       data-type="confirm"
-                                                       data-title="Dar de Baja"
-                                                       data-text="¿Desea eliminar el registro de esta Consuta?"
-                                                       data-obj="${value.nombre_jornada}"
-                                                       onclick="delData(${value.id_consulta})">
-                                                         <i class="ti-trash"></i>
-                                                </a>
-                                             </span>
-                                        </td>
-                                </tr>
-                            `;
-            });
-            $('#tabla').html(rows);
-        },
-        error:function (response) {
-            console.table(response);
-        }
-    })*/
     $('.dataTable-consulta').DataTable({
         destroy:true,
         processing:true,
         serverSide:true,
         ajax: {
-            url:'getconsulta',
+            url: `getconsulta/${id_historia}`,
             type:'GET'
             // dataSrc: ''
         },
         columns:[
             {data:'id_consulta'},
             {data:'nombre_jornada'},
-            {data:'fecha'},
+            {data:'fecha_jornada'},
             {data:'opciones', name:"opciones", orderable:false, searchable: false}
         ],
         lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "Todo"]],
@@ -186,7 +147,7 @@ function verConsulta(){
 }
 
 //Funcion para guardar una consulta
-function newConsulta() {
+/*function newConsulta() {
 
     //Nombre Jornada
     var jornada = $('#jornadaNombres').val();
@@ -251,7 +212,7 @@ function newConsulta() {
             console.log(result);
         }
     })
-}
+}*/
 
 //Funcion para actualizar una consulta
 function updateConsulta() {
@@ -327,7 +288,7 @@ function verDetalles($id){
     $.ajax({
         type:"GET",
         dataType:'json',
-        url:"verjor",
+        url:"consulta/create/verjor",
         success:function (response) {
             var rows="";
             $.each(response,function (key,value) {
@@ -405,7 +366,7 @@ function delData(id) {
                 $.ajax({
                     type: "DELETE",
                     dataType: "json",
-                    url: 'consulta/' + id,
+                    url: '/historias-clinicas/consulta/' + id,
                     success: function (response) {
                         verConsulta();
                     },
