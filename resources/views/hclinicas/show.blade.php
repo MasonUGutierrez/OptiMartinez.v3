@@ -119,5 +119,7 @@
     // var hclinica = {{json_encode($hclinica)}};
     console.log(obj_hclinica);
 </script>
+<script src="{{asset('assets/js/pages/tables/editable-table.js')}}"></script>
+<script src="{{asset('assets/plugins/editable-table/mindmup-editabletable.js')}}"></script>
 <script src="{{asset('assets/js/js_propios/js_optometrista/js_consulta/script.js')}}"></script>
 @endpush

@@ -33,9 +33,10 @@ class ConsultaController extends Controller
     }
 
     public function getfecha($id){
-        $fecha = DB::table('jornada_trabajo')->get()
-            ->where('id_jornada_trabajo',$id);
-
+        $fecha = DB::table('jornada_trabajo')
+            ->where('id_jornada_trabajo',$id)
+            ->pluck('fecha_jornada')
+            ->first();
         return response()->json($fecha);
     }
 

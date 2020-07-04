@@ -115,14 +115,12 @@
                                         <label id="seleccion" for="checkbox14">Seleccione para mostrar campo de Retinoscopia.</label>
                                     </div>
                                 </div>
-                                <div class="col-sm-12">
                                     <div class="form-group">
                                         <div class="form-line">
                                     <textarea id="hall" rows="4" class="form-control no-resize"
                                               placeholder="Hallazgos de Retinoscopia..."></textarea>
                                         </div>
                                     </div>
-                                </div>
                             </div>
                         </div>
                     </div>

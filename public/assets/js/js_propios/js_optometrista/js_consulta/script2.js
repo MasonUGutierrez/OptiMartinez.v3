@@ -9,9 +9,9 @@ var retinop="";
 
 $(function () {
     //Esto es para activar y desactivar checkbox
-    $("#hallazgo").toggle();
+    $("#desaparecer").toggle();
     $("#checkbox12").click(function(){
-        $("#hallazgo").toggle();
+        $("#desaparecer").toggle();
     });
 
     $("#hall").toggle();
@@ -23,9 +23,10 @@ $(function () {
         $.ajax({
             type:'get',
             dataType:'json',
-            url:"verfecha/" + $('#FechaNewConsulta').val(),
+            url:"verfecha/" + $('#jornadaNombres option:selected').val(),
             success:function(data){
-                $('#FechaNewConsulta').val(data.fecha_jornada);
+                $('#FechaNewConsulta').val(data);
+
             },
             error:(jqXHR, statusText, errorThrown)=>{
                 console.log('Error:: '+errorThrown);
@@ -100,7 +101,7 @@ function newConsulta() {
     var jornada = $('#jornadaNombres').val();
 
     //Fecha
-    var fecha = $('#fecha').val();
+    var fecha = $('#FechaNewConsulta').val();;
 
     //Ojo derecho
     var esd = $('#esd').html();

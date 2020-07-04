@@ -12,17 +12,10 @@ var retinop="";
 //Esto una vez cargada la pagina se ejecutara
 $(function () {
     //Esto es para activar y desactivar checkbox
-    $("#hallazgo").toggle();
-    $("#checkbox12").click(function(){
-        $("#hallazgo").toggle();
-    });
-
     $("#hall").toggle();
     $("#checkbox14").click(function(){
-    e();
+        $("#hall").toggle();
     });
-
-
     verConsulta();
     verNF();
     probar();
@@ -49,54 +42,6 @@ function verJornada(){
         }
     })
 }
-
-/*
-
-
-Con este if se puede saber si es presionado e
-if(document.getElementById('button').clicked == true)
-{
-   alert("button was clicked");
-}
-
-
-
-*/
-
-//Funcion para mostrar el nombre del paciente y la fecha dentro del modal nueva consulta
-/*function verNF(){
-    $.ajax({
-        type:"GET",
-        dataType:'json',
-        url:"consulta/create/verfe/"+ id_historia,
-        success:function (response) {
-            $nombres = response[0].nombre + " " + response[0].apellido;
-            $('#nombreCliente').val($nombres);
-            $('#fecha').val(response[0].fecha_jornada);
-        }
-
-    })
-}*/
-
-//FUncion para guardar los precios de los servicios dentro de variables globales
-/*function probar() {
-    $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: "consulta/create/idservicios",
-        success: function (response) {
-            //Obteniendo el id y los precios de los servicios de retinoscopia y examen visual
-            eVisual = response[0].id_servicio;
-            eVisualp = response[0].precio;
-            retino = response[1].id_servicio;
-            retinop = response[1].precio;
-            console.table(response);
-        },
-        error:function (response) {
-        }
-    })
-}*/
-
 //Funcion para mostrar en el index todas las consultas de un historia clinica
 function verConsulta(){
     $('.dataTable-consulta').DataTable({
@@ -146,73 +91,6 @@ function verConsulta(){
     });
 }
 
-//Funcion para guardar una consulta
-/*function newConsulta() {
-
-    //Nombre Jornada
-    var jornada = $('#jornadaNombres').val();
-
-    //Fecha
-    var fecha = $('#fecha').val();
-
-    //Ojo derecho
-    var esd = $('#esd').html();
-    var cd = $('#cd').html();
-    var ejd = $('#ejd').html();
-    var ad = $('#ad').html();
-    var avd = $('#avd').html();
-
-
-
-    //Ojo Izquierdo
-    var esi = $('#esi').html();
-    var ci = $('#ci').html();
-    var eji = $('#eji').html();
-    var ai = $('#ai').html();
-    var avi = $('#avi').html();
-
-    //D.P y ALT
-    var dp = $('#dp').html();
-    var alt = $('#alt').html();
-
-
-    //Observaciones
-    var obser = $('#observ').val();
-
-    //If para validar si se va a hacer retinoscopia
-    if($('#checkbox12').is(":checked"))
-    {
-        var hallazgo = $('#hallazgo').val();
-
-        //Variable para enviar los valores que se necesitan en la tabla consulta
-        var dataExamen = {id_historia_clinica:id_historia,fecha:fecha,id_jornada_trabajo:jornada,
-            id_servicio:[eVisual,retino],precio:[eVisualp,retinop],hallazgos:hallazgo,
-            distancia_pupilar:dp,alt:alt,observacion:obser,
-            esfera:[esd,esi],cilindro:[cd,ci],eje:[ejd,eji],adicion:[ad,ai],agudeza_visual:[avd,avi]
-        };
-
-    }else{
-        var dataExamen = {id_historia_clinica:id_historia,fecha:fecha,id_jornada_trabajo:jornada,
-            id_servicio:[eVisual],precio:[eVisualp],
-            distancia_pupilar:dp,alt:alt,observacion:obser,
-            esfera:[esd,esi],cilindro:[cd,ci],eje:[ejd,eji],adicion:[ad,ai],agudeza_visual:[avd,avi]
-        };
-    }
-
-
-    $.ajax({
-        type:'post',
-        dataType:'json',
-        data:dataExamen,
-        url:'consulta',
-        success:function (result) {
-            verConsulta();
-        },error:function (result) {
-            verConsulta();
-            console.log(result);
-        }
-    })
-}*/
 
 //Funcion para actualizar una consulta
 function updateConsulta() {
@@ -339,6 +217,8 @@ function verDetalles($id){
             //Retinoscopia
             $('#hall').html(response.retinoscopia[0].hallazgos);
             $('#textarea').removeAttr("hidden");
+            $("#hall").toggle();
+            $('#checkbox14').prop('checked','checked');
         }else {
             $('#hall').html(" ");
         }
