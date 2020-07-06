@@ -55,7 +55,9 @@
                     </span>
                 </h2>
             </div>
-            <div class="body"></div>
+            <div class="body">
+
+            </div>
         </div>
     </div>
     <div class="col-lg-12">
@@ -71,8 +73,22 @@
                 </h2>
             </div>
             <div class="body">
+                <ul class="Examen_visual">
+                    @foreach($hclinica->consultas as $consulta)
+                        <li><span>Optometrista: </span>{{$consulta->optometrista}}</li>
+                        <li><span>Jornada: </span>{{$consulta->jornadaTrabajo->nombre_jornada}}</li>
+                        <li>
+                            <span>Servicios: </span><br>
+                            <ul>
+                                @foreach($consulta->servicios as $servicio)
+                                    <li>{{$servicio->servicio}} (C$ {{$servicio->consultaServicio->precio}})</li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endforeach
+                </ul>
                 <div class="table-responsive-md">
-                    <table class="table table-hover table-bordered theme-color dataTable">
+                    <table class="table table-hover table-bordered theme-color dt-consultas">
                         <caption>Lista de consultas</caption>
                         <thead>
                             <tr>
@@ -113,9 +129,25 @@
 {{-- Script para inicializar el jQuery DataTable --}}
 <script src="{{asset('assets/js/pages/tables/jquery-datatable.js')}}"></script>
 
-<script async="async">
-    var obj_hclinica = @json($hclinica);
+<script >
+    var obj_hclinica = @json($hclinica->consultas[0]->servicios[0]->consultaServicio);
     // var hclinica = {{json_encode($hclinica)}};
     console.log(obj_hclinica);
+
+    function data(){
+        $('.dt-consultas').dataTable({
+            detroy:true,
+            serverSide:true,
+            ajax:{
+                type:'get',
+                url:'',
+                // dataSrc:,
+            },
+            columns:[
+                {},
+                {data:'opciones', name:'opciones', orderable:false, searchable:false, widht:'15%'}
+            ],
+        });
+    }
 </script>
 @endpush

@@ -132,6 +132,8 @@ class HClinicaController extends Controller
     public function show($id)
     {
         $hclinica = HClinica::findOrFail($id);
+        
+        // $uMedidas = 
         return view('hclinicas.show', ['hclinica'=>$hclinica]);
     }
 

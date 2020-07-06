@@ -91,7 +91,7 @@
             data();            
         });     
          // Solucion de problema con tooltip en los botones que se crean por la peticion ajax
-         $(document).ajaxComplete(function(){
+        $(document).ajaxComplete(function(){
             // $('[data-toggle="tooltip"]').tooltip(); 
 
             $('.darBaja').on('click', function(event){
@@ -288,5 +288,20 @@
                 $('#antecedentes').val("");
             } 
         }
+        $('#jornadas').on('change',function(){
+            $.ajax('url',{
+                type:'get',
+                dataType:'json',
+                success:function(data, status, jqXHR){
+                    $('#id_fecha_input').val(data.fecha_jornada);
+                }
+                error:(jqXHR, statusText, errorThrown)=>{
+                    console.log('Error:: '+errorThrown);
+                    console.log('Status:: '+statusText);
+                    console.log('jqXHR Object: \n');
+                    console.log(jqXHR);
+                }
+            });
+        });
     </script>
 @endpush

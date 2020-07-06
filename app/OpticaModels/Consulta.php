@@ -47,8 +47,9 @@ class Consulta extends Model
 
     function servicios()
     {
-        return $this->belongsToMany('App\OpticaModels\Servicio', 'consulta-servicio', 'id_consulta', 'id_servicio')
+        return $this->belongsToMany('App\Servicio', 'consulta-servicio', 'id_consulta', 'id_servicio')
                     ->using('App\OpticaModels\ConsultaServicio')
+                    ->as('consultaServicio')
                     ->withPivot([
                         'precio', 
                         'estado',

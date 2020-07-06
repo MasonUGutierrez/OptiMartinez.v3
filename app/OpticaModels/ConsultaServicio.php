@@ -4,6 +4,7 @@ namespace App\OpticaModels;
 
 // use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use phpDocumentor\Reflection\Types\Self_;
 
 class ConsultaServicio extends Pivot
 {
@@ -33,13 +34,23 @@ class ConsultaServicio extends Pivot
      * 
      * @var bool
      */    
-    protected $incrementing = true;
+    public $incrementing = true;
     /**
      * Variable para indicar los campos que no son asignables en masa
      * 
      * @var array
      */
     protected $guarded = [];
+
+    // Relaciones con otros modelos como tabla intermedia
+    public function consulta()
+    {
+        return $this->belongsTo('App\OpticaModels\Consulta', 'id_consulta', 'id_consulta');        
+    }
+    public function servicio()
+    {
+        return $this->belongsTo('App\Servicio', 'id_servicio', 'id_servicio');
+    }
 
     // Relaciones con otros modelos
     public function examenVisual()
