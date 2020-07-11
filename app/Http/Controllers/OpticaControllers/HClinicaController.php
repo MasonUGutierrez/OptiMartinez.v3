@@ -12,6 +12,9 @@ use DataTables;
 // Clases opcionales
 use App\OpticaModels\Paciente;
 use App\OpticaModels\HCuenta;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
+// use Exception;
 
 class HClinicaController extends Controller
 {
@@ -66,7 +69,7 @@ class HClinicaController extends Controller
     {
         $hclinica = HClinica::findOrFail($id);
         // $paciente = $hclinica->paciente;
-
+        // $consultaServicio = \App\OpticaModels\ConsultaServicio::where('id_consulta', $hclinica->consulta);
         return response()->json($hclinica);
     }
 
@@ -132,9 +135,27 @@ class HClinicaController extends Controller
     public function show($id)
     {
         $hclinica = HClinica::findOrFail($id);
-        
+        // try-catch porque ocurre una excepcion 404 cuando la historia clinica no tiene consultas registradas
+        // Algoritmo para determinar las medidas de la ultima consulta en la historia clinica determinada
+        try{
+            $ultimaConsulta = $hclinica->consultas()->latest('fecha')->firstOrFail();
+            $uConsultaServicio = \App\OpticaModels\ConsultaServicio::where('id_consulta',$ultimaConsulta->id_consulta)->get();
+        }catch(ModelNotFoundException $e)
+        {
+            session()->flash('error_message', 'No se han encontrado registros de medidas');
+            return view('hclinicas.show', ['hclinica'=>$hclinica, 'uConsultaServicios'=>null]);
+            // dd($e);
+        }
+        return view('hclinicas.show', ['hclinica'=>$hclinica, 'uConsultaServicios'=>$uConsultaServicio]);
+
+        // dd($ultimaConsulta);
+
+        // Array con las consultas servicios de la ultima consulta por determinada historia clinica
         // $uMedidas = 
-        return view('hclinicas.show', ['hclinica'=>$hclinica]);
+        // dd($uConsultaServicio[0]->examenVisual->medidasOjos);
+        // $consultaServicio = $hclinica->consultas()->latest('fecha')->first()->servicios()->first()->consultaServicio;
+        // dd($consultaServicio->servicio->servicio);
+        // dd($consultaServicio->examenVisual->observacion);
     }
 
     /**

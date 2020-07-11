@@ -4,7 +4,6 @@ namespace App\OpticaModels;
 
 // use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use phpDocumentor\Reflection\Types\Self_;
 
 class ConsultaServicio extends Pivot
 {

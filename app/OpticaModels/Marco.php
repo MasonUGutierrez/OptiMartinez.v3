@@ -52,6 +52,7 @@ class Marco extends Model
      */
     public function tiposmarcos()
     {
-        return $this->belongsToMany('App\OpticaModels\TipoMarco', 'marco-tipo_marco', 'id_marco', 'id_tipo_marco');
+        return $this->belongsToMany('App\OpticaModels\TipoMarco', 'marco-tipo_marco', 'id_marco', 'id_tipo_marco') 
+                ->withPivot('id_mtm');
     }
 }

@@ -33,10 +33,10 @@ class ExamenVisual extends Model
 
     // Relaciones con otros modelos
     public function consultaServicio(){
-        $this->belongsTo('App\OpticaModels\ConsultaServicio','id_consulta_servicio', 'id_consulta_servicio');
+        return $this->belongsTo('App\OpticaModels\ConsultaServicio','id_consulta_servicio', 'id_consulta_servicio');
     }
 
     public function medidasOjos(){
-        $this->hasMany('App\OpticaModels\MedidasOjo','id_examen_visual','id_examen_visual');
+        return $this->hasMany('App\OpticaModels\MedidasOjo','id_examen_visual','id_examen_visual');
     }
 }

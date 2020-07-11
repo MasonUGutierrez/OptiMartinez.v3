@@ -294,7 +294,7 @@
                 dataType:'json',
                 success:function(data, status, jqXHR){
                     $('#id_fecha_input').val(data.fecha_jornada);
-                }
+                },
                 error:(jqXHR, statusText, errorThrown)=>{
                     console.log('Error:: '+errorThrown);
                     console.log('Status:: '+statusText);
