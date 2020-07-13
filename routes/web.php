@@ -31,7 +31,7 @@ Route::resource('planpago','OpticaControllers\PlanPagoController');
 Route::get('historias-clinicas/consulta/create/verfecha/{id}','OpticaControllers\ConsultaController@getfecha');
 Route::get('historias-clinicas/consulta/create/verpaciente/{id}','OpticaControllers\ConsultaController@getpaciente');
 Route::get('historias-clinicas/consulta/create/verjor','OpticaControllers\ConsultaController@verjornada');
-Route::get('historias-clinicas/consulta/create/idservicios','OpticaControllers\ConsultaController@servicio');
+Route::get('idservicios','OpticaControllers\ConsultaController@servicio');
 Route::get('historias-clinicas/verfecha','OpticaControllers\ConsultaController@date');
 Route::get('historias-clinicas/getconsulta/{id}','OpticaControllers\ConsultaController@gettable');
 Route::get('historias-clinicas/consulta/create/{id}','OpticaControllers\ConsultaController@create')->name("consulta.create");

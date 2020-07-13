@@ -38,7 +38,7 @@
                                 <label>Nombre de Jornada</label>
                                 <select id="jornadaNombres" class="form-control show-tick ms select2"
                                         data-placeholder="Seleccione Jornada...">
-                                    <option></option>
+                                    <option ></option>
                                 </select>
                             </div>
                         </div>
@@ -147,13 +147,16 @@
             </div>
         </div>
     </div>
-    <button class="btn btn-primary" type="submit" id="guardar" data-dismiss="modal"
-            onclick="newConsulta()">Guardar
-    </button>
-    <a href="">
-        <button class="btn btn-danger" data-dismiss="modal" onclick="clearData()" type="reset">Cancelar
-        </button>
-    </a>
+    <div class="row clearfix">
+        <div class="col-sm-4 offset-sm-4">
+            <button class="btn btn-primary" type="submit" id="guardar"
+                    onclick="newConsulta()">Guardar
+            </button>
+            <button class="btn btn-danger"  type="reset">Cancelar
+            </button>
+        </div>
+        </div>
+    </div>
 @endsection
 
 @section('page-script')

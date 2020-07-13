@@ -3,21 +3,25 @@
 
 
 var id_historia = $('#historiasid').val();
+var id_consulta = "";
 var eVisual= "";
 var eVisualp="";
 var retino="";
 var retinop="";
-
+var i="0";
+var tablaDP="";
+var tablaALT="";
 
 //Esto una vez cargada la pagina se ejecutara
 $(function () {
     //Esto es para activar y desactivar checkbox
-    $("#hall").toggle();
+    /*$("#hall").toggle();
     $("#checkbox14").click(function(){
         $("#hall").toggle();
-    });
+    });*/
+
+
     verConsulta();
-    verNF();
     probar();
 });
 
@@ -26,6 +30,85 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
+
+//Funcion para desactivar/activar los campos del modal
+function detalle_editar() {
+    console.log("Afuera");
+
+    if(i == 0){
+        //Campos y botones ************************
+        $('#jor').removeAttr("disabled","disabled");
+        $('#observa').removeAttr("readonly","readonly");
+        $('#hall').removeAttr("readonly","readonly");
+        $('#BotonEditar').attr('hidden','hidden');
+        $('#BotonDetalles').removeAttr("hidden","hidden");
+        //****************************************
+
+        //Tabla Ojos *******************************
+        $('.editableTable').attr('id','mainTable3');
+        $('#mainTable3').editableTableWidget();
+        //***************************************
+
+        //Segunda tabla ****************************
+        $('.editableTable2').attr('id','mainTable4');
+        $('#mainTable4').editableTableWidget();
+        //****************************************
+
+        console.log("Primer if");
+        i++;
+    }else{
+        //Campos y botones *************************************
+        $('#jor').attr('disabled','disabled');
+        $('#observa').attr('readonly','readonly');
+        $('#hall').attr('readonly','readonly');
+        $('#BotonEditar').removeAttr("hidden","hidden");
+        $('#BotonDetalles').attr('hidden','hidden');
+        //*****************************************************
+
+        //Tabla Ojos *******************************************
+        $('.editableTable').removeAttr("id");
+        $('.editableTable2').removeAttr("id");
+
+        $('#refreshAllTable').load(" #cardTables");
+
+        $('#mainTable4').editableTableWidget();
+        /*$( "#contentTable" ).load( " .editableTable" );*/
+        $('#mainTable3').editableTableWidget();
+        //******************************************************
+
+        //Segunda tabla ****************************************
+
+      /*  $( "#contentTable2" ).load( " .editableTable2" );*/
+        //******************************************************
+
+        table();
+
+       /* $('#dp1').html(tablaDP);
+        $('#alt1').html(tablaALT);*/
+
+        console.log("Else");
+        i--;
+    }
+
+}
+
+function probar() {
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "/idservicios",
+        success: function (response) {
+            //Obteniendo el id y los precios de los servicios de retinoscopia y examen visual
+            eVisual = response[0].id_servicio;
+            eVisualp = response[0].precio;
+            retino = response[1].id_servicio;
+            retinop = response[1].precio;
+            console.table(response);
+        },
+        error:function (response) {
+        }
+    })
+}
 
 //Funcion para ver dentro del select las jornadas
 function verJornada(){
@@ -95,6 +178,8 @@ function verConsulta(){
 //Funcion para actualizar una consulta
 function updateConsulta() {
 
+
+
     //Nombre Jornada
     var jornada = $('#jor').val();
 
@@ -148,7 +233,7 @@ function updateConsulta() {
         type:'POST',
         dataType:'json',
         data:dataExamen,
-        url:'consulta/'+ $("#idconsulta").val(),
+        url:'/historias-clinicas/consulta/'+ $("#idconsulta").val(),
         success:function (result) {
             verConsulta()
             console.log(result);
@@ -161,8 +246,38 @@ function updateConsulta() {
 
 //Funcion para ver los detalles de una consulta
 function verDetalles($id){
-    $('#textarea').attr("hidden","hidden");
+  /*  $('#textarea').attr("hidden","hidden");*/
 
+    id_consulta = $id;
+   //*******************************************************************
+    //Esto sirve para desactivar los campos cada vez que se inicie
+    $('#jor').attr('disabled','disabled');
+    $('#observa').attr('readonly','readonly');
+    $('#hall').attr('readonly','readonly');
+    $('#BotonEditar').removeAttr("hidden","hidden");
+    $('#BotonDetalles').attr('hidden','hidden');
+
+    //Ojo derecho
+    $('#esd1').html(" ");
+    $('#cd1').html(" ");
+    $('#ejd1').html(" ");
+    $('#ad1').html(" ");
+    $('#avd1').html(" ");
+
+    //Ojo Izquierdo
+    $('#esi1').html(" ");
+    $('#ci1').html(" ");
+    $('#eji1').html(" ");
+    $('#ai1').html(" ");
+    $('#avi1').html(" ");
+
+    //D.P y ALT
+    $('#dp1').html(" ");
+    $('#alt1').html(" ");
+
+    $('#observa').val(" ");
+    $('#hall').html(" ");
+    //*************************************************************
     $.ajax({
         type:"GET",
         dataType:'json',
@@ -179,11 +294,11 @@ function verDetalles($id){
     $.ajax({
         type:"GET",
         dataType:'json',
-        url:"consulta/"+$id,
+        url:"/historias-clinicas/consulta/"+$id,
         success:function (response) {
 
-            //Fecha
-           $('#fe').val(response.consulta[0].fecha);
+          /*  //Fecha
+           $('#fe').val(response.consulta[0].fecha);*/
 
             console.log(response.consulta[0].nombre_jornada);
             $("#jor").val(response.consulta[0].id_jornada_trabajo).trigger("change");
@@ -216,9 +331,9 @@ function verDetalles($id){
         if(response.retinoscopia[0] != null){
             //Retinoscopia
             $('#hall').html(response.retinoscopia[0].hallazgos);
-            $('#textarea').removeAttr("hidden");
-            $("#hall").toggle();
-            $('#checkbox14').prop('checked','checked');
+            /*$('#textarea').removeAttr("hidden");*/
+            /*$("#hall").toggle();*/
+          /*  $('#checkbox14').prop('checked','checked');*/
         }else {
             $('#hall').html(" ");
         }
@@ -229,6 +344,44 @@ function verDetalles($id){
 
     })
 }
+
+function table(){
+    $.ajax({
+        type:"GET",
+        dataType:'json',
+        url:"/historias-clinicas/consulta/"+id_consulta,
+        success:function (response) {
+            //Ojo derecho
+            $('#esd1').html(response.examen[0].esfera);
+            $('#cd1').html(response.examen[0].cilindro);
+            $('#ejd1').html(response.examen[0].eje);
+            $('#ad1').html(response.examen[0].adicion);
+            $('#avd1').html(response.examen[0].agudeza_visual);
+
+            //Ojo Izquierdo
+            $('#esi1').html(response.examen[1].esfera);
+            $('#ci1').html(response.examen[1].cilindro);
+            $('#eji1').html(response.examen[1].eje);
+            $('#ai1').html(response.examen[1].adicion);
+            $('#avi1').html(response.examen[1].agudeza_visual);
+
+            //D.P y ALT
+            console.log("prueba para ver si se imprime");
+            console.log(response.examen[0].distancia_pupilar,response.examen[0].alt)
+
+           /* tablaALT =response.examen[0].alt;
+            tablaDP =response.examen[0].distancia_pupilar;*/
+
+            $('#dp1').html(response.examen[0].distancia_pupilar);
+            $('#alt1').html(response.examen[0].alt);
+
+        },error:function (response) {
+            console.log("hay un error");
+        }
+
+    })
+}
+
 
 //Funcion para eliminar una consulta
 function delData(id) {

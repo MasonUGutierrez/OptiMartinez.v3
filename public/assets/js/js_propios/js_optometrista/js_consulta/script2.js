@@ -54,7 +54,7 @@ function verJornada(){
         dataType:'json',
         url:"verjor",
         success:function (jornadas) {
-            var rows="";
+            var rows="<option class='text-muted' selected>-- Selecciona una Jornada --</option>";
             $.each(jornadas,function (key,value) {
                 rows += `<option value="${value.id_jornada_trabajo}">${value.nombre_jornada}</option>`
             });
@@ -81,7 +81,7 @@ function probar() {
     $.ajax({
         type: "GET",
         dataType: "json",
-        url: "idservicios",
+        url: "/idservicios",
         success: function (response) {
             //Obteniendo el id y los precios de los servicios de retinoscopia y examen visual
             eVisual = response[0].id_servicio;
