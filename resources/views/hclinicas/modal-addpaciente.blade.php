@@ -11,29 +11,49 @@
                         <div class="row clearfix">
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
-                                    <label for="nombre">Nombre</label>
-                                    <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre">
+                                    <label for="nombre">Nombres</label>
+                                    <input type="text" id="nombre" name="nombres" class="form-control" placeholder="Nombres">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
-                                    <label for="apellido">Apellido</label>
-                                    <input type="text" id="apellido" name="apellido" class="form-control" placeholder="Apellido">
+                                    <label for="apellido">Apellidos</label>
+                                    <input type="text" id="apellido" name="apellidos" class="form-control" placeholder="Apellidos">
                                 </div>
                             </div>
-                            <div class="col-2">
+                            <div class="col-md-5 col-sm-12">
+                                <div class="form-group">
+                                    <label for="fecha_nacimiento"> Fecha de Nacimiento</label>
+                                    <input type="text" class="form-control" name="fecha_nacimiento" id="fecha_nacimiento" >
+                                </div>
+                            </div>
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="edad">Edad</label>
                                     <input type="number" class="form-control" id="edad" name="edad" placeholder="Edad">
                                 </div>
                             </div>
-                            <div class="col-5">
+                            
+                            <div class="col-md-5 col-sm-12">
+                                <div>
+                                    <label for="">Sexo</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="sexoRadio1" name="sexo" class="custom-control-input" checked value="masculino">
+                                    <label class="custom-control-label" for="sexoRadio1">Masculino</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                   <input type="radio" id="sexoRadio2" name="sexo" class="custom-control-input" value="femenino">
+                                   <label class="custom-control-label" for="sexoRadio2">Femenino</label>
+                                </div>
+                            </div>
+                            <div class="col">
                                 <div class="form-group">
                                     <label for="cedula">Cedula</label>
                                     <input type="text" class="form-control" id="cedula" name="cedula" placeholder="Cedula">
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col">
                                 <div class="form-group">
                                     <label for="telefono">Telefono</label>
                                     <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Telefono">

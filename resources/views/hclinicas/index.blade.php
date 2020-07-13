@@ -8,6 +8,13 @@
 {{-- Estilos para SweetAlert --}}
 <link rel="stylesheet" href="{{asset('assets/plugins/sweetalert/sweetalert.css')}}">
 
+<link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>
+
+{{-- <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap4-datepicker/tempusdominus-bootstrap-4.min.css')}}"> --}}
+{{-- <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap4-datepicker/tempusdominus-bootstrap-4-v5.0.1.min.css')}}"> --}}
+<link rel="stylesheet" href="{{asset('assets/plugins/gijgo-combined/css/gijgo.min.css')}}"/>
+
 <style>
     .format-textarea{
         width:100%;
@@ -77,6 +84,12 @@
 
 {{-- Script para SweetAlert --}}
 <script src="{{asset('assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
+
+<script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
+
+{{-- <script src="{{asset('assets/plugins/bootstrap4-datepicker/moment.min.js')}}"></script>
+<script src="{{asset('assets/plugins/bootstrap4-datepicker/tempusdominus-bootstrap-4.min.js')}}"></script> --}}
+<script src="{{asset('assets/plugins/gijgo-combined/js/gijgo.min.js')}}"></script>
 @endsection
 
 @push('after-scripts')
@@ -86,9 +99,19 @@
     {{-- Script para inicializar SweetAlert --}}
     <script src="{{asset('assets/js/pages/ui/sweetalert.js')}}"></script>
 
+    <script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
+
     <script type="text/javascript" async="async">
         $(function(){
-            data();            
+            data(); 
+            $('#fecha_nacimiento').datepicker({
+                // locale: 'es-es',
+                uiLibrary: 'bootstrap4',
+                format: 'dd/mm/yyyy',
+                change: function(e){
+                    console.log(e.target.value);
+                }
+            });
         });     
          // Solucion de problema con tooltip en los botones que se crean por la peticion ajax
         $(document).ajaxComplete(function(){
@@ -288,6 +311,11 @@
                 $('#antecedentes').val("");
             } 
         }
+        // $('#fecha_nacimiento').datepicker({
+        //     change: function(e){
+        //         console.log(e.target.value);
+        //     }
+        // });
         $('#jornadas').on('change',function(){
             $.ajax('url',{
                 type:'get',

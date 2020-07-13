@@ -58,7 +58,7 @@ class HClinicaController extends Controller
                     return $btns;
                 })
                 ->addColumn('paciente', function($row){
-                    return $row->paciente->nombre . ' ' . $row->paciente->apellido;
+                    return $row->paciente->nombres . ' ' . $row->paciente->apellidos;
                 })
                 ->rawColumns(['opciones', 'paciente'])
                 ->make(true);
@@ -99,8 +99,8 @@ class HClinicaController extends Controller
         {
             // return "Ajax error";
             $paciente = Paciente::create([
-                'nombre' => $request->get('nombre'),
-                'apellido'=> $request->get('apellido'),
+                'nombres' => $request->get('nombre'),
+                'apellidos'=> $request->get('apellido'),
                 'edad'=> $request->get('edad'),
                 'cedula'=> $request->get('cedula'),
                 'telefono'=> $request->get('telefono'),
