@@ -57,6 +57,8 @@ function showData() {
     });
 }
 function showUserRol(id) {
+
+    console.log(id);
     $('.dataTable-usuarios').DataTable({
         destroy:true,
         processing:true,
