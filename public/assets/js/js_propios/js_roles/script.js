@@ -69,8 +69,7 @@ function showUserRol(id) {
             // dataSrc: ''
         },
         columns:[
-            {data:'nombre'},
-            {data:'apellido'},
+            {data:'NombreCompleto'},
             {data:'opciones', name:"opciones", orderable:false, searchable: false}
         ],
         lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "Todo"]],

@@ -170,6 +170,12 @@ class   UsuarioController extends Controller
         return Redirect::to('usuarios');
     }
 
+    public function RemoveRol($idU , $idR){
+        $usuario = Usuario::findOrFail($idU);
+        $usuario->roles()->detach($idR);
+        return Redirect::to('roles');
+    }
+
     public function destroy($id)
     {
 

@@ -26,7 +26,7 @@ class JornadaTrabajoFormRequest extends FormRequest
         return [
             //
             'nombre_jornada'=>'bail|min:3|max:255',
-            'lugar'=>'bail|min:5|max:500',
+            'lugar'=>'bail|min:5s|max:500',
         ];
     }
 }

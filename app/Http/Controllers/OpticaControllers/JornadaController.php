@@ -9,11 +9,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use DataTables;
+use App\Http\Controllers\OpticaControllers\fullCalendar;
+
 class JornadaController extends Controller
 {
     //
     public function index(){
         return view('optometrista.jornadas.index');
+    }
+
+    public function pruebas(){
+        return view('optometrista.jornadas.prueba');
     }
 
     //Funcion para obtener los nombres de los departamento en el select
@@ -32,19 +38,21 @@ class JornadaController extends Controller
         try{
             DB::beginTransaction();
             $jornadaT = new JornadaTrabajo();
-            /*$jornada->id_jornada = $request->get('id_jornada');
-            $jornada->id_departamento = $request->get('id_departamento');*/
             $jornadaT->id_jornada = $request->get('id_jornada');
             $jornadaT->id_departamento=$request->get('id_departamento');
             $jornadaT->nombre_jornada=$request->get('nombre_jornada');
             $jornadaT->lugar=$request->get('lugar');
             $jornadaT->fecha_jornada=$request->get('fecha_jornada');
+            $jornadaT->fecha_final=$request->get('fecha_final');
+            $jornadaT->hora_inicio=$request->get('hora_inicio');
+            $jornadaT->hora_final=$request->get('hora_final');
             $jornadaT->save();
             DB::commit();
         }catch(\Exception $e){
             DB::rollBack();
         }
-        return Redirect::to('jornadas');
+        /*return Redirect::to('jornadas');*/
+        return response()->json($jornadaT);
     }
 
     //Funcion para mostrar los campos de jornada trabajo en el index
@@ -107,6 +115,10 @@ class JornadaController extends Controller
             $jornada->nombre_jornada = $request->get('nombre_jornada');
             $jornada->lugar = $request->get('lugar');
             $jornada->fecha_jornada = $request->get('fecha_jornada');
+            $jornada->fecha_final=$request->get('fecha_final');
+            $jornada->color_fondo=$request->get('color_fondo');
+            $jornada->hora_inicio=$request->get('hora_inicio');
+            $jornada->hora_final=$request->get('hora_final');
             $jornada->save();
             DB::commit();
         } catch (\Exception $e) {
@@ -114,6 +126,24 @@ class JornadaController extends Controller
         }
         return Redirect::to('jornadas');
     }
+
+    public function fillCalendar(){
+        $jornadas = JornadaTrabajo::all();
+
+        $array=[];
+        foreach ($jornadas as $jornada){
+            $fullCalendar = new fullCalendar();
+            $fullCalendar->title = $jornada->nombre_jornada;
+            $fullCalendar->start = $jornada->fecha_jornada.' '.$jornada->hora_inicio;
+            $fullCalendar->end = $jornada->fecha_final.' '.$jornada->hora_final;
+            $fullCalendar->eventTextColor = $jornada->color_fondo;
+            $fullCalendar->textColor = $jornada->color_texto;
+            $fullCalendar->descripcion = $jornada->lugar;
+            $array[]=$fullCalendar;
+        }
+        return response()->json($array);
+    }
+
     //Funcion para eliminar los registros de jornada
     public function destroy($id){
         $jornada = JornadaTrabajo::findOrFail($id);

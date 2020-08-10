@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 //Rutas propias
 Route::get('miperfil','OpticaControllers\UsuarioController@showPerfil');
+Route::get('byeRol/{idU}/{idR}','OpticaControllers\UsuarioController@RemoveRol');
 Route::resource('usuarios','OpticaControllers\UsuarioController');
 Route::get('roless','OpticaControllers\RolController@getAll');
 Route::resource('roles','OpticaControllers\RolController');
@@ -39,6 +40,10 @@ Route::resource('historias-clinicas/consulta','OpticaControllers\ConsultaControl
 Route::get('depas','OpticaControllers\JornadaController@departamento');
 route::get('vertipos','OpticaControllers\JornadaController@vertipojornada');
 route::get('verjornadas','OpticaControllers\JornadaController@mostrar');
+route::get('calendar','OpticaControllers\JornadaController@fillCalendar');
+//-----------------------------Ruta de prueba-----------------------------------//
+route::get('calendarPrueba','OpticaControllers\JornadaController@pruebas');
+//-----------------------------------------------------------------------------//
 Route::resource('jornadas','OpticaControllers\JornadaController');
 
 // Rutas Resources

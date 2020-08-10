@@ -69,7 +69,7 @@ function verNF(){
         dataType:'json',
         url:"verpaciente/"+ id_historia,
         success:function (response) {
-            $nombres = response[0].nombre + " " + response[0].apellido;
+            $nombres = response[0].nombres + " " + response[0].apellidos;
             $('#nombreCliente').val($nombres);
            /* $('#fecha').val(response[0].fecha_jornada);*/
         }

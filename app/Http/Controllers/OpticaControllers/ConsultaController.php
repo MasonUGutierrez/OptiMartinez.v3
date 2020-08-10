@@ -93,7 +93,7 @@ class ConsultaController extends Controller
             ->join('jornada_trabajo','consulta.id_jornada_trabajo','=','jornada_trabajo.id_jornada_trabajo')
             ->join('historia_clinica','consulta.id_historia_clinica', '=','historia_clinica.id_historia_clinica')
             ->join('paciente','historia_clinica.id_paciente','=','paciente.id_paciente')
-            ->select('consulta.*','paciente.nombre','paciente.apellido','jornada_trabajo.nombre_jornada','jornada_trabajo.fecha_jornada')
+            ->select('consulta.*','paciente.nombres','paciente.apellidos','jornada_trabajo.nombre_jornada','jornada_trabajo.fecha_jornada')
             ->get();
 
         if($request->ajax()){
@@ -132,7 +132,7 @@ class ConsultaController extends Controller
             ->where('historia_clinica.estado', '1')
             ->where('historia_clinica.id_historia_clinica',$id)
             ->join('paciente','historia_clinica.id_paciente',"=","paciente.id_paciente")
-            ->select('paciente.nombre','paciente.apellido')
+            ->select('paciente.nombres','paciente.apellidos')
             ->get();
 
         return response()->json($consulta);
