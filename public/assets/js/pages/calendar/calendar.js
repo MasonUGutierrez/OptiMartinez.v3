@@ -131,42 +131,28 @@ $(function() {
     calendar.fullCalendar({
 
         header: {
-
             left: 'title',
-
             center: '',
-
             right: 'month, agendaWeek, agendaDay, prev, next'
-
         },
 
         editable: true,
-
         droppable: true,
-
         eventLimit: true, // allow "more" link when too many events
-
         selectable: true,
 
         events: [
 
             {
-
                 title  : 'Birthday Party',
-
                 start  : current + '01',
-
                 className: 'bg-info'
-
             },
-
             {
-
                 title  : 'Conference',
-
                 start  : current + '05',
 
-                end    : '2018-08-07',
+                end    : '2020-08-07',
 
                 className: 'bg-warning'
 
@@ -219,9 +205,7 @@ $(function() {
         },
 
         select: function(start, end, allDay) { 
-
             newEvent(start);
-
         },
 
         eventClick: function(calEvent, jsEvent, view) {

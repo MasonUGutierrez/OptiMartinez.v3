@@ -24,13 +24,13 @@
                             <div class="col-md-5 col-sm-12">
                                 <div class="form-group">
                                     <label for="fecha_nacimiento"> Fecha de Nacimiento</label>
-                                    <input type="text" class="form-control" name="fecha_nacimiento" id="fecha_nacimiento" >
+                                    <input type="date" class="form-control" name="fecha_nacimiento" id="fecha_nacimiento">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="edad">Edad</label>
-                                    <input type="number" class="form-control" id="edad" name="edad" placeholder="Edad">
+                                    <input type="number" readonly class="form-control" min="0" max="200" id="edad" name="edad" placeholder="Edad">
                                 </div>
                             </div>
                             
@@ -49,7 +49,21 @@
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="cedula">Cedula</label>
+                                    <div class="row clearfix">
+                                        <div class="col-md-6">
+                                            <label for="cedula">Cedula</label> 
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{-- Checkbox para confirmar si es menor de edad --}}
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="checkMenor">
+                                                <label class="custom-control-label" for="checkMenor">
+                                                    Menor de Edad
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- <input type="checkbox"> --}}
                                     <input type="text" class="form-control" id="cedula" name="cedula" placeholder="Cedula">
                                 </div>
                             </div>

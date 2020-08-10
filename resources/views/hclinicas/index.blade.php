@@ -11,10 +11,6 @@
 <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
 <link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>
 
-{{-- <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap4-datepicker/tempusdominus-bootstrap-4.min.css')}}"> --}}
-{{-- <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap4-datepicker/tempusdominus-bootstrap-4-v5.0.1.min.css')}}"> --}}
-<link rel="stylesheet" href="{{asset('assets/plugins/gijgo-combined/css/gijgo.min.css')}}"/>
-
 <style>
     .format-textarea{
         width:100%;
@@ -86,10 +82,6 @@
 <script src="{{asset('assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
 
 <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
-
-{{-- <script src="{{asset('assets/plugins/bootstrap4-datepicker/moment.min.js')}}"></script>
-<script src="{{asset('assets/plugins/bootstrap4-datepicker/tempusdominus-bootstrap-4.min.js')}}"></script> --}}
-<script src="{{asset('assets/plugins/gijgo-combined/js/gijgo.min.js')}}"></script>
 @endsection
 
 @push('after-scripts')
@@ -100,19 +92,85 @@
     <script src="{{asset('assets/js/pages/ui/sweetalert.js')}}"></script>
 
     <script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
+    
 
     <script type="text/javascript" async="async">
         $(function(){
             data(); 
-            $('#fecha_nacimiento').datepicker({
-                // locale: 'es-es',
+            /* // Implementando datepicker - da error en los estilos o en los datos que envian
+            var datepicker = $('#fecha_nacimiento').datepicker({
+                locale: 'es-es',
                 uiLibrary: 'bootstrap4',
                 format: 'dd/mm/yyyy',
-                change: function(e){
-                    console.log(e.target.value);
-                }
+                // modal: true, header: true, footer: true,
             });
-        });     
+            */   
+            var fechaNacimiento = $('#fecha_nacimiento'); 
+
+            fechaNacimiento.on('change', function(e){
+                // console.log("hola");
+                $('#edad').val(parseInt(calcEdad(e.target.valueAsNumber)));
+            });
+
+            // Asignando valor en la propiedad fecha maxima por jquery
+            fechaNacimiento.attr('max', function(){
+                var fechaHoy = new Date();
+                var dd = fechaHoy.getDate();
+                var mm = fechaHoy.getMonth() + 1; // +1 porque se tiene en cuenta que Enero es 0
+
+                if(dd < 10) dd = "0" + dd;
+                if(mm < 10) mm = "0" + mm;
+
+                return fechaHoy.getFullYear() + '-' + mm + '-' + dd; 
+                /* Forma en que tenia antes, se resumia toda la operacion en el return, pero se ve mejor de la forma de arriba*/
+                // return fechaHoy.getFullYear() + '-' + (((fechaHoy.getMonth() + 1) < 10) ? '0'+(fechaHoy.getMonth()+1) : (fechaHoy.getMonth()+1)) + '-' + ((fechaHoy.getDate() < 10) ? '0' + fechaHoy.getDate() : fechaHoy.getDate()); 
+            });
+
+            $('#edad').focus(function(){
+                // var dateNow = new Date();
+                console.log('Estoy en el campo Edad');
+            });
+        });  
+
+        function calcEdad(fechaNac){
+            let fechaHoy = new Date(),
+                fechaN = new Date(parseInt(fechaNac));
+
+            /*Sumando un dia al dia de nacimiento porque el input date envia un dia anterior*/
+            fechaN.setDate(fechaN.getDate() + 1);
+
+            // Obteniendo la diferencia de tiempo en milisegundos entre las 2 fechas
+            let difMs = fechaHoy.getTime() - fechaN.getTime();
+
+            // Como lo tenia antes pero daba error
+            /* let añosTranscurrido = difMs / 1000 / 60 / 60 / 24 / 365; */
+
+            // Se crea una nueva instancia del objeto Date a partir de los milisegundos obtenidos
+            let fechaDif = new Date(difMs); 
+
+            // Aun no entiendo porque se debe restar 1970 al año UTC de la fecha obtenida de la diferencia de tiempo entre las fechas
+            // Pero da bien el resultado de la diferencia de años
+            return Math.abs(fechaDif.getUTCFullYear() - 1970);
+        }
+
+        // Metodo para determinar si es año bisiesto
+        /* function isLeapYear(year){
+            /* Para determinar si un año es bisiesto, siga estos pasos:
+
+                Si el año es uniformemente divisible por 4, vaya al paso 2. De lo contrario, vaya al paso 5.
+                Si el año es uniformemente divisible por 100, vaya al paso 3. De lo contrario, vaya al paso 4.
+                Si el año es uniformemente divisible por 400, vaya al paso 4. De lo contrario, vaya al paso 5.
+                El año es un año bisiesto (tiene 366 días).
+                El año no es un año bisiesto (tiene 365 días). 
+            */
+            /*return ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) ? true : false;
+        } */
+
+        // Metodo para obtener un numero aleatorio en una cantidad determinada de numeros
+        /* function getRandomInt(max){
+            return Math.floor(Math.random() * Math.floor(max));
+        } */
+
          // Solucion de problema con tooltip en los botones que se crean por la peticion ajax
         $(document).ajaxComplete(function(){
             // $('[data-toggle="tooltip"]').tooltip(); 
@@ -311,11 +369,6 @@
                 $('#antecedentes').val("");
             } 
         }
-        // $('#fecha_nacimiento').datepicker({
-        //     change: function(e){
-        //         console.log(e.target.value);
-        //     }
-        // });
         $('#jornadas').on('change',function(){
             $.ajax('url',{
                 type:'get',
