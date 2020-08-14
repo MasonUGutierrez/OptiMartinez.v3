@@ -125,10 +125,30 @@
                 /* Forma en que tenia antes, se resumia toda la operacion en el return, pero se ve mejor de la forma de arriba*/
                 // return fechaHoy.getFullYear() + '-' + (((fechaHoy.getMonth() + 1) < 10) ? '0'+(fechaHoy.getMonth()+1) : (fechaHoy.getMonth()+1)) + '-' + ((fechaHoy.getDate() < 10) ? '0' + fechaHoy.getDate() : fechaHoy.getDate()); 
             });
+            
+            var fCedula = $('#cedula');
+            // Evento click sobre el checkbox que indica si es menor de edad
+            $('#checkMenor').on('click', function(){
+                // Evaluar si el campo para cedula esta deshabilitado
+                if (fCedula.attr('disabled'))
+                {
+                    // Si esta deshabilitado se habilita el input quitando el atributo readonly
+                    fCedula.removeAttr('disabled');
+                }
+                else{
+                    fCedula.prop('disabled','disabled');
+                }
+            });
 
-            $('#edad').focus(function(){
-                // var dateNow = new Date();
-                console.log('Estoy en el campo Edad');
+            // Trabajando evento click en el boton cancelar del modal
+            $('#btnCancel').on('click', function(event){
+                // Previniendo que se cierre el modal
+                event.preventDefault();
+
+                // Limpiando campos
+                fnClearFields();
+                // Cambiando el toggle del modal
+                $('#AddPaciente').modal('toggle');
             });
         });  
 
@@ -205,6 +225,7 @@
                 }); 
             });
         });   
+
         $('#Guardar').on('click', function(event){
             event.preventDefault();
             fnStore();
@@ -321,13 +342,18 @@
         }   
         function fnStore(){
             var sendData = {
-                nombre:$('#nombre').val(),
-                apellido:$('#apellido').val(),
+                nombres:$('#nombre').val(),
+                apellidos:$('#apellido').val(),
+                fecha_nacimiento:$('#fecha_nacimiento').val(),
                 edad:parseInt($('#edad').val()),
+                sexo:$('[name="sexo"]').val(),
                 cedula:$('#cedula').val(),
                 telefono:$('#telefono').val(),
                 direccion:$('#direccion').val(),
-                antecedentes:$('#antecedentes').val()
+                h_ocular:$('#h_ocular').val(),
+                h_medica:$('#h_medica').val(),
+                medicaciones:$('#medicaciones').val(),
+                alergias:$('#alergias').val(),
             };
             console.log(typeof sendData.edad);
             console.log(`{{action('OpticaControllers\HClinicaController@store')}}`);
@@ -358,17 +384,20 @@
                 //     console.log(result.responseJSON.errors);
                 // }
             });   
-            function fnClearFields()
-            {
-                $('#nombre').val("");
-                $('#apellido').val("");
-                $('#edad').val("");
-                $('#cedula').val("");
-                $('#telefono').val("");
-                $('#direccion').val("");
-                $('#antecedentes').val("");
-            } 
         }
+        function fnClearFields(){
+            $('#nombre').val("");
+            $('#apellido').val("");
+            $('#fecha_nacimiento').val("");
+            $('#edad').val("");
+            $('#cedula').val("");
+            $('#telefono').val("");
+            $('#direccion').val("");
+            $('#h_ocular').val("");
+            $('#h_medica').val("");
+            $('#medicaciones').val("");
+            $('#alergias').val("");
+        } 
         $('#jornadas').on('change',function(){
             $.ajax('url',{
                 type:'get',

@@ -99,9 +99,11 @@ class HClinicaController extends Controller
         {
             // return "Ajax error";
             $paciente = Paciente::create([
-                'nombres' => $request->get('nombre'),
-                'apellidos'=> $request->get('apellido'),
+                'nombres' => $request->get('nombres'),
+                'apellidos'=> $request->get('apellidos'),
+                'fecha_nacimiento'=>$request->get('fecha_nacimiento'),
                 'edad'=> $request->get('edad'),
+                'sexo'=>$request->get('sexo'),
                 'cedula'=> $request->get('cedula'),
                 'telefono'=> $request->get('telefono'),
                 'direccion'=> $request->get('direccion')
@@ -109,7 +111,10 @@ class HClinicaController extends Controller
             // return response()->json($paciente);
             
             $paciente->hclinica()->create([
-                'antecedentes' => $request->get('antecedentes'),
+                'h_ocular' => $request->get('h_ocular'),
+                'h_medica' => $request->get('h_medica'),
+                'medicaciones' => $request->get('medicaciones'),
+                'alergias' => $request->get('alergias'),
                 'fecha_registro' => $fecha_actual
             ]);
             
