@@ -11,6 +11,9 @@
 <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
 <link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>
 
+{{-- Estilos para el Jquery-steps --}}
+<link rel="stylesheet" href="{{asset('assets/plugins/jquery-steps/jquery.steps.css')}}">
+
 <style>
     .format-textarea{
         width:100%;
@@ -82,6 +85,12 @@
 <script src="{{asset('assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
 
 <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
+
+{{-- Script para el Jquery-validate plugin --}}
+<script src="{{asset('assets/plugins/jquery-validation/jquery.validate.js')}}"></script>
+<script src="{{asset('assets/plugins/jquery-validation/localization/messages_es.js')}}"></script>
+{{-- Script para el Jquery-steps --}}
+<script src="{{asset('assets/plugins/jquery-steps/jquery.steps.js')}}"></script>
 @endsection
 
 @push('after-scripts')
@@ -93,7 +102,6 @@
 
     <script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
     
-
     <script type="text/javascript" async="async">
         $(function(){
             data(); 
