@@ -113,10 +113,13 @@
                 // modal: true, header: true, footer: true,
             });
             */   
+            stepInit();
+
             var fechaNacimiento = $('#fecha_nacimiento'); 
 
             fechaNacimiento.on('change', function(e){
                 // console.log("hola");
+                console.log('Estas bien?');
                 $('#edad').val(parseInt(calcEdad(e.target.valueAsNumber)));
             });
 
@@ -157,8 +160,37 @@
                 fnClearFields();
                 // Cambiando el toggle del modal
                 $('#AddPaciente').modal('toggle');
-            });
+            });            
         });  
+
+        function stepInit(){
+            var form = $('#hclinica_form').show();
+
+            form.steps({
+                /*Apariencia*/
+                headerTag: 'h3',
+                bodyTag: 'fieldset',
+                transitionEffect: 'slideLeft',
+
+                /*Etiquetas*/
+                labels:{
+                    cancel: 'Cancelar',
+                    current: 'Posicion Actual:',
+                    finish: 'Registrar',
+                    previous: 'Anterior',
+                    next: 'Siguiente',
+                    loading: 'Cargando ...'
+                },
+
+                /*Eventos*/
+                // onStepChanging: function(currentIndex, nextIndex){
+                //     if(currentIndex )
+                // },
+                // onStepChanged:,
+                // onFinishing:,
+                // onFinished:,
+            }); 
+        }
 
         function calcEdad(fechaNac){
             let fechaHoy = new Date(),
@@ -420,35 +452,6 @@
                     console.log(jqXHR);
                 }
             });
-        });
-    </script>
-    
-    <script>
-        $(function(){
-            var form = $('#hclinica_form').show();
-
-            form.steps({
-                /*Apariencia*/
-                headerTag: 'h3',
-                bodyTag: 'fieldset',
-                transitionEffect: 'slideLeft',
-
-                /*Etiquetas*/
-                labels:{
-                    cancel: 'Cancelar',
-                    current: 'Posicion Actual:',
-                    finish: 'Registrar',
-                    previous: 'Anterior',
-                    next: 'Siguiente',
-                    loading: 'Cargando ...'
-                },
-
-                /*Eventos*/
-                // onStepChanging:,
-                // onStepChanged:,
-                // onFinishing:,
-                // onFinished:,
-            });            
         });
     </script>
 @endpush

@@ -1066,8 +1066,9 @@ function renderPagination(wizard, options, state)
 {
     if (options.enablePagination)
     {
+        // Se modifico el buttonTemplate para que tenga las clases btn de bootstrap
         var pagination = "<{0} class=\"actions {1}\"><ul role=\"menu\" aria-label=\"{2}\">{3}</ul></{0}>",
-            buttonTemplate = "<li><a href=\"#{0}\" role=\"menuitem\">{1}</a></li>",
+            buttonTemplate = "<li><a class=\"btn btn-primary\" href=\"#{0}\" role=\"menuitem\">{1}</a></li>",
             buttons = "";
 
         if (!options.forceMoveForward)
