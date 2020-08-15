@@ -1,13 +1,10 @@
 <div class="modal fade" id="AddPaciente" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                {{-- Card para datos personales --}}
-                <div class="card">
-                    <div class="header">
-                        <h2><strong>Datos</strong> Paciente</h2>
-                    </div>
-                    <div class="body">
+                <form action="#" method="POST" id="hclinica_form">
+                    <h3>Datos Personales</h3>
+                    <fieldset>
                         <div class="row clearfix">
                             {{-- Input para el nombre --}}
                             <div class="col-md-6 col-sm-12">
@@ -84,14 +81,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!------------------------------------------------------------------->
-                    
-                    <div class="header">
-                        <h2><strong>Datos</strong> Ananmesis</h2>
-                    </div>
-                    <div class="body">
+                    </fieldset>
+                    <h3>Datos Ananmesis</h3>
+                    <fieldset>
                         {{-- Row para los textareas de historias oculares y medicas --}}
                         <div class="row clearfix">
                             <div class="col-md-6">
@@ -121,19 +113,16 @@
                                     <textarea class="form-control no-resize" rows="4" id="alergias" name="alergias" placeholder="Alergias del paciente"></textarea>
                                 </div>
                             </div>
-                        </div>                      
-                    </div>
-                </div>
-                {{-- Card para datos de la historia clinica --}}
-                {{-- <div class="card">
-                </div> --}}
+                        </div> 
+                    </fieldset>
+                </form>
             </div>
-            <div class="modal-footer">
+            {{-- <div class="modal-footer">
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary btn-raised btn-round waves-effect waves-light" id="Guardar" data-dismiss="modal" value="Aceptar">
                     <input type="button" class="btn btn-danger btn-raised waves-effect waves-light" data-dismiss="modal" value="Cancelar" id="btnCancel">
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

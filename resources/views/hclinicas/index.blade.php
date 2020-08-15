@@ -422,4 +422,33 @@
             });
         });
     </script>
+    
+    <script>
+        $(function(){
+            var form = $('#hclinica_form').show();
+
+            form.steps({
+                /*Apariencia*/
+                headerTag: 'h3',
+                bodyTag: 'fieldset',
+                transitionEffect: 'slideLeft',
+
+                /*Etiquetas*/
+                labels:{
+                    cancel: 'Cancelar',
+                    current: 'Posicion Actual:',
+                    finish: 'Registrar',
+                    previous: 'Anterior',
+                    next: 'Siguiente',
+                    loading: 'Cargando ...'
+                },
+
+                /*Eventos*/
+                // onStepChanging:,
+                // onStepChanged:,
+                // onFinishing:,
+                // onFinished:,
+            });            
+        });
+    </script>
 @endpush

@@ -142,7 +142,8 @@
     background: #eee;
     display: block;
     margin: 0.5em;
-    min-height: 35em;
+    /* min-height: 35em; */
+    min-height: 100px;
     overflow: hidden;
     position: relative;
     width: auto;
@@ -164,9 +165,15 @@
 {
     float: left;
     position: absolute;
+    /* position: relative !important; */
     width: 95%;
-    height: 95%;
+    /* height: 95%; */
+    height:auto;
     padding: 2.5%;
+}
+
+.wizard > .content > .body.current{
+    position: relative;
 }
 
 .wizard > .content > .body ul
