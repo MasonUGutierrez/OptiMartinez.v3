@@ -183,13 +183,58 @@
                 },
 
                 /*Eventos*/
-                // onStepChanging: function(currentIndex, nextIndex){
-                //     if(currentIndex )
-                // },
+                onStepChanging: function(event, currentIndex, newIndex){
+                    // Permitir que se mueva la pestaña anterior aunque el formulario no sea valido
+                    if (currentIndex > newIndex)
+                    {
+                        return true;
+                    }
+
+                    // En caso que el usuario regrese a la pagina siguiente donde el formulario daba error, se limpian las notificaciones de error
+                    if (currentIndex < newIndex)
+                    {
+                        // Limpiando los errores en el formulario
+                        form.find('.body:eq(' + newIndex + ') label.error').remove();
+                        form.find('.body:eq(' + newIndex + ') .error').removeClass('error');
+                    }
+
+                },
                 // onStepChanged:,
                 // onFinishing:,
                 // onFinished:,
             }); 
+
+            // .validate({
+            //     rules: {
+            //         nombres:{
+            //             minlength: 5,
+            //             required: true,
+            //         },
+            //         apellidos:{
+            //             required: true,
+            //             minlingth: 5,
+            //         },
+            //         fecha_nacimiento:{
+            //             required: true,
+            //             date: true,
+            //         },
+            //         edad:{
+            //             required:{
+            //                 depends: function(element){
+            //                     return ($.trim($("#fecha_nacimiento").val()))
+            //                 }
+            //             }
+            //         },
+            //         sexo:,
+            //         cedula:,
+            //         telefono:,
+            //         direccion:,
+            //         h_ocular:,
+            //         h_medica:,
+            //         medicaciones:,
+            //         alergias:
+            //     }
+            // })
         }
 
         function calcEdad(fechaNac){
