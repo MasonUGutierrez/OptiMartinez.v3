@@ -1,6 +1,6 @@
 @extends('layout.master')
-@section('title', 'Page Blank')
-@section('parentPageTitle', 'Pages')
+@section('parentPageTitle', 'Admin. Usuarios')
+@section('title', 'Roles')
 @section('page-style')
     <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>

@@ -41,8 +41,8 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                    <label for="appt-time">Hora</label>
-                                    <input id="horaInicio" type="time" readonly class="form-control" name="appt-time">
+                                <label for="appt-time">Hora</label>
+                                <input id="horaInicio" type="time" readonly class="form-control" name="appt-time">
                             </div>
                         </div>
                     </div>
@@ -50,9 +50,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" id="closeButton" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-               {{-- <button type="button" id="btnEditar" class="btn btn-primary">Editar</button>--}}
+                 <button type="button" id="btnEditar" class="btn btn-primary">Editar</button>
                 <button type="button" id="btnpruebas" hidden class="btn btn-primary">Guardar Cambios</button>
-                {{--<button type="button" class="btn btn-danger" id="delButton" >Eliminar</button>--}}
+                <button type="button" class="btn btn-danger" id="delButton" >Eliminar</button>
                 <button type="button" class="btn btn-danger" hidden id="cancelButton">Cancelar</button>
             </div>
         </div>

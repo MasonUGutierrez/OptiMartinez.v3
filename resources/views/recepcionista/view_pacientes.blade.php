@@ -3,80 +3,72 @@
 @section('title', 'Historias Clinicas')
 
 @section('page-style')
-{{-- Estilos para Datatable --}}
-<link rel="stylesheet" href="{{asset('assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css')}}">
-{{-- Estilos para SweetAlert --}}
-<link rel="stylesheet" href="{{asset('assets/plugins/sweetalert/sweetalert.css')}}">
+    {{-- Estilos para Datatable --}}
+    <link rel="stylesheet" href="{{asset('assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css')}}">
+    {{-- Estilos para SweetAlert --}}
+    <link rel="stylesheet" href="{{asset('assets/plugins/sweetalert/sweetalert.css')}}">
 
-<style>
-    .format-textarea{
-        width:100%;
-        height: 100px;
-        min-height: 100px;
-        max-height: 100px;
-    }
-</style>
+    <style>
+        .format-textarea{
+            width:100%;
+            height: 100px;
+            min-height: 100px;
+            max-height: 100px;
+        }
+    </style>
 @endsection
 
 @section('content')
-<div class="row clearfix">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="header">
-                <h2><strong>Listado</strong> de Historias Clinicas
-                    <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Nueva Historia Clinica">
+    <div class="row clearfix">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="header">
+                    <h2><strong>Listado</strong> de Historias Clinicas
+                        <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Nueva Historia Clinica">
                         <a href="{{--action('OpticaControllers\HClinicaController@index')--}}"
-                            class="btn btn-raised btn-sm btn-success waves-effect waves-light "
-                            data-toggle="modal"
-                            data-target="#AddPaciente">
+                           class="btn btn-raised btn-sm btn-success waves-effect waves-light "
+                           data-toggle="modal"
+                           data-target="#AddPaciente">
                             <i class="zmdi zmdi-plus"></i>
                         </a>
                     </span>
-                </h2>
-            </div>
-            <div class="body">
-                <div class="table-responsive">
-                    <table class="table table-hover table-bordered theme-color dataTable-hc">
-                        <thead>
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered theme-color dataTable-hc">
+                            <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Paciente</th>
                                 <th>Registro</th>
                                 <th>Opciones</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {{-- @foreach($hclinicas as $hclinica)
-                                <tr>
-                                    <td>{{$hclinica->id_historia_clinica}}</td>
-                                    <td>{{$hclinica->paciente->nombre . " " . $hclinica->paciente->apellido}}</td>
-                                    <td>{{$hclinica->fecha_registro}}</td>
-                                    <td></td>
-                                </tr>
-                            @endforeach --}}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@include('hclinicas.modal-addpaciente')
+    @include('hclinicas.modal-addpaciente')
 @endsection
 
 @section('page-script')
-{{-- Scripts para DataTable --}}
-<script src="{{asset('assets/bundles/datatablescripts.bundle.js')}}"></script>
-{{-- Scripts para los botones de jqueryDataTable --}}
-<script src="{{asset('assets/plugins/jquery-datatable/buttons/dataTables.buttons.min.js')}}"></script>
-<script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.bootstrap4.min.js')}}"></script>
-<script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.colVis.min.js')}}"></script>
-<script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.flash.min.js')}}"></script>
-<script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.html5.min.js')}}"></script>
-<script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.print.min.js')}}"></script>
+    {{-- Scripts para DataTable --}}
+    <script src="{{asset('assets/bundles/datatablescripts.bundle.js')}}"></script>
+    {{-- Scripts para los botones de jqueryDataTable --}}
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.colVis.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.flash.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.print.min.js')}}"></script>
 
-{{-- Script para SweetAlert --}}
-<script src="{{asset('assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
+    {{-- Script para SweetAlert --}}
+    <script src="{{asset('assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
 @endsection
 
 @push('after-scripts')
@@ -90,8 +82,8 @@
         $(function(){
             data();
         });
-         // Solucion de problema con tooltip en los botones que se crean por la peticion ajax
-         $(document).ajaxComplete(function(){
+        // Solucion de problema con tooltip en los botones que se crean por la peticion ajax
+        $(document).ajaxComplete(function(){
             // $('[data-toggle="tooltip"]').tooltip();
 
             $('.darBaja').on('click', function(event){
@@ -130,7 +122,7 @@
         });
         $.ajaxSetup({
             headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
         function cancelSwal(){
@@ -203,40 +195,6 @@
                     }
                 }
             });
-            // $.ajax({
-            //     type: 'GET',
-            //     dataType: 'json',
-            //     url: 'historias-clinicas/all',
-            //     // Obteniendo todas las historias clinicas
-            //     success: function(data){
-            //         console.log(data);
-            //         // Recorriendo cada historia clinica para determinar el paciente
-            //         $.each(data, function(key, hclinica){
-            //             // console.log(hclinica.id_paciente);
-            //             // Peticion AJAX para obtener el paciente de determinada historia clinica
-            //             $.ajax({
-            //                 type:'GET',
-            //                 dataType: 'json',
-            //                 url:`{{url('historias-clinicas/gethistoria/${hclinica.id_historia_clinica}')}}`,
-            //                 success: function(response1){
-            //                     // console.log(response1.nombre);
-            //                     data_tr += `
-            //                     <tr>
-            //                         <td>${hclinica.id_historia_clinica}</td>
-            //                         <td>${response1.nombre} ${response1.apellido}</td>
-            //                         <td>${hclinica.fecha_registro}</td>
-            //                         <td></td>
-            //                     </tr>`;
-            //                     $('.dataTable > tbody').html(data_tr);
-            //                 }
-            //             });
-            //         })
-            //     },
-            //     error: function(jqXHR, textStatus, errorThrown){
-            //         console.log('Error: ' + jsXHR + '\n Error string: ' + textStatus + '\n Error Throwed: ' + errorThrown);
-            //         // console.log(response);
-            //     }
-            // });
         }
         function fnStore(){
             var sendData = {
@@ -270,12 +228,6 @@
                     console.log(jqXHR);
 
                 }
-                // error:function(result){
-                //     if(result.responseJSON.errors){
-                //         console.log('Hay errores en los campos');
-                //     }
-                //     console.log(result.responseJSON.errors);
-                // }
             });
             function fnClearFields()
             {

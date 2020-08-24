@@ -48,6 +48,11 @@
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 locale:'es',
+                headerToolbar: {
+                    left: 'prev,next today probandoBoton',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
                 initialView: 'dayGridMonth',
                 initialDate: '2020-08-12',
                 eventColor: 'green',
@@ -102,13 +107,19 @@
                     },
                     {
                         title:'Prueba Campeon',
-                        start: '2020-08-08 12:30:00',
-                        end: '0000-00-00 00:00:00'
+                        start: '2020-08-09'
+                    },
+                    {
+                        title:"Prueba Mason necio",
+                        start: '2020-08-05T23:01:00',
+                        end: '2020-08-05T23:02:00'
+
                     }
                 ],
                 eventClick:function(info){
                     console.log(info.event);
-                }
+                },
+                navLinks: true
             });
 
 

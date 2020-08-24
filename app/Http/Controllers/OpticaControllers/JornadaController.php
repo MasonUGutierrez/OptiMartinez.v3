@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use DataTables;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\OpticaControllers\fullCalendar;
 
 class JornadaController extends Controller
@@ -43,9 +44,9 @@ class JornadaController extends Controller
             $jornadaT->nombre_jornada=$request->get('nombre_jornada');
             $jornadaT->lugar=$request->get('lugar');
             $jornadaT->fecha_jornada=$request->get('fecha_jornada');
-            $jornadaT->fecha_final=$request->get('fecha_final');
+           /* $jornadaT->fecha_final=$request->get('fecha_final');*/
             $jornadaT->hora_inicio=$request->get('hora_inicio');
-            $jornadaT->hora_final=$request->get('hora_final');
+            /*$jornadaT->hora_final=$request->get('hora_final');*/
             $jornadaT->save();
             DB::commit();
         }catch(\Exception $e){
@@ -115,10 +116,11 @@ class JornadaController extends Controller
             $jornada->nombre_jornada = $request->get('nombre_jornada');
             $jornada->lugar = $request->get('lugar');
             $jornada->fecha_jornada = $request->get('fecha_jornada');
-            $jornada->fecha_final=$request->get('fecha_final');
-            $jornada->color_fondo=$request->get('color_fondo');
             $jornada->hora_inicio=$request->get('hora_inicio');
-            $jornada->hora_final=$request->get('hora_final');
+           /* $jornada->fecha_final=$request->get('fecha_final');*/
+            /*$jornada->color_fondo=$request->get('color_fondo');*/
+
+           /* $jornada->hora_final=$request->get('hora_final');*/
             $jornada->save();
             DB::commit();
         } catch (\Exception $e) {
@@ -128,17 +130,26 @@ class JornadaController extends Controller
     }
 
     public function fillCalendar(){
-        $jornadas = JornadaTrabajo::all();
+        $jornadas = JornadaTrabajo::where("estado","1")->get();
 
         $array=[];
         foreach ($jornadas as $jornada){
             $fullCalendar = new fullCalendar();
             $fullCalendar->title = $jornada->nombre_jornada;
-            $fullCalendar->start = $jornada->fecha_jornada.' '.$jornada->hora_inicio;
-            $fullCalendar->end = $jornada->fecha_final.' '.$jornada->hora_final;
+            if($jornada->hora_inicio){
+                $fullCalendar->start = $jornada->fecha_jornada.' '.$jornada->hora_inicio;
+            }else{
+                $fullCalendar->start = $jornada->fecha_jornada;
+            }
+
+            /*$fullCalendar->end = $jornada->fecha_final.' '.$jornada->hora_final;*/
             $fullCalendar->eventTextColor = $jornada->color_fondo;
             $fullCalendar->textColor = $jornada->color_texto;
             $fullCalendar->descripcion = $jornada->lugar;
+            $fullCalendar->hora = $jornada->hora_inicio;
+            $fullCalendar->id_departamento = $jornada->id_departamento;
+            $fullCalendar->id_jornada = $jornada->id_jornada;
+            $fullCalendar->id = $jornada->id_jornada_trabajo;
             $array[]=$fullCalendar;
         }
         return response()->json($array);

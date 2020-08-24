@@ -5,6 +5,7 @@ namespace App\Http\Controllers\OpticaControllers;
 use App\Consulta;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ConsultaFormRequest;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;

@@ -1,6 +1,6 @@
 @extends('layout.master')
 @section('parentPageTitle', 'Historia Clinica')
-@section('title', 'Detalles')
+@section('title', 'Nueva Consulta')
 
 @section('page-style')
     {{-- Estilos para el sweetalert --}}

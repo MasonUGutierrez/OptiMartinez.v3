@@ -37,6 +37,11 @@ class HClinicaController extends Controller
                 ->addColumn('opciones', function($row){
                     $btns = '
                     <div style="text-align:center">
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Nueva Consulta" data-original-title="Nueva Consulta">
+                            <a href="'.route('consulta.create',$row->id_historia_clinica).'" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float">
+                                <i class="zmdi zmdi-assignment-o"></i>
+                            </a>
+                        </span>
                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Ver detalles" data-original-title="Editar">
                             <a href="'.route('historias-clinicas.show',$row->id_historia_clinica).'" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float">
                                 <i class="zmdi zmdi-search"></i>

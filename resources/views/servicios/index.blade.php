@@ -1,6 +1,6 @@
 @extends('layout.master')
-@section('title', 'Page Blank')
-@section('parentPageTitle', 'Pages')
+{{--@section('parentPageTitle', 'Pages')--}}
+@section('title', 'Servicios')
 @section('page-style')
     <link rel="stylesheet" href="{{asset('assets/plugins/sweetalert/sweetalert.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/plugins/morrisjs/morris.css')}}"/>

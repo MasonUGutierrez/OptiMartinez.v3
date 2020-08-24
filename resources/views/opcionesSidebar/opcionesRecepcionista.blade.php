@@ -7,5 +7,6 @@
 </li>
 
 <li class="{{Request::segment(1) == 'jornadas'}}">
-    <a href=""><i class="zmdi zmdi-calendar"></i><span>Jornadas</span></a>
+    <a href="/calendarRecepcionista"><i class="zmdi zmdi-calendar"></i><span>Jornadas</span></a>
+    <a href="/listaPacientes"><i class="zmdi zmdi-accounts-alt"></i><span>Pacientes</span></a>
 </li>

@@ -12,4 +12,8 @@ class fullCalendar
     public $eventTextColor;
     public $textColor;
     public $descripcion;
+    public $hora;
+    public $id_jornada;
+    public $id_departamento;
+    public $id;
 }

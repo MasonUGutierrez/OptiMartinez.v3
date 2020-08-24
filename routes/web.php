@@ -41,6 +41,8 @@ Route::get('depas','OpticaControllers\JornadaController@departamento');
 route::get('vertipos','OpticaControllers\JornadaController@vertipojornada');
 route::get('verjornadas','OpticaControllers\JornadaController@mostrar');
 route::get('calendar','OpticaControllers\JornadaController@fillCalendar');
+Route::get('listaPacientes', 'OpticaControllers\RecepcionistaController@listaPaciente');
+route::resource('calendarRecepcionista','OpticaControllers\RecepcionistaController');
 //-----------------------------Ruta de prueba-----------------------------------//
 route::get('calendarPrueba','OpticaControllers\JornadaController@pruebas');
 //-----------------------------------------------------------------------------//
@@ -91,6 +93,7 @@ Route::get('/test', function(){
 });
 
 // Ruta para historias Clinicas
+
 Route::get('historias-clinicas/all', 'OpticaControllers\HClinicaController@getAll');
 Route::get('historias-clinicas/gethistoria/{historia_clinica}', 'OpticaControllers\HClinicaController@getHClinica');
 Route::resource('historias-clinicas', 'OpticaControllers\HClinicaController');

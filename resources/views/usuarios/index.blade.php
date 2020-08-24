@@ -1,6 +1,6 @@
 @extends('layout.master')
-@section('title', 'Page Blank')
-@section('parentPageTitle', 'Pages')
+@section('parentPageTitle', 'Admin. Usuarios')
+@section('title', 'Usuarios')
 
 @section('page-style')
 <link rel="stylesheet" href="{{asset('assets/plugins/sweetalert/sweetalert.css')}}"/>

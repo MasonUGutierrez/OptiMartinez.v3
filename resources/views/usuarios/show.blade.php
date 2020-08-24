@@ -1,6 +1,6 @@
 @extends('layout.master')
-@section('title', 'Page Blank')
-@section('parentPageTitle', 'Pages')
+@section('parentPageTitle', 'Admin. Usuarios')
+@section('title', 'Detalle Usuario')
 @section('page-style')
     <link rel="stylesheet" href="{{asset('assets/plugins/multi-select/css/multi-select.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/plugins/jquery-spinner/css/bootstrap-spinner.css')}}"/>
