@@ -204,39 +204,46 @@
                 // onFinished:,
             }); 
 
-            // .validate({
-            //     rules: {
-            //         nombres:{
-            //             minlength: 5,
-            //             required: true,
-            //         },
-            //         apellidos:{
-            //             required: true,
-            //             minlingth: 5,
-            //         },
-            //         fecha_nacimiento:{
-            //             required: true,
-            //             date: true,
-            //         },
-            //         edad:{
-            //             required:{
-            //                 depends: function(element){
-            //                     return ($.trim($("#fecha_nacimiento").val()))
-            //                 }
-            //             }
-            //         },
-            //         sexo:,
-            //         cedula:,
-            //         telefono:,
-            //         direccion:,
-            //         h_ocular:,
-            //         h_medica:,
-            //         medicaciones:,
-            //         alergias:
-            //     }
-            // })
+            .validate({
+                rules: {
+                    nombres:{
+                        minlength: 5,
+                        required: true,
+                    },
+                    apellidos:{
+                        required: true,
+                        minlingth: 5,
+                    },
+                    fecha_nacimiento:{
+                        required: true,
+                        date: true,
+                    },
+                    edad:{
+                        required:{
+                            depends: function(element){
+                                return isEmpty($('#fecha_nacimiento').val().toString());
+                            }
+                        },
+                        number: true,
+                    },
+                    sexo:{
+                        required: true,
+                        min: 1
+                    }
+                    cedula:,
+                    telefono:,
+                    direccion:,
+                    h_ocular:,
+                    h_medica:,
+                    medicaciones:,
+                    alergias:
+                }
+            })
         }
-
+        function isEmpty(str){
+            // Validar si es una cadena vacia y sin espacios en blanco
+            return ($.trim(str).length === 0) ? true : false;
+        }
         function calcEdad(fechaNac){
             let fechaHoy = new Date(),
                 fechaN = new Date(parseInt(fechaNac));
