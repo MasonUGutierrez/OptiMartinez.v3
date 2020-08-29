@@ -57,6 +57,10 @@ class HClinicaController extends Controller
                             </a>
                         </span>
                         </div>';
+                    /*
+                        url()->previous() para obtener el url anterior porque el current es que se envia por el Ajax
+                        explode() para convertir en un array una cadena separado por el caracter que se envia por param
+                    */
                     if (explode('/',url()->previous())[3] == 'listaPacientes'){
                         $btns = '
                             <div style="text-align:center">
