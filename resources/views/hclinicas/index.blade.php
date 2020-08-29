@@ -105,22 +105,78 @@
     <script type="text/javascript" async="async">
         $(function(){
             data(); 
-            /* // Implementando datepicker - da error en los estilos o en los datos que envian
-            var datepicker = $('#fecha_nacimiento').datepicker({
-                locale: 'es-es',
-                uiLibrary: 'bootstrap4',
-                format: 'dd/mm/yyyy',
-                // modal: true, header: true, footer: true,
-            });
-            */   
+
             stepInit();
 
-            var fechaNacimiento = $('#fecha_nacimiento'); 
+            // Limpiando los errores de todas las ventanas steps si se cierra el modal
+            $('#AddPaciente').on('hide.bs.modal', function(){
+                var form = $('#hclinica_form');
+                form.find($('.current')).removeClass('error');
 
+                form.validate().resetForm(); // Reseteando los errores
+                setAnanmesisFields(); // Seteando los valores en los campos de Ananmesis
+
+                /*
+                  Validacion para deschequear el input que indica 
+                  si tiene cedula o no
+                */               
+                var initial = $('#checkCedula').is(':checked');
+                if (initial && isEmpty($('#edad').val())){
+                    $('#cedula').prop('disabled', false);
+                    $('#cedObl').show();
+                    $('#checkCedula').prop('checked', false)
+                                     .prop('disabled', false);                 
+                } 
+            });
+
+            // Evento keyup para ocultar el check de cedula si empieza a escribir una
+            $('#cedula').on('keyup', function(){
+                if(isEmpty($(this).val())){
+                    $('#checkContainer').show();
+                }
+                else{
+                    $('#checkContainer').hide();
+                }
+            });
+            $('#AddPaciente').on('shown.bs.modal', function(){
+                if($('#checkContainer').is(':hidden') && isEmpty($('#cedula').val())){
+                    $('#checkContainer').show(); 
+                }
+            });
+            // $('#AddPaciente').on('shown.bs.modal', function(){
+            //     var initial = $('#checkCedula').is(':checked');
+
+            //     if (initial){
+            //         $('#cedula').prop('disabled', false);
+            //         $('#cedObl').show();
+            //         $('#checkCedula').prop('checked', false);                 
+            //     } 
+            // });
+
+            var fechaNacimiento = $('#fecha_nacimiento'); 
+            
+            // Evento change en el input fechaNacimiento para setear el valor al input edad
             fechaNacimiento.on('change', function(e){
-                // console.log("hola");
-                console.log('Estas bien?');
                 $('#edad').val(parseInt(calcEdad(e.target.valueAsNumber)));
+            });
+
+            // Evento blur(perder focus) en el input de fechaN.. para automaticamente 
+            // chequear que no tiene cedula por tener una edad no permitida
+            fechaNacimiento.on('blur', function(e){
+                console.log(!isEmpty($('#edad').val()));
+                // Number() convierte una "" a 0, parseInt() la convierte en NaN
+                if(parseInt($('#edad').val()) < 16){
+                    $('#checkCedula').prop('checked', true)
+                                     .prop('disabled', true);
+                    $('#cedula').prop('disabled', true);
+                    $('#cedObl').hide();
+                }
+                else{
+                    $('#checkCedula').prop('checked', false)
+                                     .prop('disabled', false);
+                    $('#cedula').prop('disabled', false);
+                    $('#cedObl').show();
+                }
             });
 
             // Asignando valor en la propiedad fecha maxima por jquery
@@ -137,22 +193,27 @@
                 // return fechaHoy.getFullYear() + '-' + (((fechaHoy.getMonth() + 1) < 10) ? '0'+(fechaHoy.getMonth()+1) : (fechaHoy.getMonth()+1)) + '-' + ((fechaHoy.getDate() < 10) ? '0' + fechaHoy.getDate() : fechaHoy.getDate()); 
             });
             
-            var fCedula = $('#cedula');
             // Evento click sobre el checkbox que indica si es menor de edad
-            $('#checkMenor').on('click', function(){
-                // Evaluar si el campo para cedula esta deshabilitado
-                if (fCedula.attr('disabled'))
-                {
-                    // Si esta deshabilitado se habilita el input quitando el atributo readonly
-                    fCedula.removeAttr('disabled');
+            $('#checkCedula').on('click', function(){
+                var input = $('#cedula'), 
+                    labelRequired = $('#cedObl');
+
+                if($(this).is(":checked")){                    
+                    labelRequired.hide(); // document.querySelector("#cedObl").style.display = "none";
+                    input.prop('disabled', true);
+                    input.val("");
+
+                    // Quitando los errores lanzados por form.validate();
+                    input.removeClass("error");
+                    $("#cedula + label.error").remove();
                 }
-                else{
-                    fCedula.prop('disabled','disabled');
+                else{                    
+                    labelRequired.show(); // document.querySelector("#cedObl").style.display = "inline";
+                    input.prop('disabled', false);
                 }
             });
-
             // Trabajando evento click en el boton cancelar del modal
-            $('#btnCancel').on('click', function(event){
+            /* $('#btnCancel').on('click', function(event){
                 // Previniendo que se cierre el modal
                 event.preventDefault();
 
@@ -160,11 +221,96 @@
                 fnClearFields();
                 // Cambiando el toggle del modal
                 $('#AddPaciente').modal('toggle');
-            });            
-        });  
+            }); */
 
+            setAnanmesisFields();            
+        });
+        
+        // Funcion para setear los valores en los inputs del apartado Ananmesis
+        function setAnanmesisFields(){
+            //Evento blur(perder focus) en los campos de Ananmesis         
+            $('#h_ocular, #h_medica, #medicaciones, #alergias').on('blur', function(){
+                if(isEmpty($(this).val())) $(this).val("N/A")
+            });
+            //Evento focus en los campos de Ananmesis para que borre el valor si esta en N/A
+            $('#h_ocular, #h_medica, #medicaciones, #alergias').on('focus', function(){
+                if($.trim($(this).val()) == "N/A") $(this).val("")
+            });
+            //Seteando el valor por defecto N/A en los campos seleccionados por IDs
+            $("#h_ocular, #h_medica, #medicaciones, #alergias").val("N/A");
+        }
+
+        // Funcion para las librerias validate() y steps()
         function stepInit(){
             var form = $('#hclinica_form').show();
+            form.validate({
+                rules: {
+                    nombres:{
+                        minlength: 3,
+                        required: true,
+                    },
+                    apellidos:{
+                        required: true,
+                        minlength: 4,
+                    },
+                    fecha_nacimiento:{
+                        required: true,
+                        date: true,
+                    },
+                    edad:{
+                        required:{
+                            depends: function(element){
+                                return isEmpty($('#fecha_nacimiento').val());
+                            }
+                        },
+                        number: true,
+                    },
+                    sexo:{
+                        required: true,
+                        minlength: 1
+                    },
+                    cedula:{
+                        minlength:14,
+                        maxlength:16,
+                        required:{
+                            depends: function(element){
+                                // var isChecked = $('#checkCedula').is(':checked');
+                                // return !isChecked;
+                                // Si esta checkeado entonces no es requerido el campo cedula
+                                return $('#checkCedula').is(':checked') ? false : true;
+                            }
+                        }
+                    },
+                    telefono:{
+                        minlength: 8,
+                        maxlength: 15,
+                        validPhone: true,
+                        required:true,
+                    },
+                    direccion:{
+                        minlength: 4, // minimo de 4 caracteres por el nombre mas pequeño de departamento  
+                    },
+                    h_ocular:{
+                        minlength:3
+                    },
+                    h_medica:{
+                        minlength:3
+                    },
+                    medicaciones:{
+                        minlength:3
+                    },
+                    alergias:{
+                        minlength:3
+                    }
+                }
+            });
+
+            // Creando regla propia de validacion
+            jQuery.validator.addMethod('validPhone', function(value, element){
+                var pattern = /^(([\+]+(505)+){0,1}|([(]+(505)+[)]+){0,1})(\s|[-])?[^0-1]{1}[0-9]{3}(\s|[-])?\d{4}$/;
+                
+                return this.optional(element) || pattern.test(value);
+            }, "Por favor, ingrese un número telefónico válido");  
 
             form.steps({
                 /*Apariencia*/
@@ -197,53 +343,41 @@
                         form.find('.body:eq(' + newIndex + ') label.error').remove();
                         form.find('.body:eq(' + newIndex + ') .error').removeClass('error');
                     }
-
+                    form.validate();
+                    return form.valid();
                 },
-                // onStepChanged:,
-                // onFinishing:,
-                // onFinished:,
-            }); 
+                // onStepChanged: function (event, currentIndex, priorIndex) {
+                //     console.log("estas en: " + currentIndex + "\nVienes de: " + priorIndex);
+                //     // if(currentIndex == 2)
+                //     // Nota: Los steps se inicializan en 0
+                // },
+                onFinishing: function(event, currentIndex){
+                    form.validate();
+                    return form.valid();
+                },
+                onFinished: function(event, currentIndex){
+                    // console.log(event);
+                    fnStore();
+                    swal({
+                        title: "Enhorabuena",
+                        text: "Historia clinica registrada",
+                        icon:'success',
+                    }).then(()=>{
+                        $("#AddPaciente").modal('toggle');
+                        fnClearFields();
+                        form.steps('reset');
+                    });
+                },
+            });             
+        }       
 
-            .validate({
-                rules: {
-                    nombres:{
-                        minlength: 5,
-                        required: true,
-                    },
-                    apellidos:{
-                        required: true,
-                        minlingth: 5,
-                    },
-                    fecha_nacimiento:{
-                        required: true,
-                        date: true,
-                    },
-                    edad:{
-                        required:{
-                            depends: function(element){
-                                return isEmpty($('#fecha_nacimiento').val().toString());
-                            }
-                        },
-                        number: true,
-                    },
-                    sexo:{
-                        required: true,
-                        min: 1
-                    }
-                    cedula:,
-                    telefono:,
-                    direccion:,
-                    h_ocular:,
-                    h_medica:,
-                    medicaciones:,
-                    alergias:
-                }
-            })
-        }
+        // Funcion para determinar si una str es vacia
         function isEmpty(str){
             // Validar si es una cadena vacia y sin espacios en blanco
             return ($.trim(str).length === 0) ? true : false;
         }
+
+        // Funcion para determinar la edad basado en una fecha de nacimiento
         function calcEdad(fechaNac){
             let fechaHoy = new Date(),
                 fechaN = new Date(parseInt(fechaNac));
@@ -318,15 +452,17 @@
             });
         });   
 
-        $('#Guardar').on('click', function(event){
+        /* $('#Guardar').on('click', function(event){
             event.preventDefault();
             fnStore();
-        });
+        }); */
+
         $.ajaxSetup({
             headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
         function cancelSwal(){
             swal({
                 text:'¡Acción Cancelada!',
@@ -334,6 +470,7 @@
                 button: 'Aceptar'
             });
         }
+
         function fnDelete(element){
             $.ajax(element.attr('href'),{
                 type:'DELETE',
@@ -349,6 +486,7 @@
                 }
             });
         }
+
         function data(){
             // let data_tr = "";
             // Agregando directamente el responseJSON devuelto del controlador al DataTable
@@ -431,14 +569,15 @@
             //         // console.log(response);
             //     }
             // });
-        }   
+        }  
+
         function fnStore(){
             var sendData = {
                 nombres:$('#nombre').val(),
                 apellidos:$('#apellido').val(),
                 fecha_nacimiento:$('#fecha_nacimiento').val(),
                 edad:parseInt($('#edad').val()),
-                sexo:$('[name="sexo"]').val(),
+                sexo:$('[name="sexo"]:checked').val(),
                 cedula:$('#cedula').val(),
                 telefono:$('#telefono').val(),
                 direccion:$('#direccion').val(),
@@ -456,7 +595,7 @@
                 data: sendData,
                 url: `{{action('OpticaControllers\HClinicaController@store')}}`,
                 success: function(datas){
-                    console.log(datas.nombre + 'Registrado!!');
+                    console.log(datas.nombres + ' Registrado!!');
                     fnClearFields(); 
 
                     // $('.dataTable-hc').fnDestroy();               
@@ -477,11 +616,13 @@
                 // }
             });   
         }
+
         function fnClearFields(){
             $('#nombre').val("");
             $('#apellido').val("");
             $('#fecha_nacimiento').val("");
             $('#edad').val("");
+            $('#maleRadio').prop('checked', true);
             $('#cedula').val("");
             $('#telefono').val("");
             $('#direccion').val("");
@@ -490,7 +631,8 @@
             $('#medicaciones').val("");
             $('#alergias').val("");
         } 
-        $('#jornadas').on('change',function(){
+        
+        /* $('#jornadas').on('change',function(){
             $.ajax('url',{
                 type:'get',
                 dataType:'json',
@@ -504,6 +646,6 @@
                     console.log(jqXHR);
                 }
             });
-        });
+        }); */
     </script>
 @endpush

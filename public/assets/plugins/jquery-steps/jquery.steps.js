@@ -1488,6 +1488,28 @@ $.fn.steps.skip = function (count)
 };
 
 /**
+ * Reset your wizard step to initial step
+ * https://stackoverrun.com/es/q/6252893
+ * 
+ * @method reset
+ */
+$.fn.steps.reset = function () {
+    var wizard = this,
+    options = getOptions(this),
+    state = getState(this);
+    
+    if(state.currentIndex>0)
+    {
+           goToStep(wizard, options, state, 0);   
+    
+           for (i = 1; i < state.stepCount; i++) {
+           var stepAnchor = getStepAnchor(wizard, i);
+           stepAnchor.parent().removeClass("done")._enableAria(false);
+           }
+    }
+    };
+
+/**
  * An enum represents the different content types of a step and their loading mechanisms.
  *
  * @class contentMode

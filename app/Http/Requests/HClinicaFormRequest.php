@@ -38,16 +38,17 @@ class HClinicaFormRequest extends FormRequest
         return [
             'nombres' => ['bail', 'required', 'string'],
             'apellidos' => ['bail', 'required', 'string'],
-            'fecha_nacimiento' => ['bail', 'required','date'],
+            // Nota: Estar atento si da error por regla date
+            'fecha_nacimiento' => ['bail', 'required','date'], 
             'edad' => ['bail', 'numeric'],
             'sexo' => ['bail', 'string'],
-            'cedula' => ['bail', 'string'], //$uniqueRule],
+            'cedula' => ['bail', 'nullable', 'string'], //$uniqueRule],
             'telefono' => ['bail', 'required', 'string'],
-            'direccion' => ['bail', 'string'],
-            'h_ocular' => ['bail', 'required', 'string'],
-            'h_medica' => ['bail', 'string'],
-            'medicaciones' => ['bail', 'string'],
-            'alergias' => ['bail', 'string'],
+            'direccion' => ['bail', 'nullable', 'string'],
+            'h_ocular' => ['bail', 'required', 'nullable','string'],
+            'h_medica' => ['bail', 'nullable','string'],
+            'medicaciones' => ['bail', 'nullable','string'],
+            'alergias' => ['bail', 'nullable','string'],
         ];
     }
 }
