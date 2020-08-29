@@ -1,6 +1,6 @@
 @extends('layout.master')
-{{--@section('parentPageTitle', 'Pages')--}}
-@section('title', 'Jornadas')
+@section('parentPageTitle', 'Jornadas')
+@section('title', 'Agenda')
 @section('page-style')
     <link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/plugins/sweetalert/sweetalert.css')}}"/>

@@ -1,6 +1,6 @@
 @extends('layout.master')
 @section('parentPageTitle', '')
-@section('title', 'Historias Clinicas')
+@section('title', 'Pacientes')
 
 @section('page-style')
     {{-- Estilos para Datatable --}}
@@ -53,7 +53,7 @@
             </div>
         </div>
     </div>
-    @include('hclinicas.modal-addpaciente')
+    @include('recepcionista.modal-addpaciente')
 @endsection
 
 @section('page-script')

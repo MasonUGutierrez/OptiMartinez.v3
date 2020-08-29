@@ -60,7 +60,7 @@ class HClinicaController extends Controller
                     return $btns;
                 })
                 ->addColumn('paciente', function($row){
-                    return $row->paciente->nombre . ' ' . $row->paciente->apellido;
+                    return $row->paciente->nombres . ' ' . $row->paciente->apellidos;
                 })
                 ->rawColumns(['opciones', 'paciente'])
                 ->make(true);

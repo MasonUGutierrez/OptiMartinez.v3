@@ -2,9 +2,11 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <form action="#" method="POST" id="hclinica_form">
-                    <h3>Datos Personales</h3>
-                    <fieldset>
+                <div class="card mb-0">
+                    <div class="header">
+                        <h2><strong>Datos</strong> Personales</h2>
+                    </div>
+                    <div class="body">
                         <div class="row clearfix">
                             {{-- Input para el nombre --}}
                             <div class="col-md-6 col-sm-12">
@@ -42,8 +44,8 @@
                                     <label class="custom-control-label" for="sexoRadio1">Masculino</label>
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                   <input type="radio" id="sexoRadio2" name="sexo" class="custom-control-input" value="femenino">
-                                   <label class="custom-control-label" for="sexoRadio2">Femenino</label>
+                                    <input type="radio" id="sexoRadio2" name="sexo" class="custom-control-input" value="femenino">
+                                    <label class="custom-control-label" for="sexoRadio2">Femenino</label>
                                 </div>
                             </div>
                             {{-- Input para la cedula --}}
@@ -51,7 +53,7 @@
                                 <div class="form-group">
                                     <div class="row clearfix">
                                         <div class="col-md-6">
-                                            <label for="cedula">Cedula</label> 
+                                            <label for="cedula">Cedula</label>
                                         </div>
                                         {{-- Checkbox para confirmar si es menor de edad --}}
                                         <div class="col-md-6">
@@ -81,48 +83,15 @@
                                 </div>
                             </div>
                         </div>
-                    </fieldset>
-                    <h3>Datos Ananmesis</h3>
-                    <fieldset>
-                        {{-- Row para los textareas de historias oculares y medicas --}}
-                        <div class="row clearfix">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="antecedente">Historia Ocular</label>
-                                    <textarea class="form-control no-resize" rows="4" id="h_ocular" name="h_ocular" placeholder="Historia Ocular Personal/Familiar"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="antecedente">Historia Medica</label>
-                                    <textarea class="form-control no-resize" rows="4" id="h_medica" name="h_medica" placeholder="Historia Medica Personal/Familiar"></textarea>
-                                </div>
-                            </div>
-                        </div>  
-                        {{-- Row para inputs de medicaciones y alergias --}}
-                        <div class="row clearfix">
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <label for="antecedente">Medicaciones</label>
-                                    <textarea class="form-control no-resize" rows="4" id="medicaciones" name="medicaciones" placeholder="Medicaciones actuales del paciente"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <label for="antecedente">Alergias</label>
-                                    <textarea class="form-control no-resize" rows="4" id="alergias" name="alergias" placeholder="Alergias del paciente"></textarea>
-                                </div>
-                            </div>
-                        </div> 
-                    </fieldset>
-                </form>
+                    </div>
+                </div>
             </div>
-            {{-- <div class="modal-footer">
+            <div class="modal-footer">
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary btn-raised btn-round waves-effect waves-light" id="Guardar" data-dismiss="modal" value="Aceptar">
                     <input type="button" class="btn btn-danger btn-raised waves-effect waves-light" data-dismiss="modal" value="Cancelar" id="btnCancel">
                 </div>
-            </div> --}}
+            </div>
         </div>
     </div>
 </div>
