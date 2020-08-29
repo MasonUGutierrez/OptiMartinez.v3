@@ -11,18 +11,18 @@
     <a href="#" class="menu-toggle"><i class="zmdi zmdi-accounts-list"></i> <span>Admin. Usuarios</span></a>
     <ul class="ml-menu">
         <!--Poner las rutas asi en el href de cada etiqueta a {{--route('app.inbox')--}} -->
-        <li class="{{ Request::segment(1) === 'roles' ? 'active' : null }}"><a href="/roles">Roles</a></li>
-        <li class="{{ Request::segment(1) === 'usuarios' ? 'active' : null }}"><a href="/usuarios">Usuarios</a></li>
+        <li class="{{ Request::segment(1) === 'roles' ? 'active' : null }}"><a href="{{url('roles')}}">Roles</a></li>
+        <li class="{{ Request::segment(1) === 'usuarios' ? 'active' : null }}"><a href="{{url('usuarios')}}">Usuarios</a></li>
             <!-- Dejo el enlace a calendar para fijarnos -->
             <!-- <li class="{{ Request::segment(2) === 'calendar' ? 'active' : null }}"><a href="{{route('app.calendar')}}">Calendar</a></li>  -->
     </ul>
 </li>
 
 <li class="{{ Request::segment(1) === 'servicios' ? 'active' : null}}">
-    <a href="/servicios"><i class="zmdi zmdi-assignment"></i><span>Servicios</span></a>
+    <a href="{{url('servicios')}}"><i class="zmdi zmdi-assignment"></i><span>Servicios</span></a>
 </li>
 <li class="{{Request::segment(1) === 'planes-pago' ? 'active' : null}}">
-    <a href="/planpago"><i class="zmdi zmdi-card"></i><span>Planes de Pago</span></a>
+    <a href="{{url('planpago')}}"><i class="zmdi zmdi-card"></i><span>Planes de Pago</span></a>
 </li>
 
 <li class="{{ Request::segment(1) === 'admin-lentes' ? 'active open' : null }}">

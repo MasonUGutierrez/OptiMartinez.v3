@@ -435,7 +435,7 @@
                             className:'btn-warning'
                         }
                     },
-                    dangerMode:true                
+                    dangerMode:true
                 }).then((willDelete)=>{
                     if(willDelete){
                         swal($(this).data('obj') + " dada de baja",{
@@ -448,7 +448,7 @@
                     else{
                         cancelSwal();
                     }
-                }); 
+                });
             });
         });   
 
@@ -500,10 +500,10 @@
                     // dataSrc: ''
                 },
                 columns:[
-                    {data:'id_historia_clinica'},
+                    {data:'id_historia_clinica',width: "10%"},
                     {data:'paciente'},
-                    {data:'fecha_registro'},
-                    {data:'opciones', name:"opciones", orderable:false, searchable: false, width:"15%"}
+                    {data:'fecha_registro',width:"20%"},
+                    {data:'opciones', name:"opciones", orderable:false, searchable: false, width:"20%"}
                 ],
                 lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "Todo"]],
                 language:{
@@ -598,7 +598,7 @@
                     console.log(datas.nombres + ' Registrado!!');
                     fnClearFields(); 
 
-                    // $('.dataTable-hc').fnDestroy();               
+                    // $('.dataTable-hc').fnDestroy();
                     data();
                 },
                 error: function(jqXHR, statusText, errorThrown){

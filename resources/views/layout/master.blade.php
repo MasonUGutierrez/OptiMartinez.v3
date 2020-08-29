@@ -10,12 +10,12 @@
         <link rel="icon" href="{{asset('optica-icon.ico')}}" type="image/x-icon"> <!-- Favicon-->
 
         <!-- Este config('app.name') se trae el nombre de la aplicacion que esta en el archivo .env -->
-        <title>{{ config('app.name') }} - @yield('title')</title>        
+        <title>{{ config('app.name') }} - @yield('title')</title>
         <meta name="description" content="@yield('meta_description', config('app.name'))">
         <meta name="author" content="@yield('meta_author', config('app.name'))">
         @yield('meta')
         {{-- See https://laravel.com/docs/5.5/blade#stacks for usage --}}
-        @stack('before-styles')        
+        @stack('before-styles')
         <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}">
         @if (trim($__env->yieldContent('page-style')))
             @yield('page-style')
@@ -24,11 +24,22 @@
         <link rel="stylesheet" href="{{asset('assets/css/style.min.css')}}">
         {{-- Custom Theme Css --}}
         <link rel="stylesheet" href="{{asset('assets/css/themes.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/fullcalendar/lib/main.min.css')}}">
+        <style>
+          /*  #calendar{
+                color:#000 !important;
+            }*/
+
+            .fc .fc-event {
+                border: 0;
+                color: #000000 !important;
+            }
+        </style>
         @stack('after-styles')
     </head>
 
     <!-- Se modifico el color aca -->
-    <?php 
+    <?php
         $setting = !empty($_GET['theme']) ? $_GET['theme'] : '';
         $theme = "theme-blue";
         $menu = "";
@@ -57,7 +68,7 @@
         <div class="page-loader-wrapper">
             <div class="loader">
                 <div class="m-t-30"><img class="heartbit" src="{{asset('../assets/images/LogoSistemaOptica/logo.svg')}}" width="120"  alt="Aero"></div>
-                <p>Por favor, espere un momento...</p>        
+                <p>Por favor, espere un momento...</p>
             </div>
         </div>
 
@@ -93,29 +104,29 @@
                     </div>
                 </div>
             </div>
-            <div class="container-fluid">                
+            <div class="container-fluid">
                 @yield('content')
             </div>
         </section>
         @yield('modal')
         <!-- Scripts -->
         @stack('before-scripts')
-        <script src="{{ asset('assets/bundles/libscripts.bundle.js') }}"></script>    
+        <script src="{{ asset('assets/bundles/libscripts.bundle.js') }}"></script>
         <script src="{{ asset('assets/bundles/vendorscripts.bundle.js') }}"></script>
 
         @if (trim($__env->yieldContent('page-script')))
             @yield('page-script')
         @endif
-        
+
         <script src="{{ asset('assets/bundles/mainscripts.bundle.js') }}"></script>
-        
+
         <!-- Script para habilitar los tooltips -->
         <script type="text/javascript">
             $(function () {
-                $('[data-toggle="tooltip"]').tooltip();           
+                $('[data-toggle="tooltip"]').tooltip();
             })
             $(document).ajaxComplete(function(){
-                $('[data-toggle="tooltip"]').tooltip();          
+                $('[data-toggle="tooltip"]').tooltip();
             });
         </script>
         @stack('after-scripts')

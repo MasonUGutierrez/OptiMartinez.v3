@@ -1,12 +1,13 @@
 <div class="modal modal2" id="largeModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="title" id="titleEdit">Editar Plan de Pago</h4>
-                <h3 id="mensaje" hidden><strong>Guardado</strong></h3>
-            </div>
             <div class="modal-body center">
-                <label for="">Nombre Plan de Pago</label>
+                <div class="card">
+                    <div class="header">
+                        <h2 class="title" id="titleEdit"><strong>Editar</strong> Plan de Pago</h2>
+                    </div>
+                </div>
+                <label >Nombre Plan de Pago</label>
                 <input type="hidden" id="idPlan">
                 <input type="hidden" name="_method" value="PUT">
                 <input type="text" class="form-control  {{ $errors->has('plan_pago') ? 'is-invalid' : '' }}"

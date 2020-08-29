@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 //Rutas propias
 Route::get('miperfil','OpticaControllers\UsuarioController@showPerfil');
+Route::get('byeRol/{idU}/{idR}','OpticaControllers\UsuarioController@RemoveRol');
 Route::resource('usuarios','OpticaControllers\UsuarioController');
 Route::get('roless','OpticaControllers\RolController@getAll');
 Route::resource('roles','OpticaControllers\RolController');
@@ -28,6 +29,24 @@ Route::get('servicio','OpticaControllers\ServicioController@getAll');
 Route::resource('servicios','OpticaControllers\ServicioController');
 Route::get('planpagos','OpticaControllers\PlanPagoController@getAll');
 Route::resource('planpago','OpticaControllers\PlanPagoController');
+Route::get('historias-clinicas/consulta/create/verfecha/{id}','OpticaControllers\ConsultaController@getfecha');
+Route::get('historias-clinicas/consulta/create/verpaciente/{id}','OpticaControllers\ConsultaController@getpaciente');
+Route::get('historias-clinicas/consulta/create/verjor','OpticaControllers\ConsultaController@verjornada');
+Route::get('idservicios','OpticaControllers\ConsultaController@servicio');
+Route::get('historias-clinicas/verfecha','OpticaControllers\ConsultaController@date');
+Route::get('historias-clinicas/getconsulta/{id}','OpticaControllers\ConsultaController@gettable');
+Route::get('historias-clinicas/consulta/create/{id}','OpticaControllers\ConsultaController@create')->name("consulta.create");
+Route::resource('historias-clinicas/consulta','OpticaControllers\ConsultaController')->except(['create']);
+Route::get('depas','OpticaControllers\JornadaController@departamento');
+route::get('vertipos','OpticaControllers\JornadaController@vertipojornada');
+route::get('verjornadas','OpticaControllers\JornadaController@mostrar');
+route::get('calendar','OpticaControllers\JornadaController@fillCalendar');
+Route::get('listaPacientes', 'OpticaControllers\RecepcionistaController@listaPaciente');
+route::resource('calendarRecepcionista','OpticaControllers\RecepcionistaController');
+//-----------------------------Ruta de prueba-----------------------------------//
+route::get('calendarPrueba','OpticaControllers\JornadaController@pruebas');
+//-----------------------------------------------------------------------------//
+Route::resource('jornadas','OpticaControllers\JornadaController');
 
 // Rutas Resources
 Route::resource('admin-lentes/marcas', 'OpticaControllers\MarcaController');
@@ -36,13 +55,13 @@ Route::resource('admin-lentes/marcas', 'OpticaControllers\MarcaController');
 Route::resource('admin-lentes/tipos-marcos', 'OpticaControllers\TipoMarcoController')->except(['show', 'edit']);
 
 // Closure para no tener que hacer un metodo en el Controller
-/* Nota: Hubo problemas con la ruta extra put, se soluciono cambiando el nombre de la URL, 
+/* Nota: Hubo problemas con la ruta extra put, se soluciono cambiando el nombre de la URL,
 el nombre de la URL al ser igual que la URL del metodo post del controlador no sabia donde ingresar*/
 Route::put('admin-lentes/tipos-lentes/reactivar/{tipo_lente}', function($id){
     $tipoLente = App\OpticaModels\TipoLente::findOrFail($id);
     $tipoLente->estado = 1;
     $tipoLente->save();
-    
+
     return redirect()->route('tipos-lentes.index');
 })->name('tipos-lentes.reactivar');
 Route::resource('admin-lentes/tipos-lentes', 'OpticaControllers\TipoLenteController')->except(['show']);
@@ -51,7 +70,7 @@ Route::put('admin-lentes/materiales/reactivar/{materiale}', function($id){
     $tipoMaterial = App\OpticaModels\TipoMaterial::findOrFail($id);
     $tipoMaterial->estado = 1;
     $tipoMaterial->save();
-    
+
     return redirect()->route('materiales.index');
 })->name('materiales.reactivar');
 Route::resource('admin-lentes/materiales', 'OpticaControllers\TipoMaterialController');
@@ -60,7 +79,7 @@ Route::put('admin-lentes/marcos/reactivar/{marco}', function($id){
     $marco = App\OpticaModels\Marco::findOrFail($id);
     $marco->estado = 1;
     $marco->save();
-    
+
     return redirect()->action('OpticaControllers\MarcoController@index');
 })->name('marcos.reactivar');
 
@@ -68,11 +87,13 @@ Route::resource('admin-lentes/marcos', 'OpticaControllers\MarcoController');
 
 // Ruta para hacer pruebas de los modelos
 Route::get('/test', function(){
-    $tipo_marco = App\OpticaModels\TipoMarco::where('estado','1')->first();
-    return $tipo_marco->tipo_marco;
+    /*$tipo_marco = App\OpticaModels\TipoMarco::where('estado','1')->first();
+    return $tipo_marco->tipo_marco;*/
+    return redirect("verjornadas");
 });
 
 // Ruta para historias Clinicas
+
 Route::get('historias-clinicas/all', 'OpticaControllers\HClinicaController@getAll');
 Route::get('historias-clinicas/gethistoria/{historia_clinica}', 'OpticaControllers\HClinicaController@getHClinica');
 Route::resource('historias-clinicas', 'OpticaControllers\HClinicaController');

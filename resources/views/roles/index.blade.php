@@ -1,11 +1,14 @@
 @extends('layout.master')
-@section('title', 'Page Blank')
-@section('parentPageTitle', 'Pages')
+@section('parentPageTitle', 'Admin. Usuarios')
+@section('title', 'Roles')
 @section('page-style')
-    <link rel="stylesheet" href="{{asset('assets/plugins/multi-select/css/multi-select.css')}}"/>
-    <link rel="stylesheet" href="{{asset('assets/plugins/jquery-spinner/css/bootstrap-spinner.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>
+
+    {{-- Estilos para Datatable --}}
+    <link rel="stylesheet" href="{{asset('assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css')}}">
+    {{-- Estilos para SweetAlert --}}
+    <link rel="stylesheet" href="{{asset('assets/plugins/sweetalert/sweetalert.css')}}">
     <style>
         .input-group-text {
             padding: 0 .75rem;
@@ -17,12 +20,11 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="header">
-                    <h3><strong>Listado de Roles</strong>
-                    </h3>
+                    <h2><strong>Listado</strong> de Roles</h2>
                 </div>
                 <div class="body">
                     <div class="table-responsive">
-                        <table class="table table-hover product_item_list c_table theme-color mb-0">
+                        <table class="table table-hover dataTable-rol theme-color mb-0">
                             <thead>
                             <tr>
                                 <th>ID</th>
@@ -32,20 +34,7 @@
                             </thead>
 
                             <tbody id="tabla">
-                               {{-- @foreach($rol as $cat)
-                                    <tr>
-                                    <td>{{$cat->id_rol}}</td>
-                                    <td style="">{{$cat->rol}}</td>
-                                    <td style="text-align: center">
-                                        <a href="{{URL::action('OpticaControllers\RolController@show',$cat->id_rol)}}"><button class="btn btn-secondary">Detalles</button></a>
-                                        --}}{{--<a href="" data-target="#modal-asignar-{{$cat->id_rol}}" data-toggle="modal">
-                                            <button class="btn btn-info">Asignar a Usuario</button>
-                                        </a>--}}{{--
-                                        <a href="{{URL::action('OpticaControllers\RolController@asignar',$cat->id_rol)}}" ><button class="btn btn-info">Asignar a Usuario</button></a>
-                                    </td>
-                                </tr>
 
-                                @endforeach--}}
                             </tbody>
 
                         </table>
@@ -59,8 +48,20 @@
     @include('roles.modal-assign')
 @endsection
 @section('page-script')
-    <script src="{{asset('assets/plugins/multi-select/js/jquery.multi-select.js')}}"></script>
-    <script src="{{asset('assets/plugins/jquery-spinner/js/jquery.spinner.js')}}"></script>
     <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
-    <script src="{{asset('assets/js/js_propios/js_roles/script.js')}}"></script>
+    {{-- Scripts para DataTable --}}
+    <script src="{{asset('assets/bundles/datatablescripts.bundle.js')}}"></script>
+    {{-- Script para SweetAlert --}}
+    <script src="{{asset('assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
+    {{-- Scripts para los botones de jqueryDataTable --}}
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.colVis.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.flash.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.print.min.js')}}"></script>
 @stop
+@push('after-scripts')
+    <script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
+    <script src="{{asset('assets/js/js_propios/js_roles/script.js')}}"></script>
+@endpush

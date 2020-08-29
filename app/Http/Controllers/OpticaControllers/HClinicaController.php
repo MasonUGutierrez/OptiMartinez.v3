@@ -34,12 +34,18 @@ class HClinicaController extends Controller
         if($request->ajax()){
             $hclinicas = HClinica::where('estado', '1')->get();
             // return response()->json($hclinicas);
-            
+
             return DataTables::of($hclinicas)
                 ->addIndexColumn()
                 ->addColumn('opciones', function($row){
+
                     $btns = '
                     <div style="text-align:center">
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Nueva Consulta" data-original-title="Nueva Consulta">
+                            <a href="'.route('consulta.create',$row->id_historia_clinica).'" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float">
+                                <i class="zmdi zmdi-assignment-o"></i>
+                            </a>
+                        </span>
                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Ver detalles" data-original-title="Editar">
                             <a href="'.route('historias-clinicas.show',$row->id_historia_clinica).'" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float">
                                 <i class="zmdi zmdi-search"></i>
@@ -50,10 +56,32 @@ class HClinicaController extends Controller
                                 data-type="confirm"
                                 data-text="Se dara de baja la historia clinica '.$row->id_historia_clinica.'"
                                 data-obj="Historia Clinica '.$row->id_historia_clinica.'">
-                                <i class="zmdi zmdi-delete"></i>    
+                                <i class="zmdi zmdi-delete"></i>
                             </a>
                         </span>
                         </div>';
+                    /*
+                        url()->previous() para obtener el url anterior porque el current es que se envia por el Ajax
+                        explode() para convertir en un array una cadena separado por el caracter que se envia por param
+                    */
+                    if (explode('/',url()->previous())[3] == 'listaPacientes'){
+                        $btns = '
+                            <div style="text-align:center">
+                                <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Ver detalles" data-original-title="Editar">
+                                    <a href="'.route('historias-clinicas.show',$row->id_historia_clinica).'" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float">
+                                        <i class="zmdi zmdi-search"></i>
+                                    </a>
+                                </span>
+                                <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Dar de Baja" data-original-title="Dar de Baja">
+                                    <a href="'.action("OpticaControllers\HClinicaController@destroy", $row->id_historia_clinica).'" class="btn btn-sm btn-neutral btn-raised waves-effect darBaja waves-red waves-float"
+                                        data-type="confirm"
+                                        data-text="Se dara de baja la historia clinica '.$row->id_historia_clinica.'"
+                                        data-obj="Historia Clinica '.$row->id_historia_clinica.'">
+                                        <i class="zmdi zmdi-delete"></i>
+                                    </a>
+                                </span>
+                            </div>';
+                    }
 
                     return $btns;
                 })
@@ -64,6 +92,7 @@ class HClinicaController extends Controller
                 ->make(true);
         }
     }
+
 
     public function getHClinica($id)
     {
@@ -109,7 +138,7 @@ class HClinicaController extends Controller
                 'direccion'=> $request->get('direccion')
             ]);
             // return response()->json($paciente);
-            
+
             $paciente->hclinica()->create([
                 'h_ocular' => $request->get('h_ocular'),
                 'h_medica' => $request->get('h_medica'),
@@ -117,7 +146,7 @@ class HClinicaController extends Controller
                 'alergias' => $request->get('alergias'),
                 'fecha_registro' => $fecha_actual
             ]);
-            
+
             $hcuenta = new HCuenta([
                 'estado_historia' => 'solvente',
                 'fecha_registro' => $fecha_actual
@@ -127,7 +156,7 @@ class HClinicaController extends Controller
 
             return response()->json($paciente);
         }
-// 
+//
         return redirect()->action('OpticaControllers\HClinicaController@index');
     }
 

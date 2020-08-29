@@ -2,6 +2,8 @@ $(function () {
     showData();
 });
 
+var rolesId="";
+
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -9,38 +11,101 @@ $.ajaxSetup({
 });
 
 function showData() {
-    $.ajax({
-        type: "GET",
-        dataType: "json",
-        /*Poner el URL de la funcion que tiene el getAll que devuelve los datos*/
-        url: "roless",
-        success: function (response) {
-            var rows = "";
-            $.each(response, function (key, value) {
-                rows += `
-                                <tr>
-                                    <td>${value.id_rol}</td>
-                                    <td style="">${value.rol}</td>
-                                    <td style="text-align: center">
-                                        <a href="roles/${value.id_rol}" data-toggle="modal" data-target="#largeModal" onclick="showUserRol(${value.id_rol})"><button class="btn btn-secondary">Detalles</button></a>
-                                        <a href="roles/${value.id_rol}/asignar"><button class="btn btn-info">Asignar a Usuario</button></a>
-                                     <!--   <a href="roles/${value.id_rol}/asignar" data-toggle="modal" data-target=".assign-modal" onclick="assignRol(${value.id_rol})"><button class="btn btn-info">Asignar a Usuario</button></a> -->
-                                    </td>
-                                </tr>
-                            `;
-            });
-            $('#tabla').html(rows);
+    $('.dataTable-rol').DataTable({
+        destroy:true,
+        processing:true,
+        serverSide:true,
+        ajax: {
+            url:'roless',
+            type:'GET'
+            // dataSrc: ''
         },
-        error:function (response) {
-            console.log(response);
+        columns:[
+            {data:'id_rol'},
+            {data:'rol'},
+            {data:'opciones', name:"opciones", orderable:false, searchable: false}
+        ],
+        lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "Todo"]],
+        language:{
+            "sProcessing":     "Procesando...",
+            "sLengthMenu":     "Mostrar _MENU_ registros",
+            "sZeroRecords":    "No se encontraron resultados",
+            "sEmptyTable":     "Ningún dato disponible en esta tabla",
+            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix":    "",
+            "sSearch":         "Buscar:",
+            "sUrl":            "",
+            "sInfoThousands":  ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            },
+            "buttons": {
+                "copy": "Copiar",
+                "colvis": "Visibilidad"
+            }
         }
-    })
+    });
 }
 function showUserRol(id) {
-    $.ajax({
+
+    console.log(id);
+    $('.dataTable-usuarios').DataTable({
+        destroy:true,
+        processing:true,
+        serverSide:true,
+        ajax: {
+            url:'roles/'+id,
+            type:'GET'
+            // dataSrc: ''
+        },
+        columns:[
+            {data:'NombreCompleto'},
+            {data:'opciones', name:"opciones", orderable:false, searchable: false}
+        ],
+        lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "Todo"]],
+        language:{
+            "sProcessing":     "Procesando...",
+            "sLengthMenu":     "Mostrar _MENU_ registros",
+            "sZeroRecords":    "No se encontraron resultados",
+            "sEmptyTable":     "Ningún dato disponible en esta tabla",
+            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix":    "",
+            "sSearch":         "Buscar:",
+            "sUrl":            "",
+            "sInfoThousands":  ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            },
+            "buttons": {
+                "copy": "Copiar",
+                "colvis": "Visibilidad"
+            }
+        }
+    });
+  /*  $.ajax({
         type: "GET",
         dataType: "json",
-        /*Poner el URL de la funcion que tiene el getAll que devuelve los datos*/
+        /!*Poner el URL de la funcion que tiene el getAll que devuelve los datos*!/
         url: "roles/"+id,
         success: function (response) {
             var rows = "";
@@ -54,29 +119,52 @@ function showUserRol(id) {
             });
             $('#tablamodal').html(rows);
         },
-        error:function (responses) {
-            console.log(responses);
+        error:function (response) {
+            console.log(response);
         }
-    })
+    })*/
 }
 
-/*function assignRol(id) {
+function assignRol(id) {
+    $idrol = id;
+    rolesId = id;
     $.ajax({
         type: "GET",
         dataType: "json",
-        /!*Poner el URL de la funcion que tiene el getAll que devuelve los datos*!/
-        url: "roles/"+id+'/asignar',
+        /*Poner el URL de la funcion que tiene el getAll que devuelve los datos*/
+        url: "roles/"+$idrol+'/asignar',
         success: function (response) {
             var rows = "";
             $.each(response, function (key, value) {
+
                 rows += `
                                <option value="${value.id_usuario}">${value.nombre} ${value.apellido} </option>
                             `;
             });
             $('#select').html(rows);
         },
-        error:function (responses) {
-            console.log(responses);
+        error:function (response) {
+            console.log("error");
         }
     })
-}*/
+}
+
+function saveAssign(){
+    var seleccion = $('#select').val();
+    var data = {id_usuario:seleccion,id_rol:rolesId};
+    $.ajax({
+        type:'post',
+        dataType: 'json',
+        data:data,
+        url:'roles',
+        success: function (result) {
+            clearData();
+        },error:function (result) {
+            clearData();
+        }
+    })
+}
+
+function clearData(){
+    $('#select').val(null).trigger('change');
+}

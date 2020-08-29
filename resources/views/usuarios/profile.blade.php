@@ -96,8 +96,10 @@
 </div>
 @stop
 @section('page-script')
-<script src="{{asset('assets/plugins/light-gallery/js/lightgallery-all.min.js')}}"></script>
-<script src="{{asset('assets/bundles/fullcalendarscripts.bundle.js')}}"></script>
-<script src="{{asset('assets/js/pages/medias/image-gallery.js')}}"></script>
-<script src="{{asset('assets/js/pages/calendar/calendar.js')}}"></script>
+    <script src="{{asset('assets/plugins/light-gallery/js/lightgallery-all.min.js')}}"></script>
 @stop
+@push('after-scripts')
+    <script src="{{asset('assets/bundles/fullcalendarscripts.bundle.js')}}"></script>
+    <script src="{{asset('assets/js/pages/medias/image-gallery.js')}}"></script>
+    <script src="{{asset('assets/js/pages/calendar/calendar.js')}}"></script>
+@endpush

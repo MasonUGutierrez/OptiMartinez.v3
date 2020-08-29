@@ -23,6 +23,7 @@
                     </span>
                 </h2>
             </div>
+            <input type="hidden" id="historiasid" value="{{$hclinica->id_historia_clinica}}">
             <div class="body">
                 <div class="row">
                     <div class="form-group col-md-6">
@@ -160,7 +161,7 @@
                 <h2>
                     <strong>Listado</strong> Consultas
                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Registrar Consulta">
-                        <a href="#" class="btn btn-raised btn-sm btn-success waves-effect waves-light">
+                        <a href="{{action('OpticaControllers\ConsultaController@create',$hclinica->id_historia_clinica)}}" class="btn btn-raised btn-sm btn-success waves-effect waves-light">
                             <i class="zmdi zmdi-plus"></i>
                         </a>
                     </span>
@@ -168,14 +169,13 @@
             </div>
             <div class="body">
                 <div class="table-responsive-md">
-                    <table class="table table-hover table-bordered theme-color dt-consultas">
+                    <table class="table table-hover dataTable-consulta table-bordered theme-color dataTable">
                         <caption>Lista de consultas</caption>
                         <thead>
                             <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
+                                <th>#</th>
+                                <th>Nombre de la Jornada</th>
+                                <th>Fecha</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>
@@ -188,6 +188,7 @@
         </div>
     </div>
 </div>
+@include('optometrista.consulta.show-consulta')
 @endsection
 
 @section('page-script')
@@ -245,4 +246,7 @@
     // console.log(medidasOjos.length);
     // console.log(medidasOjos, examenVisual);
 </script>
+<script src="{{asset('assets/js/pages/tables/editable-table.js')}}"></script>
+<script src="{{asset('assets/plugins/editable-table/mindmup-editabletable.js')}}"></script>
+<script src="{{asset('assets/js/js_propios/js_optometrista/js_consulta/script.js')}}"></script>
 @endpush

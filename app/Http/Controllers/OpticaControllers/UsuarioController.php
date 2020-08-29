@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\UsuarioFormRequest;
 use DB;
 
-class UsuarioController extends Controller
+class   UsuarioController extends Controller
 {
     //
     public function __construct()
@@ -28,7 +28,7 @@ class UsuarioController extends Controller
         // ->orderBy('id_usuario','desc')
         // ->paginate(10);
 
-        $usuarios = Usuario::where('estado','1')->orderBy('id_usuario','desc')->get();
+        $usuarios = Usuario::where('estado','1')->get();
 
         return view('usuarios.index', ['usuarios'=>$usuarios]);
     }
@@ -168,6 +168,12 @@ class UsuarioController extends Controller
                 DB::rollback();
             }
         return Redirect::to('usuarios');
+    }
+
+    public function RemoveRol($idU , $idR){
+        $usuario = Usuario::findOrFail($idU);
+        $usuario->roles()->detach($idR);
+        return Redirect::to('roles');
     }
 
     public function destroy($id)
