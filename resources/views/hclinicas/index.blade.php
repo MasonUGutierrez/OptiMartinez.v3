@@ -106,7 +106,7 @@
         $(function(){
             data(); 
 
-            stepInit();
+            initValidateStep();
 
             // Limpiando los errores de todas las ventanas steps si se cierra el modal
             $('#AddPaciente').on('hide.bs.modal', function(){
@@ -143,15 +143,15 @@
                     $('#checkContainer').show(); 
                 }
             });
-            // $('#AddPaciente').on('shown.bs.modal', function(){
-            //     var initial = $('#checkCedula').is(':checked');
+            /* $('#AddPaciente').on('shown.bs.modal', function(){
+                var initial = $('#checkCedula').is(':checked');
 
-            //     if (initial){
-            //         $('#cedula').prop('disabled', false);
-            //         $('#cedObl').show();
-            //         $('#checkCedula').prop('checked', false);                 
-            //     } 
-            // });
+                if (initial){
+                    $('#cedula').prop('disabled', false);
+                    $('#cedObl').show();
+                    $('#checkCedula').prop('checked', false);                 
+                } 
+            }); */
 
             var fechaNacimiento = $('#fecha_nacimiento'); 
             
@@ -241,7 +241,7 @@
         }
 
         // Funcion para las librerias validate() y steps()
-        function stepInit(){
+        function initValidateStep(){
             var form = $('#hclinica_form').show();
             form.validate({
                 rules: {
@@ -631,21 +631,5 @@
             $('#medicaciones').val("");
             $('#alergias').val("");
         } 
-        
-        /* $('#jornadas').on('change',function(){
-            $.ajax('url',{
-                type:'get',
-                dataType:'json',
-                success:function(data, status, jqXHR){
-                    $('#id_fecha_input').val(data.fecha_jornada);
-                },
-                error:(jqXHR, statusText, errorThrown)=>{
-                    console.log('Error:: '+errorThrown);
-                    console.log('Status:: '+statusText);
-                    console.log('jqXHR Object: \n');
-                    console.log(jqXHR);
-                }
-            });
-        }); */
     </script>
 @endpush
