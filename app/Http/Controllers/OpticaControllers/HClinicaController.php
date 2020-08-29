@@ -35,6 +35,7 @@ class HClinicaController extends Controller
             return DataTables::of($hclinicas)
                 ->addIndexColumn()
                 ->addColumn('opciones', function($row){
+
                     $btns = '
                     <div style="text-align:center">
                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Nueva Consulta" data-original-title="Nueva Consulta">
@@ -56,6 +57,24 @@ class HClinicaController extends Controller
                             </a>
                         </span>
                         </div>';
+                    if (explode('/',url()->previous())[3] == 'listaPacientes'){
+                        $btns = '
+                            <div style="text-align:center">
+                                <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Ver detalles" data-original-title="Editar">
+                                    <a href="'.route('historias-clinicas.show',$row->id_historia_clinica).'" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float">
+                                        <i class="zmdi zmdi-search"></i>
+                                    </a>
+                                </span>
+                                <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Dar de Baja" data-original-title="Dar de Baja">
+                                    <a href="'.action("OpticaControllers\HClinicaController@destroy", $row->id_historia_clinica).'" class="btn btn-sm btn-neutral btn-raised waves-effect darBaja waves-red waves-float"
+                                        data-type="confirm"
+                                        data-text="Se dara de baja la historia clinica '.$row->id_historia_clinica.'"
+                                        data-obj="Historia Clinica '.$row->id_historia_clinica.'">
+                                        <i class="zmdi zmdi-delete"></i>
+                                    </a>
+                                </span>
+                            </div>';
+                    }
 
                     return $btns;
                 })
@@ -66,6 +85,7 @@ class HClinicaController extends Controller
                 ->make(true);
         }
     }
+
 
     public function getHClinica($id)
     {
