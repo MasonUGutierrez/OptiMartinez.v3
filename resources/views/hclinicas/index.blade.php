@@ -42,7 +42,8 @@
             </div>
             <div class="body">
                 <div class="table-responsive">
-                    <table class="table table-hover table-bordered theme-color dataTable-hc">
+                    <!--agregando propiedad width="100%" para que el contenido se desplace-->
+                    <table class="table table-hover table-bordered theme-color dataTable-hc" width="100%">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -491,6 +492,7 @@
             // let data_tr = "";
             // Agregando directamente el responseJSON devuelto del controlador al DataTable
             $('.dataTable-hc').DataTable({
+                responsive:true,
                 destroy:true,
                 // processing:true,
                 serverSide:true,
