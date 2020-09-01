@@ -29,7 +29,7 @@
                 </h2>
             </div>
             <input type="hidden" id="historiasid" value="{{$hclinica->id_historia_clinica}}">
-            <div class="body">
+            <div class="body pb-0">
                 <form id="editHClinica" method="POST">
                     <input type="hidden" name="_method" value="PUT">
                     <h3>Datos Personales</h3>
@@ -114,7 +114,7 @@
                             </div>
                             <div class="col-md-6 col-sm-12">
                                 <label for="h_medica">Historia Medica</label>
-                                <textarea class="form-control no-resize" disabled rows="4" name="h_medica" id="h_medica">{{$hclinica->h_medica}}</textarea>
+                                <textarea class="form-control no-resize" disabled rows="4" name="h_medica" id="h_medica" placeholder="Hola soy un placeholder">{{$hclinica->h_medica}}</textarea>
                             </div>
                         </div>
                         {{-- Row para el textarea medicaciones --}}
@@ -137,7 +137,7 @@
                         <div class="row clearfix">
                             <div class="col-lg-9">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-hover c_table theme-color" id="medidasOjos">                
+                                    <table class="table text-center table-bordered table-hover c_table theme-color" id="medidasOjos">                
                                         <thead>
                                             <tr>
                                                 <td>Ojo</td>
@@ -172,23 +172,14 @@
                                                     <td>{{$medidaOjo->eje}}</td>
                                                 </tr>
                                             @endforeach
-                                            @endif
-                                            {{-- @if($uConsultaServicios == null)
-                                                <tr>
-                                                    <td colspan="6">
-                                                        <p class="text-center">
-                                                            No existen registros de medidas <br>  para esta Historia Clinica
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                            @endif   --}}
+                                            @endif                                            
                                         </tbody>                        
                                     </table>
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-bordered theme-color c_table">
+                                    <table class="table text-center table-hover table-bordered theme-color c_table">
                                         <thead>
                                             <tr>
                                                 <td>D.P</td>
@@ -263,90 +254,101 @@
                     </span>
                 </h2>
             </div>
-            <div class="row clearfix">
-                <div class="col-lg-9">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover c_table theme-color" id="medidasOjos">                
-                            <thead>
-                                <tr>
-                                    <td>Ojo</td>
-                                    <td>Cil.</td>
-                                    <td>Ad.</td>
-                                    <td>A.V</td>
-                                    <td>Esf</td>
-                                    <td>Eje</td>
-                                </tr>
-                            </thead>
-                            <tbody>                                
-                                @if(Session::has('error_message'))
-                                <tr>
-                                    <td colspan="6">
-                                        <p class="text-center">
-                                            {{Session::get('error_message')}}
-                                        </p>
-                                    </td>
-                                </tr>
-                                @else
-                                    @foreach($uConsultaServicios[0]->examenVisual->medidasOjos as $medidaOjo)
-                                        <tr>
-                                            @if($medidaOjo->ojo == '0')
-                                                <td>O.D</td>
-                                            @else
-                                                <td>O.I</td>
-                                            @endif
-                                            <td>{{$medidaOjo->cilindro}}</td>
-                                            <td>{{$medidaOjo->adicion}}</td>
-                                            <td>{{$medidaOjo->agudeza_visual}}</td>
-                                            <td>{{$medidaOjo->esfera}}</td>
-                                            <td>{{$medidaOjo->eje}}</td>
-                                        </tr>
-                                    @endforeach
-                                @endif
-                            </tbody>                        
-                        </table>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="table-responsive">
-                        <table class="table table-hover table-bordered theme-color c_table">
-                            <thead>
-                                <tr>
-                                    <td>D.P</td>
-                                    <td>Alt</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if(Session::has('error_message'))
+            <div class="body">
+                <div class="row clearfix">
+                    <div class="col-lg-9">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover c_table theme-color" id="medidasOjos">                
+                                <thead>
                                     <tr>
-                                        <td colspan="2">
+                                        <td>Ojo</td>
+                                        <td>Cil.</td>
+                                        <td>Ad.</td>
+                                        <td>A.V</td>
+                                        <td>Esf</td>
+                                        <td>Eje</td>
+                                    </tr>
+                                </thead>
+                                <tbody>                                
+                                    @if(Session::has('error_message'))
+                                    <tr>
+                                        <td colspan="6">
                                             <p class="text-center">
                                                 {{Session::get('error_message')}}
                                             </p>
                                         </td>
                                     </tr>
-                                @else
+                                    @else
+                                        @foreach($uConsultaServicios[0]->examenVisual->medidasOjos as $medidaOjo)
+                                            <tr>
+                                                @if($medidaOjo->ojo == '0')
+                                                    <td>O.D</td>
+                                                @else
+                                                    <td>O.I</td>
+                                                @endif
+                                                <td>{{$medidaOjo->cilindro}}</td>
+                                                <td>{{$medidaOjo->adicion}}</td>
+                                                <td>{{$medidaOjo->agudeza_visual}}</td>
+                                                <td>{{$medidaOjo->esfera}}</td>
+                                                <td>{{$medidaOjo->eje}}</td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
+                                    {{-- @if($uConsultaServicios == null)
+                                        <tr>
+                                            <td colspan="6">
+                                                <p class="text-center">
+                                                    No existen registros de medidas <br>  para esta Historia Clinica
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    @endif
+                                </tbody>                        
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered theme-color c_table">
+                                <thead>
                                     <tr>
-                                        <td>{{$uConsultaServicios[0]->examenVisual->distancia_pupilar}}</td>
-                                        <td>{{$uConsultaServicios[0]->examenVisual->alt}}</td>
+                                        <td>D.P</td>
+                                        <td>Alt</td>
                                     </tr>
-                                @endif
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @if(Session::has('error_message'))
+                                        <tr>
+                                            <td colspan="2">
+                                                <p class="text-center">
+                                                    {{Session::get('error_message')}}
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    @else
+                                        <tr>
+                                            <td>{{$uConsultaServicios[0]->examenVisual->distancia_pupilar}}</td>
+                                            <td>{{$uConsultaServicios[0]->examenVisual->alt}}</td>
+                                        </tr>
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                @if(!session('error_message'))
-                    <div class="col-lg-12">
-                        <small class="text-muted">  
-                            <div class="form-group row mb-0">
-                                <label for="" class="col-sm-auto col-form-label">Consulta realizada: </label>
-                                <div class="col">
-                                    <input type="date" class="form-control-plaintext" readonly value="{{$uConsultaServicios[0]->consulta->fecha}}">
-                                </div>
-                            </div> 
-                        </small>                    
-                    </div>
-                @endif
-            </div>            
+                    @if(!session('error_message'))
+                        <div class="col-lg-12">
+                            <small class="text-muted">  
+                                <div class="form-group row mb-0">
+                                    <label for="" class="col-sm-auto col-form-label">Consulta realizada: </label>
+                                    <div class="col">
+                                        <input type="date" class="form-control-plaintext" readonly value="{{$uConsultaServicios[0]->consulta->fecha}}">
+                                    </div>
+                                </div> 
+                            </small>                    
+                        </div>
+                    @endif
+                </div>            
+            </div>
         </div>
     </div>
 </div> --}}
