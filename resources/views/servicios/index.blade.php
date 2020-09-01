@@ -18,7 +18,7 @@
                 </div>
                 <div class="body">
                     <div class="table-responsive">
-                        <table class="table table-hover dataTable-servicio theme-color mb-0">
+                        <table class="table table-hover dataTable-servicio theme-color mb-0" width="100%">
                             <thead>
                             <tr style="text-align: center">
                                 <th>Servicio</th>

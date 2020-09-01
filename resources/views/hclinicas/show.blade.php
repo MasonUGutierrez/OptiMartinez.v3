@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 </div>
 <div class="row clearfix">
     <div class="col-lg-12">
@@ -61,7 +61,7 @@
             <div class="row clearfix">
                 <div class="col-lg-9">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover c_table theme-color" id="medidasOjos">                
+                        <table class="table table-bordered table-hover c_table theme-color" id="medidasOjos">
                             <thead>
                                 <tr>
                                     <td>Ojo</td>
@@ -72,7 +72,7 @@
                                     <td>Eje</td>
                                 </tr>
                             </thead>
-                            <tbody>                                
+                            <tbody>
                                 @if(Session::has('error_message'))
                                 <tr>
                                     <td colspan="6">
@@ -106,7 +106,7 @@
                                         </td>
                                     </tr>
                                 @endif   --}}
-                            </tbody>                        
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -140,21 +140,21 @@
                 </div>
                 @if(!session('error_message'))
                     <div class="col-lg-12">
-                        <small class="text-muted">  
+                        <small class="text-muted">
                             <div class="form-group row mb-0">
                                 <label for="" class="col-sm-auto col-form-label">Consulta realizada: </label>
                                 <div class="col">
                                     <input type="date" class="form-control-plaintext" readonly value="{{$uConsultaServicios[0]->consulta->fecha}}">
                                 </div>
-                            </div> 
-                        </small>                    
+                            </div>
+                        </small>
                     </div>
                 @endif
-            </div>            
+            </div>
         </div>
     </div>
 </div>
-<div class="row clearfix">    
+<div class="row clearfix">
     <div class="col-lg-12">
         <div class="card">
             <div class="header">
@@ -169,7 +169,7 @@
             </div>
             <div class="body">
                 <div class="table-responsive-md">
-                    <table class="table table-hover dataTable-consulta table-bordered theme-color dataTable">
+                    <table class="table table-hover dataTable-consulta table-bordered theme-color dataTable" width="100%">
                         <caption>Lista de consultas</caption>
                         <thead>
                             <tr>
@@ -222,7 +222,7 @@
                 examenVisual = @json($uConsultaServicios[0]->examenVisual);
             @endif
             medidasOjos.forEach(element => {
-                tr += `<tr>`; 
+                tr += `<tr>`;
                 if(element.ojo == '0')
                 {
                     tr += `<td>O.D</td>`;
@@ -242,7 +242,7 @@
         }--}}
     });
     // var hclinica = {{json_encode($hclinica)}};
-    
+
     // console.log(medidasOjos.length);
     // console.log(medidasOjos, examenVisual);
 </script>

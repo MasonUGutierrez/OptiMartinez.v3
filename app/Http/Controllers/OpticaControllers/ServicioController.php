@@ -27,7 +27,8 @@ class ServicioController extends Controller
                     $btns = '
                     <div style="text-align:center">
                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Editar" data-original-title="Editar">
-                            <a href="servicios/'.$row->id_servicio.'/edit" data-target=".servicioAsignar" data-toggle="modal"  onclick="editData('.$row->id_servicio.')" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float">Detalles
+                            <a href="servicios/'.$row->id_servicio.'/edit" data-target=".servicioAsignar" data-toggle="modal"  onclick="editData('.$row->id_servicio.')" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float">
+                            <i class="zmdi zmdi-edit"></i>
                             </a>
                         </span>
                        <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Dar de Baja" data-original-title="Dar de Baja">

@@ -2,9 +2,19 @@
 <div class="modal fade" id="calendarModalNew" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content ">
+            <div class="modal-header">
+                <div class="card mb-0">
+                    <div class="header">
+                        <h2><strong>Agendar</strong> Jornada</h2>
+                    </div>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
             <div class="modal-body center ">
                 <div class="card">
-                    <div class="header mb-2"><h2><strong>Agendar</strong> Jornada</h2></div>
+                   {{-- <div class="header mb-2"><h2><strong>Agendar</strong> Jornada</h2></div>--}}
                     <input type="hidden" id="trucazo" value="">
                     <input type="hidden" id="id_jornada_trabajo">
                     <div class="row clearfix">
@@ -69,7 +79,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                {{--<button type="button" id="" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>--}}
                 <button type="button" id="btnpruebas2" onclick="" class="btn btn-primary">Guardar</button>
             </div>
         </div>

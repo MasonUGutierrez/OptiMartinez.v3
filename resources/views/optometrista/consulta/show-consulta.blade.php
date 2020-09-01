@@ -14,11 +14,11 @@
                                             <i class="zmdi zmdi-edit"></i>
                                         </button>
                                     </span>
-                                    <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Editar">
+                                    <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Desactivar Edición">
                                         <button style="text-align: right" hidden
-                                                class="btn btn-sm btn-raised btn-primary waves-effect waves-light"
+                                                class="btn btn-sm btn-raised btn-danger waves-effect waves-light"
                                                 id="BotonDetalles" onclick="detalle_editar()">
-                                            <i class="zmdi zmdi-assignment"></i>
+                                            <i class="zmdi zmdi-tag-close"></i>
                                         </button>
                                     </span>
                                 </h2>
@@ -138,7 +138,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary btn-round waves-float" type="submit" id="" data-dismiss="modal"
+                <button class="btn btn-primary btn-round waves-float" hidden type="submit" id="btnGuardar" data-dismiss="modal"
                         onclick="updateConsulta()">Guardar
                 </button>
                 <a href="">

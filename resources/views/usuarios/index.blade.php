@@ -52,11 +52,11 @@
                             <td style="text-align: center">
                                 <!-- Mejor forma de poner los tooltips -->
                                 <span class="d-inline-block " tabindex="0" data-toggle="tooltip" data-placement="top" title="Ver Detalles">
-                                    <a href="{{URL::action('OpticaControllers\UsuarioController@show',$cat->id_usuario)}}" class="btn btn-sm btn-neutral btn-raised waves-effect waves-green waves-float"><i class="ti-search"></i></a>
+                                    <a href="{{URL::action('OpticaControllers\UsuarioController@show',$cat->id_usuario)}}" class="btn btn-sm btn-neutral btn-raised waves-effect waves-green waves-float"><i class="zmdi zmdi-search"></i></a>
                                 </span>
 
                                 <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Editar">
-                                    <a href="{{URL::action('OpticaControllers\UsuarioController@edit',$cat->id_usuario)}}" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float"><i class="ti-pencil-alt"></i></a>
+                                    <a href="{{URL::action('OpticaControllers\UsuarioController@edit',$cat->id_usuario)}}" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float"><i class="zmdi zmdi-edit"></i></a>
                                 </span>
                                 <!-- <a href="" data-target="#modal-delete-{{$cat->id_usuario}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a> -->
                                 <!-- Usando SweetAlert -->
@@ -67,7 +67,7 @@
                                         data-text="¿Estas seguro en eliminar a {{$cat->nombre}} ?"
                                         data-obj="{{$cat->nombre .' '. $cat->apellido}}"
                                     >
-                                        <i class="ti-trash"></i>
+                                         <i class="zmdi zmdi-delete"></i>
                                     </a>
                                 </span>
                             </td>

@@ -36,7 +36,7 @@
                 </div>
                 <div class="body">
                     <div class="table-responsive">
-                        <table class="table table-hover table-bordered theme-color dataTable-hc">
+                        <table class="table table-hover table-bordered theme-color dataTable-hc" width="100%">
                             <thead>
                             <tr>
                                 <th>#</th>
