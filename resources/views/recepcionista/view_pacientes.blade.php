@@ -23,7 +23,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="header">
-                    <h2><strong>Listado</strong> de Historias Clinicas
+                    <h2><strong>Listado</strong> de Pacientes
                         <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Nueva Historia Clinica">
                         <a href="{{--action('OpticaControllers\HClinicaController@index')--}}"
                            class="btn btn-raised btn-sm btn-success waves-effect waves-light "
@@ -36,11 +36,13 @@
                 </div>
                 <div class="body">
                     <div class="table-responsive">
-                        <table class="table table-hover table-bordered theme-color dataTable-hc" width="100%">
+                        <table class="table table-hover table-bordered theme-color dataTable-hc" width="100%" style="text-align: center">
                             <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Paciente</th>
+                                <th>Edad</th>
+                                <th>Telefono</th>
                                 <th>Registro</th>
                                 <th>Opciones</th>
                             </tr>
@@ -162,6 +164,8 @@
                 columns:[
                     {data:'id_historia_clinica',width: "10%"},
                     {data:'paciente'},
+                    {data:'edad'},
+                    {data:'telefono'},
                     {data:'fecha_registro',width:"20%"},
                     {data:'opciones', name:"opciones", orderable:false, searchable: false, width:"20%"}
                 ],

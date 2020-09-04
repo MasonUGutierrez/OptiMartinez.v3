@@ -28,11 +28,11 @@
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{$hclinica->paciente->nombre}}">
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{$hclinica->paciente->nombres}}">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="apellido">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" name="apellido" value="{{$hclinica->paciente->apellido}}">
+                        <input type="text" class="form-control" id="apellido" name="apellido" value="{{$hclinica->paciente->apellidos}}">
                     </div>
                 </div>
                 <div class="row">

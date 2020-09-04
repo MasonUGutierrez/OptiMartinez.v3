@@ -36,6 +36,7 @@ Route::get('idservicios','OpticaControllers\ConsultaController@servicio');
 Route::get('historias-clinicas/verfecha','OpticaControllers\ConsultaController@date');
 Route::get('historias-clinicas/getconsulta/{id}','OpticaControllers\ConsultaController@gettable');
 Route::get('historias-clinicas/consulta/create/{id}','OpticaControllers\ConsultaController@create')->name("consulta.create");
+
 Route::resource('historias-clinicas/consulta','OpticaControllers\ConsultaController')->except(['create']);
 Route::get('depas','OpticaControllers\JornadaController@departamento');
 route::get('vertipos','OpticaControllers\JornadaController@vertipojornada');
@@ -93,7 +94,6 @@ Route::get('/test', function(){
 });
 
 // Ruta para historias Clinicas
-
 Route::get('historias-clinicas/all', 'OpticaControllers\HClinicaController@getAll');
 Route::get('historias-clinicas/gethistoria/{historia_clinica}', 'OpticaControllers\HClinicaController@getHClinica');
 Route::resource('historias-clinicas', 'OpticaControllers\HClinicaController');

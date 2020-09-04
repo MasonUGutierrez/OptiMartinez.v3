@@ -12,46 +12,17 @@
             <div class="card">
                 <div class="header">
                     <h2><strong>Planes </strong>de Pago
-                            <button type="button" id="botonN" class="btn btn-success waves-effect m-r-20" data-toggle="modal"
-                                    data-target="#largeModal">Nuevo
-                            </button>
+                            <span class="d-inline-block"  tabindex="0" data-toggle="tooltip" data-placement="top" title="Nuevo Plan de Pago">
+                                <a id="botonN" style="color: white" class="btn btn-success btn-sm waves-float waves-effect" data-toggle="modal" data-target="#largeModal">
+                                    <i class="zmdi zmdi-plus"></i>
+                                </a>
+
+                            </span>
                     </h2>
                 </div>
-                <div class="body align-center">
+                <div class="body align-center" style="background-color: #f5f5f5" >
                     <div class="row" id="aqui">
-                      {{--  @foreach($planpago as $cat)
-                            <div class="col-sm-4">
-                                <div class="card bg-primary text-white mb-3 " style="max-width: 18rem;">
-                                    <div class="card-header" id="">{{$cat->plan_pago}}</div>
-                                    <div class="card-body">
-                                        <p class="card-text" id="">{{$cat->descripcion}}</p></div>
-                                    <div class="card-footer " style="text-align: center">
-                                        <!-- Mejor forma de poner los tooltips -->
-                                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Ver Detalles">
-                                            <a href="{{URL::action('OpticaControllers\PlanPagoController@show',$cat->id_plan_pago)}}" class="btn btn-raised btn-secondary waves-effect">
-                                                <i class="ti-search"></i>
-                                            </a>
-                                        </span>
-                                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Editar">
-                                             <a href="{{URL::action('OpticaControllers\PlanPagoController@edit',$cat->id_plan_pago)}}" class="btn btn-raised btn-info waves-effect">
-                                                 <i class="ti-pencil-alt"></i>
-                                             </a>
-                                        </span>
-                                        <!-- Usando SweetAlert -->
-                                        <span class="js-sweetalert d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Dar de Baja">
-                                             <a href="{{URL::action('OpticaControllers\PlanPagoController@destroy',$cat->id_plan_pago)}}"
-                                               class="btn btn-raised btn-danger waves-effect"
-                                               data-type="confirm"
-                                               data-title="Dar de Baja"
-                                               data-text="¿Desea eliminar el Plan de Pago: {{$cat->plan_pago}} ?"
-                                               data-obj="{{$cat->plan_pago}}">
-                                                 <i class="ti-trash"></i>
-                                            </a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach--}}
+
                     </div>
                 </div>
                 <script src="http://code.jquery.com/jquery-3.3.1.min.js"
