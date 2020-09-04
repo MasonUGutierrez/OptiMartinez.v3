@@ -114,15 +114,17 @@
                             <div class="header mb-2 ml-1 col-sm-12"><h2><strong>Retinoscopia</strong></h2></div>
                             <div class="checkbox">
                                 <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <input id="checkbox12"  type="checkbox">
-                                        <label for="checkbox12">Seleccione para mostrar campo.</label>
+                                    <div class="custom-control custom-checkbox">
+                                        <input id="checkbox12"  type="checkbox" class="custom-control-input">
+                                        <label class="custom-control-label" for="checkbox12">
+                                            Seleccione para mostrar campo.
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <div class="form-line">
-                                    <textarea id="hallazgo" rows="4" class="form-control no-resize"
+                                        <textarea id="hallazgo" rows="4" class="form-control no-resize"
                                               placeholder="Hallazgos de Retinoscopia..."></textarea>
                                         </div>
                                     </div>

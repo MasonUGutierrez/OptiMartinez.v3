@@ -128,11 +128,13 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="header mb-2 ml-1 col-sm-12"><h2><strong>Retinoscopia</strong></h2></div>
-                <div class="checkbox">
+                <div class="row clearfix mb-2">
                     <div class="col-sm-12">
-                        <div class="form-group">
-                            <input id="checkbox12" type="checkbox">
-                            <label for="checkbox12">Seleccione para mostrar campo.</label>
+                        <div class="custom-control custom-switch">
+                            <input id="checkbox12"  type="checkbox" class="custom-control-input">
+                            <label class="custom-control-label" for="checkbox12">
+                                Seleccione para mostrar campo.
+                            </label>
                         </div>
                     </div>
                 </div>
