@@ -152,9 +152,9 @@
     <div class="row clearfix">
         <div class="col-sm-4 offset-sm-4">
             <button class="btn btn-primary" type="submit" id="guardar"
-                    onclick="newConsulta()">Guardar
+                    onclick="newConsulta();history.back()">Guardar
             </button>
-            <button class="btn btn-danger"  type="reset">Cancelar
+            <button class="btn btn-danger"   onclick="history.back()">Cancelar
             </button>
         </div>
         </div>
