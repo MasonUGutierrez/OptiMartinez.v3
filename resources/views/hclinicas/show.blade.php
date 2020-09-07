@@ -16,22 +16,31 @@
 {{-- Row para los datos generales --}}
 <div class="row clearfix">
     <div class="col-lg-12">
-        <div class="card">
+        <div class="card" id="stepsCard">
             {{-- header del card de historia, contiene el boton de editar --}}
             <div class="header">
                 <h2>
                     <strong>Detalles</strong> Historia Clinica
-                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Editar">
-                        <a href="#" class="btn btn-raised btn-sm btn-primary waves-effect waves-light">
-                            <i class="zmdi zmdi-edit"></i>
-                        </a>
+                    <span id="containerBtnEditar">
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Editar">
+                            <a href="" class="btn btn-raised btn-sm btn-primary waves-effect waves-light" id="btnEditar">
+                                <i class="zmdi zmdi-edit"></i>
+                            </a>
+                        </span>
+                    </span>
+                    <span id="containerBtnCancelar">
+                        <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Cancelar">
+                            <a href="" class="btn btn-sm btn-raised btn-danger waves-effect waves-light" id="btnCancelar">
+                                <i class="zmdi zmdi-block-alt"></i>
+                            </a>
+                        </span>
                     </span>
                 </h2>
             </div>
             <input type="hidden" id="historiasid" value="{{$hclinica->id_historia_clinica}}">
-            <div class="body pb-0">
+            <div class="body">
                 <form id="editHClinica" method="POST">
-                    <input type="hidden" name="_method" value="PUT">
+                    <input type="hidden" id="method" name="_method" value="PUT">
                     <h3>Datos Personales</h3>
                     <fieldset>
                         {{-- Row para inputs nombres y apellidos --}}
@@ -83,7 +92,20 @@
                         <div class="row clearfix">
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
-                                    <label for="cedula">Cedula</label>
+                                    <div class="row clearfix">
+                                        <div class="col-md-6">                                            
+                                            <label for="cedula">Cedula</label>
+                                        </div>
+                                        {{-- Checkbox para confirmar si tiene cedula --}}
+                                        <div class="col-md-6" id="checkContainer">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" id="checkCedula" class="custom-control-input" disabled>
+                                                <label class="custom-control-label" for="checkCedula">
+                                                    <small>No tiene cedula</small>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <input type="text" disabled class="form-control" name="cedula" id="cedula" value="{{$hclinica->paciente->cedula}}">
                                 </div>
                             </div>
@@ -132,7 +154,7 @@
                             </div>
                         </div>
                     </fieldset>
-                    <h3><span data-id="medidasTitle">Ultimas Medidas<span></h3>
+                    <h3 data-id="medidasTitle">Ultimas Medidas</h3>
                     <fieldset data-id="medidasContainer">
                         <div class="row clearfix">
                             <div class="col-lg-9">
@@ -220,6 +242,7 @@
                         </div> 
                     </fieldset>
                 </form>
+                <div id="containerHidden" style="display:none;"></div>
                 {{-- <div class="row">
                     <div class="form-group col-md-6">
                         <label for="nombre">Nombre</label>
@@ -402,6 +425,13 @@
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.flash.min.js')}}"></script>
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.html5.min.js')}}"></script>
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.print.min.js')}}"></script>
+
+{{-- Script para el Jquery-validate plugin --}}
+<script src="{{asset('assets/plugins/jquery-validation/jquery.validate.js')}}"></script>
+<script src="{{asset('assets/plugins/jquery-validation/localization/messages_es.js')}}"></script>
+{{-- Script para el Jquery-steps --}}
+<script src="{{asset('assets/plugins/jquery-steps/jquery.steps.js')}}"></script>
+
 @endsection
 @push('after-scripts')
 {{-- Script para inicializar el sweetalert --}}
@@ -409,11 +439,7 @@
 {{-- Script para inicializar el jQuery DataTable --}}
 <script src="{{asset('assets/js/pages/tables/jquery-datatable.js')}}"></script>
 
-{{-- Script para el Jquery-validate plugin --}}
-<script src="{{asset('assets/plugins/jquery-validation/jquery.validate.js')}}"></script>
-<script src="{{asset('assets/plugins/jquery-validation/localization/messages_es.js')}}"></script>
-{{-- Script para el Jquery-steps --}}
-<script src="{{asset('assets/plugins/jquery-steps/jquery.steps.js')}}"></script>
+<script src="{{asset('assets/js/js_propios/js_hclinica/script.js')}}" defer></script>
 
 <script >
     $(function(){
@@ -445,32 +471,55 @@
             });
             $("#medidasOjos > tbody").append(tr);
         }--}}
-        initStep();
+
+        initStepTab();
+
+        $('#containerBtnCancelar').hide();
+
+        // Evento clic del btnEditar para cambiar el steps a modo editable
+        $('#btnEditar').on('click',function(event){
+            event.preventDefault();
+
+            var form = $('#editHClinica');
+
+            form.removeClass('tabcontrol');            
+            form.steps('destroy');
+            
+            
+            $('[data-id=medidasTitle]').appendTo('#containerHidden');
+            $('[data-id=medidasContainer]').appendTo('#containerHidden');
+            $('#containerBtnEditar').hide();
+            $('#containerBtnCancelar').show();
+            
+            enableFields(true);
+            initValidateStep('PUT');
+            // funcion para establecer los eventos en los inputs despues del steps.destroy
+            setEvents();
+
+        });
+        // Evento clic del btnCancelar para cambiar el steps a modo no editable
+        $('#btnCancelar').on('click',function(event){
+            event.preventDefault();
+
+            var form = $('#editHClinica');
+
+            form.removeClass('wizard');
+            form.steps('destroy');
+
+            $('[data-id=medidasTitle]').appendTo('#editHClinica');
+            $('[data-id=medidasContainer]').appendTo('#editHClinica');
+            $('#containerBtnCancelar').hide();
+            $('#containerBtnEditar').show();
+
+            enableFields(false);
+            initStepTab();
+
+        });
+        
         /*Pruebas para ocultar el ultimo steps de las medidas para cuando vaya a edtar*/
         // $('[data-id=medidasTitle]').remove();
         // $('[data-id=medidasContainer]').remove();
-    });
-    function initStep(){
-        var form = $('#editHClinica').show();
-
-        form.steps({
-            // Apariencia
-            headerTag: 'h3',
-            bodyTag: 'fieldset',
-            cssClass: 'tabcontrol',
-
-            // Plantilla
-            titleTemplate: '#title#',
-
-            // Comportamiento
-            enableAllSteps: true,
-            enablePagination: false,
-            enableFinishButton: false,
-
-            // Transicion
-            transitionEffect: 'slideLeft',            
-        });
-    }
+    }); 
     // var hclinica = {{json_encode($hclinica)}};
     
     // console.log(medidasOjos.length);
