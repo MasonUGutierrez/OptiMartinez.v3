@@ -24,7 +24,7 @@
                 </div>
                 <div class="body">
                     <div class="table-responsive">
-                        <table class="table table-hover dataTable-rol theme-color mb-0">
+                        <table class="table table-hover dataTable-rol theme-color mb-0" width="100%">
                             <thead>
                             <tr>
                                 <th>ID</th>

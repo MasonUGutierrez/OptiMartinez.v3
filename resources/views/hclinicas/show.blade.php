@@ -246,11 +246,11 @@
                 {{-- <div class="row">
                     <div class="form-group col-md-6">
                         <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{$hclinica->paciente->nombre}}">
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{$hclinica->paciente->nombres}}">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="apellido">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" name="apellido" value="{{$hclinica->paciente->apellido}}">
+                        <input type="text" class="form-control" id="apellido" name="apellido" value="{{$hclinica->paciente->apellidos}}">
                     </div>
                 </div>
                 <div class="row">
@@ -261,7 +261,7 @@
                 </div> --}}
             </div>
         </div>
-    </div>    
+    </div>
 </div>
 {{-- Row para las ultimas medidas --}}
 {{-- <div class="row clearfix">
@@ -453,7 +453,7 @@
                 examenVisual = @json($uConsultaServicios[0]->examenVisual);
             @endif
             medidasOjos.forEach(element => {
-                tr += `<tr>`; 
+                tr += `<tr>`;
                 if(element.ojo == '0')
                 {
                     tr += `<td>O.D</td>`;
@@ -521,7 +521,7 @@
         // $('[data-id=medidasContainer]').remove();
     }); 
     // var hclinica = {{json_encode($hclinica)}};
-    
+
     // console.log(medidasOjos.length);
     // console.log(medidasOjos, examenVisual);
 </script>

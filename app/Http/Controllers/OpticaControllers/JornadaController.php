@@ -68,7 +68,7 @@ class JornadaController extends Controller
                     <div style="text-align:center">
                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Editar">
                             <a href="#" data-target=".editJornada" data-toggle="modal" onclick="updateData('.$row->id_jornada_trabajo.')" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float">
-<i class="zmdi zmdi-edit"></i>
+                                <i class="zmdi zmdi-edit"></i>
                             </a>
                         </span>
                         <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Dar de Baja" data-original-title="Dar de Baja">

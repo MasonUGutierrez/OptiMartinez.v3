@@ -88,7 +88,13 @@ class HClinicaController extends Controller
                 ->addColumn('paciente', function($row){
                     return $row->paciente->nombres . ' ' . $row->paciente->apellidos;
                 })
-                ->rawColumns(['opciones', 'paciente'])
+                ->addColumn('telefono',function ($row){
+                    return $row->paciente->telefono;
+                })
+                ->addColumn('edad',function ($row){
+                    return $row->paciente->edad;
+                })
+                ->rawColumns(['opciones', 'paciente'/*,'telefono','edad'*/])
                 ->make(true);
         }
     }
@@ -191,21 +197,29 @@ class HClinicaController extends Controller
         }catch(ModelNotFoundException $e)
         {
             session()->flash('error_message', 'No se han encontrado registros de medidas');
+            if (explode('/',url()->previous())[3] == 'listaPacientes'){
+                return view('recepcionista.historiaClinica',['hclinica'=>$hclinica, 'uConsultaServicios'=>null]);
+            }
+
             return view('hclinicas.show', ['hclinica'=>$hclinica, 'uConsultaServicios'=>null]);
             // dd($e);
         }
+
+        if (explode('/',url()->previous())[3] == 'listaPacientes'){
+            return view('recepcionista.historiaClinica',['hclinica'=>$hclinica, 'uConsultaServicios'=>$uConsultaServicio]);
+        }
+
         return view('hclinicas.show', ['hclinica'=>$hclinica, 'uConsultaServicios'=>$uConsultaServicio]);
 
         // dd($ultimaConsulta);
 
         // Array con las consultas servicios de la ultima consulta por determinada historia clinica
-        // $uMedidas = 
+        // $uMedidas =
         // dd($uConsultaServicio[0]->examenVisual->medidasOjos);
         // $consultaServicio = $hclinica->consultas()->latest('fecha')->first()->servicios()->first()->consultaServicio;
         // dd($consultaServicio->servicio->servicio);
         // dd($consultaServicio->examenVisual->observacion);
     }
-
     /**
      * Show the form for editing the specified resource.
      *

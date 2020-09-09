@@ -14,13 +14,6 @@ var tablaALT="";
 
 //Esto una vez cargada la pagina se ejecutara
 $(function () {
-    //Esto es para activar y desactivar checkbox
-    /*$("#hall").toggle();
-    $("#checkbox14").click(function(){
-        $("#hall").toggle();
-    });*/
-
-
     verConsulta();
     probar();
 });
@@ -31,17 +24,33 @@ $.ajaxSetup({
     }
 });
 
+//Funcion para deshabilitar los campos**********************
+function deshabilitar(){
+
+    $('#jor').attr('disabled','disabled');
+    $('#observa').attr('readonly','readonly');
+    $('#hall').attr('readonly','readonly');
+    $('#BotonEditar').removeAttr("hidden","hidden");
+    $('#BotonDetalles').attr('hidden','hidden');
+    $('#btnGuardar').attr('hidden','hidden');
+    $('.editableTable').removeAttr("id");
+    $('.editableTable2').removeAttr("id");
+    $('#refreshAllTable').load(" #cardTables");
+}
+//*************************************************************
+
+
 //Funcion para desactivar/activar los campos del modal
 function detalle_editar() {
-    console.log("Afuera");
-
     if(i == 0){
+        //Opcion para hacer editable los campos
         //Campos y botones ************************
         $('#jor').removeAttr("disabled","disabled");
         $('#observa').removeAttr("readonly","readonly");
         $('#hall').removeAttr("readonly","readonly");
         $('#BotonEditar').attr('hidden','hidden');
         $('#BotonDetalles').removeAttr("hidden","hidden");
+        $('#btnGuardar').removeAttr("hidden","hidden");
         //****************************************
 
         //Tabla Ojos *******************************
@@ -57,23 +66,23 @@ function detalle_editar() {
         console.log("Primer if");
         i++;
     }else{
+        //Opcion para deshabilitar los campos
         //Campos y botones *************************************
         $('#jor').attr('disabled','disabled');
         $('#observa').attr('readonly','readonly');
         $('#hall').attr('readonly','readonly');
         $('#BotonEditar').removeAttr("hidden","hidden");
         $('#BotonDetalles').attr('hidden','hidden');
+        $('#btnGuardar').attr('hidden','hidden');
         //*****************************************************
 
         //Tabla Ojos *******************************************
         $('.editableTable').removeAttr("id");
         $('.editableTable2').removeAttr("id");
-
         $('#refreshAllTable').load(" #cardTables");
 
-        $('#mainTable4').editableTableWidget();
-        /*$( "#contentTable" ).load( " .editableTable" );*/
-        $('#mainTable3').editableTableWidget();
+       /* $('#mainTable4').editableTableWidget();
+        $('#mainTable3').editableTableWidget();*/
         //******************************************************
 
         //Segunda tabla ****************************************
@@ -246,16 +255,13 @@ function updateConsulta() {
 
 //Funcion para ver los detalles de una consulta
 function verDetalles($id){
-  /*  $('#textarea').attr("hidden","hidden");*/
 
     id_consulta = $id;
    //*******************************************************************
     //Esto sirve para desactivar los campos cada vez que se inicie
-    $('#jor').attr('disabled','disabled');
-    $('#observa').attr('readonly','readonly');
-    $('#hall').attr('readonly','readonly');
-    $('#BotonEditar').removeAttr("hidden","hidden");
-    $('#BotonDetalles').attr('hidden','hidden');
+    deshabilitar();
+    //*******************************************************************
+
 
     //Ojo derecho
     $('#esd1').html(" ");
@@ -369,8 +375,6 @@ function table(){
             console.log("prueba para ver si se imprime");
             console.log(response.examen[0].distancia_pupilar,response.examen[0].alt)
 
-           /* tablaALT =response.examen[0].alt;
-            tablaDP =response.examen[0].distancia_pupilar;*/
 
             $('#dp1').html(response.examen[0].distancia_pupilar);
             $('#alt1').html(response.examen[0].alt);

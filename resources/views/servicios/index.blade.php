@@ -12,13 +12,16 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="header">
-                    <h2><strong>Listado </strong>de Servicios <a href="#">
-                            <button class="btn btn-success" data-toggle="modal" data-target=".servicioadd">Nuevo</button>
-                        </a></h2>
+                    <h2><strong>Listado </strong>de Servicios
+                            <span class="btn btn-sm btn-success">
+                                <a  data-toggle="modal" data-target=".servicioadd"><i class="zmdi zmdi-account-add"></i></a>
+                            </span>
+
+                        </h2>
                 </div>
                 <div class="body">
                     <div class="table-responsive">
-                        <table class="table table-hover dataTable-servicio theme-color mb-0">
+                        <table class="table table-hover dataTable-servicio theme-color mb-0" width="100%">
                             <thead>
                             <tr style="text-align: center">
                                 <th>Servicio</th>

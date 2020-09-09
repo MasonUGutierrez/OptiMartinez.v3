@@ -18,8 +18,8 @@ function viewData() {
             var rows = "";
             $.each(response, function (key, value) {
                 rows += `
-                                <div class="col-sm-4">
-                                    <div class="card bg-primary text-white mb-3" style="max-width: 18rem;">
+                                <div class="col-sm-3">
+                                   <!-- <div class="card bg-primary text-white mb-3" style="max-width: 18rem;">
                                         <div class="card-header">${value.plan_pago}</div>
                                         <div class="card-body">
                                             <p class="card-text">${value.descripcion}</p>
@@ -42,6 +42,32 @@ function viewData() {
                                                 </a>
                                              </span>
                                         </div>
+                                    </div>-->
+                                     <div class="card mcard_4 waves-effect  waves-float" >
+                                        <div class="body" style="background: #ffffff">
+                                            <div class="user">
+                                                <h5 class="mt-3 mb-1">${value.plan_pago}</h5>
+                                                <small class="text-muted">${value.descripcion}</small>
+                                            </div>
+                                            <ul class="list-unstyled social-links" >
+                                                  <li ><span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Editar">
+                                                    <a href="planpago/${value.id_plan_pago}/edit"  data-target=".modal2" data-toggle="modal" onclick='editData(${value.id_plan_pago})' >
+                                                      <i class="zmdi zmdi-search"></i>
+                                                    </a>
+                                                 </span></li>
+                                                 <li style="display: inline"><span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Dar de Baja">
+                                                     <a href="#"
+                                                           data-type="confirm"
+                                                           data-title="Dar de Baja"
+                                                           data-text="¿Desea eliminar el Plan de Pago: ${value.plan_pago} ?"
+                                                           data-obj="${value.plan_pago}"
+                                                           onclick="deleteData(${value.id_plan_pago})">
+                                                              <i class="zmdi zmdi-delete"></i>
+                                                    </a>
+                                                 </span></li>
+                                        </ul>
+                                        </div>
+
                                     </div>
                                 </div>
                             `;
@@ -103,8 +129,6 @@ function updateData() {
         }
     })
 }
-
-
 
 function deleteData(id) {
 

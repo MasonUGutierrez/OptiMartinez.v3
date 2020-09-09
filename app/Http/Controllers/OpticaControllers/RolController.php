@@ -37,11 +37,13 @@ class RolController extends Controller
                     $btns = '
                     <div style="text-align:center">
                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Ver detalles" data-original-title="Editar">
-                            <a href="" data-toggle="modal" data-target="#largeModal" onclick="showUserRol(' . $row->id_rol . ')" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float">Detalles
+                            <a href="" data-toggle="modal" data-target="#largeModal" onclick="showUserRol(' . $row->id_rol . ')" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float">
+                            <i class="zmdi zmdi-search"></i>
                             </a>
                         </span>
                         <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Asignar Usuario" data-original-title="Asignar Usuario">
-                            <a href="" data-toggle="modal" data-target=".assign-modal" onclick="assignRol(' . $row->id_rol . ')" class="btn btn-sm btn-neutral btn-raised waves-effect darBaja waves-red waves-float">Asignar Usuario
+                            <a href="" data-toggle="modal" data-target=".assign-modal" onclick="assignRol(' . $row->id_rol . ')" class="btn btn-sm btn-neutral btn-raised waves-effect darBaja waves-red waves-float">
+                            <i class="zmdi zmdi-assignment-returned"></i>
                             </a>
                         </span>
                         </div>';

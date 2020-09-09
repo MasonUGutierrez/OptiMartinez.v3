@@ -104,18 +104,19 @@ class ConsultaController extends Controller
                     $btns = '
                     <div style="text-align:center">
                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Ver detalles" data-original-title="Editar">
-                            <a href="consulta/'.$row->id_consulta.'"  data-target=".showConsulta" data-toggle="modal" onclick="verDetalles('.$row->id_consulta.')" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float">Detalles
+                            <a href="consulta/'.$row->id_consulta.'"  data-target=".showConsulta" data-toggle="modal" onclick="verDetalles('.$row->id_consulta.')" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float">
+                             <i class="zmdi zmdi-search"></i>
                             </a>
                         </span>
                         <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Dar de Baja" data-original-title="Dar de Baja">
                             <a href="#"
-                                                       class="btn btn-raised btn-danger waves-effect"
+                                                       class="btn btn-sm btn-raised btn-danger waves-effect"
                                                        data-type="confirm"
                                                        data-title="Dar de Baja"
                                                        data-text="¿Desea eliminar el registro de esta Consuta?"
                                                        data-obj="'.$row->id_consulta.'"
                                                        onclick="delData('.$row->id_consulta.')">
-                                                         <i class="ti-trash"></i>
+                                                        <i class="zmdi zmdi-delete"></i>
                                                 </a>
                         </span>
                         </div>';

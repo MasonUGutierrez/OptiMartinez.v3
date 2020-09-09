@@ -16,9 +16,9 @@
                 {!! $errors->first('plan_pago', '<small class="invalid-feedback">:message</small>') !!}
                 <label for="">Descripcion del Plan de Pago</label>
                 <div>
-                        <textarea class="form-control {{ $errors->has('descripcion') ? 'is-invalid' : '' }}"
-                                  id="descripcion2" name="descripcion" required cols="30" placeholder="Descripcion..."
-                                  rows="10">{{old("descripcion")}}</textarea>
+                        <textarea class="form-control no-resize {{ $errors->has('descripcion') ? 'is-invalid' : '' }}"
+                                  id="descripcion2" name="descripcion" required cols="30"  placeholder="Descripcion..."
+                                  rows="5">{{old("descripcion")}}</textarea>
                 </div>
                 {!! $errors->first('descripcion', '<small class="invalid-feedback">:message</small>') !!}
             </div>

@@ -19,63 +19,66 @@
             <div class="header">
                 <h2>Listado de <strong>Usuarios</strong>
                     <span class="d-inline-block pl-3" tabindex="0" data-toggle="tooltip" data-placement="top" title="Nuevo Usuario">
-                        <a href="usuarios/create" class="btn btn-raised btn-success waves-effect waves-light"><i class="zmdi zmdi-account-add"></i></a>
+                        <a href="usuarios/create" class="btn btn-sm btn-raised btn-success waves-effect waves-light"><i class="zmdi zmdi-account-add"></i></a>
                     </span>
                 </h2>
             </div>
-            <div class="table-responsive">
-                <table class="table table-hover theme-color mb-0 dataTable" id="datatable">
-                    <thead>
-                    <tr style="text-align: center" >
-                        {{--<th>ID</th>--}}
-                        <th>Codigo Minsa</th>
-                        <th >Nombre</th>
-                        <th>Roles</th>
-                        <th style="padding-right: 80px">Opciones</th>
-                    </tr>
-                    </thead>
+            <div class="body">
+                <div class="table-responsive">
+                    <table class="table table-hover theme-color mb-0 dataTable" id="datatable">
+                        <thead>
+                        <tr style="text-align: center" >
+                            {{--<th>ID</th>--}}
+                            <th>Codigo Minsa</th>
+                            <th >Nombre</th>
+                            <th>Roles</th>
+                            <th style="padding-right: 80px">Opciones</th>
+                        </tr>
+                        </thead>
 
                         <tbody>
                         @foreach($usuarios as $cat)
                             <tr>
-                            <td style="text-align: center">{{$cat->cod_minsa}}</td>
-                            <td>{{$cat->nombre}} {{$cat->apellido}}</td>
-                            <td>
+                                <td style="text-align: center">{{$cat->cod_minsa}}</td>
+                                <td>{{$cat->nombre}} {{$cat->apellido}}</td>
+                                <td>
                                 @foreach($cat->roles as $roles)
-                                <!-- Operador ternario anidados necesitan parentesis para las demas condiciones -->
-                                    <span class="badge badge-{{($roles->rol == 'Administrador') ? 'primary' :
+                                    <!-- Operador ternario anidados necesitan parentesis para las demas condiciones -->
+                                        <span class="badge badge-{{($roles->rol == 'Administrador') ? 'primary' :
                                                                 (($roles->rol == 'Tesorero') ? 'success' :
                                                                 (($roles->rol == 'Optometrista') ? 'warning' :
                                                                 (($roles->rol == 'Recepcionista') ? 'default' : 'danger')))}}">{{$roles->rol}}</span>
-                                @endforeach
-                            </td>
-                            <td style="text-align: center">
-                                <!-- Mejor forma de poner los tooltips -->
-                                <span class="d-inline-block " tabindex="0" data-toggle="tooltip" data-placement="top" title="Ver Detalles">
-                                    <a href="{{URL::action('OpticaControllers\UsuarioController@show',$cat->id_usuario)}}" class="btn btn-sm btn-neutral btn-raised waves-effect waves-green waves-float"><i class="ti-search"></i></a>
+                                    @endforeach
+                                </td>
+                                <td style="text-align: center">
+                                    <!-- Mejor forma de poner los tooltips -->
+                                    <span class="d-inline-block " tabindex="0" data-toggle="tooltip" data-placement="top" title="Ver Detalles">
+                                    <a href="{{URL::action('OpticaControllers\UsuarioController@show',$cat->id_usuario)}}" class="btn btn-sm btn-neutral btn-raised waves-effect waves-green waves-float"><i class="zmdi zmdi-search"></i></a>
                                 </span>
 
-                                <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Editar">
-                                    <a href="{{URL::action('OpticaControllers\UsuarioController@edit',$cat->id_usuario)}}" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float"><i class="ti-pencil-alt"></i></a>
+                                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Editar">
+                                    <a href="{{URL::action('OpticaControllers\UsuarioController@edit',$cat->id_usuario)}}" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float"><i class="zmdi zmdi-edit"></i></a>
                                 </span>
                                 <!-- <a href="" data-target="#modal-delete-{{$cat->id_usuario}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a> -->
-                                <!-- Usando SweetAlert -->
-                                <span class="js-sweetalert d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Dar de Baja">
+                                    <!-- Usando SweetAlert -->
+                                    <span class="js-sweetalert d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Dar de Baja">
                                     <a href="{{URL::action('OpticaControllers\UsuarioController@destroy',$cat->id_usuario)}}" class="btn btn-sm btn-neutral btn-raised waves-effect waves-red waves-float"
-                                        data-type="confirm"
-                                        data-title="Dar de Baja"
-                                        data-text="¿Estas seguro en eliminar a {{$cat->nombre}} ?"
-                                        data-obj="{{$cat->nombre .' '. $cat->apellido}}"
+                                       data-type="confirm"
+                                       data-title="Dar de Baja"
+                                       data-text="¿Estas seguro en eliminar a {{$cat->nombre}} ?"
+                                       data-obj="{{$cat->nombre .' '. $cat->apellido}}"
                                     >
-                                        <i class="ti-trash"></i>
+                                         <i class="zmdi zmdi-delete"></i>
                                     </a>
                                 </span>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
                         @endforeach
                         </tbody>
-                </table>
+                    </table>
+                </div>
             </div>
+
             {{-- {{$usuarios->render()}} --}}
         </div>
     </div>

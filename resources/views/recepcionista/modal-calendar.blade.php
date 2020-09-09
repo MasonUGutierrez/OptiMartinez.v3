@@ -2,9 +2,20 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content ">
+            <div class="modal-header">
+                <div class="card mb-0">
+                    <div class="header">
+                        <h2><strong>Agendar</strong> Jornadas</h2>
+                    </div>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
             <div class="modal-body center ">
                 <div class="card">
-                    <div class="header mb-2"><h2><strong>Agendar</strong> Jornada</h2></div>
+                    {{--<div class="header mb-2"><h2><strong>Agendar</strong> Jornada</h2></div>--}}
+
                     <input type="hidden" id="trucazo" value="">
                     <input type="hidden" id="id_jornada_trabajo">
                     <div class="row clearfix">
@@ -49,7 +60,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="closeButton" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                {{--<button type="button" id="closeButton" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>--}}
                  <button type="button" id="btnEditar" class="btn btn-primary">Editar</button>
                 <button type="button" id="btnpruebas" hidden class="btn btn-primary">Guardar Cambios</button>
                 <button type="button" class="btn btn-danger" id="delButton" >Eliminar</button>
