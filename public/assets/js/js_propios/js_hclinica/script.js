@@ -162,6 +162,19 @@ const setEvents = function(){
             input.prop('disabled', false);
         }
     });
+
+    $('#prueba').on('click', function(event){
+        if($.trim($('#cedula').val()).length > 0)
+            $.ajax("/historias-clinicas/getCedula/"+$('#cedula').val(),{
+                type:'POST',
+                success:function(datas, status, jqXHR){
+                    console.log(datas);
+                    if(datas=="true"){
+                        $('#mostrar').text("Ya existe un registro con la cedula ingresada");
+                    }
+                }
+            });
+    })
 }
 
 /**
@@ -290,6 +303,21 @@ const initValidateStep = function (type){
 
         return this.optional(element) || pattern.test(value);
     }, "Por favor, ingrese un número de cedula válida");
+    
+   /*  jQuery.validator.addMethod('uniqueCard', function(value, element){
+        var flag;
+        $.ajax("/historias-clinicas/getCedula/"+$('#cedula').val(),{
+            type:'POST',
+            success:function(datas, status, jqXHR){
+                console.log(datas);
+                if(datas=="true")
+                    flag = false;
+                else
+                    flag = true;
+            }
+        });
+        return element.optional() || flag;
+    }, "Ya existe un registro con la cedula ingresada"); */
 
     form.steps({
         /*Apariencia*/

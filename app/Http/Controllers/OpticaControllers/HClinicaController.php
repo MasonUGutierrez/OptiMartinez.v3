@@ -102,6 +102,20 @@ class HClinicaController extends Controller
         return response()->json(['hclinica'=>$hclinica, 'paciente'=>$hclinica->paciente]);
     }
 
+    public function getCedulaifExist($ced)
+    {
+        try
+        {
+            if($pacienteWithCedula = Paciente::where('cedula',$ced)->firstOrFail())
+            {
+                return "true";
+            }
+        }
+        catch(ModelNotFoundException $e)
+        {
+            return "false";
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *

@@ -96,6 +96,7 @@ Route::get('/test', function(){
 
 // Ruta para historias Clinicas
 
+Route::post('historias-clinicas/getCedula/{cedula}','OpticaControllers\HClinicaController@getCedulaifExist')->name('historias-clinica.getCedula');
 Route::get('historias-clinicas/all', 'OpticaControllers\HClinicaController@getAll');
 Route::get('historias-clinicas/gethistoria/{historia_clinica}', 'OpticaControllers\HClinicaController@getHClinica');
 Route::resource('historias-clinicas', 'OpticaControllers\HClinicaController');
