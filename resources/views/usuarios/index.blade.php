@@ -52,12 +52,12 @@
                                 </td>
                                 <td style="text-align: center">
                                     <!-- Mejor forma de poner los tooltips -->
-                                    <span class="d-inline-block " tabindex="0" data-toggle="tooltip" data-placement="top" title="Ver Detalles">
+                                   {{-- <span class="d-inline-block " tabindex="0" data-toggle="tooltip" data-placement="top" title="Ver Detalles">
                                     <a href="{{URL::action('OpticaControllers\UsuarioController@show',$cat->id_usuario)}}" class="btn btn-sm btn-neutral btn-raised waves-effect waves-green waves-float"><i class="zmdi zmdi-search"></i></a>
-                                </span>
+                                </span>--}}
 
-                                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Editar">
-                                    <a href="{{URL::action('OpticaControllers\UsuarioController@edit',$cat->id_usuario)}}" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float"><i class="zmdi zmdi-edit"></i></a>
+                                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Ver Detalles">
+                                    <a href="{{URL::action('OpticaControllers\UsuarioController@edit',$cat->id_usuario)}}" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float"><i class="zmdi zmdi-search"></i></a>
                                 </span>
                                 <!-- <a href="" data-target="#modal-delete-{{$cat->id_usuario}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a> -->
                                     <!-- Usando SweetAlert -->
@@ -78,8 +78,6 @@
                     </table>
                 </div>
             </div>
-
-            {{-- {{$usuarios->render()}} --}}
         </div>
     </div>
 </div>

@@ -1,8 +1,10 @@
+/*
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
+*/
 
 function editUsuario(){
     $('#cod_minsa').removeAttr("disabled","disabled");
@@ -17,6 +19,8 @@ function editUsuario(){
     $('#botonCancelar').removeAttr('hidden','hidden');
     $('#pass').removeAttr('hidden','hidden');
     $('#passReco').removeAttr('hidden','hidden');
+    $('#botonGuardar').removeAttr('hidden','hidden');
+
 }
 
 function cancelUsuario(){
@@ -32,9 +36,10 @@ function cancelUsuario(){
     $('#botonCancelar').attr('hidden','hidden');
     $('#pass').attr('hidden','hidden');
     $('#passReco').attr('hidden','hidden');
+    $('#botonGuardar').attr('hidden','hidden');
 }
 
-function updateUsuario(){
+/*function updateUsuario(){
 
     var cod = $('#cod_minsa').val();
     var nombre = $('#nombreUsuario').val();
@@ -60,4 +65,4 @@ function updateUsuario(){
             console.log(result);
         }
     })
-}
+}*/
