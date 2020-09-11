@@ -13,8 +13,10 @@
             <div class="card">
                 <div class="header">
                     <h2><strong>Listado </strong>de Servicios
-                            <span class="btn btn-sm btn-success">
-                                <a  data-toggle="modal" data-target=".servicioadd"><i class="zmdi zmdi-account-add"></i></a>
+                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Registrar Servicio">
+                                <a class="btn btn-success btn-sm waves-effect waves-light" style="color:#fff;" data-toggle="modal" data-target=".servicioadd">
+                                    <i class="zmdi zmdi-account-add"></i>
+                                </a>
                             </span>
 
                         </h2>

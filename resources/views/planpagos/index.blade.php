@@ -12,7 +12,7 @@
             <div class="card">
                 <div class="header">
                     <h2><strong>Planes </strong>de Pago
-                            <span class="d-inline-block"  tabindex="0" data-toggle="tooltip" data-placement="top" title="Nuevo Plan de Pago">
+                            <span class="d-inline-block"  tabindex="0" data-toggle="tooltip" data-placement="top" title="Registrar Plan de Pago">
                                 <a id="botonN" style="color: white" class="btn btn-success btn-sm waves-float waves-effect" data-toggle="modal" data-target="#largeModal">
                                     <i class="zmdi zmdi-plus"></i>
                                 </a>
@@ -22,7 +22,6 @@
                 </div>
                 <div class="body align-center" style="background-color: #f5f5f5" >
                     <div class="row" id="aqui">
-
                     </div>
                 </div>
                 <script src="http://code.jquery.com/jquery-3.3.1.min.js"

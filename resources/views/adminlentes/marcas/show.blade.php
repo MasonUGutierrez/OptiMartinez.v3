@@ -7,6 +7,9 @@
 <link rel="stylesheet" href="{{asset('assets/plugins/sweetalert/sweetalert.css')}}">
 {{-- Estilos del Jquery Datatable --}}
 <link rel="stylesheet" href="{{asset('assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css')}}">
+
+<link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>
 @endsection
 
 @section('content')
@@ -78,7 +81,7 @@
                                     {{-- Botones de opciones --}}
                                     <td>
                                         <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Ver Detalles">
-                                            <a href="{{route('marcos.show', $marco->id_marco)}}" class="btn btn-neutral btn-sm btn-raised waves-effect waves-float waves-blue">
+                                            <a href="" data-toggle="modal" data-target="#showMarco" data-idmarco="{{$marco->id_marco}}" class="btn btn-neutral btn-sm btn-raised waves-effect waves-float waves-blue btnShowMarco">
                                                 <i class="zmdi zmdi-search"></i>
                                             </a>
                                         </span>
@@ -109,6 +112,9 @@
     </div>
 </div>
 
+{{-- Modal para ver detalles de un marco --}}
+@include('adminlentes.marcos.modal-show')
+
 {{-- Row para el boton de regresar --}}
 <div class="row clearfix">
     <div class="col-lg-12">
@@ -132,9 +138,13 @@
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.flash.min.js')}}"></script>
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.html5.min.js')}}"></script>
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.print.min.js')}}"></script>
+
+<script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
 @endsection
 
 @push('after-scripts')
 <script src="{{asset('assets/js/pages/ui/sweetalert.js')}}"></script>
 <script src="{{asset('assets/js/pages/tables/jquery-datatable.js')}}"></script>
+
+<script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
 @endpush

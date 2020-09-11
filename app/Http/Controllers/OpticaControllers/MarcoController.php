@@ -137,7 +137,8 @@ class MarcoController extends Controller
      */
     public function show($id)
     {
-        //
+        $marco = Marco::where('id_marco', $id)->firstOrFail();
+        return response()->json(['marco'=>$marco, 'tiposMarco'=>$marco->tiposmarcos]);
     }
 
     /**
@@ -182,20 +183,23 @@ class MarcoController extends Controller
         ]);
 
         $archivo = $request->file('dir_foto');
-        if($request->hasFile('dir_foto') && $archivo->isValid() && $archivo->getClientOriginalName() !== $marco->dir_foto)
+        if($archivo != null)
         {
-            if($this->existImage($archivo->getClientOriginalName(), $request, $id))
+            if($request->hasFile('dir_foto') && $archivo->isValid() && $archivo->getClientOriginalName() !== $marco->dir_foto)
             {
-                return back()
-                ->withErrors(['dir_foto' => 'La imagen ya ha sido tomada'])
-                ->withInput();
+                if($this->existImage($archivo->getClientOriginalName(), $request, $id))
+                {
+                    return back()
+                    ->withErrors(['dir_foto' => 'La imagen ya ha sido tomada'])
+                    ->withInput();
+                }
+                $nombreImg = $archivo->getClientOriginalName();
+                
+                Storage::disk('public')->delete('imagenes/marcos/'.$marco->dir_foto);
+                
+                $path = $archivo->storeAs('imagenes/marcos', $nombreImg, 'public');
+                $marco->dir_foto = $nombreImg;
             }
-            $nombreImg = $archivo->getClientOriginalName();
-            
-            Storage::disk('public')->delete('imagenes/marcos/'.$marco->dir_foto);
-            
-            $path = $archivo->storeAs('imagenes/marcos', $nombreImg, 'public');
-            $marco->dir_foto = $nombreImg;
         }
 
         $marco->tiposmarcos()->sync($request->get('id_tipos_marcos'));

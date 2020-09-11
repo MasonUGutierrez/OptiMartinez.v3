@@ -194,7 +194,7 @@
                     console.log('Error: ' + jsXHR + '\n Error string: ' + textStatus + '\n Error Throwed: ' + errorThrown);
                     // console.log(response);
                 }
-            }); */
+            });
         }  */ 
     </script>
 @endpush

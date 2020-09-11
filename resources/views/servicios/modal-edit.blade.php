@@ -1,22 +1,28 @@
 <div class="modal servicioAsignar" id="largeModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body center">
                 <div class="card">
                     <div class="header">
                         <h2 class="title pb-2"><strong>Editar</strong> Servicio</h2>
                     </div>
-                    <label for="">Nombre de Servicio</label>
                     <input type="hidden" id="idServicio">
                     <input type="hidden" name="_method" value="PUT">
-                    <input type="text" class="form-control  {{ $errors->has('servicio') ? 'is-invalid' : '' }}"
-                           id="servicio" required name="plan_pago"
-                           value="{{old("servicio")}}" placeholder="Plan..."/>
-                    {!! $errors->first('servicio', '<small class="invalid-feedback">:message</small>') !!}
-                    <label for="">Precio del Servicio</label>
-                    <div>
-                        <input type="text" id="precio" name="precio" class="form-control {{ $errors->has('precio') ? 'is-invalid' : '' }}"   />
-                        {!! $errors->first('precio', '<small class="invalid-feedback">:message</small>') !!}
+                    <div class="row clearfix mb-3">
+                        <div class="col">
+                            <label for="servicio">Nombre del Servicio</label>
+                            <input type="text" class="form-control  {{ $errors->has('servicio') ? 'is-invalid' : '' }}"
+                                   id="servicio" required name="plan_pago"
+                                   value="{{old("servicio")}}" placeholder="Plan..."/>
+                            {!! $errors->first('servicio', '<small class="invalid-feedback">:message</small>') !!}
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col">
+                            <label for="precio">Precio del Servicio</label>
+                            <input type="number" id="precio" name="precio" class="form-control {{ $errors->has('precio') ? 'is-invalid' : '' }}"   />
+                            {!! $errors->first('precio', '<small class="invalid-feedback">:message</small>') !!}
+                        </div>
                     </div>
                 </div>
 

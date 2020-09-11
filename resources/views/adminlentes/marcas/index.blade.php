@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="{{asset('assets/plugins/sweetalert/sweetalert.css')}}"/>
 @endsection
 
-@section('addButton')
+{{-- @section('addButton')
     <span class="d-inline-block float-right" data-toggle="tooltip" tabindex="0" title="Agregar Marca">
         <a class="btn btn-success btn-icon" href="{{URL::action('OpticaControllers\MarcaController@create')}}" style="color:#fff"><i class="zmdi zmdi-plus"></i></a>
     </span>
-@endsection
+@endsection --}}
 
 @section('content')
     <div class="row clearfix">
@@ -54,8 +54,8 @@
                                                 </button>
                                             </span>
                                         </div>
-                                        <div class="image">
-                                            <img src="{{asset('storage/imagenes/marcas/'.$marca->img)}}"  class="img-fluid" alt="marca img" />
+                                        <div class="image" style="text-align:center;line-height:250px"> <!--Codigo para centrar las imagenes y que no esten deformes-->
+                                            <img src="{{asset('storage/imagenes/marcas/'.$marca->img)}}"  class="img-fluid"  style='vertical-align:middle;' alt="marca img" />
                                         </div>
                                         <div class="file-name">
                                             <p class="m-b-5 text-muted">{{$marca->marca}}</p>

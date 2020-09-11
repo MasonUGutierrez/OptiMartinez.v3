@@ -18,10 +18,13 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="header">
-                    <h2><strong>Detalle </strong>de Usuario: {{$usuario->nombre}} <a
-                            href="{{URL::action('OpticaControllers\UsuarioController@edit',$usuario ->id_usuario)}}">
-                            <button class="btn btn-success">Editar Registro</button>
-                        </a></h2>
+                    <h2><strong>Detalles </strong>de Usuario
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Editar Usuario">
+                            <a href="{{URL::action('OpticaControllers\UsuarioController@edit',$usuario ->id_usuario)}}" class="btn btn-sm btn-success waves-effect waves-light">
+                                <i class="zmdi zmdi-edit"></i>
+                            </a>
+                        </span>
+                    </h2>
                 </div>
                 @if(count($errors)>0)
                     <div class="alert alert-danger">
