@@ -148,7 +148,7 @@ class   UsuarioController extends Controller
                     $usuario->dir_foto = $entrada['dir_foto'];
                 }
                 $usuario->contraseña = $request->get('contraseña');
-                $request->get('ccontraseña');
+                /*$request->get('ccontraseña');*/
                 $usuario->descripcion = $request->get('descripcion');
                 $usuario->update();
 

@@ -31,8 +31,8 @@ class UsuarioFormRequest extends FormRequest
             'telefono'=>'bail|numeric|digits:8|nullable',
             'correo'=>'bail|max:50',
             'dir_foto'/*=>'mimes:jpg,bmp,png'|max:255'*/,
-            'contraseña'=>'bail|min:6|max:255',
-            'ccontraseña'=>'bail|same:contraseña',
+           /* 'contraseña'=>'bail|min:6|max:255',*/
+           /* 'ccontraseña'=>'bail|same:contraseña',*/
             'descripcion'=>'bail|max:500',
         ];
     }

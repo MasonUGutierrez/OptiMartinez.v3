@@ -133,8 +133,8 @@
                     <div class="col-lg-12">
                         <div class="form-group" style="text-align: center">
                             <button class="btn btn-primary" type="submit">Guardar</button>
-                            <a href="/index">
-                                <button class="btn btn-danger" type="">Cancelar</button>
+                            <a href="">
+                                <button class="btn btn-danger" onclick="history.back()" type="">Cancelar</button>
                             </a>
                         </div>
                     </div>

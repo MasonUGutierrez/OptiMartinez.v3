@@ -18,50 +18,50 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="header">
-                    <h2><strong>Detalle </strong>de Usuario: {{$usuario->nombre}} <a
-                            href="{{URL::action('OpticaControllers\UsuarioController@edit',$usuario ->id_usuario)}}">
-                            <button class="btn btn-success">Editar Registro</button>
-                        </a></h2>
+                    <h2><strong>Detalle </strong>de Usuario
+                        <span  class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Editar" data-original-title="Editar">
+                            <a id="botonEditar" style="color: white" class="btn btn-sm btn-success btn-raised waves-effect waves-blue waves-float" onclick="editUsuario()">
+                                <i class="zmdi zmdi-edit"></i>
+                            </a>
+                        </span>
+                        <span  class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Cancelar Edicion" data-original-title="Editar">
+                            <a style="color: white"  id="botonCancelar" hidden class="btn btn-sm btn-danger btn-raised waves-effect waves-blue waves-float" onclick="cancelUsuario()">
+                                <i class="zmdi zmdi-tag-close"></i>
+                            </a>
+                        </span>
+                        <input type="hidden" id="idUsuario" value="{{$usuario->id_usuario}}">
+                    </h2>
                 </div>
-                @if(count($errors)>0)
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach($errors->all() as $message)
-                                <li>{{$message}}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
                 <div class="body">
                     <div class="row clearfix">
                         <div class="form-group col-12">
                             <label for="">Codigo de Minsa</label>
-                            <input type="text" class="form-control" disabled name="cod_minsa"
+                            <input id="cod_minsa" type="text" class="form-control" disabled name="cod_minsa"
                                    value="{{$usuario->cod_minsa}}" placeholder="Codigo de Minsa..."/>
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label for="">Nombre</label>
-                            <input type="text" name="nombre" class="form-control" disabled
+                            <input id="nombreUsuario" type="text" name="nombre" class="form-control" disabled
                                    value="{{$usuario->nombre}}" placeholder="Nombre..."/>
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label for="">Apellido</label>
-                            <input type="text" name="apellido" class="form-control" disabled
+                            <input id="apellidoUsuario" type="text" name="apellido" class="form-control" disabled
                                    value="{{$usuario->apellido}}" placeholder="Apellido..."/>
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label for="">Cedula de indentidad</label>
-                            <input type="text" name="cedula" class="form-control" disabled
+                            <input id="cedulaUsuario" type="text" name="cedula" class="form-control" disabled
                                    value="{{$usuario->cedula}}" placeholder="Cedula..."/>
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label for="">Telefono</label>
-                            <input type="text" name="telefono" class="form-control" disabled
+                            <input id="telefonoUsuario" type="text" name="telefono" class="form-control" disabled
                                    value="{{$usuario->telefono}}" placeholder="Telefono..."/>
                         </div>
                         <div class="form-group col-12">
                             <label for="">Correo Electronico</label>
-                            <input type="email" name="correo" class="form-control" disabled
+                            <input id="emailUsuario" type="email" name="correo" class="form-control" disabled
                                    value="{{$usuario->correo}}" placeholder="Correo..."/>
                         </div>
                         <div class="form-group col-10">
@@ -71,24 +71,40 @@
                                      width="200" alt="No cuenta con una foto de perfil">
                             </div>
                         </div>
-                        {{--<div class="form-group">
-                            <label for="">Contraseña</label>
-                            <input type="password" name="contraseña" class="form-control" disabled value="{{$usuario->contraseña}}" placeholder="Nueva Contraseña..." />
-                        </div>--}}
+                        <div id="pass" hidden class="col-md-6 col-sm-12">
+                            <div class="form-group ">
+                                <label for="">Contraseña</label>
+                                <input type="password"  name="contraseña" class="form-control" value="{{$usuario->contraseña}}" placeholder="Nueva Contraseña..."/>
+                            </div>
+                        </div>
+                        <div id="passReco" hidden class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="">Verificar Contraseña</label>
+                                <input type="password"  name="ccontraseña" class="form-control" value="{{$usuario->contraseña}}" placeholder="Confirma Contraseña..."/>
+                            </div>
+                        </div>
                         <div class="form-group col-12">
                             <label for="">Descripción</label>
-                            <textarea class="form-control" name="descripcion" rows="5" disabled
+                            <textarea id="descripcionUsuario" class="form-control" name="descripcion" rows="5" disabled
                                       placeholder="Ingrese una descripción">{{$usuario->descripcion}}</textarea>
                         </div>
                         <div class="form-group col-12">
                             <p><b>Roles Asignados</b></p>
-                            <select class="form-control show-tick ms select2" disabled required name="id_roles[]"
+                            <select id="rolesUsuario" class="form-control show-tick ms select2" disabled required name="id_roles[]"
                                     multiple data-placeholder="{{--{{$rol->rol}}--}}">
                                 @foreach($rol as $cat)
                                     <option
                                         value="{{$cat->id_rol}}" {{(in_array($cat->id_rol,$valores)) ? 'selected' : ''}}>{{$cat->rol}}</option>
                                 @endforeach
                             </select>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group" style="text-align: center">
+                                <button class="btn btn-primary" onclick="updateUsuario()">Guardar</button>
+                                <a href="">
+                                    <button class="btn btn-danger" onclick="history.back()" type="">Cancelar</button>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -105,4 +121,5 @@
     <script src="{{asset('assets/plugins/jquery-spinner/js/jquery.spinner.js')}}"></script>
     <script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
     <script src="{{asset('assets/js/pages/forms/dropify.js')}}"></script>
+    <script src="{{asset('assets/js/js_propios/js_usuarios/script.js')}}"></script>
 @endpush
