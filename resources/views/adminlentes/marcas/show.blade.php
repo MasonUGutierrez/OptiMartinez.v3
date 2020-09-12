@@ -119,7 +119,7 @@
 <div class="row clearfix">
     <div class="col-lg-12">
         <div class="card">
-            <a href="{{url()->previous()}}" class="btn btn-danger btn-raised waves-effect waves-light">Regresar</a>
+            <a href="javascript:history.back()" class="btn btn-danger btn-raised waves-effect waves-light">Regresar</a>
         </div>
     </div>
 </div>
