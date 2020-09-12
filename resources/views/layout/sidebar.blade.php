@@ -17,16 +17,24 @@
                 </div>
             </li>
 
-            <li>
+            <li class="{{ Request::segment(1) === 'dashboard' ? 'active' : null }}"><a href="{{route('dashboard.index')}}"><i class="zmdi zmdi-home"></i><span>Inicio</span></a></li>
+
+            {{-- <li>
                 <div class="user-info">
                     <div class="detail">
-                        <span>General</span>
+                        <span>Cuenta</span>
                     </div>
                 </div>
+            </li> --}}
+
+            <li class="{{ Request::segment(1) === 'miperfil' ? 'active open' : null }}">
+                <a href="#" class="menu-toggle"><i class="zmdi zmdi-account"></i><span>Cuenta</span></a>
+                <ul class="ml-menu">
+                    <li class="{{ Request::segment(1) === 'miperfil' ? 'active' : null }}"><a href="/miperfil">Perfil</a></li>
+                    <li class="{{-- Request::segment(1) === 'perfil' ? 'active' : null --}}"><a href="">Cerrar Sesión</a></li>
+                </ul>
             </li>
 
-            <li class="{{ Request::segment(1) === 'dashboard' ? 'active' : null }}"><a href="{{route('dashboard.index')}}"><i class="zmdi zmdi-home"></i><span>Inicio</span></a></li>
-            <li class="{{ Request::segment(1) === 'perfil' ? 'active' : null }}"><a href="/miperfil"><i class="zmdi zmdi-account"></i><span>Mi Perfil</span></a></li>
 
             <!-- Validar aca para que se muestren las opciones dependiendo de los roles del usuarios logeado -->
             @include('opcionesSidebar.opcionesAdministrador')
