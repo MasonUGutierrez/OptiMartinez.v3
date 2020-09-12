@@ -75,9 +75,9 @@
         <!-- Se agregan los sidebars aca -->
         <!-- Overlay For Sidebars -->
         <div class="overlay"></div>
-        @include('layout.navbarright')
+        {{-- @include('layout.navbarright') --}}
         @include('layout.sidebar')
-        @include('layout.rightsidebar')
+        {{-- @include('layout.rightsidebar') --}}
         <section class="content">
             <div class="block-header">
                 <div class="row">
@@ -97,11 +97,11 @@
                     </div>
 
                     <!-- Boton para ocultar el menu lateral derecho -->
-                    <div class="col-lg-5 col-md-6 col-sm-12">
-                        <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i class="zmdi zmdi-arrow-right"></i></button>
+                    <!-- <div class="col-lg-5 col-md-6 col-sm-12"> -->
+                    <!--     <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i class="zmdi zmdi-arrow-right"></i></button> -->
                         <!-- Yield para indicar el boton para agregar un registro, Nota: Me fije en la plantilla que aca ponian esos botones -->
-                        @yield('addButton')
-                    </div>
+                        {{-- @yield('addButton') --}}
+                    <!-- </div> -->
                 </div>
             </div>
             <div class="container-fluid">
