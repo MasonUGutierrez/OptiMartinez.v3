@@ -35,7 +35,9 @@ class MarcaFormRequest extends FormRequest
         // ($this->isMethod('post')) ? 'unique:App\OpticaModels\Marca' : ''
         return [
             'marca' => ['bail', 'required', 'string', $reglaMarca],
-            'img' => ['bail', ($this->isMethod('post')) ? 'required' : '', 'mimes:jpeg,png'],
+            // Agregue codigo para validar cuando no sube fotos al actualizar, el operador ternario esta mas optimizado
+            // Version 2
+            'img' => ['bail', (($this->isMethod('post')) ? ['required','mimes:jpeg,png,svg,webp'] : ((!empty($this->get('img')))?['mimes:jpeg,png,svg,webp']:''))],//, ($this->isMethod('PUT') && empty($this->get('img')))?'':'mimes:jpeg,png,svg,webp'],
             'precio' => ['bail', 'required', 'numeric']
         ];
     }

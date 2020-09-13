@@ -105,9 +105,23 @@ class HClinicaController extends Controller
         $hclinica = HClinica::findOrFail($id);
         // $paciente = $hclinica->paciente;
         // $consultaServicio = \App\OpticaModels\ConsultaServicio::where('id_consulta', $hclinica->consulta);
-        return response()->json($hclinica);
+        return response()->json(['hclinica'=>$hclinica, 'paciente'=>$hclinica->paciente]);
     }
 
+    public function getCedulaifExist($ced)
+    {
+        try
+        {
+            if($pacienteWithCedula = Paciente::where('cedula',$ced)->firstOrFail())
+            {
+                return "true";
+            }
+        }
+        catch(ModelNotFoundException $e)
+        {
+            return "false";
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -226,7 +240,94 @@ class HClinicaController extends Controller
      */
     public function update(HClinicaFormRequest $request, $id)
     {
-        //
+        if($request->ajax())
+        {
+            $hclinica = HClinica::findOrFail($id);
+
+            // Rellenando datos de historia clinica con los nuevos valores
+            $hclinica->fill([
+                'h_ocular' => $request->get('h_ocular'),
+                'h_medica' => $request->get('h_medica'),
+                'medicaciones' => $request->get('medicaciones'),
+                'alergias' => $request->get('alergias')
+            ]);
+
+            // Llenando datos del paciente propietario de la historia clinica
+            // OPCION 1 (Nota: Observar si da un error, porque new crea un nuevo elemento con un nuevo id)
+            /* 
+                ERROR: 
+                El modelo que posee la relacion belongsTo no puede invocar los metodos save, saveMany o create 
+                cuando accede a la relacion como metodo (como sale en la documentacion oficial)
+            */
+            /* $paciente = new Paciente;
+
+            $paciente->fill([
+                'nombres' => $request->get('nombres'),
+                'apellidos'=> $request->get('apellidos'),
+                'fecha_nacimiento'=>$request->get('fecha_nacimiento'),
+                'edad'=> $request->get('edad'),
+                'sexo'=>$request->get('sexo'),
+                'cedula'=> $request->get('cedula'),
+                'telefono'=> $request->get('telefono'),
+                'direccion'=> $request->get('direccion')
+            ]);
+
+            $hclinica->paciente()->save($paciente); */
+            // $hclinica->save();
+
+            // OPCION 2 - VALIDA
+            /* $paciente2 = Paciente::where('id_paciente', $hclinica->id_paciente)->firstOrFail();
+            $paciente2->fill([
+                'nombres' => $request->get('nombres'),
+                'apellidos'=> $request->get('apellidos'),
+                'fecha_nacimiento'=>$request->get('fecha_nacimiento'),
+                'edad'=> $request->get('edad'),
+                'sexo'=>$request->get('sexo'),
+                'cedula'=> $request->get('cedula'),
+                'telefono'=> $request->get('telefono'),
+                'direccion'=> $request->get('direccion')
+            ]);
+            $paciente2->hclinica->fill([
+                'h_ocular' => $request->get('h_ocular'),
+                'h_medica' => $request->get('h_medica'),
+                'medicaciones' => $request->get('medicaciones'),
+                'alergias' => $request->get('alergias')
+            ]); */
+
+            // linea agregada porque guarda bien los datos del paciente pero los de la historia no
+            /* Observacion: Igual que cuando se rellena un modelo normal con el metodo fill() 
+            este no guarda hay que ocupar el metodo save() a continuacion */
+           /*  $paciente2->hclinica->save();
+            
+            $paciente2->save(); */
+            
+            // Opcion 3 - VALIDA
+            $hclinica->paciente->fill([
+                'nombres' => $request->get('nombres'),
+                'apellidos'=> $request->get('apellidos'),
+                'fecha_nacimiento'=>$request->get('fecha_nacimiento'),
+                'edad'=> $request->get('edad'),
+                'sexo'=>$request->get('sexo'),
+                'cedula'=> $request->get('cedula'),
+                'telefono'=> $request->get('telefono'),
+                'direccion'=> $request->get('direccion')
+            ]);
+            /* 
+                OJO: se puso el modelo relacion como una propiedad dinamica y se accedio a un encademiento de metodos 
+                cuando se supone que para acceder a un encadenamiento de metodos la relacion se tiene que llamar como un 
+                metodo para que se cree una instancia
+            */
+            /* 
+                Observacion: se puede acceder a los metodos save y update cuando se accede como propiedad dinamica
+            */
+            $hclinica->paciente->save();
+            // $hclinica->paciente()->save(); // NOTA: ver observacion de la "Opcion 2" mas arriba
+            $hclinica->save();
+
+            return response()->json($hclinica->paciente);
+        }
+
+        return redirect()->action('OpticaControllers\HClinicaController@index');
     }
 
     /**

@@ -17,8 +17,8 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="header">
-                <h2>Listado de <strong>Usuarios</strong>
-                    <span class="d-inline-block pl-3" tabindex="0" data-toggle="tooltip" data-placement="top" title="Nuevo Usuario">
+                <h2><strong>Listado </strong>de Usuarios
+                    <span class="d-inline-block pl-3" tabindex="0" data-toggle="tooltip" data-placement="top" title="Registrar Usuario">
                         <a href="usuarios/create" class="btn btn-sm btn-raised btn-success waves-effect waves-light"><i class="zmdi zmdi-account-add"></i></a>
                     </span>
                 </h2>

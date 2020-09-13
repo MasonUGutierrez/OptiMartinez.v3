@@ -45,7 +45,7 @@
                                             <i class="ti ti-wallet"></i>
                                         </span>
                                     </div>
-                                    <input type="text" class="form-control @error('precio') is-invalid @enderror" id="precio" name="precio" value="{{old('precio')}}" placeholder="Ej: C$ 100, C$ 150, C$ 200, etc.">
+                                    <input type="number" class="form-control @error('precio') is-invalid @enderror" id="precio" name="precio" value="{{old('precio')}}" placeholder="Ej: C$ 100, C$ 150, C$ 200, etc.">
                                     @error('precio')
                                         <span class="invalid-feedback">{{ $message }}<span>
                                     @enderror
@@ -83,7 +83,7 @@
                     <div class="mx-auto">
                         <div class="form-group">
                             <input type="submit" class="btn btn-raised btn-primary waves-float waves-effect waves-light" value="Aceptar">
-                            <input type="button" class="btn btn-raised btn-danger waves-float waves-effect waves-light" value="Cancelar">
+                            {{-- <input type="button" class="btn btn-raised btn-danger waves-float waves-effect waves-light" value="Cancelar"> --}}
                             <a href="javascript:window.history.back();" class="btn btn-raised btn-danger waves-effect waves-light">Cancelar</a>
                         </div>
                     </div>                    

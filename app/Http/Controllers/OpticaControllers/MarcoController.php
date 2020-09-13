@@ -39,7 +39,9 @@ class MarcoController extends Controller
 
         $tiposMarcos = TipoMarco::where('estado','1')->get();
         $marcas = Marca::where('estado','1')->get();
-        return response()->view('adminlentes.marcos.create', ['tiposMarcos'=>$tiposMarcos, 'marcas'=>$marcas]);
+        $previousURL = url()->previous();
+        // dd($previousURL);
+        return response()->view('adminlentes.marcos.create', ['tiposMarcos'=>$tiposMarcos, 'marcas'=>$marcas, 'previousURL'=>$previousURL]);
     }
     /**
      * Metodo para simular la regla unique en la imagen
@@ -91,6 +93,7 @@ class MarcoController extends Controller
         /* Version simple - Llamada del create desde el index de marcos */
         // Se obtiene la marca para asociarla con el marco que se esta registrando
         $marca = Marca::findOrFail($request->get('id_marca'));
+        $previousURL = $request->get('url');
 
         // Guardando modelo con el metodo save()
         $marco = new Marco;
@@ -123,7 +126,8 @@ class MarcoController extends Controller
 
         // dd($marco->tiposmarcos[0]->pivot->id_mtm);
 
-        return redirect()->route("marcos.index");
+        // return redirect()->route("marcos.index");
+        return redirect($previousURL);
 
         /* $marco->precio = ;
         $marco->c_existencia = ; */
@@ -137,7 +141,8 @@ class MarcoController extends Controller
      */
     public function show($id)
     {
-        //
+        $marco = Marco::where('id_marco', $id)->firstOrFail();
+        return response()->json(['marco'=>$marco, 'tiposMarco'=>$marco->tiposmarcos]);
     }
 
     /**
@@ -156,8 +161,9 @@ class MarcoController extends Controller
         {
             $marcoTipoM[] = $tipoMarco->id_tipo_marco;
         }
+        $previousURL = url()->previous();
         // dd($marcoTipoM);
-        return response()->view('adminlentes.marcos.edit', ['marco'=>$marco, 'marcoTipoM' => $marcoTipoM, 'marcas'=>$marcas, 'tiposMarcos'=>$tiposMarcos]);
+        return response()->view('adminlentes.marcos.edit', ['marco'=>$marco, 'marcoTipoM' => $marcoTipoM, 'marcas'=>$marcas, 'tiposMarcos'=>$tiposMarcos, 'previousURL'=>$previousURL]);
     }
 
     /**
@@ -171,6 +177,7 @@ class MarcoController extends Controller
     {   
         $marco = Marco::findOrFail($id);
         $marca = Marca::findOrFail($request->get('id_marca'));
+        $previousURL = $request->get('url');
 
         if($request->get('id_marca') !== $marco->id_marca)
             $marco->marca()->associate($marca);
@@ -182,26 +189,31 @@ class MarcoController extends Controller
         ]);
 
         $archivo = $request->file('dir_foto');
-        if($request->hasFile('dir_foto') && $archivo->isValid() && $archivo->getClientOriginalName() !== $marco->dir_foto)
+        if($archivo != null)
         {
-            if($this->existImage($archivo->getClientOriginalName(), $request, $id))
+            if($request->hasFile('dir_foto') && $archivo->isValid() && $archivo->getClientOriginalName() !== $marco->dir_foto)
             {
-                return back()
-                ->withErrors(['dir_foto' => 'La imagen ya ha sido tomada'])
-                ->withInput();
+                if($this->existImage($archivo->getClientOriginalName(), $request, $id))
+                {
+                    return back()
+                    ->withErrors(['dir_foto' => 'La imagen ya ha sido tomada'])
+                    ->withInput();
+                }
+                $nombreImg = $archivo->getClientOriginalName();
+                
+                Storage::disk('public')->delete('imagenes/marcos/'.$marco->dir_foto);
+                
+                $path = $archivo->storeAs('imagenes/marcos', $nombreImg, 'public');
+                $marco->dir_foto = $nombreImg;
             }
-            $nombreImg = $archivo->getClientOriginalName();
-            
-            Storage::disk('public')->delete('imagenes/marcos/'.$marco->dir_foto);
-            
-            $path = $archivo->storeAs('imagenes/marcos', $nombreImg, 'public');
-            $marco->dir_foto = $nombreImg;
         }
 
         $marco->tiposmarcos()->sync($request->get('id_tipos_marcos'));
         $marco->save();
 
-        return redirect()->route('marcos.index');
+
+        // return redirect()->route('marcos.index');
+        return redirect($previousURL);
 
     }
 

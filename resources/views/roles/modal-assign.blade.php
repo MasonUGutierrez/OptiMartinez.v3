@@ -6,12 +6,14 @@
                     <div class="header"><h2><strong>Asignar </strong>Rol a Usuario</h2></div>
                     <div class="row clearfix">
                         <div class="col-sm-12">
+                            <div class="form-group">
+                                {{-- <p><b>Lista de Usuarios</b></p> --}}
+                                <label>Lista de Usuarios</label>
+                                <select name="id_usuario[]" id="select" class="form-control show-tick ms select2" required multiple data-placeholder="Seleccione un Usuario">
+                                    <option class="" disabled selected value> -- Selecciona un Usuario -- </option>
+                                </select>
+                            </div>
                             {{--<input id="" name="id_rol" type="hidden" value="{{$rol->id_rol}}">--}}
-                            <p><b>Lista de Usuarios</b></p>
-                            <select name="id_usuario[]" id="select" class="form-control show-tick ms select2" required multiple data-placeholder="Seleccione un Usuario">
-                                <option class="" disabled selected value> -- Selecciona un Usuario -- </option>
-                            </select>
-
                         </div>
                     </div>
 

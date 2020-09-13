@@ -65,7 +65,7 @@
                     <h2><strong>Subir</strong> Foto</h2>
                 </div>
                 <div class="body">
-                    <input type="file" class="form-control dropify-es" name="img">
+                    <input type="file" class="form-control dropify-es" data-default-file="{{asset('storage/imagenes/marcas/'.$marca->img)}}" name="img">
                     <input type="hidden" class="form-control @error('img') is-invalid @enderror" name="img" />
                     {!! $errors->first('img', '<span class="invalid-feedback">:message</span>') !!}
                 </div>

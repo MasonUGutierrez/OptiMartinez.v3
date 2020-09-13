@@ -11,6 +11,13 @@
 <link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>
 @endsection
 
+{{-- Logica para agregar el boton de regresar --}}
+@section('addButton')
+<span class="d-inline-block float-right" tabindex="0" data-toggle="tooltip" data-placement="left" title="Regresar">
+    <button class="btn btn-primary btn-round btn-icon waves-effect waves-light" onclick="history.back()"><i class="zmdi zmdi-arrow-left"></i></button>
+</span>
+@endsection
+
 @section('content')
 {!! Form::open(['method'=>'POST', 'action'=>'OpticaControllers\MarcoController@store', 'files'=>'true', 'autocomplete'=>'off']) !!}
 {!! Form::token() !!}
@@ -26,6 +33,7 @@
                 </div>
                 <div class="body">
                     <div class="row clearfix">
+                        <input type="hidden" name="url" value="{{$previousURL}}">
                         {{-- Input para el codigo de marco --}}
                         <div class="col-md-4 col-sm-12">
                             <div class="form-group">

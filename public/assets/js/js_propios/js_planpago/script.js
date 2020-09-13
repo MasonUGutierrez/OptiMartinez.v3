@@ -43,7 +43,7 @@ function viewData() {
                                              </span>
                                         </div>
                                     </div>-->
-                                     <div class="card mcard_4 waves-effect  waves-float" >
+                                     <div class="card mcard_4 waves-effect waves-blue waves-float" >
                                         <div class="body" style="background: #ffffff">
                                             <div class="user">
                                                 <h5 class="mt-3 mb-1">${value.plan_pago}</h5>
@@ -52,7 +52,7 @@ function viewData() {
                                             <ul class="list-unstyled social-links" >
                                                   <li ><span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Editar">
                                                     <a href="planpago/${value.id_plan_pago}/edit"  data-target=".modal2" data-toggle="modal" onclick='editData(${value.id_plan_pago})' >
-                                                      <i class="zmdi zmdi-search"></i>
+                                                      <i class="zmdi zmdi-edit"></i>
                                                     </a>
                                                  </span></li>
                                                  <li style="display: inline"><span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Dar de Baja">
