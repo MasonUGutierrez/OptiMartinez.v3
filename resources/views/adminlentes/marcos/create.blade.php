@@ -26,6 +26,7 @@
                 </div>
                 <div class="body">
                     <div class="row clearfix">
+                        <input type="hidden" name="url" value="{{$previousURL}}">
                         {{-- Input para el codigo de marco --}}
                         <div class="col-md-4 col-sm-12">
                             <div class="form-group">
