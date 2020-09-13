@@ -16,6 +16,7 @@ use App\ConsultaServicio;
 use App\ExamenVisual;
 use App\Retinoscopia;
 use App\MedidasOjo;
+use App\OpticaModels\Consulta as consulta2;
 use DataTables;
 
 class ConsultaController extends Controller
@@ -195,14 +196,27 @@ class ConsultaController extends Controller
         }
         return Redirect::to('historias-clinicas/consulta/create');
     }
+
+    public function getprecio($id){
+        $consulta = Consulta::findOrFail($id);
+
+    }
+
     public function update(ConsultaFormRequest $request,$id){
 
         $consulta = Consulta::findOrFail($id);
         $consulta->id_jornada_trabajo = $request ->get('id_jornada_trabajo');
         $consulta->save();
+
+
+        $precio=[];
+        foreach ($consulta->consultaServicio as $cs){
+            $precio[] = $cs->precio;
+        }
+
         DB::select('call borrar_examen(?)',array($id));
         $servicio = $request->get('id_servicio');
-        $precio = $request->get('precio');
+        /*$precio = $request->get('precio');*/
         $contaServicio= 0;
         while($contaServicio < count($servicio)){
             $consultaS = new ConsultaServicio();

@@ -91,7 +91,7 @@
                     </div>
                     <div class="form-group col-12" style="text-align: center">
                         <button class="btn btn-primary" type="submit">Guardar</button>
-                        <a href=""><button class="btn btn-danger" type="reset">Cancelar</button></a>
+                        <a href=""><button class="btn btn-danger" onclick="history.back()" type="">Cancelar</button></a>
                     </div>
                 </div>
             </div>

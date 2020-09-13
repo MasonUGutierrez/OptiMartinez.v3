@@ -16,7 +16,7 @@
                                 <th>Opciones</th>
                             </tr>
                             </thead>
-                            <tbody id="tablamodal"></tbody>
+                            <tbody id="tablamodal" style="text-align: center"></tbody>
                         </table>
                     </div>
                 </div>

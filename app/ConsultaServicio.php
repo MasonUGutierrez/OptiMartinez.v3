@@ -19,6 +19,10 @@ class ConsultaServicio extends Model
         $this->belongsTo('App\Servicio','id_servicio','id_servicio');
     }
 
+    public function Consulta(){
+        $this->belongsTo('App\Consulta','id_consulta','id_consulta');
+    }
+
     public function ExamenVisual(){
         $this->hasOne('App\ExamenVisual','id_consulta_servicio','id_consulta_servicio');
     }

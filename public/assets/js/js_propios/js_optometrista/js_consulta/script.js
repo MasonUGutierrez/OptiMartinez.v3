@@ -217,7 +217,9 @@ function updateConsulta() {
     var obser = $('#observa').val();
 
     //If para validar si se va a hacer retinoscopia
-    if($('#hall').val()!=null)
+
+
+    if(!($.trim($('#hall').val()).length === 0))
     {
         var hallazgo = $('#hall').val();
         //Variable para enviar los valores que se necesitan en la tabla consulta
@@ -227,10 +229,10 @@ function updateConsulta() {
             esfera:[esd,esi],cilindro:[cd,ci],eje:[ejd,eji],adicion:[ad,ai],agudeza_visual:[avd,avi],
             _method:$('input[name=_method]').val()
         };
-
+        console.log("entro a la mierda de retinoscopia");
     }else{
         var dataExamen = {id_historia_clinica:id_historia,
-            id_servicio:[eVisual],
+           /* id_servicio:[eVisual],*/
             distancia_pupilar:dp,alt:alt,observacion:obser,
             esfera:[esd,esi],cilindro:[cd,ci],eje:[ejd,eji],adicion:[ad,ai],agudeza_visual:[avd,avi],
             _method:$('input[name=_method]').val()
@@ -240,14 +242,16 @@ function updateConsulta() {
     console.table(dataExamen);
     $.ajax({
         type:'POST',
-        dataType:'json',
+      /*  dataType:'json',*/
         data:dataExamen,
         url:'/historias-clinicas/consulta/'+ $("#idconsulta").val(),
         success:function (result) {
             verConsulta()
+            console.log("bueno volvi")
             console.log(result);
         },error:function (result) {
             verConsulta();
+            console.log("volvi")
             console.log(result);
         }
     })

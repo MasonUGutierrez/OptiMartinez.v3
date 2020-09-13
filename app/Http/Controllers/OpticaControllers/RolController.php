@@ -91,7 +91,12 @@ class RolController extends Controller
                 ->addIndexColumn()
                 ->addColumn('opciones', function ($row) use ($idrol) {
                     $btns = '
-                                <a href="byeRol/'.$row->id_usuario.'/'.$idrol.'"><button class="btn btn-info">Editar</button></a>
+                                <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Remover Rol" data-original-title="Editar">
+                                    <a href="byeRol/'.$row->id_usuario.'/'.$idrol.'" class="btn btn-sm btn-neutral btn-raised waves-effect waves-blue waves-float">
+                                       <i class="zmdi zmdi-delete"></i>
+                                    </a>
+                               </span>
+
                              ';
 
                     return $btns;

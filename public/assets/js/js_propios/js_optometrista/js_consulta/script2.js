@@ -84,10 +84,22 @@ function probar() {
         url: "/idservicios",
         success: function (response) {
             //Obteniendo el id y los precios de los servicios de retinoscopia y examen visual
-            eVisual = response[0].id_servicio;
-            eVisualp = response[0].precio;
-            retino = response[1].id_servicio;
-            retinop = response[1].precio;
+
+            $(response).each(function (indice,valor){
+                if (valor.servicio == "Retinoscopia"){
+                    retino = valor.id_servicio;
+                    retinop = valor.precio;
+                }else if (valor.servicio =="Examen Visual"){
+                    eVisual = valor.id_servicio;
+                    eVisualp = valor.precio;
+                }
+            })
+            console.log("valores evolution");
+            console.log(retino,retinop);
+            console.log(eVisual,eVisualp);
+
+
+
             console.table(response);
         },
         error:function (response) {

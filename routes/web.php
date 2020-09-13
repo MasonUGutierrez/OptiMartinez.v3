@@ -87,11 +87,8 @@ Route::put('admin-lentes/marcos/reactivar/{marco}', function($id){
 Route::resource('admin-lentes/marcos', 'OpticaControllers\MarcoController');
 
 // Ruta para hacer pruebas de los modelos
-Route::get('/test', function(){
-    /*$tipo_marco = App\OpticaModels\TipoMarco::where('estado','1')->first();
-    return $tipo_marco->tipo_marco;*/
-    return redirect("verjornadas");
-});
+Route::get('/test/{id}','OpticaControllers\ConsultaController@getprecio');
+
 
 // Ruta para historias Clinicas
 Route::get('historias-clinicas/all', 'OpticaControllers\HClinicaController@getAll');
