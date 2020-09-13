@@ -97,11 +97,12 @@
                     </div>
 
                     <!-- Boton para ocultar el menu lateral derecho -->
-                    <!-- <div class="col-lg-5 col-md-6 col-sm-12"> -->
+                    <div class="col-lg-5 col-md-6 col-sm-12">
                     <!--     <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i class="zmdi zmdi-arrow-right"></i></button> -->
                         <!-- Yield para indicar el boton para agregar un registro, Nota: Me fije en la plantilla que aca ponian esos botones -->
-                        {{-- @yield('addButton') --}}
-                    <!-- </div> -->
+                        {{-- Yielad para agregar los botones de regresar --}}
+                        @yield('addButton')
+                    </div>
                 </div>
             </div>
             <div class="container-fluid">
