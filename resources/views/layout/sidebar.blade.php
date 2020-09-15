@@ -4,7 +4,7 @@
     <div class="navbar-brand">
         <button class="btn-menu ls-toggle-btn" type="button"><i class="zmdi zmdi-menu"></i></button>
         <!-- NO TOCAR EL VALOR DEL ATRIBUTO WIDTH -->
-        <a href="{{route('dashboard.index')}}"><img src="{{asset('assets/images/LogoSistemaOptica/logo.svg')}}" width="100" alt="Logo Sistema"></a>
+        <a href="{{route('dashboard.index')}}"><img src="{{asset('assets/images/LogoSistemaOptica/logo2.svg')}}" width="100" alt="Logo Sistema"></a>
     </div>
     <div class="menu">
         <ul class="list">
@@ -31,7 +31,10 @@
                 <a href="#" class="menu-toggle"><i class="zmdi zmdi-account"></i><span>Cuenta</span></a>
                 <ul class="ml-menu">
                     <li class="{{ Request::segment(1) === 'miperfil' ? 'active' : null }}"><a href="/miperfil">Perfil</a></li>
-                    <li class="{{-- Request::segment(1) === 'perfil' ? 'active' : null --}}"><a href="">Cerrar Sesión</a></li>
+                    <li>
+                        <a class="btn btn-danger btn-round" href="" style="color:#fff;"><span class="float-left"><i class="zmdi zmdi-power"></i> Cerrar Sesión<span></a>
+                        <a class="btn btn-warning btn-round" href="" style="color:#fff;"><span class="float-left"><i class="zmdi zmdi-power"></i> Suspender<span></a>
+                    </li>
                 </ul>
             </li>
 
