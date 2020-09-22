@@ -103,6 +103,8 @@ class HClinicaController extends Controller
     public function getHClinica($id)
     {
         $hclinica = HClinica::findOrFail($id);
+
+        // dd($hclinica);
         // $paciente = $hclinica->paciente;
         // $consultaServicio = \App\OpticaModels\ConsultaServicio::where('id_consulta', $hclinica->consulta);
         return response()->json(['hclinica'=>$hclinica, 'paciente'=>$hclinica->paciente]);
@@ -159,13 +161,20 @@ class HClinicaController extends Controller
             ]);
             // return response()->json($paciente);
 
-            $paciente->hclinica()->create([
-                'h_ocular' => $request->get('h_ocular'),
-                'h_medica' => $request->get('h_medica'),
-                'medicaciones' => $request->get('medicaciones'),
-                'alergias' => $request->get('alergias'),
-                'fecha_registro' => $fecha_actual
-            ]);
+            // Validar el valor del $request->get('flagWho') para ver si guardara datos en la tabla historiaClinica
+            if($request->get('flagWho') == "optometrista")
+                $paciente->hclinica()->create([
+                    'h_ocular' => $request->get('h_ocular'),
+                    'h_medica' => $request->get('h_medica'),
+                    'medicaciones' => $request->get('medicaciones'),
+                    'alergias' => $request->get('alergias'),
+                    'completo' => 1,
+                    'fecha_registro' => $fecha_actual
+                ]);
+            else
+                $paciente->hclinica()->create([
+                    'fecha_registro' => $fecha_actual
+                ]);
 
             $hcuenta = new HCuenta([
                 'estado_historia' => 'solvente',
@@ -192,13 +201,13 @@ class HClinicaController extends Controller
         // try-catch porque ocurre una excepcion 404 cuando la historia clinica no tiene consultas registradas
         // Algoritmo para determinar las medidas de la ultima consulta en la historia clinica determinada
         try{
-            $ultimaConsulta = $hclinica->consultas()->latest('fecha')->firstOrFail();
+            $ultimaConsulta = $hclinica->consultas()->where('estado', "1")->latest('fecha')->firstOrFail();
             $uConsultaServicio = \App\OpticaModels\ConsultaServicio::where('id_consulta',$ultimaConsulta->id_consulta)->get();
         }catch(ModelNotFoundException $e)
         {
             session()->flash('error_message', 'No se han encontrado registros de medidas');
             if (explode('/',url()->previous())[3] == 'listaPacientes'){
-                return view('recepcionista.historiaClinica',['hclinica'=>$hclinica, 'uConsultaServicios'=>null]);
+                return view('recepcionista.show-hClinica',['hclinica'=>$hclinica, 'uConsultaServicios'=>null]);
             }
 
             return view('hclinicas.show', ['hclinica'=>$hclinica, 'uConsultaServicios'=>null]);
@@ -206,7 +215,7 @@ class HClinicaController extends Controller
         }
 
         if (explode('/',url()->previous())[3] == 'listaPacientes'){
-            return view('recepcionista.historiaClinica',['hclinica'=>$hclinica, 'uConsultaServicios'=>$uConsultaServicio]);
+            return view('recepcionista.show-hClinica',['hclinica'=>$hclinica, 'uConsultaServicios'=>$uConsultaServicio]);
         }
 
         return view('hclinicas.show', ['hclinica'=>$hclinica, 'uConsultaServicios'=>$uConsultaServicio]);
@@ -244,14 +253,17 @@ class HClinicaController extends Controller
         {
             $hclinica = HClinica::findOrFail($id);
 
-            // Rellenando datos de historia clinica con los nuevos valores
-            $hclinica->fill([
-                'h_ocular' => $request->get('h_ocular'),
-                'h_medica' => $request->get('h_medica'),
-                'medicaciones' => $request->get('medicaciones'),
-                'alergias' => $request->get('alergias')
-            ]);
-
+            if($request->get('flagWho') == 'optometrista')
+            {
+                // Rellenando datos de historia clinica con los nuevos valores
+                $hclinica->fill([
+                    'h_ocular' => $request->get('h_ocular'),
+                    'h_medica' => $request->get('h_medica'),
+                    'medicaciones' => $request->get('medicaciones'),
+                    'alergias' => $request->get('alergias'),
+                    'completo' => 1
+                ]);
+            }
             // Llenando datos del paciente propietario de la historia clinica
             // OPCION 1 (Nota: Observar si da un error, porque new crea un nuevo elemento con un nuevo id)
             /* 
@@ -297,7 +309,7 @@ class HClinicaController extends Controller
             // linea agregada porque guarda bien los datos del paciente pero los de la historia no
             /* Observacion: Igual que cuando se rellena un modelo normal con el metodo fill() 
             este no guarda hay que ocupar el metodo save() a continuacion */
-           /*  $paciente2->hclinica->save();
+            /*  $paciente2->hclinica->save();
             
             $paciente2->save(); */
             
