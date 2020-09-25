@@ -10,6 +10,11 @@
 
     <link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>
 @endsection
+@section('addButton')
+    <span class="d-inline-block float-right" tabindex="0" data-toggle="tooltip" data-placement="left" title="Regresar">
+    <button class="btn btn-primary btn-round btn-icon waves-effect waves-light" onclick="history.back()"><i class="zmdi zmdi-arrow-left"></i></button>
+</span>
+@endsection
 
 @section('content')
     <input type="hidden" id="ids" value="{{$hclinica->id_historia_clinica}}">

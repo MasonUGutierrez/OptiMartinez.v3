@@ -18,6 +18,17 @@ Route::get('/', function () {
     return redirect('usuarios/');
 });
 
+//Rutas para tesorero
+    //Rutas orden lentes
+Route::get('pacienteById/{id}','OpticaControllers\HCuentaController@getPacienteById');
+Route::get('allPacientes','OpticaControllers\HCuentaController@getPacientes');
+Route::get('getMarcas','OpticaControllers\HCuentaController@getMarcas');
+Route::get('getMarcos/{id}','OpticaControllers\HCuentaController@getMarcos');
+Route::get('getMarcosInfo/{id}','OpticaControllers\HCuentaController@getMarcoInfo');
+Route::get('getMaterial','OpticaControllers\HCuentaController@getTipoMaterial');
+Route::get('getLente','OpticaControllers\HCuentaController@getTipoLente');
+Route::resource('ordenLentes','OpticaControllers\HCuentaController');
+
 //Rutas propias
 Route::get('miperfil','OpticaControllers\UsuarioController@showPerfil');
 Route::get('byeRol/{idU}/{idR}','OpticaControllers\UsuarioController@RemoveRol');

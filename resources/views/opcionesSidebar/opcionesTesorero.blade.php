@@ -13,5 +13,5 @@
     <a href=""><i class="zmdi zmdi-trending-up"></i><span>Admin. Ganancias</span></a>
 </li>
 <li class="{{Request::segment(1) == 'orden-lentes' ? 'active' : null}}">
-    <a href=""><i class="zmdi zmdi-shopping-cart"></i><span>Orden Lentes</span></a>
+    <a href="{{url('ordenLentes')}}"><i class="zmdi zmdi-shopping-cart"></i><span>Orden Lentes</span></a>
 </li>

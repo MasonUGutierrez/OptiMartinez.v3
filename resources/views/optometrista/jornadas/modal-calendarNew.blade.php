@@ -60,7 +60,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="appt-time">Hora</label>
-                                <input id="horaInicio2" type="time"  class="form-control" name="appt-time">
+                                <input id="horaInicio2" type="time"   class="form-control" name="appt-time">
                             </div>
                         </div>
                         {{--<div class="col-sm-6">

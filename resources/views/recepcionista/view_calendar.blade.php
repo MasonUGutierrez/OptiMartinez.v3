@@ -36,7 +36,7 @@
                             <a href="#calendario" id="btn-activos" class="nav-link active" data-toggle="tab">Calendario de Jornadas</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#tablaJornada" id="btn-inactivos" class="nav-link" data-toggle="tab">Listado de Jornadas</a>
+                            <a href="#tablaJornada" id="btn-inactivos" onclick="verJornadas()" class="nav-link" data-toggle="tab">Listado de Jornadas</a>
                         </li>
                     </ul>
                 </div>

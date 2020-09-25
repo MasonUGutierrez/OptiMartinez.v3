@@ -11,6 +11,11 @@
 {{-- Estilos para el Jquery-steps --}}
 <link rel="stylesheet" href="{{asset('assets/plugins/jquery-steps/jquery.steps.css')}}">
 @endsection
+@section('addButton')
+    <span class="d-inline-block float-right" tabindex="0" data-toggle="tooltip" data-placement="left" title="Regresar">
+    <button class="btn btn-primary btn-round btn-icon waves-effect waves-light" onclick="history.back()"><i class="zmdi zmdi-arrow-left"></i></button>
+</span>
+@endsection
 
 @section('content')
 {{-- Row para los datos generales --}}
@@ -78,11 +83,11 @@
                                         <label for="sexo">Sexo</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" disabled class="custom-control-input" name="sexo" id="maleRadio" {{($hclinica->paciente->sexo == 'masculino')?'checked':''}} value="masculino"> 
+                                        <input type="radio" disabled class="custom-control-input" name="sexo" id="maleRadio" {{($hclinica->paciente->sexo == 'masculino')?'checked':''}} value="masculino">
                                             <label class="custom-control-label" for="maleRadio">Masculino</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" disabled class="custom-control-input" name="sexo" id="femaleRadio" {{($hclinica->paciente->sexo == 'femenino')?'checked':''}} value="femenino"> 
+                                        <input type="radio" disabled class="custom-control-input" name="sexo" id="femaleRadio" {{($hclinica->paciente->sexo == 'femenino')?'checked':''}} value="femenino">
                                             <label class="custom-control-label" for="femaleRadio">Femenino</label>
                                     </div>
                                 </div>
@@ -93,7 +98,7 @@
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <div class="row clearfix">
-                                        <div class="col-md-6">                                            
+                                        <div class="col-md-6">
                                             <label for="cedula">Cedula</label>
                                         </div>
                                         {{-- Checkbox para confirmar si tiene cedula --}}
@@ -159,7 +164,7 @@
                         <div class="row clearfix">
                             <div class="col-lg-9">
                                 <div class="table-responsive">
-                                    <table class="table text-center table-bordered table-hover c_table theme-color" id="medidasOjos">                
+                                    <table class="table text-center table-bordered table-hover c_table theme-color" id="medidasOjos">
                                         <thead>
                                             <tr>
                                                 <td>Ojo</td>
@@ -170,7 +175,7 @@
                                                 <td>Eje</td>
                                             </tr>
                                         </thead>
-                                        <tbody>                                
+                                        <tbody>
                                             @if(Session::has('error_message'))
                                             <tr>
                                                 <td colspan="6">
@@ -194,8 +199,8 @@
                                                     <td>{{$medidaOjo->eje}}</td>
                                                 </tr>
                                             @endforeach
-                                            @endif                                            
-                                        </tbody>                        
+                                            @endif
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -229,17 +234,17 @@
                             </div>
                             @if(!session('error_message'))
                                 <div class="col-lg-12">
-                                    <small class="text-muted">  
+                                    <small class="text-muted">
                                         <div class="form-group row mb-0">
                                             <label for="" class="col-sm-auto col-form-label">Consulta realizada: </label>
                                             <div class="col">
                                                 <input type="date" class="form-control-plaintext" readonly value="{{$uConsultaServicios[0]->consulta->fecha}}">
                                             </div>
-                                        </div> 
-                                    </small>                    
+                                        </div>
+                                    </small>
                                 </div>
                             @endif
-                        </div> 
+                        </div>
                     </fieldset>
                 </form>
                 <div id="containerHidden" style="display:none;"></div>
@@ -281,7 +286,7 @@
                 <div class="row clearfix">
                     <div class="col-lg-9">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover c_table theme-color" id="medidasOjos">                
+                            <table class="table table-bordered table-hover c_table theme-color" id="medidasOjos">
                                 <thead>
                                     <tr>
                                         <td>Ojo</td>
@@ -292,7 +297,7 @@
                                         <td>Eje</td>
                                     </tr>
                                 </thead>
-                                <tbody>                                
+                                <tbody>
                                     @if(Session::has('error_message'))
                                     <tr>
                                         <td colspan="6">
@@ -326,7 +331,7 @@
                                             </td>
                                         </tr>
                                     @endif
-                                </tbody>                        
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -360,23 +365,23 @@
                     </div>
                     @if(!session('error_message'))
                         <div class="col-lg-12">
-                            <small class="text-muted">  
+                            <small class="text-muted">
                                 <div class="form-group row mb-0">
                                     <label for="" class="col-sm-auto col-form-label">Consulta realizada: </label>
                                     <div class="col">
                                         <input type="date" class="form-control-plaintext" readonly value="{{$uConsultaServicios[0]->consulta->fecha}}">
                                     </div>
-                                </div> 
-                            </small>                    
+                                </div>
+                            </small>
                         </div>
                     @endif
-                </div>            
+                </div>
             </div>
         </div>
     </div>
 </div> --}}
 {{-- Row para el listado de consultas --}}
-<div class="row clearfix">    
+<div class="row clearfix">
     <div class="col-lg-12">
         <div class="card">
             <div class="header">
@@ -482,15 +487,15 @@
 
             var form = $('#editHClinica');
 
-            form.removeClass('tabcontrol');            
+            form.removeClass('tabcontrol');
             form.steps('destroy');
-            
-            
+
+
             $('[data-id=medidasTitle]').appendTo('#containerHidden');
             $('[data-id=medidasContainer]').appendTo('#containerHidden');
             $('#containerBtnEditar').hide();
             $('#containerBtnCancelar').show();
-            
+
             enableFields(true);
             initValidateStep('PUT');
             // funcion para establecer los eventos en los inputs despues del steps.destroy
@@ -515,11 +520,11 @@
             initStepTab();
 
         });
-        
+
         /*Pruebas para ocultar el ultimo steps de las medidas para cuando vaya a edtar*/
         // $('[data-id=medidasTitle]').remove();
         // $('[data-id=medidasContainer]').remove();
-    }); 
+    });
     // var hclinica = {{json_encode($hclinica)}};
 
     // console.log(medidasOjos.length);

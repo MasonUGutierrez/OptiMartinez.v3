@@ -8,7 +8,11 @@
     {{-- Estilos para la jQuery DataTable --}}
     <link rel="stylesheet" href="{{asset('assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css')}}">
 @endsection
-
+@section('addButton')
+    <span class="d-inline-block float-right" tabindex="0" data-toggle="tooltip" data-placement="left" title="Regresar">
+    <button class="btn btn-primary btn-round btn-icon waves-effect waves-light" onclick="history.back()"><i class="zmdi zmdi-arrow-left"></i></button>
+</span>
+@endsection
 @section('content')
     <div class="row clearfix">
         <div class="col-lg-12">
