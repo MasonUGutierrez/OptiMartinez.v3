@@ -92,7 +92,8 @@ Route::resource('admin-lentes/marcos', 'OpticaControllers\MarcoController');
 Route::get('/test', function(){
     /*$tipo_marco = App\OpticaModels\TipoMarco::where('estado','1')->first();
     return $tipo_marco->tipo_marco;*/
-    return redirect("verjornadas");
+    // return redirect("verjornadas");
+    return view('layout.login');
 });
 
 // Ruta para historias Clinicas

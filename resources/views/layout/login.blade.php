@@ -13,9 +13,67 @@
 
         <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{ asset('assets/css/style.min.css')}}">
-        <link rel="stylesheet" href="{{ asset('assets/css/loginCss.css')}} ">
+        <link rel="stylesheet" href="{{ asset('assets/css/loginCSS.css')}}">
     </head>
     <body>
-        
+        <!-- Page Loader -->
+        <div class="page-loader-wrapper">
+            <div class="loader">
+                <div class="m-t-30"><img class="heartbit" src="{{asset('../assets/images/sistema-optica/logo/logo.svg')}}" width="120"  alt="Aero"></div>
+                <p>Por favor, espere un momento...</p>
+            </div>
+        </div>
+        <div class="body-cover">
+            <div class="login-box text-muted">
+                <div class="logo-img">
+                    <img src="{{asset('assets/images/sistema-optica/logo/logo2.svg')}}" alt="Logo Sistema Optica Martinez">
+                </div>
+                <div class="login-intro text-center">
+                    <h3 class="font-18">Bienvenido de vuelta <span class="point">!</span></h3>
+                    <p class="font-14">Inicia sesión para continuar al sistema<span class="point">.</span></p>
+                </div>
+                <div class="login-form">
+                    <form method="POST">
+                        @csrf
+                        {{-- {{csrf-field()}}
+                        <input type="hidden" name="_token" value="{{csrf-token()}}"> --}}
+                        <div class="form-group">
+                            <label for="email">Correo: </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="zmdi zmdi-account-o"></i>
+                                    </div>
+                                </div>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese su correo">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Contraseña:</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="zmdi zmdi-key"></i>
+                                    </div>
+                                </div>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese su contraseña">
+                            </div>
+                        </div>
+                        <a class="forgot-password" href="#" ><i class="zmdi zmdi-lock-outline mr-1"></i> Olvidaste tu contraseña?</a>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block" id="login">Inicar Sesion <i class="zmdi zmdi-sign-in ml-2"></i></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="login-footer">
+                    <p class="font-14"><span class="point">© 2019</span> - all right reserves</p>
+                </div>
+            </div>
+        </div>
+
+        <script src="{{ asset('assets/bundles/libscripts.bundle.js') }}"></script>
+        <script src="{{ asset('assets/bundles/vendorscripts.bundle.js') }}"></script>
+
+        <script src="{{ asset('assets/bundles/mainscripts.bundle.js') }}"></script>
     </body>
 </html>
