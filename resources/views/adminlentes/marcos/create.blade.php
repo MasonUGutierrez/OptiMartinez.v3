@@ -171,6 +171,11 @@
                 return 'Por favor, seleccione solo un tipo de cada categoria';
             }
         });
+        $('#id_tipo_marco').on('select2:select', function(e){
+            let data = e.params.data;
+            console.log(data);
+        });
+        
     });
 </script>
 @endpush

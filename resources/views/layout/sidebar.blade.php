@@ -4,7 +4,7 @@
     <div class="navbar-brand">
         <button class="btn-menu ls-toggle-btn" type="button"><i class="zmdi zmdi-menu"></i></button>
         <!-- NO TOCAR EL VALOR DEL ATRIBUTO WIDTH -->
-        <a href="{{route('dashboard.index')}}"><img src="{{asset('assets/images/LogoSistemaOptica/logo2.svg')}}" width="100" alt="Logo Sistema"></a>
+        <a href="{{route('dashboard.index')}}"><img src="{{asset('assets/images/sistema-optica/logo/logo2.svg')}}" width="100" alt="Logo Sistema"></a>
     </div>
     <div class="menu">
         <ul class="list">
