@@ -21,6 +21,11 @@ class TipoLenteController extends Controller
         return view('adminlentes.tipolentes.index', ['tiposLentes'=>TipoLente::all()]);
     }
 
+    public function getTipos()
+    {
+        return TipoLente::where('estado','1')->get();
+    }
+
     /**
      * Show the form for creating a new resource.
      *

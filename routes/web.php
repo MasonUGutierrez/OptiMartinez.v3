@@ -67,6 +67,7 @@ Route::put('admin-lentes/tipos-lentes/reactivar/{tipo_lente}', function($id){
 
     return redirect()->route('tipos-lentes.index');
 })->name('tipos-lentes.reactivar');
+Route::get('admin-lentes/tipos-lentes/getTipos', 'OpticaControllers\TipoLenteController@getTipos')->name('tipos-lentes.getTipos');
 Route::resource('admin-lentes/tipos-lentes', 'OpticaControllers\TipoLenteController')->except(['show']);
 
 Route::put('admin-lentes/materiales/reactivar/{materiale}', function($id){
