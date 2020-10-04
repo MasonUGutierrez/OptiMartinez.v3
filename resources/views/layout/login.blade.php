@@ -71,9 +71,9 @@
             </div>
         </div>
 
-        <div class="sign">
+        {{-- <div class="sign">
             <p><span>Elaborado por: </span> Mason Urbina y Carlos Arroliga</p>
-        </div>
+        </div> --}}
         <script src="{{ asset('assets/bundles/libscripts.bundle.js') }}"></script>
         <script src="{{ asset('assets/bundles/vendorscripts.bundle.js') }}"></script>
 

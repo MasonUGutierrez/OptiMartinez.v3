@@ -5,7 +5,7 @@ namespace App\Http\Controllers\OpticaControllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\OpticaModels\TipoMaterial;
+use App\OpticaModels\Material;
 use App\Http\Requests\TipoMaterialFormRequest;
 
 class TipoMaterialController extends Controller
@@ -17,7 +17,7 @@ class TipoMaterialController extends Controller
      */
     public function index()
     {
-        return view('adminlentes.tipomateriales.index', ['tiposMateriales'=>TipoMaterial::all()]);
+        return view('adminlentes.tipomateriales.index', ['tiposMateriales'=>Material::all()]);
     }
 
     /**
@@ -38,9 +38,8 @@ class TipoMaterialController extends Controller
      */
     public function store(TipoMaterialFormRequest $request)
     {
-        $tipoMaterial = TipoMaterial::create([
-            'tipo_material' => $request->input('tipo_material'),
-            'precio' => $request->input('precio')
+        $tipoMaterial = Material::create([
+            'tipo_material' => $request->input('tipo_material')
         ]);
 
         return redirect()->route('materiales.index');
@@ -65,7 +64,7 @@ class TipoMaterialController extends Controller
      */
     public function edit($id)
     {
-        return view('adminlentes.tipomateriales.edit', ['tipoMaterial' => TipoMaterial::findOrFail($id)]);
+        return view('adminlentes.tipomateriales.edit', ['tipoMaterial' => Material::findOrFail($id)]);
     }
 
     /**
@@ -77,7 +76,7 @@ class TipoMaterialController extends Controller
      */
     public function update(TipoMaterialFormRequest $request, $id)
     {
-        $tipoMaterial = TipoMaterial::findOrFail($id);
+        $tipoMaterial = Material::findOrFail($id);
         $tipoMaterial->update([
             'tipo_material' => $request->input('tipo_material'),
             'precio' => $request->input('precio')
@@ -93,7 +92,7 @@ class TipoMaterialController extends Controller
      */
     public function destroy($id)
     {
-        $tipoMaterial = TipoMaterial::findOrFail($id);
+        $tipoMaterial = Material::findOrFail($id);
         $tipoMaterial->update([
             'estado' => 0
         ]);
