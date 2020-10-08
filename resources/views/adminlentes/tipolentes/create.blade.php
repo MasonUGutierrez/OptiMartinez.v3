@@ -24,7 +24,7 @@
                                 <label for="tipo_lente">Tipo de Lente</label>
                                 <input type="text" class="form-control {{$errors->has('tipo_lente')?'is-invalid':''}}" 
                                         name="tipo_lente" id="tipo_lente" 
-                                        placeholder="Ej: Monofocal, Bifocal, Invisile etc."
+                                        placeholder="Ej: Monofocal, Bifocal, Invisible etc."
                                         value="{{old('tipo_lente')}}">
                                 {!!$errors->first('tipo_lente','<span class="invalid-feedback">:message</span>')!!}
                             </div>
@@ -52,18 +52,7 @@
                             </div>
                         </div>
                     </div>                
-                </div> 
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="header">
-                                <h2><strong>Deshabilita </strong>a:</h2>
-                            </div>
-                            <div class="body" id="tiposContainer">
-                            </div>
-                        </div>
-                    </div>
-                </div>               
+                </div>             
             </div>
         </div>
     </div>
@@ -84,22 +73,4 @@
 @endsection
 
 @push('after-scripts')
-<script defer>
-    $(function(){
-        $.ajax(`{{route('tipos-lentes.getTipos')}}`, {
-            type:'GET',
-            dataType:'json',
-            success: function(datas, status, jqXHR){
-                $.each(datas, function(index, value){
-                    $('#tiposContainer').append(`
-                        <div class="custom-control custom-checkbox custom-control-inline">
-                            <input type="checkbox" class="custom-control-input" name="deshabilitar[]" id="${value.tipo_lente}" value="${value.tipo_lente}">
-                            <label class="custom-control-label" for="${value.tipo_lente}">${value.tipo_lente}</label>
-                        </div>`);
-                })
-            }
-        });
-        // $('#ContainerCheckboxes').find('').prop('disabled', true);
-    });
-</script>
 @endpush

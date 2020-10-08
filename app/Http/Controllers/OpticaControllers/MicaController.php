@@ -5,10 +5,10 @@ namespace App\Http\Controllers\OpticaControllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\OpticaModels\Material;
-use App\Http\Requests\TipoMaterialFormRequest;
+use App\OpticaModels\Mica;
+use App\Http\Requests\MicaFormRequest;
 
-class TipoMaterialController extends Controller
+class MicaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class TipoMaterialController extends Controller
      */
     public function index()
     {
-        return view('adminlentes.tipomateriales.index', ['tiposMateriales'=>Material::all()]);
+        return view('adminmateriales.micas.index', ['micas'=>Mica::all()]);
     }
 
     /**
@@ -27,7 +27,7 @@ class TipoMaterialController extends Controller
      */
     public function create()
     {
-        return view('adminlentes.tipomateriales.create');
+        return view('adminmateriales.micas.create');
     }
 
     /**
@@ -36,13 +36,13 @@ class TipoMaterialController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TipoMaterialFormRequest $request)
+    public function store(MicaFormRequest $request)
     {
-        $tipoMaterial = Material::create([
-            'tipo_material' => $request->input('tipo_material')
+        $mica = Mica::create([
+            'mica' => $request->input('mica')
         ]);
 
-        return redirect()->route('materiales.index');
+        return redirect()->route('micas.index');
     }
 
     /**
@@ -64,7 +64,7 @@ class TipoMaterialController extends Controller
      */
     public function edit($id)
     {
-        return view('adminlentes.tipomateriales.edit', ['tipoMaterial' => Material::findOrFail($id)]);
+        return view('adminmateriales.micas.edit', ['mica' => Mica::findOrFail($id)]);
     }
 
     /**
@@ -74,14 +74,13 @@ class TipoMaterialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TipoMaterialFormRequest $request, $id)
+    public function update(MicaFormRequest $request, $id)
     {
-        $tipoMaterial = Material::findOrFail($id);
-        $tipoMaterial->update([
-            'tipo_material' => $request->input('tipo_material'),
-            'precio' => $request->input('precio')
+        $mica = Mica::findOrFail($id);
+        $mica->update([
+            'mica' => $request->input('mica')
         ]);
-        return redirect()->route('materiales.index');
+        return redirect()->route('micas.index');
     }
 
     /**
@@ -92,10 +91,10 @@ class TipoMaterialController extends Controller
      */
     public function destroy($id)
     {
-        $tipoMaterial = Material::findOrFail($id);
-        $tipoMaterial->update([
+        $mica = Mica::findOrFail($id);
+        $mica->update([
             'estado' => 0
         ]);
-        return redirect('admin-lentes/materiales');
+        return redirect('admin-materiales/micas');
     }
 }

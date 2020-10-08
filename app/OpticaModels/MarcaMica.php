@@ -4,20 +4,20 @@ namespace App\OpticaModels;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MarcaMaterial extends Model
+class MarcaMica extends Model
 {
     /**
      * Variable para indicar la tabla que el modelo va mapear
      * 
      * @var string
      */
-    protected $table = "marca_material";
+    protected $table = "marca_mica";
     /**
      * Variable para indicar llave primaria de la tabla
      * 
      * @var string
      */
-    protected $primaryKey = "id_marca_material";
+    protected $primaryKey = "id_marca_mica";
     /**
      * Variable para indicar a Eloquente que ignore los campos timestamps
      * 
@@ -34,11 +34,11 @@ class MarcaMaterial extends Model
     /**
      * Relaciones con otros modelos
      */
-    public function materiales() 
+    public function micas() 
     {
-        return $this->belongsToMany('App\OpticaModels\Material', 'material-marca_material', 'id_marca_material', 'id_material')
-                    ->using('App\OpticaModels\Material_MarcaMaterial')
-                    ->as('materialMarca')
+        return $this->belongsToMany('App\OpticaModels\Mica', 'mica-marca_mica', 'id_marca_mica', 'id_mica')
+                    ->using('App\OpticaModels\Mica_MarcaMica')
+                    ->as('micaMarca')
                     ->withPivot([
                         'precio',
                         'estado'

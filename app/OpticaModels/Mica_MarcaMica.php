@@ -4,20 +4,20 @@ namespace App\OpticaModels;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Material_MarcaMaterial extends Pivot
+class Mica_MarcaMica extends Pivot
 {
     /**
      * Variable para indicar la tabla que el modelo pivot va mapear
      * 
      * @var string
      */
-    protected $table = 'material-marca_material';
+    protected $table = 'mica-marca_mica';
     /**
      * Variable para indicar la llave primaria de la tabla
      * 
      * @var string
      */
-    protected $primaryKey = 'id_materia_marca';
+    protected $primaryKey = 'id_mica_marca';
     /**
      * Variable para indicar que Eloquent ignore los campos timestamps
      * 

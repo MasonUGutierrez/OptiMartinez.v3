@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TipoMaterialFormRequest extends FormRequest
+class MicaFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,15 +26,15 @@ class TipoMaterialFormRequest extends FormRequest
         // Definiendo regla Unique
         if($this->isMethod('PUT'))
         {
-            $uniqueRule="unique:App\OpticaModels\TipoMaterial,tipo_material,{$this->route('materiale')},id_tipo_material";
+            $uniqueRule="unique:App\OpticaModels\Mica,mica,{$this->route('materiale')},id_mica";
         }
         else
         {
-            $uniqueRule="unique:App\OpticaModels\TipoMaterial,tipo_material";
+            $uniqueRule="unique:App\OpticaModels\Mica,mica";
         }
 
         return [
-            'tipo_material' => ['bail', 'required', 'string', $uniqueRule],
+            'mica' => ['bail', 'required', 'string', $uniqueRule],
             'precio' => ['bail', 'required', 'numeric']
         ];
     }

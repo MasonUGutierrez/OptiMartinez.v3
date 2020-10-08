@@ -32,8 +32,7 @@
                 <ul class="ml-menu">
                     <li class="{{ Request::segment(1) === 'miperfil' ? 'active' : null }}"><a href="/miperfil">Perfil</a></li>
                     <li>
-                        <a class="btn btn-danger btn-round" href="" style="color:#fff;"><span class="float-left"><i class="zmdi zmdi-power"></i> Cerrar Sesión<span></a>
-                        <a class="btn btn-warning btn-round" href="" style="color:#fff;"><span class="float-left"><i class="zmdi zmdi-power"></i> Suspender<span></a>
+                        <a href="">Cerrar Sesión</a>
                     </li>
                 </ul>
             </li>

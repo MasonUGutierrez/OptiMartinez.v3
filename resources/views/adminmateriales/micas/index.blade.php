@@ -1,6 +1,6 @@
 @extends('layout.master')
-@section('parentPageTitle', 'Admin. Lentes')
-@section('title', 'Materiales')
+@section('parentPageTitle', 'Admin. Materiales')
+@section('title', 'Micas')
 
 @section('page-style')
 {{-- Estilos para el Sweetalert --}}
@@ -15,9 +15,9 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="header">
-                <h2><strong>Listado</strong> de Materiales
-                    <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Agregar Material">
-                        <a href="{{action('OpticaControllers\TipoMaterialController@create')}}" 
+                <h2><strong>Listado</strong> de Micas
+                    <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Agregar Mica">
+                        <a href="{{action('OpticaControllers\MicaController@create')}}" 
                             class="btn btn-success btn-sm btn-raised waves-float waves-effect waves-light">
                             <i class="zmdi zmdi-plus"></i>
                         </a>
@@ -29,50 +29,52 @@
                     <table class="table table-hover table-bordered theme-color dataTable">
                         <thead>
                             <tr>
-                                <td>Material</td>
-                                <td>Precio Base (C$)</td>
+                                <td>Mica</td>
+                                <td>Presentaciones</td>
                                 <td>Estado</td>
                                 <td>Opciones</td>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($tiposMateriales as $tipoMaterial)
-                                <tr class="{{$tipoMaterial->estado == '0' ?'table-active':''}}">
+                            @foreach($micas as $mica)
+                                <tr class="{{$mica->estado == '0' ?'table-active':''}}">
                                     {{-- Campos --}}
-                                    <td>{{$tipoMaterial->tipo_material}}</td>
-                                    <td>{{$tipoMaterial->precio}}</td>
+                                    <td>{{$mica->mica}}</td>
                                     <td>
-                                        @if($tipoMaterial->estado == 1)
+                                        
+                                    </td>
+                                    <td>
+                                        @if($mica->estado == 1)
                                             <span class="badge badge-success">Activo</span>
                                         @else
                                             <span class="badge badge-danger">Inactivo</span>
                                         @endif
-                                    </td>
+                                    </td>                                    
                                     {{-- Opciones --}}
                                     <td>
                                         <span class="d-inline-block " data-toggle="tooltip" tabindex="0" title="Editar">
-                                            <a href="{{action('OpticaControllers\TipoMaterialController@edit', $tipoMaterial->id_tipo_material)}}"
+                                            <a href="{{action('OpticaControllers\MicaController@edit', $mica->id_mica)}}"
                                                 class="btn btn-sm btn-raised btn-neutral waves-float waves-effect waves-blue"
-                                                {{$tipoMaterial->estado == '0'?'disabled style=cursor:default;pointer-events:none;':''}}>
+                                                {{$mica->estado == '0'?'disabled style=cursor:default;pointer-events:none;':''}}>
                                                 <i class="zmdi zmdi-edit"></i>
                                             </a>
                                         </span>
-                                        @if($tipoMaterial->estado == 1)
+                                        @if($mica->estado == 1)
                                             <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Dar de Baja">
-                                                <a href="{{action('OpticaControllers\TipoMaterialController@destroy', $tipoMaterial->id_tipo_material)}}"
+                                                <a href="{{action('OpticaControllers\MicaController@destroy', $mica->id_mica)}}"
                                                     class="btn btn-sm btn-raised btn-neutral waves-float waves-effect waves-red"
                                                     data-type="confirm"
-                                                    data-text="Se dará de baja el material {{'"'.$tipoMaterial->tipo_material.'"'}}"
-                                                    data-obj="Material {{'"'.$tipoMaterial->tipo_material.'"'}}">
+                                                    data-text="Se dará de baja la mica {{'"'.$mica->mica.'"'}}"
+                                                    data-obj="Mica {{'"'.$mica->mica.'"'}}">
                                                     <i class="zmdi zmdi-delete"></i>
                                                 </a>
                                             </span>
                                         @else
                                             <span class="d-inline-block js-sweetalert" data-toggle="tooltip" tabindex="0" title="Reactivar">
-                                                <a href="{{route('materiales.reactivar', $tipoMaterial->id_tipo_material)}}"
+                                                <a href="{{route('micas.reactivar', $mica->id_mica)}}"
                                                     class="btn btn-sm btn-raised btn-neutral waves-float waves-effect waves-green"
                                                     data-type="reactivar"
-                                                    data-obj="Material {{'"'.$tipoMaterial->tipo_material.'"'}}">
+                                                    data-obj="Mica {{'"'.$mica->mica.'"'}}">
                                                     <i class="zmdi zmdi-check"></i>
                                                 </a>
                                             </span>
