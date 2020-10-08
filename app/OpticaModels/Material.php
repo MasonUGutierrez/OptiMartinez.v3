@@ -37,5 +37,8 @@ class Material extends Model
     /**
      * Relaciones con otros modelos
      */
-    
+    public function marcasmaterial()
+    {
+        return $this->belongsToMan('App\OpticaModels\MarcaMaterial');
+    }
 }

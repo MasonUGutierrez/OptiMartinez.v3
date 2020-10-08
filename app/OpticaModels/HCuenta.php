@@ -39,4 +39,8 @@ class HCuenta extends Model
     {
         return $this->belongsTo('App\OpticaModels\Paciente', 'id_paciente', 'id_paciente');
     }
+
+    /* public function cuentasCobrar(){
+        return $this->hasMany('App\OpticaModels\CuentaCobrar', 'id_historia_cuenta', 'id_historia_cuenta');
+    } */
 }
