@@ -20,9 +20,13 @@ Route::get('/', function () {
 
 //Rutas para tesorero
     //Rutas orden lentes
+Route::get('getPlanPagos','OpticaControllers\HcuentaController@getPlanPagos');
 Route::get('pacienteById/{id}','OpticaControllers\HCuentaController@getPacienteById');
+Route::get('getHistoria/{id}','OpticaControllers\HCuentaController@getHCuenta');
 Route::get('allPacientes','OpticaControllers\HCuentaController@getPacientes');
 Route::get('getMarcas','OpticaControllers\HCuentaController@getMarcas');
+Route::get('getMarcaMaterial','OpticaControllers\HCuentaController@getMarcaMaterial');
+Route::get('getFiltro','OpticaControllers\HCuentaController@getFiltro');
 Route::get('getMarcos/{id}','OpticaControllers\HCuentaController@getMarcos');
 Route::get('getMarcosInfo/{id}','OpticaControllers\HCuentaController@getMarcoInfo');
 Route::get('getMaterial','OpticaControllers\HCuentaController@getTipoMaterial');

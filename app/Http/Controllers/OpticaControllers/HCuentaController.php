@@ -60,18 +60,50 @@ class HCuentaController extends Controller
             ->get();
         return response()->json($marcos);
     }
+    //Funcion para obtener los datos de la tabla tipo_lente
     public function getTipoLente(){
         $lente = DB::table('tipo_lente')
             ->where('estado',1)
             ->get();
         return response()->json($lente);
     }
-
+    //Funcion para obtener los datos de la tabla tipo_material
     public function getTipoMaterial(){
         $material = DB::table('tipo_material')
             ->where('estado',1)
             ->get();
         return response()->json($material);
+    }
+    //Funcion para obtener los datos de la tabla marca_material
+    public function getMarcaMaterial(){
+        $marcaMaterial = DB::table('marca_material')
+            ->where('estado',1)
+            ->get();
+        return response()->json($marcaMaterial);
+    }
+    //Funcion para obtener los datos de la tabla filtro
+    public function getFiltro(){
+        $filtro = DB::table('filtro')
+            ->where('estado',1)
+            ->get();
+        return response()->json($filtro);
+    }
+
+    //Funcion que recibe como parametro el id del paciente para obtener su historia cuenta
+    public function getHCuenta($id){
+        $hCuenta = DB::table('historia_cuenta')
+            ->where('estado',1)
+            ->where('id_paciente',$id)
+            ->get();
+        return response()->json($hCuenta);
+    }
+
+    //Funcion para obtener los planes de pago
+    public function getPlanPagos(){
+        $planPagos = DB::table('plan_pago')
+            ->where('estado',1)
+            ->get();
+        return response()->json($planPagos);
     }
 
     /**
