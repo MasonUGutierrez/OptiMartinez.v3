@@ -1,6 +1,6 @@
 @extends('layout.master')
 @section('parentPageTitle', 'Admin. Lentes')
-@section('title', 'Tipos de Marcos')
+@section('title', 'Estilos de Marcos')
 
 @section('page-style')
 {{-- Estilos para los sweetalert --}}
@@ -14,8 +14,8 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="header">
-                <h2><strong>Listado</strong> Tipos de Marcos
-                <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Agregar Tipo de Marco">
+                <h2><strong>Listado</strong> Estilos de Marcos
+                <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Nuevo Estilo">
                     <a href="{{URL::action('OpticaControllers\TipoMarcoController@create')}}"class="btn btn-success btn-raised btn-sm waves-effect waves-light">
                         <i class="zmdi zmdi-plus"></i>
                     </a>
@@ -27,7 +27,7 @@
                     <table class="table table-bordered table-hover dt-responsive theme-color dataTable">
                         <thead>
                             <tr>
-                                <th>Tipo de Marco</th>
+                                <th>Estilo de Marco</th>
                                 <th>Estado</th>
                                 <th>Opciones</th>
                             </tr>
@@ -49,8 +49,8 @@
                                                 <a class="btn btn-neutral btn-raised btn-sm waves-effect waves-float waves-red" 
                                                    href="{{URL::action('OpticaControllers\TipoMarcoController@destroy', $tMarco->id_tipo_marco)}}"
                                                    data-type="confirm"
-                                                   data-text="Se dará de baja el tipo de marco {{'"'.$tMarco->tipo_marco.'"'}}"
-                                                   data-obj="Tipo de Marco {{'"'.$tMarco->tipo_marco.'"'}}">
+                                                   data-text="Se dará de baja el estilo de marco {{'"'.$tMarco->tipo_marco.'"'}}"
+                                                   data-obj="Estilo de Marco {{'"'.$tMarco->tipo_marco.'"'}}">
                                                 <i class="zmdi zmdi-delete"></i>
                                                 </a>
                                             </span>
@@ -59,7 +59,7 @@
                                                 <a class="btn btn-neutral btn-raised btn-sm waves-effect waves-float waves-green" 
                                                     href="{{URL::action('OpticaControllers\TipoMarcoController@update', $tMarco->id_tipo_marco)}}" 
                                                     data-type="reactivar"
-                                                    data-obj="Tipo de Marco {{'"'.$tMarco->tipo_marco.'"'}}">
+                                                    data-obj="Estilo de Marco {{'"'.$tMarco->tipo_marco.'"'}}">
                                                     <i class="zmdi zmdi-check"></i>
                                                 </a>
                                             </span>

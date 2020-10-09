@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', 'Opensans', arial;
+    font-size: 18px;
+    background: url('../images/sistema-optica/bg/bg2.jpg') no-repeat fixed center;
+    background-size: cover;
+    /* height: 100%; */
+    overflow-y: auto;
+}
+.body-cover {
+    /* background: url('../images/sistema-optica/bg/cuadro.png') repeat center; */
+    background-color: rgba(81,209,246, 0.3);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top:0;
+    left:0;
+}
+
+.login-box {
+    position: fixed;
+    left: 0;
+    height: 100%; /*Poner medida vh (altura del viewport) para que el login box no se separe del bottom cuando se reduzca el width*/
+    /* width: 350px; */
+    width: 25%;
+    max-width: 1000px;
+    padding: 40px 20px;
+    background: #fff;
+    box-shadow: 2px 0 4px 1px rgba(0,0,0,0.19);
+}
+
+.login-box .logo-img {
+    width:100%;
+    /* margin:auto;
+    overflow:auto; */
+}
+
+.logo-img img{
+    width:50%;
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+    object-fit: cover; /*Misma utilidad que background-size*/
+}
+
+.login-intro {
+    margin:1.111em 0;
+}
+
+.login-intro h3 {
+    margin:0 0 0.55em;
+    /* font-size:1em; */
+}
+
+.point {
+    color: #0c7ce6;
+}
+
+
+p {
+    font-weight: 300;
+    margin:0 0 0.83em;
+}
+
+.login-form{
+    width: 100%;
+    margin:1.111em 0;
+}
+
+.login-form a {
+    text-decoration:none;
+    font-size: 0.666em;
+    color: #acacac;
+    display: inline-block;
+}
+
+
+.login-form a.forgot-password {
+    margin: 1.34em 0;
+}
+
+.login-form a.forgot-password:hover {
+    color: #888888;
+}
+
+label {
+    font-size: 0.722em;
+}
+
+.form-control {
+    font-size: 0.777em !important;
+}
+
+.login-box .login-footer {
+    width: 100%;
+    text-align: center !important;
+    margin-top: 100px;    
+}
+
+.login-footer p {
+    text-transform: capitalize;
+}
+
+.font-14{
+    font-size: 0.777em;
+}
+.font-16{
+    font-size: 0.888em;
+}
+.font-18{
+    font-size: 1em;
+}
+.sign {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    padding: 5px 10px;
+    color: #fff;
+    font-size: 0.666em;
+}
+.sign p {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    line-height: 20px;
+    font-weight: 600;
+}
+
+/* Media query permite que se ejecuten ciertos estilos una vez se cumplan las condiciones de proporciones */
+@media only screen and (max-width:990px) {
+    body{
+        font-size: 16px;
+    }
+    .login-box{
+        width: 100%;
+        /* height: 100vh; */
+        padding: 40px 30px;
+        box-shadow: none;
+        overflow: auto;
+    }
+
+    .login-box .logo-img img {
+        width: 25%;
+    }
+
+    .sign {
+        color: #888888;
+    }
+}
+
+@media only screen and (max-width:800px) {
+    .logo-img img{
+        width: 50%;
+    }
+}

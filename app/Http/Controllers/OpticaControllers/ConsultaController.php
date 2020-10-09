@@ -53,7 +53,7 @@ class ConsultaController extends Controller
             ->join('consulta-servicio','consulta.id_consulta','=','consulta-servicio.id_consulta')
             ->join('servicio','consulta-servicio.id_servicio','=','servicio.id_servicio')
             ->join('jornada_trabajo' , 'consulta.id_jornada_trabajo','=','jornada_trabajo.id_jornada_trabajo')
-            ->select('consulta.*','consulta-servicio.*','servicio.servicio','jornada_trabajo.*')
+            ->select('consulta.*','consulta-servicio.*','servicio.servicio')
             ->get()->toArray();
 
         $examen = DB::table('examen_visual')
@@ -194,7 +194,8 @@ class ConsultaController extends Controller
             }
             $contaServicio = $contaServicio + 1;
         }
-        return Redirect::to('historias-clinicas/consulta/create');
+        return response()->json($consulta);
+        // return Redirect::to('historias-clinicas/consulta/create');
     }
 
     public function getprecio($id){

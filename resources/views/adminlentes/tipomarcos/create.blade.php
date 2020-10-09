@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('parentPageTitle', 'Admin. Lentes')
-@section('title', 'Tipos de Marcos / Agregar')
+@section('title', 'Estilos de Marcos / Agregar')
 
 @section('content')
 <form action="{{route('tipos-marcos.store')}}" method="post">
@@ -12,11 +12,11 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="header">
-                    <h2><strong>Agregar</strong> Nuevo Tipo de Marco</h2>
+                    <h2><strong>Agregar</strong> Nuevo Estilo de Marco</h2>
                 </div>            
                 <div class="body">
                     <div class="form-group">
-                        <label for="tipo_marco">Tipo de Marco</label>
+                        <label for="tipo_marco">Estilo de Marco</label>
                         <input type="text" name="tipo_marco" id="tipo_marco" class="form-control {{$errors->has('tipo_marco') ? 'is-invalid' : ''}}" placeholder="Ej: Cuadrado, Ovalado, Economico, etc." value="{{old('tipo_marco')}}">
                         {!!$errors->first('tipo_marco', '<span class="invalid-feedback">:message</span>')!!}
                     </div>

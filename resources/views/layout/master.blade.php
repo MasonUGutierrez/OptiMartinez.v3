@@ -67,7 +67,7 @@
         <!-- Page Loader -->
         <div class="page-loader-wrapper">
             <div class="loader">
-                <div class="m-t-30"><img class="heartbit" src="{{asset('../assets/images/LogoSistemaOptica/logo.svg')}}" width="120"  alt="Aero"></div>
+                <div class="m-t-30"><img class="heartbit" src="{{asset('../assets/images/sistema-optica/logo/logo.svg')}}" width="120"  alt="Aero"></div>
                 <p>Por favor, espere un momento...</p>
             </div>
         </div>
@@ -98,7 +98,7 @@
 
                     <!-- Boton para ocultar el menu lateral derecho -->
                     <div class="col-lg-5 col-md-6 col-sm-12">
-                    <!--     <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i class="zmdi zmdi-arrow-right"></i></button> -->
+                    {{-- <button class="btn btn-danger btn-round btn-icon float-right" type="button"><i class="zmdi zmdi-power"></i></button> --}}
                         <!-- Yield para indicar el boton para agregar un registro, Nota: Me fije en la plantilla que aca ponian esos botones -->
                         {{-- Yielad para agregar los botones de regresar --}}
                         @yield('addButton')

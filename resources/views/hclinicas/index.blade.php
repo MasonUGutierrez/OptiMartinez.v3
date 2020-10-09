@@ -43,11 +43,13 @@
             <div class="body">
                 <div class="table-responsive">
                     <!--agregando propiedad width="100%" para que el contenido se desplace-->
-                    <table class="table table-hover table-bordered theme-color dataTable-hc" width="100%">
+                    <table class="table table-hover table-bordered theme-color dataTable-hc text-center" width="100%">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Paciente</th>
+                                <th>Edad</th>
+                                <th>Telefono</th>
                                 <th>Registro</th>
                                 <th>Opciones</th>
                             </tr>

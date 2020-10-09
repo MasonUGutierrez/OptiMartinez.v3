@@ -4,21 +4,21 @@ namespace App\OpticaModels;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TipoMaterial extends Model
+class Mica extends Model
 {
     /**
      * Variable para indicar la tabla que mapea el modelo
      * 
      * @var string
      */
-    protected $table = 'tipo_material';
+    protected $table = 'mica';
 
     /**
      * Variable para indicar la llave primaria del modelo
      * 
      * @var int
      */
-    protected $primaryKey = 'id_tipo_material';
+    protected $primaryKey = 'id_mica';
 
     /**
      * Variable para que Eloquent ignore el timestamps
@@ -33,4 +33,12 @@ class TipoMaterial extends Model
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * Relaciones con otros modelos
+     */
+    public function marcasmica()
+    {
+        return $this->belongsToMan('App\OpticaModels\MarcaMica');
+    }
 }

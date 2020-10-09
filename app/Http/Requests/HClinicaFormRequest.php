@@ -45,10 +45,10 @@ class HClinicaFormRequest extends FormRequest
             'cedula' => ['bail', 'nullable', 'string'], //$uniqueRule],
             'telefono' => ['bail', 'required', 'string'],
             'direccion' => ['bail', 'nullable', 'string'],
-            'h_ocular' => ['bail', 'required', 'nullable','string'],
-            'h_medica' => ['bail', 'nullable','string'],
-            'medicaciones' => ['bail', 'nullable','string'],
-            'alergias' => ['bail', 'nullable','string'],
+            'h_ocular' => ['bail', 'nullable', 'string'],
+            'h_medica' => ['bail', 'nullable', 'string'],
+            'medicaciones' => ['bail', 'nullable', 'string'],
+            'alergias' => ['bail', 'nullable', 'string'],
         ];
     }
 }

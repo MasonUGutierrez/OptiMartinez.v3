@@ -18,6 +18,26 @@
 @endsection
 
 @section('content')
+{{-- Row para el alert en caso de no tener los datos completos --}}
+{{-- @if($hclinica->completo == 0) --}}
+<div class="row clearfix" id="alertContainer">
+    <div class="col-lg-12">
+        <div class="alert alert-warning" role="alert">
+            <div class="container">
+                <div class="alert-icon">
+                    <i class="zmdi zmdi-notifications"></i>
+                </div>
+                <strong>Aviso!</strong> Los datos de esta historia clinica se encuentran incompletos.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">
+                        <i class="zmdi zmdi-close"></i>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- @endif --}}
 {{-- Row para los datos generales --}}
 <div class="row clearfix">
     <div class="col-lg-12">
@@ -42,10 +62,11 @@
                     </span>
                 </h2>
             </div>
-            <input type="hidden" id="historiasid" value="{{$hclinica->id_historia_clinica}}">
             <div class="body">
+                <input type="hidden" id="method" name="_method" value="PUT">
+                <input type="hidden" id="flagWho" name="flagWho" value="optometrista">
+                <input type="hidden" id="historiasid" value="{{$hclinica->id_historia_clinica}}">
                 <form id="editHClinica" method="POST">
-                    <input type="hidden" id="method" name="_method" value="PUT">
                     <h3>Datos Personales</h3>
                     <fieldset>
                         {{-- Row para inputs nombres y apellidos --}}
@@ -136,26 +157,31 @@
                         {{-- Row para los textareas historias ocular e historia medica --}}
                         <div class="row clearfix">
                             <div class="col-md-6 col-sm-12">
-                                <label for="h_ocular">Historia Ocular</label>
-                                <textarea class="form-control no-resize" disabled rows="4" name="h_ocular" id="h_ocular">{{$hclinica->h_ocular}}</textarea>
+                                <div class="form-group">
+                                    <label for="h_ocular">Historia Ocular</label>
+                                    <textarea class="form-control no-resize" disabled rows="4" name="h_ocular" id="h_ocular">{{$hclinica->h_ocular}}</textarea>
+                                </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
-                                <label for="h_medica">Historia Medica</label>
-                                <textarea class="form-control no-resize" disabled rows="4" name="h_medica" id="h_medica" placeholder="Hola soy un placeholder">{{$hclinica->h_medica}}</textarea>
+                                <div class="form-group">
+                                    <label for="h_medica">Historia Medica</label>
+                                    <textarea class="form-control no-resize" disabled rows="4" name="h_medica" id="h_medica" placeholder="Hola soy un placeholder">{{$hclinica->h_medica}}</textarea>
+                                </div>
                             </div>
                         </div>
-                        {{-- Row para el textarea medicaciones --}}
+                        {{-- Row para los textareas medicaciones y alergias --}}
                         <div class="row clearfix">
                             <div class="col-lg-12">
-                                <label for="medicaciones">Medicaciones</label>
-                                <textarea class="form-control no-resize" disabled rows="4" name="medicaciones" id="medicaciones">{{$hclinica->medicaciones}}</textarea>
+                                <div class="form-group">
+                                    <label for="medicaciones">Medicaciones</label>
+                                    <textarea class="form-control no-resize" disabled rows="4" name="medicaciones" id="medicaciones">{{$hclinica->medicaciones}}</textarea>
+                                </div>
                             </div>
-                        </div>
-                        {{-- Row para el textarea alergias --}}
-                        <div class="row clearfix">
                             <div class="col-lg-12">
-                                <label for="alergias">Alergias</label>
-                                <textarea class="form-control no-resize" disabled rows="4" name="alergias" id="alergias">{{$hclinica->alergias}}</textarea>
+                                <div class="form-group">
+                                    <label for="alergias">Alergias</label>
+                                    <textarea class="form-control no-resize" disabled rows="4" name="alergias" id="alergias">{{$hclinica->alergias}}</textarea>
+                                </div>
                             </div>
                         </div>
                     </fieldset>
@@ -168,11 +194,11 @@
                                         <thead>
                                             <tr>
                                                 <td>Ojo</td>
+                                                <td>Esf</td>
                                                 <td>Cil.</td>
+                                                <td>Eje</td>
                                                 <td>Ad.</td>
                                                 <td>A.V</td>
-                                                <td>Esf</td>
-                                                <td>Eje</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -192,11 +218,11 @@
                                                     @else
                                                         <td>O.I</td>
                                                     @endif
+                                                    <td>{{$medidaOjo->esfera}}</td>
                                                     <td>{{$medidaOjo->cilindro}}</td>
+                                                    <td>{{$medidaOjo->eje}}</td>
                                                     <td>{{$medidaOjo->adicion}}</td>
                                                     <td>{{$medidaOjo->agudeza_visual}}</td>
-                                                    <td>{{$medidaOjo->esfera}}</td>
-                                                    <td>{{$medidaOjo->eje}}</td>
                                                 </tr>
                                             @endforeach
                                             @endif
@@ -446,8 +472,12 @@
 
 <script src="{{asset('assets/js/js_propios/js_hclinica/script.js')}}" defer></script>
 
-<script >
+<script>
     $(function(){
+        var hclinica = @json($hclinica);
+        // console.log(hclinica);
+        stateAlert(hclinica.completo);
+
         {{--console.log(@json($uConsultaServicios));
         var tr = "";
         if(@json($uConsultaServicios))
@@ -478,6 +508,7 @@
         }--}}
 
         initStepTab();
+        // console.log($.trim($('#medicaciones').val()).lenght === 0);
 
         $('#containerBtnCancelar').hide();
 
@@ -500,7 +531,7 @@
             initValidateStep('PUT');
             // funcion para establecer los eventos en los inputs despues del steps.destroy
             setEvents();
-
+            setAnanmesisFields();
         });
         // Evento clic del btnCancelar para cambiar el steps a modo no editable
         $('#btnCancelar').on('click',function(event){
@@ -511,6 +542,10 @@
             form.removeClass('wizard');
             form.steps('destroy');
 
+            // Ocultar el contenedor del check de cedula porque si se llegase mostrar este se queda
+            if($('#checkContainer').is(':visible'))
+                $('#checkContainer').hide();
+
             $('[data-id=medidasTitle]').appendTo('#editHClinica');
             $('[data-id=medidasContainer]').appendTo('#editHClinica');
             $('#containerBtnCancelar').hide();
@@ -520,11 +555,21 @@
             initStepTab();
 
         });
+<<<<<<< HEAD
 
         /*Pruebas para ocultar el ultimo steps de las medidas para cuando vaya a edtar*/
         // $('[data-id=medidasTitle]').remove();
         // $('[data-id=medidasContainer]').remove();
     });
+=======
+                
+        /*Pruebas para ocultar el ultimo steps de las medidas para cuando vaya a edtar*/
+        // $('[data-id=medidasTitle]').remove();
+        // $('[data-id=medidasContainer]').remove();
+    }); 
+
+    
+>>>>>>> origin/cambiarMateriales
     // var hclinica = {{json_encode($hclinica)}};
 
     // console.log(medidasOjos.length);
@@ -532,5 +577,5 @@
 </script>
 <script src="{{asset('assets/js/pages/tables/editable-table.js')}}"></script>
 <script src="{{asset('assets/plugins/editable-table/mindmup-editabletable.js')}}"></script>
-<script src="{{asset('assets/js/js_propios/js_optometrista/js_consulta/script.js')}}"></script>
+<script src="{{asset('assets/js/js_propios/js_optometrista/js_consulta/script.js')}}" defer></script>
 @endpush

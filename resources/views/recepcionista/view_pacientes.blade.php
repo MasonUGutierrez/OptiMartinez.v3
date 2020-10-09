@@ -56,6 +56,7 @@
         </div>
     </div>
     @include('recepcionista.modal-addpaciente')
+    <input type="hidden" value="POST" name="_method" id="method">
 @endsection
 
 @section('page-script')
@@ -71,6 +72,10 @@
 
     {{-- Script para SweetAlert --}}
     <script src="{{asset('assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
+
+    {{-- Script para el Jquery-validate plugin --}}
+    <script src="{{asset('assets/plugins/jquery-validation/jquery.validate.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-validation/localization/messages_es.js')}}"></script>
 @endsection
 
 @push('after-scripts')
@@ -80,169 +85,32 @@
     {{-- Script para inicializar SweetAlert --}}
     <script src="{{asset('assets/js/pages/ui/sweetalert.js')}}"></script>
 
+    <script src="{{asset('assets/js/js_propios/js_hclinica/script.js')}}" defer></script>
+
     <script type="text/javascript" async="async">
         $(function(){
-            data();
-        });
-        // Solucion de problema con tooltip en los botones que se crean por la peticion ajax
-        $(document).ajaxComplete(function(){
-            // $('[data-toggle="tooltip"]').tooltip();
-
-            $('.darBaja').on('click', function(event){
-                event.preventDefault();
-                console.log('Probando Swal');
-                swal({
-                    title:'¿Estás seguro?',
-                    text:$(this).data('text'),
-                    icon:'warning',
-                    buttons:{
-                        cancel:'Cancelar',
-                        confirm:{
-                            text:'Aceptar',
-                            className:'btn-warning'
-                        }
-                    },
-                    dangerMode:true
-                }).then((willDelete)=>{
-                    if(willDelete){
-                        swal($(this).data('obj') + " dada de baja",{
-                            icon:"success",
-                            button:"Aceptar"
-                        }).then(()=>{
-                            fnDelete($(this));
-                        });
-                    }
-                    else{
-                        cancelSwal();
-                    }
-                });
-            });
+            var form = $('#hclinica_form').show();
+            validateRules(form);
         });
         $('#Guardar').on('click', function(event){
             event.preventDefault();
-            fnStore();
-        });
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            var form = $('#hclinica_form').show();
+
+            // validateRules(form);
+
+            form.validate();
+
+            if(form.valid()){
+                fnStore("POST");
+
+                swal({
+                    title:"Bien Hecho",
+                    text:"Paciente "+$('#nombres').val() + " " + $('#apellidos').val()+" Registrado",
+                    icon: "success"
+                }).then(()=>{
+                    $("#AddPaciente").modal('toggle');
+                });
             }
         });
-        function cancelSwal(){
-            swal({
-                text:'¡Acción Cancelada!',
-                icon: 'error',
-                button: 'Aceptar'
-            });
-        }
-        function fnDelete(element){
-            $.ajax(element.attr('href'),{
-                type:'DELETE',
-                success:function(datas, status, jqXhr){
-                    console.log('Message: ' + datas);
-                    data();
-                },
-                error:function(jqXhr, textStatus, errorThrown){
-                    console.log('status: ' + textStatus);
-                    console.log('error: ' + errorThrown);
-                    console.log('jQuery XMLHTTPRequest object: \n');
-                    console.log(jqXhr);
-                }
-            });
-        }
-        function data(){
-            // let data_tr = "";
-            // Agregando directamente el responseJSON devuelto del controlador al DataTable
-            $('.dataTable-hc').DataTable({
-                destroy:true,
-                // processing:true,
-                serverSide:true,
-                ajax: {
-                    url:'historias-clinicas/all',
-                    type:'GET'
-                    // dataSrc: ''
-                },
-                columns:[
-                    {data:'id_historia_clinica',width: "10%"},
-                    {data:'paciente'},
-                    {data:'edad'},
-                    {data:'telefono'},
-                    {data:'fecha_registro',width:"20%"},
-                    {data:'opciones', name:"opciones", orderable:false, searchable: false, width:"20%"}
-                ],
-                lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "Todo"]],
-                language:{
-                    "sProcessing":     "Procesando...",
-                    "sLengthMenu":     "Mostrar _MENU_ registros",
-                    "sZeroRecords":    "No se encontraron resultados",
-                    "sEmptyTable":     "Ningún dato disponible en esta tabla",
-                    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix":    "",
-                    "sSearch":         "Buscar:",
-                    "sUrl":            "",
-                    "sInfoThousands":  ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst":    "Primero",
-                        "sLast":     "Último",
-                        "sNext":     "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    },
-                    "buttons": {
-                        "copy": "Copiar",
-                        "colvis": "Visibilidad"
-                    }
-                }
-            });
-        }
-        function fnStore(){
-            var sendData = {
-                nombre:$('#nombre').val(),
-                apellido:$('#apellido').val(),
-                edad:parseInt($('#edad').val()),
-                cedula:$('#cedula').val(),
-                telefono:$('#telefono').val(),
-                direccion:$('#direccion').val(),
-                antecedentes:$('#antecedentes').val()
-            };
-            console.log(typeof sendData.edad);
-            console.log(`{{action('OpticaControllers\HClinicaController@store')}}`);
-
-            $.ajax({
-                type: 'POST',
-                dataType: 'json',
-                data: sendData,
-                url: `{{action('OpticaControllers\HClinicaController@store')}}`,
-                success: function(datas){
-                    console.log(datas.nombre + 'Registrado!!');
-                    fnClearFields();
-
-                    // $('.dataTable-hc').fnDestroy();
-                    data();
-                },
-                error: function(jqXHR, statusText, errorThrown){
-                    console.log('Error::'+errorThrown);
-                    console.log('Error::'+statusText);
-
-                    console.log(jqXHR);
-
-                }
-            });
-            function fnClearFields()
-            {
-                $('#nombre').val("");
-                $('#apellido').val("");
-                $('#edad').val("");
-                $('#cedula').val("");
-                $('#telefono').val("");
-                $('#direccion').val("");
-                $('#antecedentes').val("");
-            }
-        }
     </script>
 @endpush

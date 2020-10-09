@@ -75,23 +75,24 @@ Route::resource('admin-lentes/tipos-marcos', 'OpticaControllers\TipoMarcoControl
 // Closure para no tener que hacer un metodo en el Controller
 /* Nota: Hubo problemas con la ruta extra put, se soluciono cambiando el nombre de la URL,
 el nombre de la URL al ser igual que la URL del metodo post del controlador no sabia donde ingresar*/
-Route::put('admin-lentes/tipos-lentes/reactivar/{tipo_lente}', function($id){
+Route::put('admin-materiales/tipos-lentes/reactivar/{tipo_lente}', function($id){
     $tipoLente = App\OpticaModels\TipoLente::findOrFail($id);
     $tipoLente->estado = 1;
     $tipoLente->save();
 
     return redirect()->route('tipos-lentes.index');
 })->name('tipos-lentes.reactivar');
-Route::resource('admin-lentes/tipos-lentes', 'OpticaControllers\TipoLenteController')->except(['show']);
+Route::resource('admin-materiales/tipos-lentes', 'OpticaControllers\TipoLenteController')->except(['show']);
 
-Route::put('admin-lentes/materiales/reactivar/{materiale}', function($id){
-    $tipoMaterial = App\OpticaModels\TipoMaterial::findOrFail($id);
-    $tipoMaterial->estado = 1;
-    $tipoMaterial->save();
+Route::put('admin-materiales/micas/reactivar/{mica}', function($id){
+    $mica = App\OpticaModels\Mica::findOrFail($id);
+    $mica->estado = 1;
+    $mica->save();
 
-    return redirect()->route('materiales.index');
-})->name('materiales.reactivar');
-Route::resource('admin-lentes/materiales', 'OpticaControllers\TipoMaterialController');
+    return redirect()->route('micas.index');
+})->name('micas.reactivar');
+
+Route::resource('admin-materiales/micas', 'OpticaControllers\MicaController');
 
 Route::put('admin-lentes/marcos/reactivar/{marco}', function($id){
     $marco = App\OpticaModels\Marco::findOrFail($id);
@@ -104,7 +105,13 @@ Route::put('admin-lentes/marcos/reactivar/{marco}', function($id){
 Route::resource('admin-lentes/marcos', 'OpticaControllers\MarcoController');
 
 // Ruta para hacer pruebas de los modelos
-Route::get('/test/{id}','OpticaControllers\ConsultaController@getprecio');
+
+Route::get('/test', function(){
+    /*$tipo_marco = App\OpticaModels\TipoMarco::where('estado','1')->first();
+    return $tipo_marco->tipo_marco;*/
+    // return redirect("verjornadas");
+    return view('layout.login');
+});
 
 
 // Ruta para historias Clinicas

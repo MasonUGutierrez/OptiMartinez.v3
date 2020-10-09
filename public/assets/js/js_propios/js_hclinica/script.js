@@ -9,7 +9,6 @@ $(function(){
     setAnanmesisFields();
 
     setEvents();
-
 });
 
 $.ajaxSetup({
@@ -180,7 +179,7 @@ const setEvents = function(){
 /**
  * Funcion para habilitar o deshabilitar los campos en el formulario
  *
- * @param boolean state - el valor true para habilitar, false para desdeshabilitar 
+ * @param boolean state - el valor true para habilitar, false para deshabilitar 
  */
 const enableFields = function (state){
     $('#nombres').prop('disabled', (state)?false:true);
@@ -228,7 +227,82 @@ const initStepTab = function (){
  */
 const initValidateStep = function (type){
     var form = $((type=='PUT')?'#editHClinica':'#hclinica_form').show();
-    form.validate({
+
+    validateRules(form);
+    
+    form.steps({
+        /*Apariencia*/
+        headerTag: 'h3',
+        bodyTag: 'fieldset',
+        transitionEffect: 'slideLeft',
+        cssClass: 'wizard',
+
+        /*Etiquetas*/
+        labels:{
+            cancel: 'Cancelar',
+            current: 'Posicion Actual:',
+            finish: 'Registrar',
+            previous: 'Anterior',
+            next: 'Siguiente',
+            loading: 'Cargando ...'
+        },
+
+        /*Eventos*/
+        onStepChanging: function(event, currentIndex, newIndex){
+            // Permitir que se mueva la pestaña anterior aunque el formulario no sea valido
+            if (currentIndex > newIndex)
+            {
+                return true;
+            }
+
+            // En caso que el usuario regrese a la pagina siguiente donde el formulario daba error, se limpian las notificaciones de error
+            if (currentIndex < newIndex)
+            {
+                // Limpiando los errores en el formulario
+                form.find('.body:eq(' + newIndex + ') label.error').remove();
+                form.find('.body:eq(' + newIndex + ') .error').removeClass('error');
+            }
+            form.validate();
+            return form.valid();
+        },
+        onFinishing: function(event, currentIndex){
+            form.validate();
+            return form.valid();
+        },
+        onFinished: function(event, currentIndex){
+            fnStore(type);
+            swal({
+                title: "Bien Hecho",
+                text: "Historia clinica " +((type=="POST")?"registrada":"actualizada"),
+                icon:'success',
+            }).then(()=>{
+                form.steps('reset');
+                if(type == "POST"){ 
+                    $("#AddPaciente").modal('toggle');                    
+                    fnClearFields();
+                }
+                else{
+                    form.removeClass('wizard');
+                    form.steps('destroy');
+                    
+                    $('[data-id=medidasTitle]').appendTo('#editHClinica');
+                    $('[data-id=medidasContainer]').appendTo('#editHClinica');
+                    $('#containerBtnCancelar').hide();
+                    $('#containerBtnEditar').show();
+                    
+                    enableFields(false);
+                    // $('#stepsCard').load(location.href+" #stepsCard");
+                    getHistoriaEditForm();
+                    initStepTab();
+                }
+                
+            });
+        },
+    });             
+}  
+
+const validateRules = function(elemetForm){
+    elemetForm.validate({
         rules: {
             nombres:{
                 minlength: 3,
@@ -319,79 +393,17 @@ const initValidateStep = function (type){
         return element.optional() || flag;
     }, "Ya existe un registro con la cedula ingresada"); */
 
-    form.steps({
-        /*Apariencia*/
-        headerTag: 'h3',
-        bodyTag: 'fieldset',
-        transitionEffect: 'slideLeft',
-        cssClass: 'wizard',
+}
 
-        /*Etiquetas*/
-        labels:{
-            cancel: 'Cancelar',
-            current: 'Posicion Actual:',
-            finish: 'Registrar',
-            previous: 'Anterior',
-            next: 'Siguiente',
-            loading: 'Cargando ...'
-        },
-
-        /*Eventos*/
-        onStepChanging: function(event, currentIndex, newIndex){
-            // Permitir que se mueva la pestaña anterior aunque el formulario no sea valido
-            if (currentIndex > newIndex)
-            {
-                return true;
-            }
-
-            // En caso que el usuario regrese a la pagina siguiente donde el formulario daba error, se limpian las notificaciones de error
-            if (currentIndex < newIndex)
-            {
-                // Limpiando los errores en el formulario
-                form.find('.body:eq(' + newIndex + ') label.error').remove();
-                form.find('.body:eq(' + newIndex + ') .error').removeClass('error');
-            }
-            form.validate();
-            return form.valid();
-        },
-        onFinishing: function(event, currentIndex){
-            form.validate();
-            return form.valid();
-        },
-        onFinished: function(event, currentIndex){
-            fnStore(type);
-            swal({
-                title: "Enhorabuena",
-                text: "Historia clinica " +((type=="POST")?"registrada":"actualizada"),
-                icon:'success',
-            }).then(()=>{
-                form.steps('reset');
-                if(type == "POST"){ 
-                    $("#AddPaciente").modal('toggle');                    
-                    fnClearFields();
-                }
-                else{
-                    form.removeClass('wizard');
-                    form.steps('destroy');
-                    
-                    $('[data-id=medidasTitle]').appendTo('#editHClinica');
-                    $('[data-id=medidasContainer]').appendTo('#editHClinica');
-                    $('#containerBtnCancelar').hide();
-                    $('#containerBtnEditar').show();
-                    
-                    enableFields(false);
-                    // $('#stepsCard').load(location.href+" #stepsCard");
-                    getHistoriaEditForm();
-                    initStepTab();
-                }
-                
-            });
-        },
-    });             
-}  
+const stateAlert = function(state){
+    if(parseInt(state))
+        $('#alertContainer').hide();
+    else   
+        $('#alertContainer').show();
+}
 
 /**
- * Funcion para rellenar el formulario con la info nueva de la historia
+ * Funcion para rellenar el formulario con la info nueva de la historia cuando esta se actualiza
  */
 const getHistoriaEditForm = function(){
     $.ajax({
@@ -401,6 +413,8 @@ const getHistoriaEditForm = function(){
         success:function(datas, status, jqXHR){
             console.log(datas.hclinica);
             console.log(datas.paciente);
+
+            
             // Campos Datos Personales
             $('#nombres').val(datas.paciente.nombres);
             $('#apellidos').val(datas.paciente.apellidos);
@@ -422,6 +436,9 @@ const getHistoriaEditForm = function(){
             $('#h_medica').val(datas.hclinica.h_medica);
             $('#medicaciones').val(datas.hclinica.medicaciones);
             $('#alergias').val(datas.hclinica.alergias);
+
+            // Seteando el estado del alert completo
+            stateAlert(datas.hclinica.completo);
         },
         error: function(jqXHR, statusText, errorThrown){
             console.log('Error: '+errorThrown);
@@ -442,8 +459,18 @@ const setAnanmesisFields = function (){
     $('#h_ocular, #h_medica, #medicaciones, #alergias').on('focus', function(){
         if($.trim($(this).val()) == "N/A") $(this).val("");
     });
-    //Seteando el valor por defecto N/A en los campos seleccionados por IDs
-    $("#h_ocular, #h_medica, #medicaciones, #alergias").val("N/A");
+
+    validEmptyAnanmesisFields($("#h_ocular"));
+    validEmptyAnanmesisFields($("#h_medica"));
+    validEmptyAnanmesisFields($("#medicaciones"));
+    validEmptyAnanmesisFields($("#alergias"));
+}
+
+const validEmptyAnanmesisFields = function(element){
+    if(isEmpty(element.val()) || element.val() == "NULL"){
+        //Seteando el valor por defecto N/A en los campos seleccionados por IDs
+        element.val("N/A");
+    }
 }
 
 // Funcion para determinar si una str es vacia
@@ -499,8 +526,8 @@ const fnDelete = function (element){
 };
 
 const fnClearFields = function (){
-    $('#nombre').val("");
-    $('#apellido').val("");
+    $('#nombres').val("");
+    $('#apellidos').val("");
     $('#fecha_nacimiento').val("");
     $('#edad').val("");
     $('#maleRadio').prop('checked', true);
@@ -528,11 +555,19 @@ const fnStore = function (type){
         cedula:$('#cedula').val(),
         telefono:$('#telefono').val(),
         direccion:$('#direccion').val(),
+        flagWho:$('#flagWho').val(),
+    };
+    var fieldsAnanmesia = {
         h_ocular:$('#h_ocular').val(),
         h_medica:$('#h_medica').val(),
         medicaciones:$('#medicaciones').val(),
         alergias:$('#alergias').val(),
-    };
+    }
+
+    /* Si quien guarda un usuario optometrista entonces se agregan al senData los campos de ananmesis */
+    if($('#flagWho').val() == "optometrista"){
+        Object.assign(sendData, fieldsAnanmesia);
+    }
     
     // console.log(typeof sendData.edad);
     // console.log(sendData);
@@ -577,6 +612,8 @@ const data = function(){
         columns:[
             {data:'id_historia_clinica',width: "10%"},
             {data:'paciente'},
+            {data:'edad'},
+            {data:'telefono'},
             {data:'fecha_registro',width:"20%"},
             {data:'opciones', name:"opciones", orderable:false, searchable: false, width:"20%"}
         ],
