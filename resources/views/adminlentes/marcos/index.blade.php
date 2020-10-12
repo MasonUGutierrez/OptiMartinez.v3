@@ -54,7 +54,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($marcos_activos as $mActivo)
+                                        @foreach($marcos_activos as $mActivo)                                            
+                                            <?php 
+                                                $existencia = $mActivo->c_existencia;
+                                                if($existencia > 3)
+                                                    $color = "#04BE5B";
+                                                else if($existencia > 0 && $existencia <= 3)
+                                                    $color = "#f9bd65";
+                                                else 
+                                                    $color = "#ee2558";
+                                            ?>
                                             <tr>
                                                 <td class="text-center">
                                                     <img src="{{asset('storage/imagenes/marcos/'.$mActivo->dir_foto)}}" alt="img-marco" width="48" height="48">
@@ -62,13 +71,13 @@
                                                 <td>{{$mActivo->marca->marca}}</td>
                                                 <td>{{$mActivo->cod_marco}}</td>
                                                 <td>{{$mActivo->precio}}</td>
-                                                <td>{{$mActivo->c_existencia}}</td>
+                                                <td style="color:{{ $color }}">{{$mActivo->c_existencia}}</td>
                                                 <td>
                                                     @foreach($mActivo->tiposmarcos as $tipoMarco)
                                                         <span class="badge badge-primary">{{$tipoMarco->tipo_marco}}</span>
                                                     @endforeach
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <span class="d-inline-block" data-toggle="tooltip" tabindex="0" title="Editar">
                                                         <a href="{{action('OpticaControllers\MarcoController@edit', $mActivo->id_marco)}}"
                                                             class="btn btn-neutral btn-sm btn-raised waves-effect waves-float waves-blue">
@@ -115,7 +124,7 @@
                                                 <td>{{$mInactivo->marca->marca}}</td>
                                                 <td>{{$mInactivo->cod_marco}}</td>
                                                 <td>{{$mInactivo->precio}}</td>
-                                                <td>{{$mInactivo->c_existencia}}</td>
+                                                <td style="">{{$mInactivo->c_existencia}}</td>
                                                 <td>
                                                     @foreach($mActivo->tiposmarcos as $tipoMarco)
                                                         <span class="badge badge-danger">{{$tipoMarco->tipo_marco}}</span>
