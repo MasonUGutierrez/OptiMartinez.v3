@@ -36,6 +36,8 @@
                 </div>
             </div>
             <input type="hidden" id="idHistoriaCuenta">
+            <input type="hidden" id="fecha">
+            <input type="hidden" id="historiaClinica">
             <div class="header">
                 <h2><strong>Datos</strong> Generales</h2>
             </div>
@@ -156,141 +158,33 @@
             </div>
             <div class="body">
                 <div class="row clearfix">
-                    <div class="col-3">
+                    <div class="col-md-6 col-sm-12">
                         <div class="form-group ">
                             <div class="text-center">
                                 <label class="pr-5"><strong>Seleccione el Tipo de Lente</strong></label>
                             </div>
-                            {{--<div class="row clearfix">
-                                <div class="col-md-6">
-                                    <div class="custom-control custom-checkbox checkbox-inline">
-                                        <input type="checkbox"  class="custom-control-input " id="monofocal">
-                                        <label class="custom-control-label checkbox-inline" for="monofocal">Monofocal</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox checkbox-inline">
-                                        <input type="checkbox"  class="custom-control-input " id="bifocal">
-                                        <label class="custom-control-label checkbox-inline" for="bifocal">Bifocal</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox checkbox-inline">
-                                        <input type="checkbox" class="custom-control-input " id="invisible">
-                                        <label class="custom-control-label checkbox-inline" for="invisible">Invisible</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="custom-control custom-checkbox checkbox-inline">
-                                        <input type="checkbox" class="custom-control-input " id="progresivo">
-                                        <label class="custom-control-label checkbox-inline" for="progresivo">Progresivo</label>
-                                    </div>
-                                </div>
-                            </div>--}}
-                            <select class=" show-tick ms form-control select2 center-block border rounded"  id="tipoLente" multiple required data-placeholder="Seleccione el Tipo">
+
+                            <select class=" show-tick ms form-control select2 center-block border rounded"  id="tipoLente"  required data-placeholder="Seleccione el Tipo">
                                 <option></option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-md-6 col-sm-12">
                         <div class="form-group ">
                             <div class="text-center">
-                                <label class="pr-5"><strong>Seleccione la Marca del Material</strong></label>
+                                <label class="pr-5"><strong>Seleccione el Material de la Mica</strong></label>
                             </div>
-                            {{--<div class="row clearfix">
-                                <div class="col-md-6">
-                                    <div class="custom-control custom-checkbox checkbox-inline">
-                                        <input type="checkbox"  class="custom-control-input " id="monofocal">
-                                        <label class="custom-control-label checkbox-inline" for="monofocal">Monofocal</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox checkbox-inline">
-                                        <input type="checkbox"  class="custom-control-input " id="bifocal">
-                                        <label class="custom-control-label checkbox-inline" for="bifocal">Bifocal</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox checkbox-inline">
-                                        <input type="checkbox" class="custom-control-input " id="invisible">
-                                        <label class="custom-control-label checkbox-inline" for="invisible">Invisible</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="custom-control custom-checkbox checkbox-inline">
-                                        <input type="checkbox" class="custom-control-input " id="progresivo">
-                                        <label class="custom-control-label checkbox-inline" for="progresivo">Progresivo</label>
-                                    </div>
-                                </div>
-                            </div>--}}
-                            <select class=" show-tick ms form-control select2 center-block border rounded"  id="marcaMaterial" multiple required data-placeholder="Seleccione una Marca">
+
+                            <select class=" show-tick ms form-control select2 center-block border rounded" id="tipoMaterial"  required data-placeholder="Seleccione el Tipo">
                                 <option></option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <div class="form-group ">
-                            <div class="text-center">
-                                <label class="pr-5"><strong>Seleccione el Tipo de Material</strong></label>
-                            </div>
-                            {{--<div class="row clearfix">
-                                <div class="col-md-6">
-                                    <div class="custom-control custom-checkbox checkbox-inline">
-                                        <input type="checkbox"  class="custom-control-input " id="plastico">
-                                        <label class="custom-control-label checkbox-inline" for="plastico">Plastico</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox checkbox-inline">
-                                        <input type="checkbox"  class="custom-control-input " id="policarbonato">
-                                        <label class="custom-control-label checkbox-inline" for="policarbonato">Policarbonato</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox checkbox-inline">
-                                        <input type="checkbox" class="custom-control-input " id="vidrio">
-                                        <label class="custom-control-label checkbox-inline" for="vidrio">Vidrio</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="custom-control custom-checkbox checkbox-inline">
-                                        <input type="checkbox" class="custom-control-input " id="antirreflejo">
-                                        <label class="custom-control-label checkbox-inline" for="antirreflejo">Antirreflejo</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox checkbox-inline">
-                                        <input type="checkbox" class="custom-control-input " id="transition">
-                                        <label class="custom-control-label checkbox-inline" for="transition">Transition</label>
-                                    </div>
-                                </div>
-                            </div>--}}
-
-
-                            <select class=" show-tick ms form-control select2 center-block border rounded" id="tipoMaterial" multiple required data-placeholder="Seleccione el Tipo">
-                                <option></option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-3">
+                    <div class="col-lg-12">
                         <div class="form-group ">
                             <div class="text-center">
                                 <label class="pr-5"><strong>Seleccione el Filtro del Lente</strong></label>
                             </div>
-                            {{--<div class="row clearfix">
-                                <div class="col-md-6">
-                                    <div class="custom-control custom-checkbox checkbox-inline">
-                                        <input type="checkbox"  class="custom-control-input " id="plastico">
-                                        <label class="custom-control-label checkbox-inline" for="plastico">Plastico</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox checkbox-inline">
-                                        <input type="checkbox"  class="custom-control-input " id="policarbonato">
-                                        <label class="custom-control-label checkbox-inline" for="policarbonato">Policarbonato</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox checkbox-inline">
-                                        <input type="checkbox" class="custom-control-input " id="vidrio">
-                                        <label class="custom-control-label checkbox-inline" for="vidrio">Vidrio</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="custom-control custom-checkbox checkbox-inline">
-                                        <input type="checkbox" class="custom-control-input " id="antirreflejo">
-                                        <label class="custom-control-label checkbox-inline" for="antirreflejo">Antirreflejo</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox checkbox-inline">
-                                        <input type="checkbox" class="custom-control-input " id="transition">
-                                        <label class="custom-control-label checkbox-inline" for="transition">Transition</label>
-                                    </div>
-                                </div>
-                            </div>--}}
-
-
                             <select class=" show-tick ms form-control select2 center-block border rounded" id="filtro" multiple required data-placeholder="Seleccione un Filtro">
                                 <option></option>
                             </select>
@@ -298,7 +192,7 @@
                     </div>
                 </div>
             </div>
-            <span class="btn btn-primary " data-toggle="modal" data-target="#largeModal"> Aceptar
+            <span class="btn btn-primary " data-toggle="modal" onclick="fecha()" data-target="#largeModal"> Aceptar
 
             </span>
         </div>

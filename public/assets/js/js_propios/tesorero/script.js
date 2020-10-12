@@ -22,6 +22,8 @@ $('#nombrePacientes').on('change', function (){
            $('#edadPaciente').val(pacientes[0].edad);
         }
     })
+
+
     $.ajax({
         type:"GET",
         url:"getHistoria/"+id,
@@ -34,6 +36,10 @@ $('#nombrePacientes').on('change', function (){
         }
     })
     console.log("id paciente al seleccionarse:"+id);
+
+
+
+
 })
 //Ajax para rellenar el select de Marcos cada que haya cambios en el select de marca
 $('#marca').on('change',function (){
@@ -52,6 +58,35 @@ $('#marca').on('change',function (){
         }
     })
 })
+
+//Funcion para la fecha de la consulta
+function fecha(){
+    //Traer la historia clinica
+    $.ajax({
+        type:"GET",
+        url:"getHClinica/"+ $('#nombrePacientes').val(),
+        success:function (values){
+            $('#historiaClinica').val(values.id_historia_clinica);
+            console.log("La historia clinica es:"+$('#historiaClinica').val());
+            //Traer la fecha de la consulta
+            $.ajax({
+                type:"GET",
+                url:"getFecha/"+ $('#historiaClinica').val(),
+                success:function (values){
+                    console.log("Consulta:");
+                    console.log(values);
+                    $('#fecha').val(values.fecha);
+                },error:function (values){
+                    console.log(values);
+                }
+            })
+        },error:function (values){
+            console.log(values);
+        }
+    })
+
+}
+
 
 //Ajax para la imagen del marco
 $('#marco').on('change',function (){
@@ -79,6 +114,7 @@ $.ajax({
 
     }
 })
+
 
 
 $(function (){
@@ -121,31 +157,23 @@ $(function (){
             $('#tipoLente').html(rows);
         }
     })
+
+
     //Ajax para rellenar select de Tipo material
     $.ajax({
         type:"GET",
-        url:"getMaterial",
-        success:function (materiales){
+        url:"getMicas",
+        success:function (micas){
+
             var rows="<option class='text-muted' selected>-- Seleccione un Tipo de Material --</option>";
-            $.each(materiales,function (key,value) {
-                rows += `<option value="${value.id_material}">${value.material}</option>`
+            $.each(micas,function (key,value) {
+                console.log(value.id_mica_marca);
+                rows += `<option value="${value.id_mica_marca}">${value.marca_mica} - ${value.mica}</option>`
             });
             $('#tipoMaterial').html(rows);
         }
     })
 
-    //Ajax para rellenar select Marca de Material
-    $.ajax({
-        type:"GET",
-        url:"getMarcaMaterial",
-        success:function (marcaMaterial){
-            var rows="<option class='text-muted' selected>-- Seleccione una Material --</option>";
-            $.each(marcaMaterial,function (key,value) {
-                rows += `<option value="${value.id_marca_material}">${value.marca_material}</option>`
-            });
-            $('#marcaMaterial').html(rows);
-        }
-    })
 
     //Ajax para rellenar select Filtro
     //Ajax para rellenar select Marca de Material

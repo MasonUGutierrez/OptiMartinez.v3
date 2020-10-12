@@ -76,7 +76,7 @@ class HCuentaController extends Controller
     }
     //Funcion para obtener los datos de la tabla marca_material
     public function getMarcaMaterial(){
-        $marcaMaterial = DB::table('marca_material')
+        $marcaMaterial = DB::table('marca_mica')
             ->where('estado',1)
             ->get();
         return response()->json($marcaMaterial);
@@ -104,6 +104,50 @@ class HCuentaController extends Controller
             ->where('estado',1)
             ->get();
         return response()->json($planPagos);
+    }
+
+    //Obtener fecha de la consulta
+    public function getHClinica($id){
+        $historia = DB::table('historia_clinica')
+            ->where('estado',1)
+            ->where('id_paciente',$id)
+            ->select('historia_clinica.id_historia_clinica')
+            ->first();
+
+
+
+        /*dd($historia[0]->id_historia_clinica);*/
+
+       /* $consulta = DB::table('consulta')
+            ->where('estado',1)
+            ->where('id_historia_clinica',$historia->id_historia_clinica)
+            ->latest('id_consulta')
+            ->first();*/
+
+
+        return response()->json($historia);
+    }
+
+    public function getFecha($id){
+        $consulta = DB::table('consulta')
+            ->where('estado',1)
+            ->where('id_historia_clinica',$id)
+            ->latest('id_consulta')
+            ->first();
+        return response()->json($consulta);
+    }
+
+    //Funcion para extraer de la tabla mica-marca_mica y los nombres de mica y marca de mica
+    public function getMicaMarca(){
+        $intermedia = DB::table('mica-marca_mica')
+            ->where('mica-marca_mica.estado',1)
+            ->join('mica','mica-marca_mica.id_mica','=','mica.id_mica')
+            ->join('marca_mica','mica-marca_mica.id_marca_mica','=','marca_mica.id_marca_mica')
+            ->select('mica-marca_mica.id_mica_marca','mica-marca_mica.precio','mica.mica','marca_mica.marca_mica')
+            ->orderBy('marca_mica.marca_mica', "desc")
+            ->get();
+
+        return response()->json($intermedia);
     }
 
     /**

@@ -114,7 +114,7 @@
         </div>
     </div>
     <div class="row clearfix">
-        <div class="col-lg-12">
+        <div class="col-lg-6">
             <div class="card">
                 <div class="header mb-2 ml-3 col-sm-12"><h2><strong>Observaciones</strong></h2></div>
                 <div class="body">
@@ -123,6 +123,20 @@
                         <div class="form-line">
                                     <textarea id="observ" rows="4" class="form-control no-resize"
                                               placeholder="Observaciones..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="header mb-2 ml-3 col-sm-12"><h2><strong>Recomendación </strong>Lente</h2></div>
+                <div class="body">
+                    <div class="form-group">
+
+                        <div class="form-line">
+                                    <textarea id="recomendacion" rows="4" class="form-control no-resize"
+                                              placeholder="Recomendacion..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -157,7 +171,7 @@
     <div class="row clearfix">
         <div class="col-sm-4 offset-sm-4">
             <button class="btn btn-primary" type="submit" id="guardar"
-                    onclick="newConsulta();//history.back()">Guardar
+                    onclick="newConsulta();">Guardar
             </button>
             <button class="btn btn-danger"   onclick="history.back()">Cancelar
             </button>

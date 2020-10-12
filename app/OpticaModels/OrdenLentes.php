@@ -21,8 +21,11 @@ class OrdenLentes extends Model
         return $this->belongsToMany('App\OpticaModels\Filtro');
     }
     public function mica(){
-        return $this->belongsTo('App\OpticaModels\Mica','id_mica','id_mica');
+        return $this->belongsTo('App\OpticaModels\Mica_MarcaMica','id_mica_marca','id_mica_marca');
     }
+
+
+
     public function marco(){
         return $this->belongsTo('App\OpticaModels\Marco', 'id_marco','id_marco');
     }

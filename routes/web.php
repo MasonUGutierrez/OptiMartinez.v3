@@ -25,6 +25,9 @@ Route::get('pacienteById/{id}','OpticaControllers\HCuentaController@getPacienteB
 Route::get('getHistoria/{id}','OpticaControllers\HCuentaController@getHCuenta');
 Route::get('allPacientes','OpticaControllers\HCuentaController@getPacientes');
 Route::get('getMarcas','OpticaControllers\HCuentaController@getMarcas');
+Route::get('getMicas','OpticaControllers\HCuentaController@getMicaMarca');
+Route::get('getHClinica/{id}','OpticaControllers\HCuentaController@getHClinica');
+Route::get('getFecha/{id}','OpticaControllers\HCuentaController@getFecha');
 Route::get('getMarcaMaterial','OpticaControllers\HCuentaController@getMarcaMaterial');
 Route::get('getFiltro','OpticaControllers\HCuentaController@getFiltro');
 Route::get('getMarcos/{id}','OpticaControllers\HCuentaController@getMarcos');

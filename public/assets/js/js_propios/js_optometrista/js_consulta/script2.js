@@ -138,7 +138,7 @@ function newConsulta() {
 
     //Observaciones
     var obser = $('#observ').val();
-    
+    var recomendacion = $('#recomendacion').val();
     var hallazgo = $('#hallazgo').val();
     //If para validar si se va a hacer retinoscopia
     // if($('#checkbox12').is(":checked"))
@@ -146,13 +146,13 @@ function newConsulta() {
     {
         var dataExamen = {id_historia_clinica:id_historia,fecha:fecha,id_jornada_trabajo:jornada,
             id_servicio:[eVisual],precio:[eVisualp],
-            distancia_pupilar:dp,alt:alt,observacion:obser,
+            distancia_pupilar:dp,alt:alt,observacion:obser,recomendacion_lente:recomendacion,
             esfera:[esd,esi],cilindro:[cd,ci],eje:[ejd,eji],adicion:[ad,ai],agudeza_visual:[avd,avi]
-        };        
+        };
     }else{
         //Variable para enviar los valores que se necesitan en la tabla consulta
         var dataExamen = {id_historia_clinica:id_historia,fecha:fecha,id_jornada_trabajo:jornada,
-            id_servicio:[eVisual,retino],precio:[eVisualp,retinop],hallazgos:hallazgo,
+            id_servicio:[eVisual,retino],precio:[eVisualp,retinop],hallazgos:hallazgo,recomendacion_lente:recomendacion,
             distancia_pupilar:dp,alt:alt,observacion:obser,
             esfera:[esd,esi],cilindro:[cd,ci],eje:[ejd,eji],adicion:[ad,ai],agudeza_visual:[avd,avi]
         };

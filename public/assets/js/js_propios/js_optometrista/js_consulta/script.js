@@ -30,6 +30,7 @@ function deshabilitar(){
     $('#jor').attr('disabled','disabled');
     $('#observa').attr('readonly','readonly');
     $('#hall').attr('readonly','readonly');
+    $('#recomenda').attr('readonly','readonly');
     $('#BotonEditar').removeAttr("hidden","hidden");
     $('#BotonDetalles').attr('hidden','hidden');
     $('#btnGuardar').attr('hidden','hidden');
@@ -48,6 +49,7 @@ function detalle_editar() {
         $('#jor').removeAttr("disabled","disabled");
         $('#observa').removeAttr("readonly","readonly");
         $('#hall').removeAttr("readonly","readonly");
+        $('#recomenda').removeAttr("readonly","readonly");
         $('#BotonEditar').attr('hidden','hidden');
         $('#BotonDetalles').removeAttr("hidden","hidden");
         $('#btnGuardar').removeAttr("hidden","hidden");
@@ -71,6 +73,7 @@ function detalle_editar() {
         $('#jor').attr('disabled','disabled');
         $('#observa').attr('readonly','readonly');
         $('#hall').attr('readonly','readonly');
+        $('#recomenda').attr('readonly','readonly');
         $('#BotonEditar').removeAttr("hidden","hidden");
         $('#BotonDetalles').attr('hidden','hidden');
         $('#btnGuardar').attr('hidden','hidden');
@@ -215,7 +218,7 @@ function updateConsulta() {
 
     //Observaciones
     var obser = $('#observa').val();
-
+    var reco = $('#recomenda').val();
     //If para validar si se va a hacer retinoscopia
 
 
@@ -224,7 +227,7 @@ function updateConsulta() {
         var hallazgo = $('#hall').val();
         //Variable para enviar los valores que se necesitan en la tabla consulta
         var dataExamen = {id_historia_clinica:id_historia,id_jornada_trabajo:jornada,
-            id_servicio:[eVisual,retino],hallazgos:hallazgo,
+            id_servicio:[eVisual,retino],hallazgos:hallazgo,recomendacion_lente:reco,
             distancia_pupilar:dp,alt:alt,observacion:obser,
             esfera:[esd,esi],cilindro:[cd,ci],eje:[ejd,eji],adicion:[ad,ai],agudeza_visual:[avd,avi],
             _method:$('input[name=_method]').val()
@@ -233,7 +236,7 @@ function updateConsulta() {
     }else{
         var dataExamen = {id_historia_clinica:id_historia,
            /* id_servicio:[eVisual],*/
-            distancia_pupilar:dp,alt:alt,observacion:obser,
+            distancia_pupilar:dp,alt:alt,observacion:obser,recomendacion_lente:reco,
             esfera:[esd,esi],cilindro:[cd,ci],eje:[ejd,eji],adicion:[ad,ai],agudeza_visual:[avd,avi],
             _method:$('input[name=_method]').val()
         };
@@ -247,11 +250,9 @@ function updateConsulta() {
         url:'/historias-clinicas/consulta/'+ $("#idconsulta").val(),
         success:function (result) {
             verConsulta()
-            console.log("bueno volvi")
             console.log(result);
         },error:function (result) {
             verConsulta();
-            console.log("volvi")
             console.log(result);
         }
     })
@@ -286,6 +287,7 @@ function verDetalles($id){
     $('#alt1').html(" ");
 
     $('#observa').val(" ");
+    $('#recomenda').val(" ");
     $('#hall').html(" ");
     //*************************************************************
     $.ajax({
@@ -308,42 +310,43 @@ function verDetalles($id){
                 dataType:'json',
                 url:"/historias-clinicas/consulta/"+$id,
                 success:function (response) {
-                    
+
                     /*  //Fecha
                     $('#fe').val(response.consulta[0].fecha);*/
-                    
+
                     // console.log(response.consulta[0].nombre_jornada);
                     console.log(response.consulta[0].id_jornada_trabajo);
                     $("#jor").val(response.consulta[0].id_jornada_trabajo).trigger("change");
                     $("#jor").trigger("change");
-                    
+
                     console.log($('#jor'));
-        
+
                     $("#idconsulta").val($id);
-        
+
                     //Ojo derecho
                     $('#esd1').html(response.examen[0].esfera);
                     $('#cd1').html(response.examen[0].cilindro);
                     $('#ejd1').html(response.examen[0].eje);
                     $('#ad1').html(response.examen[0].adicion);
                     $('#avd1').html(response.examen[0].agudeza_visual);
-        
+
                     //Ojo Izquierdo
                     $('#esi1').html(response.examen[1].esfera);
                     $('#ci1').html(response.examen[1].cilindro);
                     $('#eji1').html(response.examen[1].eje);
                     $('#ai1').html(response.examen[1].adicion);
                     $('#avi1').html(response.examen[1].agudeza_visual);
-        
+
                     //D.P y ALT
                     $('#dp1').html(response.examen[0].distancia_pupilar);
                     $('#alt1').html(response.examen[0].alt);
-        
-        
+
+
                     //Observaciones
                     $('#observa').val(response.examen[0].observacion);
-        
-        
+                    $('#recomenda').val(response.examen[0].recomendacion_lente)
+
+
                 if(response.retinoscopia[0] != null){
                     //Retinoscopia
                     $('#hall').html(response.retinoscopia[0].hallazgos);
@@ -353,15 +356,15 @@ function verDetalles($id){
                 }else {
                     $('#hall').html(" ");
                 }
-        
+
                 },error:function (response) {
                     console.log("hay un error");
                 }
-        
+
             })
         }
     })
-    
+
 }
 
 function table(){

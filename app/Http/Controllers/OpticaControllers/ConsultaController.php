@@ -171,6 +171,7 @@ class ConsultaController extends Controller
                 $examenvisual-> distancia_pupilar = $request->get('distancia_pupilar');
                 $examenvisual-> alt = $request->get('alt');
                 $examenvisual-> observacion = $request->get('observacion');
+                $examenvisual-> recomendacion_lente = $request->get('recomendacion_lente');
                 $examenvisual->save();
 
                 while ($contaOjo<count($esfera)){
@@ -239,6 +240,7 @@ class ConsultaController extends Controller
                 $examenvisual-> distancia_pupilar = $request->get('distancia_pupilar');
                 $examenvisual-> alt = $request->get('alt');
                 $examenvisual-> observacion = $request->get('observacion');
+                $examenvisual-> recomendacion_lente = $request->get('recomendacion_lente');
                 $examenvisual->save();
 
                 while ($contaOjo<count($esfera)){

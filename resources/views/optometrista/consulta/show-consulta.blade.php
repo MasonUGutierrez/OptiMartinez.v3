@@ -99,7 +99,7 @@
                     </div>
                 </div>
                 <div class="row clearfix">
-                    <div class="col-lg-12">
+                    <div class="col-lg-6">
                         <div class="card">
                             <div class="row clearfix">
                                 <div class="header mb-2 ml-3 col-sm-12"><h2><strong>Observaciones</strong></h2></div>
@@ -108,6 +108,21 @@
                                         <div class="form-line">
                                     <textarea id="observa" rows="4" readonly class="form-control no-resize"
                                               placeholder="Observaciones..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="row clearfix">
+                                <div class="header mb-2 ml-3 col-sm-12"><h2><strong>Recomendacion</strong> Lente</h2></div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                    <textarea id="recomenda" rows="4" readonly class="form-control no-resize"
+                                              placeholder="Recomendacion..."></textarea>
                                         </div>
                                     </div>
                                 </div>
