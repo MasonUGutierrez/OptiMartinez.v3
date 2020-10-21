@@ -18,6 +18,8 @@ $(function () {
     $("#checkbox14").click(function(){
         e();
     });
+
+
 /****************************************************/
     $('#jornadaNombres').on('change',function(){
         $.ajax({
@@ -52,7 +54,7 @@ function verJornada(){
     $.ajax({
         type:"GET",
         dataType:'json',
-        url:"verjor",
+        url:"verjor/"+ id_historia,
         success:function (jornadas) {
             var rows="<option class='text-muted' selected>-- Selecciona una Jornada --</option>";
             $.each(jornadas,function (key,value) {

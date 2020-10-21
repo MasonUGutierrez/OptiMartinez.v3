@@ -555,21 +555,15 @@
             initStepTab();
 
         });
-<<<<<<< HEAD
+
 
         /*Pruebas para ocultar el ultimo steps de las medidas para cuando vaya a edtar*/
         // $('[data-id=medidasTitle]').remove();
         // $('[data-id=medidasContainer]').remove();
     });
-=======
-                
-        /*Pruebas para ocultar el ultimo steps de las medidas para cuando vaya a edtar*/
-        // $('[data-id=medidasTitle]').remove();
-        // $('[data-id=medidasContainer]').remove();
-    }); 
 
-    
->>>>>>> origin/cambiarMateriales
+
+
     // var hclinica = {{json_encode($hclinica)}};
 
     // console.log(medidasOjos.length);

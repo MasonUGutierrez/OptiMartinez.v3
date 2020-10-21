@@ -27,9 +27,11 @@ class ConsultaController extends Controller
     }
 
     //Esta funcion hace que muestre en un select las jornada trabajo
-    public function verjornada(){
-        $jornada = DB::table('jornada_trabajo')->get()
-            ->where('estado','1');
+    //que no han sido seleccionadas anteriormente en una misma historia clinica
+    public function verjornada($id){
+
+        $jornada = DB::select('call exists_jornada(?)', array($id));
+
 
         return response()->json($jornada);
     }
