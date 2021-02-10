@@ -72,7 +72,7 @@ function showConfirmMessage(text, obj, linkURL, csrf_token) {
                 icon: "success",
                 button:'Aceptar',
             }).then(()=>{
-                makeForm(linkURL, csrf_token, 'DELETE').submit();
+                makeForm(linkURL, csrf_token, 'DELETE').trigger("submit");
             });
         } else {
             showCancelMessage();
@@ -108,7 +108,7 @@ function showReactivateMessage(obj, linkURL, csrf_token) {
                 'timer':2000,
                 'button':false
             }).then(()=>{
-                makeForm(linkURL, csrf_token, 'PUT').submit();
+                makeForm(linkURL, csrf_token, 'PUT').trigger("submit");
             });
             // Nota: La funcion flecha () => {} es igual que enviar una funcion anonima function(){} o la definicion de una funcion
         }

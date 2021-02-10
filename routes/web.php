@@ -69,15 +69,16 @@ Route::put('admin-materiales/tipos-lentes/reactivar/{tipo_lente}', function($id)
 })->name('tipos-lentes.reactivar');
 Route::resource('admin-materiales/tipos-lentes', 'OpticaControllers\TipoLenteController')->except(['show']);
 
-Route::put('admin-materiales/micas/reactivar/{mica}', function($id){
-    $mica = App\OpticaModels\Mica::findOrFail($id);
-    $mica->estado = 1;
-    $mica->save();
+Route::put('admin-materiales/materiales/reactivar/{materiale}', function($id){
+    // var_dump($id);
+    $m_mica = App\OpticaModels\MaterialMica::findOrFail($id);
+    $m_mica->estado = 1;
+    $m_mica->save();
 
-    return redirect()->route('micas.index');
-})->name('micas.reactivar');
+    return redirect()->route('materiales.index');
+})->name('materiales.reactivar');
 
-Route::resource('admin-materiales/micas', 'OpticaControllers\MicaController');
+Route::resource('admin-materiales/materiales', 'OpticaControllers\MaterialMicaController');
 
 Route::put('admin-lentes/marcos/reactivar/{marco}', function($id){
     $marco = App\OpticaModels\Marco::findOrFail($id);
