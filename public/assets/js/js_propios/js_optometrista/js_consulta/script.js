@@ -127,7 +127,7 @@ function verJornada(){
     $.ajax({
         type:"GET",
         dataType:'json',
-        url:"consulta/create/verjor",
+        url:"consulta/create/verjor/"+id_historia,
         success:function (response) {
             var rows="";
             $.each(response,function (key,value) {
@@ -267,6 +267,10 @@ function verDetalles($id){
     deshabilitar();
     //*******************************************************************
 
+   /* $('#jor').html(" ");*///Para limpiar el select en lugar de .val(" ") usar .html("")
+    $("#jor").empty();
+    $('#jor').trigger('change');
+
 
     //Ojo derecho
     $('#esd1').html(" ");
@@ -293,7 +297,7 @@ function verDetalles($id){
     $.ajax({
         type:"GET",
         dataType:'json',
-        url:"consulta/create/verjor",
+        url:"/verJornada",
         success:function (response) {
             var rows="";
             $.each(response,function (key,value) {

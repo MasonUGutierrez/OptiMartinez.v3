@@ -29,9 +29,14 @@ class ConsultaController extends Controller
     //Esta funcion hace que muestre en un select las jornada trabajo
     //que no han sido seleccionadas anteriormente en una misma historia clinica
     public function verjornada($id){
-
         $jornada = DB::select('call exists_jornada(?)', array($id));
+        return response()->json($jornada);
+    }
 
+    public function watchJornada(){
+        $jornada = DB::table('jornada_trabajo')
+            ->get()
+            ->where('estado','1');
 
         return response()->json($jornada);
     }
@@ -174,6 +179,9 @@ class ConsultaController extends Controller
                 $examenvisual-> alt = $request->get('alt');
                 $examenvisual-> observacion = $request->get('observacion');
                 $examenvisual-> recomendacion_lente = $request->get('recomendacion_lente');
+                if ($request->recomendacion_lente != null){
+                    $examenvisual-> orden_Flag = 1;
+                }
                 $examenvisual->save();
 
                 while ($contaOjo<count($esfera)){

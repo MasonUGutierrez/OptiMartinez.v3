@@ -20,21 +20,27 @@ Route::get('/', function () {
 
 //Rutas para tesorero
     //Rutas orden lentes
-Route::get('getPlanPagos','OpticaControllers\HcuentaController@getPlanPagos');
-Route::get('pacienteById/{id}','OpticaControllers\HCuentaController@getPacienteById');
-Route::get('getHistoria/{id}','OpticaControllers\HCuentaController@getHCuenta');
-Route::get('allPacientes','OpticaControllers\HCuentaController@getPacientes');
-Route::get('getMarcas','OpticaControllers\HCuentaController@getMarcas');
-Route::get('getMicas','OpticaControllers\HCuentaController@getMicaMarca');
-Route::get('getHClinica/{id}','OpticaControllers\HCuentaController@getHClinica');
-Route::get('getFecha/{id}','OpticaControllers\HCuentaController@getFecha');
-Route::get('getMarcaMaterial','OpticaControllers\HCuentaController@getMarcaMaterial');
-Route::get('getFiltro','OpticaControllers\HCuentaController@getFiltro');
-Route::get('getMarcos/{id}','OpticaControllers\HCuentaController@getMarcos');
-Route::get('getMarcosInfo/{id}','OpticaControllers\HCuentaController@getMarcoInfo');
-Route::get('getMaterial','OpticaControllers\HCuentaController@getTipoMaterial');
-Route::get('getLente','OpticaControllers\HCuentaController@getTipoLente');
-Route::resource('ordenLentes','OpticaControllers\HCuentaController');
+
+
+
+Route::get('getPrecios/{id}/{ids}/{idss}','OpticaControllers\OrdenLenteController@costos');
+Route::get('getPrecioFiltro/{id}','OpticaControllers\OrdenLenteController@costoFiltro');
+Route::get('getPlanPagos','OpticaControllers\OrdenLenteController@getPlanPagos');
+Route::get('pacienteById/{id}','OpticaControllers\OrdenLenteController@getPacienteById');
+Route::get('getHistoria/{id}','OpticaControllers\OrdenLenteController@getHCuenta');
+Route::get('allPacientes','OpticaControllers\OrdenLenteController@getPacientes');
+Route::get('getMarcas','OpticaControllers\OrdenLenteController@getMarcas');
+Route::get('getMicas','OpticaControllers\OrdenLenteController@getMicaMarca');
+Route::get('getHClinica/{id}','OpticaControllers\OrdenLenteController@getHClinica');
+Route::get('getFecha/{id}','OpticaControllers\OrdenLenteController@getFecha');
+Route::get('getMarcaMaterial','OpticaControllers\OrdenLenteController@getMarcaMaterial');
+Route::get('getFiltro','OpticaControllers\OrdenLenteController@getFiltro');
+Route::get('getMarcos/{id}','OpticaControllers\OrdenLenteController@getMarcos');
+Route::get('getMarcosInfo/{id}','OpticaControllers\OrdenLenteController@getMarcoInfo');
+Route::get('getMaterial','OpticaControllers\OrdenLenteController@getTipoMaterial');
+Route::get('getLente','OpticaControllers\OrdenLenteController@getTipoLente');
+Route::get('/ordendeLente','OpticaControllers\OrdenLenteController@vistaOrden');
+Route::resource('ordenLentes','OpticaControllers\OrdenLenteController');
 
 //Rutas propias
 Route::get('miperfil','OpticaControllers\UsuarioController@showPerfil');
@@ -48,6 +54,7 @@ Route::resource('servicios','OpticaControllers\ServicioController');
 Route::get('planpagos','OpticaControllers\PlanPagoController@getAll');
 Route::resource('planpago','OpticaControllers\PlanPagoController');
 
+Route::get('verJornada','OpticaControllers\ConsultaController@watchJornada');
 Route::get('historias-clinicas/consulta/create/verfecha/{id}','OpticaControllers\ConsultaController@getfecha');
 Route::get('historias-clinicas/consulta/create/verpaciente/{id}','OpticaControllers\ConsultaController@getpaciente');
 Route::get('historias-clinicas/consulta/create/verjor/{id}','OpticaControllers\ConsultaController@verjornada');
@@ -123,7 +130,7 @@ Route::post('historias-clinicas/getCedula/{cedula}','OpticaControllers\HClinicaC
 Route::get('historias-clinicas/all', 'OpticaControllers\HClinicaController@getAll');
 Route::get('historias-clinicas/gethistoria/{historia_clinica}', 'OpticaControllers\HClinicaController@getHClinica');
 Route::resource('historias-clinicas', 'OpticaControllers\HClinicaController');
-Route::resource('historias-cuentas', 'OpticaControllers\HCuentaController');
+Route::resource('historias-cuentas', 'OpticaControllers\OrdenLenteController');
 Route::resource('pacientes', 'OpticaControllers\PacienteController');
 
 

@@ -16,6 +16,11 @@ class CuentaCobrar extends Model
         return $this->belongsTo('App\OpticaModels\HCuenta','id_historia_cuenta','id_historia_cuenta');
 
     }
+
+    public function cuotas(){
+        return $this->hasMany('App\OpticaModels\CuentaCobrar','id_cuenta_cobrar','id_cuenta_cobrar');
+    }
+
     public function ordenLente(){
         return $this->hasOne('App\OpticaModels\OrdenLente','id_cuenta_cobrar','id_cuenta_cobrar');
     }

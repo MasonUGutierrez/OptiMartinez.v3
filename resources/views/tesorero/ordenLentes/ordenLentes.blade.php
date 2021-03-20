@@ -68,7 +68,7 @@
                        </div>
                    </div>
                 </div>
-                <div class="row clearfix">
+                {{--<div class="row clearfix">
                     <div class="col-lg-9">
                         <div class="table-responsive">
                             <table class="table text-center table-bordered table-hover c_table theme-color" id="medidasOjos">
@@ -116,7 +116,7 @@
                                 </div>
                             </small>
                         </div>
-                </div>
+                </div>--}}
             </div>
             <div class="header">
                 <h2><strong>Detalles</strong> del Marco</h2>
@@ -192,7 +192,7 @@
                     </div>
                 </div>
             </div>
-            <span class="btn btn-primary " data-toggle="modal" onclick="fecha()" data-target="#largeModal"> Aceptar
+            <span class="btn btn-primary" data-toggle="modal" onclick="ordenLentes()" data-target="#largeModal"> Aceptar
 
             </span>
         </div>
