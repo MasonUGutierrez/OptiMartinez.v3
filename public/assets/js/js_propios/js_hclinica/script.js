@@ -582,6 +582,7 @@ const fnStore = function (type){
             if(type == "POST"){
                 console.log(datas.nombres + ' Registrado!!');
                 fnClearFields(); 
+                // $('.dataTable-hc').DataTable().ajax.reload();
                 data();
             }
             else{

@@ -34,9 +34,9 @@
     </a>
     <ul class="ml-menu">
         <li class="{{ Request::segment(2) === 'tipos-lentes' ? 'active' : null }}"><a href="{{url('admin-materiales/tipos-lentes')}}">Tipos de Lentes</a></li>
-        <li class="{{ Request::segment(2) === 'marcas-micas' ? 'active' : null }}"><a href="{{url('admin-lentes/materiales')}}">Marcas de Micas</a></li>
-        <li class="{{ Request::segment(2) === 'micas' ? 'active' : null }}"><a href="{{url('admin-materiales/micas')}}">Micas</a></li>
-        <li class="{{ Request::segment(2) === 'filtros' ? 'active' : null }}"><a href="{{url('admin-lentes/materiales')}}">Filtros</a></li>
+        <li class="{{ Request::segment(2) === 'marcas-materiales' ? 'active' : null }}"><a href="{{url('admin-materiales/marcas-materiales')}}">Marcas de Materiales</a></li>
+        <li class="{{ Request::segment(2) === 'materiales' ? 'active' : null }}"><a href="{{url('admin-materiales/materiales')}}">Materiales Micas</a></li>
+        <li class="{{ Request::segment(2) === 'filtros' ? 'active' : null }}"><a href="{{url('admin-materiales/filtros')}}">Filtros</a></li>
     </ul>
 </li>
 

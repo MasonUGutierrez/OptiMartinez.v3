@@ -18,7 +18,7 @@ class TipoLenteController extends Controller
     public function index()
     {
         
-        return view('adminlentes.tipolentes.index', ['tiposLentes'=>TipoLente::all()]);
+        return view('adminmateriales.tipolentes.index', ['tiposLentes'=>TipoLente::all()]);
     }
 
     public function getTipos()
@@ -33,7 +33,7 @@ class TipoLenteController extends Controller
      */
     public function create()
     {
-        return view('adminlentes.tipolentes.create');
+        return view('adminmateriales.tipolentes.create');
     }
 
     /**
@@ -71,7 +71,7 @@ class TipoLenteController extends Controller
      */
     public function edit($id)
     {
-        return view('adminlentes.tipolentes.edit', ['tipoLente'=>TipoLente::findOrFail($id)]);
+        return view('adminmateriales.tipolentes.edit', ['tipoLente'=>TipoLente::findOrFail($id)]);
     }
 
     /**
@@ -103,6 +103,6 @@ class TipoLenteController extends Controller
         $tipoLente->estado = 0;
         $tipoLente->save();
 
-        return redirect('admin-lentes/tipos-lentes');
+        return redirect('admin-materiales/tipos-lentes');
     }
 }
