@@ -5,26 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f11d8e14-12ef-49b8-b72e-a893af70a4a0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a67c87ff-2c75-464b-be90-771e23370892.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a67c87ff-2c75-464b-be90-771e23370892/storage_v2/_src_/schema/optica_martinez.W01KOw.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a67c87ff-2c75-464b-be90-771e23370892/storage_v2/_src_/schema/optica_martinez.W01KOw.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/laravel-plugin.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OpticaControllers/ConsultaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OpticaControllers/ConsultaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OpticaControllers/HCuentaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OpticaControllers/OrdenLenteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/JornadaTrabajoFormRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/JornadaTrabajoFormRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/OpticaModels/Consulta.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/OpticaModels/Consulta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/OpticaModels/CuentaCobrar.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/OpticaModels/CuentaCobrar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/js/js_propios/js_optometrista/js_consulta/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/js_propios/js_optometrista/js_consulta/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/js/js_propios/tesorero/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/js_propios/tesorero/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/tesorero/ordenLentes/modal_ordenLente.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tesorero/ordenLentes/modal_ordenLente.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/tesorero/ordenLentes/ordenLentes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tesorero/ordenLentes/ordenLentes.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,11 +122,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/tesorero/ordenLentes" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -198,32 +181,13 @@
       <workItem from="1614786549292" duration="29000" />
       <workItem from="1614786927755" duration="560000" />
       <workItem from="1615323789414" duration="249000" />
+      <workItem from="1616264250224" duration="81000" />
+      <workItem from="1616822700292" duration="1522000" />
+      <workItem from="1616864930739" duration="267000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="493" y="243" key="#Composer" timestamp="1611889801895">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="493" y="243" key="#Composer/0.0.1366.728@0.0.1366.728" timestamp="1611889801895" />
-    <state x="242" y="0" width="817" height="728" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1612646373048">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="242" y="0" width="817" height="728" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.728@0.0.1366.728" timestamp="1612646373048" />
-    <state x="397" y="109" width="585" height="534" key="find.popup" timestamp="1612326065261">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="397" y="109" width="585" height="534" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1612326065261" />
-    <state x="475" y="222" key="scopes" timestamp="1611894199261">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="475" y="222" key="scopes/0.0.1366.728@0.0.1366.728" timestamp="1611894199261" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1613012246677">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1613012246677" />
   </component>
 </project>
