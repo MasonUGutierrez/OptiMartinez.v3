@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\OpticaModels\MaterialMica;
 use App\Http\Requests\MaterialMicaFormRequest;
 
+use App\OpticaModels\MarcaMaterial;
+
 class MaterialMicaController extends Controller
 {
     /**
@@ -45,6 +47,24 @@ class MaterialMicaController extends Controller
         return redirect()->route('materiales.index');
     }
 
+    public function getMarcasMateriales()
+    {
+        
+    }
+    public function getCedulaifExist($ced)
+    {
+        try
+        {
+            if($pacienteWithCedula = Paciente::where('cedula',$ced)->firstOrFail())
+            {
+                return "true";
+            }
+        }
+        catch(ModelNotFoundException $e)
+        {
+            return "false";
+        }
+    }
     /**
      * Display the specified resource.
      *

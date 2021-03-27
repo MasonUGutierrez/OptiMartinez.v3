@@ -8,6 +8,9 @@
 
 {{-- Estilos para la jqueryDataTable --}}
 <link rel="stylesheet" href="{{asset('assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css')}}">
+
+<link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-select/css/bootstrap-select.css')}}"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.css')}}"/>
 @endsection
 
 @section('content')
@@ -108,9 +111,28 @@
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.flash.min.js')}}"></script>
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.html5.min.js')}}"></script>
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.print.min.js')}}"></script>
+
+<script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
 @endsection     
 
 @push('after-scripts')
 <script src="{{asset('assets/js/pages/ui/sweetalert.js')}}"></script>
 <script src="{{asset('assets/js/pages/tables/jquery-datatable.js')}}"></script>
+
+
+<script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
+
+<script>
+    $(function(){
+        $(".marcas").select2({
+            ajax: {},
+        });
+
+
+    });
+    $.ajax({
+        url:'',
+
+    });
+</script>
 @endpush
