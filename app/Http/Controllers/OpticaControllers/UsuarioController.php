@@ -51,8 +51,8 @@ class   UsuarioController extends Controller
     public function store(UsuarioFormRequest $request)
     {
 
-        try {
-            DB::beginTransaction();
+        //try {
+          //  DB::beginTransaction();
             $usuario = new Usuario;
             $usuario->cod_minsa = $request->get('cod_minsa');
             $usuario->nombre = $request->get('nombre');
@@ -83,10 +83,10 @@ class   UsuarioController extends Controller
                 $cont = $cont + 1;
             }
 
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollback();
-        }
+          //  DB::commit();
+        //} catch (\Exception $e) {
+          //  DB::rollback();
+        //}
         return Redirect::to('usuarios');
     }
 
